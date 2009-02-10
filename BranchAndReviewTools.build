@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<project name="Branch And Review Tools" default="deploy"
+    xmlns="http://nantcontrib.sf.net/release/0.85/nantcontrib.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://nantcontrib.sf.net/release/0.85/nantcontrib.xsd Tools/nantcontrib/schema/nantcontrib.xsd">
+
+    <loadtasks assembly="Tools/nantcontrib/bin/NAnt.Contrib.Tasks.dll" />
+	<property name="configuration" value="Debug" overwrite="false" />
+	<property name="projects" value="BranchAndReviewTools" />
+
+	<target name="clean">
+		<foreach item="String" in="${projects}" delim="," property="project">
+			<foreach item="String" in="obj,bin" delim="," property="dir">
+				<delete dir="${project}/${dir}/${configuration}"
+                        if="${directory::exists(project + '/' + dir + '/' + configuration)}"
+                        failonerror="false" />
+			</foreach>
+		</foreach>
+	</target>
+
+	<target name="compile" depends="clean">
+        <msbuild project="BranchAndReviewTools.sln">
+            <arg value="/property:Configuration=${configuration}" />
+            <arg value="/verbosity:minimal" />
+        </msbuild>
+	</target>
+
+	<target name="test" depends="compile">
+		<nunit2>
+			<formatter type="Plain" />
+            <test>
+                <assemblies>
+                    <include name="*/bin/${configuration}/SoftwareNinjas.*.dll" />
+                    <include name="*/bin/${configuration}/SoftwareNinjas.*.exe" />
+                </assemblies>
+            </test>
+		</nunit2>
+        <!-- TODO: verify assemblies with FxCop -->
+	</target>
+
+	<target name="documentation" depends="test">
+        <!-- TODO: call NDoc, etc. -->
+	</target>
+
+	<target name="deploy" depends="documentation">
+        <!-- TODO: create installers, etc. -->
+	</target>
+
+	<target name="release">
+		<property name="configuration" value="release" />
+		<call target="deploy" />
+	</target>
+</project>
