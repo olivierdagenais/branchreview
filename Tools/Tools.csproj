@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
@@ -99,16 +99,16 @@
     <None Include="nant\schema\nant.xsd" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="nantcontrib\bin\CollectionGen.dll" />
-    <Content Include="nantcontrib\bin\Interop.MsmMergeTypeLib.dll" />
-    <Content Include="nantcontrib\bin\Interop.StarTeam.dll" />
-    <Content Include="nantcontrib\bin\Interop.WindowsInstaller.dll" />
-    <Content Include="nantcontrib\bin\NAnt.Contrib.Tasks.dll" />
-    <Content Include="nantcontrib\bin\NAnt.Contrib.Tasks.xml" />
-    <Content Include="nantcontrib\bin\SLiNgshoT.Core.dll" />
-    <Content Include="nantcontrib\bin\SLiNgshoT.exe" />
-    <Content Include="nantcontrib\bin\SourceSafe.Interop.dll" />
-    <Content Include="nantcontrib\license.txt" />
-    <Content Include="nantcontrib\readme.txt" />
+    <None Include="nantcontrib\bin\CollectionGen.dll" />
+    <None Include="nantcontrib\bin\Interop.MsmMergeTypeLib.dll" />
+    <None Include="nantcontrib\bin\Interop.StarTeam.dll" />
+    <None Include="nantcontrib\bin\Interop.WindowsInstaller.dll" />
+    <None Include="nantcontrib\bin\NAnt.Contrib.Tasks.dll" />
+    <None Include="nantcontrib\bin\NAnt.Contrib.Tasks.xml" />
+    <None Include="nantcontrib\bin\SLiNgshoT.Core.dll" />
+    <None Include="nantcontrib\bin\SLiNgshoT.exe" />
+    <None Include="nantcontrib\bin\SourceSafe.Interop.dll" />
+    <None Include="nantcontrib\license.txt" />
+    <None Include="nantcontrib\readme.txt" />
   </ItemGroup>
 </Project>

@@ -792,7 +792,7 @@
     <xs:sequence minOccurs="0" maxOccurs="unbounded">
       <xs:element minOccurs="1" maxOccurs="1" name="assemblies" type="nant:NAnt.DotNet.Types.AssemblyFileSet" />
       <xs:element minOccurs="0" maxOccurs="1" name="summaries" type="nant:NAnt.Core.Types.FileSet" />
-      <xs:element minOccurs="1" maxOccurs="1" name="documenters" type="nant:NAnt.Core.Types.RawXml" />
+      <xs:element minOccurs="1" maxOccurs="1" name="documenters" type="nant:NDoc.Documenters" />
       <xs:element minOccurs="0" maxOccurs="1" name="referencepaths" type="nant:NAnt.Core.Types.DirSet" />
     </xs:sequence>
     <xs:attribute name="failonerror" use="optional" />
@@ -800,6 +800,21 @@
     <xs:attribute name="if" use="optional" />
     <xs:attribute name="unless" use="optional" />
     <xs:anyAttribute namespace="##other" processContents="skip" />
+  </xs:complexType>
+  <xs:complexType name="NDoc.Documenters">
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element minOccurs="1" maxOccurs="unbounded" name="documenter" type="nant:NDoc.Documenter" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NDoc.Documenter">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" name="property" type="nant:NDoc.Documenter.Property" />
+    </xs:sequence>
+    <xs:attribute name="name" use="required" />
+  </xs:complexType>
+  <xs:complexType name="NDoc.Documenter.Property">
+    <xs:attribute name="name" use="required" />
+    <xs:attribute name="value" use="required" />
   </xs:complexType>
   <xs:complexType name="NAnt.DotNet.Tasks.RegsvcsTask">
     <xs:sequence minOccurs="0" maxOccurs="unbounded">

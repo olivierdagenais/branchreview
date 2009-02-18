@@ -1,53 +1,88 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <project name="Branch And Review Tools" default="deploy"
     xmlns="http://nantcontrib.sf.net/release/0.85/nantcontrib.xsd"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://nantcontrib.sf.net/release/0.85/nantcontrib.xsd Tools/nantcontrib/schema/nantcontrib.xsd">
 
     <loadtasks assembly="Tools/nantcontrib/bin/NAnt.Contrib.Tasks.dll" />
-	<property name="configuration" value="Debug" overwrite="false" />
-	<property name="projects" value="BranchAndReviewTools" />
+    <property name="configuration" value="Debug" overwrite="false" />
+    <property name="projects" value="BranchAndReviewTools" />
 
-	<target name="clean">
-		<foreach item="String" in="${projects}" delim="," property="project">
-			<foreach item="String" in="obj,bin" delim="," property="dir">
-				<delete dir="${project}/${dir}/${configuration}"
+    <target name="clean">
+        <foreach item="String" in="${projects}" delim="," property="project">
+            <foreach item="String" in="obj,bin" delim="," property="dir">
+                <delete dir="${project}/${dir}/${configuration}"
                         if="${directory::exists(project + '/' + dir + '/' + configuration)}"
                         failonerror="false" />
-			</foreach>
-		</foreach>
-	</target>
+            </foreach>
+        </foreach>
+    </target>
 
-	<target name="compile" depends="clean">
+    <target name="compile" depends="clean">
         <msbuild project="BranchAndReviewTools.sln">
             <arg value="/property:Configuration=${configuration}" />
             <arg value="/verbosity:minimal" />
         </msbuild>
-	</target>
+    </target>
 
-	<target name="test" depends="compile">
-		<nunit2>
-			<formatter type="Plain" />
+    <target name="test" depends="compile">
+        <nunit2>
+            <formatter type="Plain" />
             <test>
                 <assemblies>
                     <include name="*/bin/${configuration}/SoftwareNinjas.*.dll" />
                     <include name="*/bin/${configuration}/SoftwareNinjas.*.exe" />
                 </assemblies>
             </test>
-		</nunit2>
+        </nunit2>
         <!-- TODO: verify assemblies with FxCop -->
-	</target>
+    </target>
 
-	<target name="documentation" depends="test">
-        <!-- TODO: call NDoc, etc. -->
-	</target>
+    <target name="documentation" depends="test">
+        <property name="outputFileName" value="SoftwareNinjas.BranchAndReviewTools"/>
+        <ndoc>
+            <assemblies>
+                <include name="*/bin/${configuration}/SoftwareNinjas.*.dll"/>
+                <include name="*/bin/${configuration}/SoftwareNinjas.*.exe"/>
+            </assemblies>
+            <summaries>
+                <!-- TODO: add an include element for our assemblies -->
+            </summaries>
+            <documenters>
+                <documenter name="MSDN">
+                    <property name="OutputDirectory" value="Documentation\MSDN" />
+                    <property name="HtmlHelpName" value="${outputFileName}" />
+                    <property name="IncludeFavorites" value="False"/>
+                    <property name="Title" value="Painless management of branches and code reviews"/>
+                    <property name="SplitTOCs" value="False"/>
+                    <property name="DefaulTOC" value="" />
+                    <property name="ShowVisualBasic" value="False" />
+                    <property name="ShowMissingSummaries" value="True" />
+                    <property name="ShowMissingRemarks" value="False" />
+                    <property name="ShowMissingParams" value="True" />
+                    <property name="ShowMissingReturns" value="True" />
+                    <property name="ShowMissingValues" value="False" />
+                    <property name="DocumentInternals" value="False" />
+                    <property name="DocumentProtected" value="True" />
+                    <property name="DocumentPrivates" value="False" />
+                    <property name="DocumentEmptyNamespaces" value="False" />
+                    <property name="IncludeAssemblyVersion" value="True" />
+                    <property name="CopyrightText" value="(C) Copyright 2009 Software Ninjas" />
+                    <property name="CopyrightHref" value="http://www.softwareninjas.ca" />
+                </documenter>
+            </documenters>
+        </ndoc>
+        <delete file="Documentation/${outputFileName}.chm" failonerror="false"/>
+        <move file="Documentation/MSDN/${outputFileName}.chm" tofile="Documentation/${outputFileName}.chm" />
+        <delete dir="Documentation/MSDN" />
+    </target>
 
-	<target name="deploy" depends="documentation">
+    <target name="deploy" depends="documentation">
         <!-- TODO: create installers, etc. -->
-	</target>
+    </target>
 
-	<target name="release">
-		<property name="configuration" value="release" />
-		<call target="deploy" />
-	</target>
+    <target name="release">
+        <property name="configuration" value="release" />
+        <call target="deploy" />
+    </target>
 </project>
