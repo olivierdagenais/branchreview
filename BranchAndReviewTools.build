@@ -18,7 +18,31 @@
         </foreach>
     </target>
 
-    <target name="compile" depends="clean">
+    <target name="customize" depends="clean">
+        <if test="${
+            environment::variable-exists('BUILD_NUMBER')
+        and environment::variable-exists('REGISTERED_USER_DISPLAY_NAME')
+        and environment::variable-exists('REGISTERED_USER_EMAIL_ADDRESS')
+        }">
+            <delete file="BranchAndReviewTools/Properties/CustomInfo.cs" />
+            <style style="Tools/CustomInfo_cs.xsl" in="Version.xml"
+                   out="BranchAndReviewTools/Properties/CustomInfo.cs">
+                <parameters>
+                    <parameter namespaceuri=""
+                               name="buildNumber"
+                               value="${environment::get-variable('BUILD_NUMBER')}"/>
+                    <parameter namespaceuri=""
+                               name="registeredUserDisplayName"
+                               value="${environment::get-variable('REGISTERED_USER_DISPLAY_NAME')}"/>
+                    <parameter namespaceuri=""
+                               name="registeredUserEmailAddress"
+                               value="${environment::get-variable('REGISTERED_USER_EMAIL_ADDRESS')}"/>
+                </parameters>
+            </style>
+        </if>
+    </target>
+
+    <target name="compile" depends="customize">
         <msbuild project="BranchAndReviewTools.sln">
             <arg value="/property:Configuration=${configuration}" />
             <arg value="/verbosity:minimal" />

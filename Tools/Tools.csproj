@@ -111,4 +111,7 @@
     <None Include="nantcontrib\license.txt" />
     <None Include="nantcontrib\readme.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="CustomInfo_cs.xsl" />
+  </ItemGroup>
 </Project>

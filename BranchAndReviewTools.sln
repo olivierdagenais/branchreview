@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		BranchAndReviewTools.build = BranchAndReviewTools.build
 		build.bat = build.bat
+		Version.xml = Version.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools", "Tools\Tools.csproj", "{BDB88DCA-71CF-4977-8A30-2152A08BB8BE}"

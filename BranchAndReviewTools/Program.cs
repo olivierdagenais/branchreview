@@ -26,7 +26,7 @@ namespace SoftwareNinjas.BranchAndReviewTools
         {
             string product = source.GetCustomAttribute<AssemblyProductAttribute> ( ).Product;
             string copyright = source.GetCustomAttribute<AssemblyCopyrightAttribute> ( ).Copyright;
-            string version = source.GetName ( ).Version.ToString ( );
+            string version = source.GetName ( ).Version.ToString ( 3 );
             var registeredUser = RegisteredUserAttribute.ExtractFromCallingAssembly();
 
             StringBuilder result = new StringBuilder ( );
