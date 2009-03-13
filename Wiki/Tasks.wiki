@@ -1,5 +1,4 @@
 h1. Tasks
-# Create deployment unit for archival
 # Proof of concept .NET 2.0 assemblies that can perform "orientation"
 ## convert SvnKit to assembly
 ## create repo and initialize with project
