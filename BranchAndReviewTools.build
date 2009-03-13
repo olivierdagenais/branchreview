@@ -1,12 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <project name="Branch And Review Tools" default="deploy"
-    xmlns="http://nantcontrib.sf.net/release/0.85/nantcontrib.xsd"
+    xmlns="http://branchreview.googlecode.com/schemas/nant.xsd"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://nantcontrib.sf.net/release/0.85/nantcontrib.xsd Tools/nantcontrib/schema/nantcontrib.xsd">
+    xsi:schemaLocation="http://branchreview.googlecode.com/schemas/nant.xsd Tools/NAnt.xsd">
 
     <loadtasks assembly="Tools/nantcontrib/bin/NAnt.Contrib.Tasks.dll" />
+    <loadtasks assembly="Tools/TextileNET/Textile.NAnt.dll" />
+
     <property name="configuration" value="Debug" overwrite="false" />
     <property name="projects" value="BranchAndReviewTools" />
+
+    <target name="schema">
+        <nantschema output="Tools/NAnt.xsd" target-ns="http://branchreview.googlecode.com/schemas/nant.xsd"/>
+        <echo message="Don't forget to patch back the NDoc section!"/>
+    </target>
 
     <target name="clean">
         <foreach item="String" in="${projects}" delim="," property="project">
@@ -63,6 +70,11 @@
     </target>
 
     <target name="documentation" depends="test">
+        <textile todir="Documentation">
+            <fileset basedir="Wiki">
+                <include name="**/*.wiki"/>
+            </fileset>
+        </textile>
         <property name="outputFileName" value="SoftwareNinjas.BranchAndReviewTools"/>
         <ndoc>
             <assemblies>

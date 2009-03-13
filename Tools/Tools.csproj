@@ -99,6 +99,7 @@
     <None Include="nant\schema\nant.xsd" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="NAnt.xsd" />
     <None Include="nantcontrib\bin\CollectionGen.dll" />
     <None Include="nantcontrib\bin\Interop.MsmMergeTypeLib.dll" />
     <None Include="nantcontrib\bin\Interop.StarTeam.dll" />
@@ -112,6 +113,9 @@
     <None Include="nantcontrib\readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CustomInfo_cs.xsl" />
+    <None Include="CustomInfo_cs.xsl" />
+    <None Include="TextileNET\DressingRoom.exe" />
+    <None Include="TextileNET\Textile.dll" />
+    <None Include="TextileNET\Textile.NAnt.dll" />
   </ItemGroup>
 </Project>
