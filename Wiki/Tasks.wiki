@@ -1,14 +1,26 @@
 h1. Tasks
+# Finish project set-up
+## SoftwareNinjas.BranchAndReviewTools.Core
+### @ISubversion@ definition
+### Will contain all the actual functionality, tested with mocks
+## SoftwareNinjas.BranchAndReviewTools.SvnBin
+### Depends on BART Core
+### Packages svn binaries as resources
+## SoftwareNinjas.BranchAndReviewTools.Console
+### Depends on BART Core
+### Drives the functionality in Core using the @ISubversion@ implementation provided by BART SvnBin
 # Proof of concept .NET 2.0 assemblies that can perform "orientation"
-## convert SvnKit to assembly
 ## create repo and initialize with project
 ## create checkouts for branch and trunk in a sub-folder
 ## program should identify two working copies as being part of same "project" by determining the path to the repository where one can find 'trunk' and 'branches'
-# Proof of concept JRE 6 JARs that can perform "orientation"
-# Investigate single-file packages for trivial deployment
 # Delivery by merging diffs between branch and trunk into trunk working copy, one-time
 # Rebase by merging trunk activity between revision pair into branch working copy, one-time
 # Multiple rebases possible to branch
 # Multiple deliveries possible from branch (thus re-using feature branch and supporting developer branches)
 # "join" support on client-side
 # "join" support that can create missing structure on server (i.e. branch folders)
+# Add plug-in support for @ISubversion@ (i.e. selected at runtime using Mono.Addins)
+# Investigate using SharpSVN (.NET library)
+# Investigate svnkit
+# Investigate Java 6 version
+# Investigate single-file packages for trivial deployment

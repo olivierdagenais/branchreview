@@ -1,0 +1,73 @@
+h2. Overview
+A discussion of the available options for interfacing to Subversion repositories and working copies.  The options have been ranked in increasing preference and (sort of) difficulty.
+
+h2. 1 - Call 'svn' binaries through sub-processes
+| *Pros* | *Cons* |
+| Easy to get going | Hard to tell what went wrong |
+| Easy to reproduce the calls on the command line | Fragile - binaries could be removed or replaced |
+| Should be possible to use with Grasshopper | Moderately difficult to ship a single binary - would have to extract Subversion binaries locally from resources |
+| Best-tested Subversion bridge | Must ship Subversion binaries for all supported platforms |
+
+h3. How to prepare and package
+An update of the Subversion binaries would generate an @enum@ of all the files with an attribute calling out their file size and some info from the version resource, for verification on start-up. (the file timestamps are probably unreliable since they appear to shift with timezones/DST)
+
+h3. Avoiding the unpack step
+It is probably not necessary to unpack binaries if we can find an "installation" of them, such as evidence thereof through a registry key, @.deb@ file, presence in system @PATH@, etc. although then there's the business of determining which versions are compatible.  Thankfully, it appears we could maybe count on a "miminum version" by keying off the revision part of the version string:
+
+<table><tr><td>*Ubuntu 8.10*</td><td>*Windows XP Home SP3*</td></tr><tr><td>
+<pre><code>$ /usr/bin/svn --version
+svn, version 1.5.1 (r32289)
+   compiled Jul 31 2008, 09:45:17</code></pre></td><td>
+<pre><code>>svn --version
+svn, version 1.5.5 (r34862)
+   compiled Jan  1 2009, 13:26:35</code></pre></td></tr></table>
+
+h3. Detection algorithm
+# Is there a configuration file that points to a specific set of binaries with file size and versions?
+## If so, check that these exist and match; otherwise fall through
+# TODO: if Windows, check for registry key indicating the installation of "CollabNetSubversion-client":http://www.collab.net/downloads/subversion/ else check for package manager (APT, YUM, etc.) evidence of Subversion
+# If last step found nothing, scan @PATH@ for @IsWindows() ? "svn.exe" : "svn"@ (and maybe other Subversion binaries?)
+# If last step found nothing, expand our resources in user's @HOME@ folder
+# Record findings in configuration file for the next time
+
+
+h2. 2 - Use SharpSVN
+| *Pros* | *Cons* |
+| Already .NET | Has a few dependencies |
+| Somewhat discoverable | Has corrupt XML Doc |
+| | Hard to rebuild from source - needs lots of tools |
+| | Difficult to recompile with Grasshopper |
+
+
+h2. 3 - Use svnkit with IKVM
+| *Pros* | *Cons* |
+| Easy conversion | Needs 30 MB of dependencies |
+| "Precedent":http://stackoverflow.com/questions/287862/is-there-a-subversion-api-that-can-be-used-to-program-against-in-net/287970#287970 | No code documentation is converted - API is not very discoverable |
+| Should be possible to recompile with Grasshopper | _svnkit_ and _trilead_ have no unit tests |
+
+h3. How to convert JARs into an assembly
+# "IKVM":http://www.ikvm.net/index.html version 0.38.0.2
+# "SvnKit":http://svnkit.com/ version 1.2.3.5521
+# Execute the following to create a single DLL (this should be automatable): <code>
+..\ikvm-0.38.0.2\bin\ikvmc.exe -target:library -version:1.2.3.5521 -nojni ..\svnkit-1.2.3.5521\svnkit.jar ..\svnkit-1.2.3.5521\trilead.jar ..\svnkit-1.2.3.5521\svnkit-javahl.jar
+</code>
+
+
+h2. 4 - Use svnkit with j2ctranslator
+"Java2CSharpTranslator":http://j2cstranslator.wiki.sourceforge.net/ is an open-source tool.  Easy to use Eclipse plug-in, however conversion options are not saved.  A command-line version is allegedly available.
+
+| *Pros* | *Cons* |
+| Best integration possibilities to compile all code together | Not easy to configure/use |
+| Could compile missing Java parts from open-source Java code | Did not fully work with _trilead_ - parts of Java were missing and thus the C# project couldn't compile |
+| Should be easy to recompile with Grasshopper | _svnkit_ and _trilead_ have no unit tests |
+| | Needs @ILOG.J2CsMapping.dll@, which isn't [yet] open-source |
+
+
+h2. 5 - Use svnkit with Sharpen
+"Sharpen":http://developer.db4o.com/Resources/view.aspx/Reference/Sharpen is an open-source tool that seems to have been built to help convert the db40 open-source object database from Java to C# so the team could release it for to platforms.  Very hard to configure and use.
+
+| *Pros* | *Cons* |
+| Best integration possibilities to compile all code together | Very hard to configure/use |
+| Could compile missing Java parts from open-source Java code | Did not fully work with _trilead_ - parts of Java were missing and thus the C# project couldn't compile |
+| The wrappers provided in the @Sharpen@ namespace are available as source code | _svnkit_ and _trilead_ have no unit tests |
+| Should be possible to recompile with Grasshopper | |
