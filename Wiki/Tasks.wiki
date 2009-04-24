@@ -3,12 +3,12 @@ h1. Tasks
 ## SoftwareNinjas.BranchAndReviewTools.Core
 ### @ISubversion@ definition
 ### Will contain all the actual functionality, tested with mocks
-## SoftwareNinjas.BranchAndReviewTools.SvnBin
+## SoftwareNinjas.BranchAndReviewTools.SvnExe
 ### Depends on BART Core
 ### Packages svn binaries as resources
 ## SoftwareNinjas.BranchAndReviewTools.Console
 ### Depends on BART Core
-### Drives the functionality in Core using the @ISubversion@ implementation provided by BART SvnBin
+### Drives the functionality in Core using the @ISubversion@ implementation provided by BART SvnExe
 # Proof of concept .NET 2.0 assemblies that can perform "orientation"
 ## create repo and initialize with project
 ## create checkouts for branch and trunk in a sub-folder

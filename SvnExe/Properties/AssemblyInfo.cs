@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle ( "SoftwareNinjas.BranchAndReviewTools" )]
-[assembly: AssemblyDescription ( "" )]
+[assembly: AssemblyTitle ( "SoftwareNinjas.BranchAndReviewTools.SvnExe" )]
+[assembly: AssemblyDescription ( "Subversion Bridge that launches sub-processes using the command-line distribution (executables) of Subversion" )]
 [assembly: AssemblyConfiguration ( "" )]
 [assembly: AssemblyCompany ( "Software Ninjas" )]
 [assembly: AssemblyProduct ( "Branch And Review Tools (BART)" )]
@@ -20,4 +20,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible ( false )]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid ( "caf8a6c5-4a94-4c74-8cf7-527f1fd12f9e" )]
+[assembly: Guid("90e19c5b-28b6-468e-af08-2d4443326906")]

@@ -8,7 +8,7 @@
     <loadtasks assembly="Tools/TextileNET/Textile.NAnt.dll" />
 
     <property name="configuration" value="Debug" overwrite="false" />
-    <property name="projects" value="BranchAndReviewTools" />
+    <property name="projects" value="Console,Core,SvnExe" />
 
     <target name="schema">
         <nantschema output="Tools/NAnt.xsd" target-ns="http://branchreview.googlecode.com/schemas/nant.xsd"/>
@@ -31,21 +31,23 @@
         and environment::variable-exists('REGISTERED_USER_DISPLAY_NAME')
         and environment::variable-exists('REGISTERED_USER_EMAIL_ADDRESS')
         }">
-            <delete file="BranchAndReviewTools/Properties/CustomInfo.cs" />
-            <style style="Tools/CustomInfo_cs.xsl" in="Version.xml"
-                   out="BranchAndReviewTools/Properties/CustomInfo.cs">
-                <parameters>
-                    <parameter namespaceuri=""
-                               name="buildNumber"
-                               value="${environment::get-variable('BUILD_NUMBER')}"/>
-                    <parameter namespaceuri=""
-                               name="registeredUserDisplayName"
-                               value="${environment::get-variable('REGISTERED_USER_DISPLAY_NAME')}"/>
-                    <parameter namespaceuri=""
-                               name="registeredUserEmailAddress"
-                               value="${environment::get-variable('REGISTERED_USER_EMAIL_ADDRESS')}"/>
-                </parameters>
-            </style>
+            <foreach item="String" in="${projects}" delim="," property="project">
+                <delete file="${project}/Properties/CustomInfo.cs" />
+                <style style="Tools/CustomInfo_cs.xsl" in="Version.xml"
+                       out="${project}/Properties/CustomInfo.cs">
+                    <parameters>
+                        <parameter namespaceuri=""
+                                   name="buildNumber"
+                                   value="${environment::get-variable('BUILD_NUMBER')}"/>
+                        <parameter namespaceuri=""
+                                   name="registeredUserDisplayName"
+                                   value="${environment::get-variable('REGISTERED_USER_DISPLAY_NAME')}"/>
+                        <parameter namespaceuri=""
+                                   name="registeredUserEmailAddress"
+                                   value="${environment::get-variable('REGISTERED_USER_EMAIL_ADDRESS')}"/>
+                    </parameters>
+                </style>
+            </foreach>
         </if>
     </target>
 
@@ -57,16 +59,19 @@
     </target>
 
     <target name="test" depends="compile">
-        <nunit2>
-            <formatter type="Plain" />
-            <test>
-                <assemblies>
-                    <include name="*/bin/${configuration}/SoftwareNinjas.*.dll" />
-                    <include name="*/bin/${configuration}/SoftwareNinjas.*.exe" />
-                </assemblies>
-            </test>
-        </nunit2>
-        <!-- TODO: verify assemblies with FxCop -->
+        <foreach item="String" in="${projects}" delim="," property="project">
+            <echo message="Testing ${project}..."/>
+            <nunit2>
+                <formatter type="Plain" />
+                <test>
+                    <assemblies>
+                        <include name="${project}/bin/${configuration}/SoftwareNinjas.BranchAndReviewTools.${project}.dll" />
+                        <include name="${project}/bin/${configuration}/SoftwareNinjas.BranchAndReviewTools.${project}.exe" />
+                    </assemblies>
+                </test>
+            </nunit2>
+            <!-- TODO: verify assemblies with FxCop -->
+        </foreach>
     </target>
 
     <target name="documentation" depends="test">
@@ -80,13 +85,17 @@
         <mkdir dir="${workingdir}" />
         <property name="outputFileName" value="SoftwareNinjas.BranchAndReviewTools"/>
         <mkdir dir="${workingdir}/comments" />
-        <copy file="BranchAndReviewTools/bin/${configuration}/SoftwareNinjas.BranchAndReviewTools.xml"
-            todir="${workingdir}/comments/" />
+        <foreach item="String" in="${projects}" delim="," property="project">
+            <copy file="${project}/bin/${configuration}/SoftwareNinjas.BranchAndReviewTools.${project}.xml"
+                todir="${workingdir}/comments/" />
+        </foreach>
         <echo>
 Scanning assemblies using reflection...</echo>
         <exec program="${castle}/ProductionTools/MrefBuilder.exe" workingdir="${workingdir}">
             <environment><variable name="DXROOT" dir="${castle}" /></environment>
-            <arg file="BranchAndReviewTools/bin/${configuration}/SoftwareNinjas.BranchAndReviewTools.exe" />
+            <arg file="Console/bin/${configuration}/SoftwareNinjas.BranchAndReviewTools.Console.exe" />
+            <arg file="Core/bin/${configuration}/SoftwareNinjas.BranchAndReviewTools.Core.dll" />
+            <arg file="SvnExe/bin/${configuration}/SoftwareNinjas.BranchAndReviewTools.SvnExe.dll" />
             <arg value="/out:reflection.org" />
             <arg value="/internal+" />
             <!-- TODO: add /dep: switches for the project's dependencies -->

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace SoftwareNinjas.BranchAndReviewTools
+namespace SoftwareNinjas.BranchAndReviewTools.Core
 {
     /// <summary>
     /// Represents data about the user for which an assembly was compiled.

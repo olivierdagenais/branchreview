@@ -6,10 +6,10 @@
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E16DEA44-4FD9-4B61-82F3-E40273345052}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SoftwareNinjas.BranchAndReviewTools</RootNamespace>
-    <AssemblyName>SoftwareNinjas.BranchAndReviewTools</AssemblyName>
+    <RootNamespace>SoftwareNinjas.BranchAndReviewTools.Core</RootNamespace>
+    <AssemblyName>SoftwareNinjas.BranchAndReviewTools.Core</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkSubset>
@@ -29,6 +29,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,7 +40,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\SoftwareNinjas.BranchAndReviewTools.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\SoftwareNinjas.BranchAndReviewTools.Core.xml</DocumentationFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
@@ -49,7 +51,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\SoftwareNinjas.BranchAndReviewTools.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\SoftwareNinjas.BranchAndReviewTools.Core.xml</DocumentationFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
@@ -60,12 +62,12 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyExtensions.cs" />
     <Compile Include="ExtensionAttribute.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\CustomInfo.cs" />
     <Compile Include="RegisteredUserAttribute.cs" />
-    <Compile Include="Test\Program.cs" />
+    <Compile Include="Test\AssemblyExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
