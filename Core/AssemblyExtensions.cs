@@ -39,8 +39,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         }
 
         /// <summary>
-        /// Combines a few attributes decorating the provided <see cref="assembly"/> into a descriptive string to inform
-        /// end-users about the product, version, copyright and registered user.
+        /// Combines a few attributes decorating the provided <paramref name="assembly"/> into a descriptive string to
+        /// inform end-users about the product, version, copyright and registered user.
         /// </summary>
         /// 
         /// <param name="assembly">
