@@ -9,7 +9,7 @@ h2. 1 - Call 'svn' binaries through sub-processes
 | Best-tested Subversion bridge | Must ship Subversion binaries for all supported platforms |
 
 h3. How to prepare and package
-An update of the Subversion binaries would generate an @enum@ of all the files with an attribute calling out their file size and some info from the version resource, for verification on start-up. (the file timestamps are probably unreliable since they appear to shift with timezones/DST)
+Include the entire archive published by CollabNet for each supported platform as separate resources.
 
 h3. Avoiding the unpack step
 It is probably not necessary to unpack binaries if we can find an "installation" of them, such as evidence thereof through a registry key, @.deb@ file, presence in system @PATH@, etc. although then there's the business of determining which versions are compatible.  Thankfully, it appears we could maybe count on a "miminum version" by keying off the revision part of the version string:
@@ -25,8 +25,8 @@ svn, version 1.5.5 (r34862)
 h3. Detection algorithm
 # Is there a configuration file that points to a specific set of binaries with file size and versions?
 ## If so, check that these exist and match; otherwise fall through
-# TODO: if Windows, check for registry key indicating the installation of "CollabNetSubversion-client":http://www.collab.net/downloads/subversion/ else check for package manager (APT, YUM, etc.) evidence of Subversion
 # If last step found nothing, scan @PATH@ for @IsWindows() ? "svn.exe" : "svn"@ (and maybe other Subversion binaries?)
+# If last step found nothing, if Windows, check for registry key indicating the installation of "CollabNetSubversion-client":http://www.collab.net/downloads/subversion/ else check for package manager (APT, YUM, etc.) evidence of Subversion
 # If last step found nothing, expand our resources in user's @HOME@ folder
 # Record findings in configuration file for the next time
 
