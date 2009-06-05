@@ -10,6 +10,95 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
     public static class EnumerableExtensions
     {
         /// <summary>
+        /// Simulates extending an <see cref="IEnumerable{T}"/> with an extra item at the beginning.
+        /// </summary>
+        /// 
+        /// <typeparam name="T">
+        /// The type of elements to enumerate.
+        /// </typeparam>
+        /// 
+        /// <param name="firstItem">
+        /// The item to enumerate first.
+        /// </param>
+        /// 
+        /// <param name="items">
+        /// The items to enumerate after <paramref name="firstItem"/>.
+        /// </param>
+        /// 
+        /// <returns>
+        /// An enumeration of <paramref name="firstItem"/> and then all the items in <paramref name="items"/>.
+        /// </returns>
+        public static IEnumerable<T> Compose<T>(T firstItem, IEnumerable<T> items)
+        {
+            yield return firstItem;
+            foreach (T item in items)
+            {
+                yield return item;
+            }
+        }
+
+        /// <summary>
+        /// Simulates extending an <see cref="IEnumerable{T}"/> with an extra item at the end.
+        /// </summary>
+        /// 
+        /// <typeparam name="T">
+        /// The type of elements to enumerate.
+        /// </typeparam>
+        /// 
+        /// <param name="items">
+        /// The items to enumerate before <paramref name="lastItem"/>.
+        /// </param>
+        /// 
+        /// <param name="lastItem">
+        /// The item to enumerate last.
+        /// </param>
+        /// 
+        /// <returns>
+        /// An enumeration of all the items in <paramref name="items"/> and then <paramref name="lastItem"/>.
+        /// </returns>
+        public static IEnumerable<T> Compose<T>(IEnumerable<T> items, T lastItem)
+        {
+            foreach (T item in items)
+            {
+                yield return item;
+            }
+            yield return lastItem;
+        }
+
+        /// <summary>
+        /// Simulates extending an <see cref="IEnumerable{T}"/> with another so that a single loop may be used over two
+        /// sources of <typeparamref name="T"/>.
+        /// </summary>
+        /// 
+        /// <typeparam name="T">
+        /// The type of elements to enumerate.
+        /// </typeparam>
+        /// 
+        /// <param name="firstItems">
+        /// The items to enumerate first.
+        /// </param>
+        /// 
+        /// <param name="lastItems">
+        /// The items to enumerate last.
+        /// </param>
+        /// 
+        /// <returns>
+        /// An enumeration of all the items in <paramref name="firstItems"/> and then all those in
+        /// <paramref name="lastItems"/>.
+        /// </returns>
+        public static IEnumerable<T> Compose<T>(IEnumerable<T> firstItems, IEnumerable<T> lastItems)
+        {
+            foreach (T item in firstItems)
+            {
+                yield return item;
+            }
+            foreach (T item in lastItems)
+            {
+                yield return item;
+            }
+        }
+
+        /// <summary>
         /// Concatenates a specified separator <see cref="String"/> between each element of a specified
         /// <see cref="IEnumerable{T}"/> of <see cref="Object"/>, yielding a single concatenated string. 
         /// </summary>
