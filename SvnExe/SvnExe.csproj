@@ -67,9 +67,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CapturedProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\CustomInfo.cs" />
     <Compile Include="Svn.cs" />
+    <Compile Include="Test\CapturedProcess.cs" />
     <Compile Include="Test\Svn.cs" />
   </ItemGroup>
   <ItemGroup>
