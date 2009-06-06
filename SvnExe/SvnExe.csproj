@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SoftwareNinjas.BranchAndReviewTools.SvnExe</RootNamespace>
     <AssemblyName>SoftwareNinjas.BranchAndReviewTools.SvnExe</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkSubset>
     </TargetFrameworkSubset>
@@ -62,6 +62,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,7 +73,6 @@
     <Compile Include="Test\Svn.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Test\EntryPointsToInvalidLocation\SoftwareNinjas.BranchAndReviewTools.SvnExe.dll.config" />
     <None Include="Test\NoEntryInFile\SoftwareNinjas.BranchAndReviewTools.SvnExe.dll.config" />
     <EmbeddedResource Include="Resources\template.config" />
