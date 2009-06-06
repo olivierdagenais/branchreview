@@ -120,45 +120,81 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// <seealso cref="String.Join(String, String[])"/>
         public static string Join(this IEnumerable<object> values, string separator)
         {
-            // TODO: consider providing an overload that accepts an IFormatProvider
+            return Join(values, separator, o => o.ToString());
+        }
+
+        /// <summary>
+        /// Concatenates a specified separator <see cref="String"/> between each element of a specified
+        /// <see cref="IEnumerable{T}"/> of <see cref="Object"/> - which are transformed to <see cref="String"/>
+        /// instances by the specified <paramref name="stringifier"/>, yielding a single concatenated string. 
+        /// </summary>
+        /// 
+        /// <param name="values">
+        /// Zero or more <see cref="Object"/> instances, such as an array of <see cref="String"/>.
+        /// </param>
+        /// 
+        /// <param name="separator">
+        /// A <see cref="String"/> to insert in between all the <see cref="String"/> representations of the instances in
+        /// <paramref name="values"/>.
+        /// </param>
+        /// 
+        /// <param name="stringifier">
+        /// The functor to use to convert <see cref="Object"/> instances to <see cref="String"/> instances.  Useful for
+        /// using an <see cref="IFormatProvider"/> or for applying extra processing to the strings before they are
+        /// joined.
+        /// </param>
+        /// 
+        /// <returns>
+        /// A <see cref="String"/> consisting of the elements of <paramref name="values"/> converted to strings by
+        /// <paramref name="stringifier"/> and interspersed with the <paramref name="separator"/> string.
+        /// </returns>
+        /// 
+        /// <seealso cref="String.Join(String, String[])"/>
+        public static string Join(this IEnumerable<object> values, string separator, Func<object, string> stringifier)
+        {
             StringBuilder sb = new StringBuilder();
             var e = values.GetEnumerator();
             if (e.MoveNext())
             {
-                sb.Append(e.Current);
+                sb.Append(stringifier(e.Current));
                 while (e.MoveNext())
                 {
                     sb.Append(separator);
-                    sb.Append(e.Current);
+                    sb.Append(stringifier(e.Current));
                 }
             }
             return sb.ToString();
         }
 
         /// <summary>
-        /// Prepares a single <see cref="String"/> representing all the <paramref name="values"/> quoted for use when
-        /// invoking a sub-process.
+        /// Prepares a single <see cref="String"/> representing all the <paramref name="values"/> quoted as necessary
+        /// for use when invoking a sub-process.
         /// </summary>
         /// 
         /// <param name="values">
-        /// Zero or more values to quote.
+        /// Zero or more values to assemble into a single string.
         /// </param>
         /// 
         /// <returns>
-        /// All the <paramref name="values"/> converted to <see cref="String"/>, quoted and separated by spaces.
+        /// All the <paramref name="values"/> converted to <see cref="String"/>, quoted if they contained a space and
+        /// separated by spaces.
         /// </returns>
         public static string QuoteForShell(this IEnumerable<object> values)
         {
-            // TODO: *nix shells might use single quotes?
-            var joined = values.Join("\" \"");
-            if (joined.Length > 0)
+            // TODO: *nix shells might use single quotes or different rules for quoting?
+            Func<object, string> stringifier = o =>
             {
-                return "\"" + joined + "\"";
-            }
-            else
-            {
-                return String.Empty;
-            }
+                string s = o.ToString();
+                if (s.Contains(" "))
+                {
+                    return '"' + s + '"';
+                }
+                else
+                {
+                    return s;
+                }
+            };
+            return Join(values, " ", stringifier);
         }
     }
 }
