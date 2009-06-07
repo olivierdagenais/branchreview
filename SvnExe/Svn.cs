@@ -1,11 +1,13 @@
 ﻿using System;
-using System.IO;
-
-using SoftwareNinjas.BranchAndReviewTools.Core;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
+using System.IO;
 using System.Reflection;
 using System.Security.AccessControl;
+using System.Xml;
+
+using SoftwareNinjas.BranchAndReviewTools.Core;
 using ICSharpCode.SharpZipLib.Zip;
 
 namespace SoftwareNinjas.BranchAndReviewTools.SvnExe
@@ -16,6 +18,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe
         public static readonly string ConfigFile = Assembly.GetCallingAssembly().GetName().Name + ".dll.config";
         public static readonly Version CurrentVersion = new Version(1, 5, 6);
         private string _pathToExecutable = null;
+        private ICapturedProcessFactory _capturedProcessFactory = new CapturedProcessFactory();
 
         public Svn() : this(CurrentVersion, ConfigFolderPath)
         {
@@ -56,6 +59,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe
                 _pathToExecutable = ExtractSubversionBinaries(configFolderPath, versionStamp);
                 SaveConfiguration(configFolderPath, versionStamp, _pathToExecutable);
             }
+        }
+
+        internal Svn(ICapturedProcessFactory capturedProcessFactory)
+        {
+            _capturedProcessFactory = capturedProcessFactory;
         }
 
         internal string PathToExecutable
@@ -227,6 +235,61 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe
                 var result = Path.Combine(localData, "Software Ninjas/Branch And Review Tools/");
                 return result;
             }
+        }
+
+        /// <summary>
+        /// Starts a sub-process to execute the requested Subversion <paramref name="subCommand"/> with the specified
+        /// <paramref name="parameters"/>, with the intention of processing the result as XML.
+        /// </summary>
+        /// 
+        /// <param name="subCommand">
+        /// One of the supported <see cref="SubCommand"/>.
+        /// </param>
+        /// 
+        /// <param name="parameters">
+        /// The command-line arguments to provide to the <paramref name="subCommand"/>.
+        /// </param>
+        /// 
+        /// <returns>
+        /// A pair representing the <see cref="XmlDocument"/> that was constructed, if any, and the error message if
+        /// the XML document could not be constructed due to an error.
+        /// </returns>
+        public Pair<XmlDocument, string> ExecuteXml(SubCommand subCommand, params object[] parameters)
+        {
+            List<string> outLines = new List<string>();
+            List<string> errLines = new List<string>();
+            Action<string> outProcessor = (outLine) =>
+            {
+                outLines.Add(outLine);
+            };
+            Action<string> errProcessor = (errLine) =>
+            {
+                errLines.Add(errLine);
+            };
+
+            int exitCode;
+            // TODO: log subCommand, arguments and parameters and possibly an interception of stdout and stderr
+            var arguments = EnumerableExtensions.Compose(subCommand.Arguments, parameters);
+            using (var helper = 
+                _capturedProcessFactory.Create(_pathToExecutable, arguments, outProcessor, errProcessor))
+            {
+                exitCode = helper.Run();
+            }
+            Pair<XmlDocument, string> result;
+            if (exitCode != 0 || errLines.Count > 0)
+            {
+                result = new Pair<XmlDocument, string>(null, errLines.Join(Environment.NewLine));
+            }
+            else
+            {
+                // TODO: Instead of building an XmlDocument and returning it, provide an overload that will allow the
+                // caller to supply a functor that operates on an XmlReader in the same thread that the process was
+                // launched, which is waiting for the child process to complete anyway.
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(outLines.Join(Environment.NewLine));
+                result = new Pair<XmlDocument, string>(doc, null);
+            }
+            return result;
         }
     }
 }

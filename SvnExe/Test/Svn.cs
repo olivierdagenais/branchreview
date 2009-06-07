@@ -178,6 +178,40 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
         }
 
         /// <summary>
+        /// Tests <see cref="Parent.Svn.ExecuteXml(SubCommand,object[])"/> with a
+        /// <see cref="SimulatedCapturedProcess"/> that returns a string representation of XML in stdout.
+        /// </summary>
+        [Test]
+        public void ExecuteXml_Simulated_Success()
+        {
+            SimulatedCapturedProcess scp =
+                new SimulatedCapturedProcess("<info />", null, 0);
+            SimulatedCapturedProcessFactory factory = new SimulatedCapturedProcessFactory(scp);
+            Parent.Svn svn = new Parent.Svn(factory);
+            var actualPair = svn.ExecuteXml(Parent.SubCommand.Info, ".");
+            Assert.IsNotNull(actualPair.First);
+            Assert.IsNull(actualPair.Second);
+            Assert.AreEqual("info", actualPair.First.DocumentElement.Name);
+        }
+
+        /// <summary>
+        /// Tests <see cref="Parent.Svn.ExecuteXml(SubCommand,object[])"/> with a
+        /// <see cref="SimulatedCapturedProcess"/> that returns an error message in stderr.
+        /// </summary>
+        [Test]
+        public void ExecuteXml_Simulated_Failure()
+        {
+            var expectedError = "Error";
+            SimulatedCapturedProcess scp =
+                new SimulatedCapturedProcess(null, expectedError, 1);
+            SimulatedCapturedProcessFactory factory = new SimulatedCapturedProcessFactory(scp);
+            Parent.Svn svn = new Parent.Svn(factory);
+            var actualPair = svn.ExecuteXml(Parent.SubCommand.Info, ".");
+            Assert.IsNull(actualPair.First);
+            Assert.AreEqual(expectedError, actualPair.Second);
+        }
+
+        /// <summary>
         /// Overall test of the glue that connects all the previously-tested parts.
         /// </summary>
         [Test]

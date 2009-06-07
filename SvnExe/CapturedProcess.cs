@@ -11,7 +11,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe
     /// A façade to the <see cref="Process"/> class for the special case of automatically (and safely) capturing and
     /// optionally relaying the contents of standard out and standard error.
     /// </summary>
-    public class CapturedProcess : IDisposable
+    public class CapturedProcess : ICapturedProcess
     {
         private readonly Process m_associatedProcess;
         private readonly Action<string> m_stdOutHandler;
