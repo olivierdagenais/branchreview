@@ -100,11 +100,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
 
         /// <summary>
         /// Concatenates a specified separator <see cref="String"/> between each element of a specified
-        /// <see cref="IEnumerable{T}"/> of <see cref="Object"/>, yielding a single concatenated string. 
+        /// <see cref="IEnumerable{T}"/> of <typeparamref name="T"/>, yielding a single concatenated string. 
         /// </summary>
         /// 
         /// <param name="values">
-        /// Zero or more <see cref="Object"/> instances, such as an array of <see cref="String"/>.
+        /// Zero or more <typeparamref name="T"/> items, such as an array of <see cref="String"/>.
         /// </param>
         /// 
         /// <param name="separator">
@@ -112,25 +112,29 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// <paramref name="values"/>.
         /// </param>
         /// 
+        /// <typeparam name="T">
+        /// The type of items in <paramref name="values"/>.
+        /// </typeparam>
+        /// 
         /// <returns>
         /// A <see cref="String"/> consisting of the elements of <paramref name="values"/> interspersed with the
         /// <paramref name="separator"/> string.
         /// </returns>
         /// 
         /// <seealso cref="String.Join(String, String[])"/>
-        public static string Join(this IEnumerable<object> values, string separator)
+        public static string Join<T>(this IEnumerable<T> values, string separator)
         {
             return Join(values, separator, o => o.ToString());
         }
 
         /// <summary>
         /// Concatenates a specified separator <see cref="String"/> between each element of a specified
-        /// <see cref="IEnumerable{T}"/> of <see cref="Object"/> - which are transformed to <see cref="String"/>
+        /// <see cref="IEnumerable{T}"/> of <typeparamref name="T"/> - which are transformed to <see cref="String"/>
         /// instances by the specified <paramref name="stringifier"/>, yielding a single concatenated string. 
         /// </summary>
         /// 
         /// <param name="values">
-        /// Zero or more <see cref="Object"/> instances, such as an array of <see cref="String"/>.
+        /// Zero or more <typeparamref name="T"/> items, such as an array of <see cref="String"/>.
         /// </param>
         /// 
         /// <param name="separator">
@@ -139,10 +143,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// </param>
         /// 
         /// <param name="stringifier">
-        /// The functor to use to convert <see cref="Object"/> instances to <see cref="String"/> instances.  Useful for
-        /// using an <see cref="IFormatProvider"/> or for applying extra processing to the strings before they are
+        /// The functor to use to convert <typeparamref name="T"/> instances to <see cref="String"/> instances.  Useful
+        /// for using an <see cref="IFormatProvider"/> or for applying extra processing to the strings before they are
         /// joined.
         /// </param>
+        /// 
+        /// <typeparam name="T">
+        /// The type of items in <paramref name="values"/>.
+        /// </typeparam>
         /// 
         /// <returns>
         /// A <see cref="String"/> consisting of the elements of <paramref name="values"/> converted to strings by
@@ -150,7 +158,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// </returns>
         /// 
         /// <seealso cref="String.Join(String, String[])"/>
-        public static string Join(this IEnumerable<object> values, string separator, Func<object, string> stringifier)
+        public static string Join<T>(this IEnumerable<T> values, string separator, Func<T, string> stringifier)
         {
             StringBuilder sb = new StringBuilder();
             var e = values.GetEnumerator();
@@ -175,14 +183,18 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// Zero or more values to assemble into a single string.
         /// </param>
         /// 
+        /// <typeparam name="T">
+        /// The type of items in <paramref name="values"/>.
+        /// </typeparam>
+        /// 
         /// <returns>
         /// All the <paramref name="values"/> converted to <see cref="String"/>, quoted if they contained a space and
         /// separated by spaces.
         /// </returns>
-        public static string QuoteForShell(this IEnumerable<object> values)
+        public static string QuoteForShell<T>(this IEnumerable<T> values)
         {
             // TODO: *nix shells might use single quotes or different rules for quoting?
-            Func<object, string> stringifier = o =>
+            Func<T, string> stringifier = o =>
             {
                 string s = o.ToString();
                 if (s.Contains(" "))

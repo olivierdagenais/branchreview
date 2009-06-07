@@ -78,7 +78,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Test
         }
 
         /// <summary>
-        /// Tests <see cref="Parent.EnumerableExtensions.Join(IEnumerable{Object},String)"/>.
+        /// Tests <see cref="Parent.EnumerableExtensions.Join{T}(IEnumerable{T},String)"/>.
         /// </summary>
         [Test]
         public void Join()
@@ -91,7 +91,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Test
         }
 
         /// <summary>
-        /// Tests <see cref="Parent.EnumerableExtensions.QuoteForShell(IEnumerable{Object})"/>
+        /// Tests <see cref="Parent.EnumerableExtensions.QuoteForShell{T}(IEnumerable{T})"/>
         /// </summary>
         [Test]
         public void QuoteForShell()
