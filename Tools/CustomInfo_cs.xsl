@@ -10,7 +10,7 @@
         <xsl:variable name="version" select="concat(@major, '.', @minor, '.', $buildNumber)" />
 
 <xsl:text />using System.Reflection;
-using SoftwareNinjas.BranchAndReviewTools;
+using SoftwareNinjas.Core;
 
 [assembly: RegisteredUser ( "<xsl:value-of select="$registeredUserDisplayName"/>", "<xsl:value-of select="$registeredUserEmailAddress"/>" )]
 

@@ -118,4 +118,10 @@
     <None Include="TextileNET\Textile.dll" />
     <None Include="TextileNET\Textile.NAnt.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="SoftwareNinjas.Core.dll" />
+    <None Include="SoftwareNinjas.Core.xml" />
+    <None Include="SoftwareNinjas.NAnt.dll" />
+    <None Include="SoftwareNinjas.NAnt.xml" />
+  </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Text;
 
-using SoftwareNinjas.BranchAndReviewTools.Core;
+using SoftwareNinjas.Core;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Console
 {

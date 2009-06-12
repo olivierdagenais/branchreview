@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using SoftwareNinjas.BranchAndReviewTools.Core;
+using SoftwareNinjas.Core;
 
 [assembly: RegisteredUser ( "Unregistered User", "unregistered.user@example.com" )]
 

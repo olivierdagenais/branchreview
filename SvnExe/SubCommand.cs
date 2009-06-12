@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+
+using SoftwareNinjas.Core;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 
 namespace SoftwareNinjas.BranchAndReviewTools.SvnExe

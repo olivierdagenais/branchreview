@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 
+using SoftwareNinjas.Core;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 
 namespace SoftwareNinjas.BranchAndReviewTools.SvnExe

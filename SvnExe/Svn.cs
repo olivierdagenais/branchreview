@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Security.AccessControl;
 using System.Xml;
 
+using SoftwareNinjas.Core;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using ICSharpCode.SharpZipLib.Zip;
 

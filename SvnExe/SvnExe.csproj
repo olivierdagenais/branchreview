@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SoftwareNinjas.BranchAndReviewTools.SvnExe</RootNamespace>
     <AssemblyName>SoftwareNinjas.BranchAndReviewTools.SvnExe</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkSubset>
     </TargetFrameworkSubset>
@@ -60,11 +60,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Tools\nant\bin\lib\net\2.0\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="SoftwareNinjas.Core, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Tools\SoftwareNinjas.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +85,7 @@
     <Compile Include="SubversionClient.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Test\EntryPointsToInvalidLocation\SoftwareNinjas.BranchAndReviewTools.SvnExe.dll.config" />
     <None Include="Test\NoEntryInFile\SoftwareNinjas.BranchAndReviewTools.SvnExe.dll.config" />
     <EmbeddedResource Include="Resources\template.config" />
