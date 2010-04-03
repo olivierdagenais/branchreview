@@ -75,6 +75,9 @@
                 <include name="**/*.wiki"/>
             </fileset>
         </textile>
+    </target>
+
+    <target name="chmDocumentation" depends="documentation">
         <property name="workingdir" value="Documentation/MSDN" />
         <property name="castle" value="Tools/Sandcastle" />
         <mkdir dir="${workingdir}" />
