@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
@@ -43,7 +44,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 StartInfo =
                 {
                     UseShellExecute = false,
-                    WindowStyle = ProcessWindowStyle.Minimized,
+                    WindowStyle = ProcessWindowStyle.Hidden,
                     RedirectStandardOutput = true,
                     FileName = PathToTfExe,
                     Arguments = "diff",
@@ -58,7 +59,20 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void Commit_Load(object sender, System.EventArgs e)
         {
+            RefreshDiff();
+        }
+
+        private void RefreshDiff()
+        {
             patchText.Text = LoadDiff(_workingFolder);
+        }
+
+        private void Commit_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (Keys.F5 == e.KeyCode)
+            {
+                RefreshDiff();
+            }
         }
     }
 }

@@ -87,9 +87,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(759, 594);
             this.Controls.Add(this.verticalDivisor);
+            this.KeyPreview = true;
             this.Name = "Commit";
             this.Text = "Commit - PATH";
             this.Load += new System.EventHandler(this.Commit_Load);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Commit_KeyUp);
             this.verticalDivisor.Panel1.ResumeLayout(false);
             this.verticalDivisor.Panel1.PerformLayout();
             this.verticalDivisor.Panel2.ResumeLayout(false);
