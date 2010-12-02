@@ -13,7 +13,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Commit());
+            var commit = new Commit
+            {
+                Text = "Commit - " + Environment.CurrentDirectory
+            };
+            Application.Run(commit);
         }
     }
 }
