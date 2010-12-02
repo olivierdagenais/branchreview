@@ -89,6 +89,7 @@
             this.Controls.Add(this.verticalDivisor);
             this.Name = "Commit";
             this.Text = "Commit - PATH";
+            this.Load += new System.EventHandler(this.Commit_Load);
             this.verticalDivisor.Panel1.ResumeLayout(false);
             this.verticalDivisor.Panel1.PerformLayout();
             this.verticalDivisor.Panel2.ResumeLayout(false);
