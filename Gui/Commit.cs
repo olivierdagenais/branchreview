@@ -47,7 +47,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     WindowStyle = ProcessWindowStyle.Hidden,
                     RedirectStandardOutput = true,
                     FileName = PathToTfExe,
-                    Arguments = "diff",
+                    Arguments = "diff /ignoreeol",
                     WorkingDirectory = currentDirectory,
                 }
             };
