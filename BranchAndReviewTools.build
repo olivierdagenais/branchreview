@@ -9,7 +9,7 @@
     <loadtasks assembly="Tools/SoftwareNinjas.NAnt.dll" />
 
     <property name="configuration" value="Debug" overwrite="false" />
-    <property name="projects" value="Console,Core,SvnExe" />
+    <property name="projects" value="Console,Core,Gui,SvnExe" />
 
     <target name="schema">
         <nantschema output="Tools/NAnt.xsd" target-ns="http://branchreview.googlecode.com/schemas/nant.xsd"/>
