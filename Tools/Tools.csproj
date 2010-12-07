@@ -124,4 +124,9 @@
     <None Include="SoftwareNinjas.NAnt.dll" />
     <None Include="SoftwareNinjas.NAnt.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Microsoft.TeamFoundation.Client.dll" />
+    <None Include="Microsoft.TeamFoundation.VersionControl.Client.dll" />
+    <None Include="Microsoft.TeamFoundation.VersionControl.Common.dll" />
+  </ItemGroup>
 </Project>
