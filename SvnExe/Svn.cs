@@ -10,6 +10,7 @@ using System.Xml;
 using SoftwareNinjas.Core;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using ICSharpCode.SharpZipLib.Zip;
+using SoftwareNinjas.Core.Process;
 
 namespace SoftwareNinjas.BranchAndReviewTools.SvnExe
 {

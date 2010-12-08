@@ -21,29 +21,7 @@
     </target>
 
     <target name="customize" depends="clean">
-        <if test="${
-            environment::variable-exists('BUILD_NUMBER')
-        and environment::variable-exists('REGISTERED_USER_DISPLAY_NAME')
-        and environment::variable-exists('REGISTERED_USER_EMAIL_ADDRESS')
-        }">
-            <foreach item="String" in="${projects}" delim="," property="project">
-                <delete file="${project}/Properties/CustomInfo.cs" />
-                <style style="Tools/CustomInfo_cs.xsl" in="Version.xml"
-                       out="${project}/Properties/CustomInfo.cs">
-                    <parameters>
-                        <parameter namespaceuri=""
-                                   name="buildNumber"
-                                   value="${environment::get-variable('BUILD_NUMBER')}"/>
-                        <parameter namespaceuri=""
-                                   name="registeredUserDisplayName"
-                                   value="${environment::get-variable('REGISTERED_USER_DISPLAY_NAME')}"/>
-                        <parameter namespaceuri=""
-                                   name="registeredUserEmailAddress"
-                                   value="${environment::get-variable('REGISTERED_USER_EMAIL_ADDRESS')}"/>
-                    </parameters>
-                </style>
-            </foreach>
-        </if>
+		<customizeAssembly projects="${projects}" />
     </target>
 
     <target name="compile" depends="customize">

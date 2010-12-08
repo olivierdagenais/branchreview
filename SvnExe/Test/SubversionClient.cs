@@ -5,7 +5,7 @@ using System.Xml;
 
 using NUnit.Framework;
 using SoftwareNinjas.BranchAndReviewTools.Core;
-
+using SoftwareNinjas.Core.Process.Test;
 using Parent = SoftwareNinjas.BranchAndReviewTools.SvnExe;
 
 namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
@@ -69,7 +69,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
         [Test]
         public void Info_Simulated_Success()
         {
-            SimulatedCapturedProcess instance = new SimulatedCapturedProcess(infoXml, null, 0);
+            SimulatedCapturedProcess instance = new SimulatedCapturedProcess(0, infoXml, null);
             SimulatedCapturedProcessFactory factory = new SimulatedCapturedProcessFactory(instance);
             ISubversionClient client = new Parent.SubversionClient(factory);
             SvnInfo actualInfo = client.Info(".");
@@ -80,10 +80,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
         /// Tests the <see cref="ISubversionClient.Info(string)"/> implementation of
         /// <see cref="Parent.SubversionClient"/> by simulating failure.
         /// </summary>
-        [Test, ExpectedException(typeof(ApplicationException), errorMessage)]
+        [Test, ExpectedException(typeof(ApplicationException), ExpectedMessage = errorMessage )]
         public void Info_Simulated_Failure()
         {
-            SimulatedCapturedProcess instance = new SimulatedCapturedProcess(null, errorMessage, 1);
+            SimulatedCapturedProcess instance = new SimulatedCapturedProcess(1, null, errorMessage);
             SimulatedCapturedProcessFactory factory = new SimulatedCapturedProcessFactory(instance);
             ISubversionClient client = new Parent.SubversionClient(factory);
             SvnInfo actualInfo = client.Info(".");

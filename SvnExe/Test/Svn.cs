@@ -1,5 +1,5 @@
 ﻿using System;
-
+using SoftwareNinjas.Core.Process.Test;
 using Parent = SoftwareNinjas.BranchAndReviewTools.SvnExe;
 using NUnit.Framework;
 using System.IO;
@@ -185,7 +185,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
         public void ExecuteXml_Simulated_Success()
         {
             SimulatedCapturedProcess scp =
-                new SimulatedCapturedProcess("<info />", null, 0);
+                new SimulatedCapturedProcess(0, "<info />", null);
             SimulatedCapturedProcessFactory factory = new SimulatedCapturedProcessFactory(scp);
             Parent.Svn svn = new Parent.Svn(factory);
             var actualPair = svn.ExecuteXml(Parent.SubCommand.Info, ".");
@@ -203,7 +203,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
         {
             var expectedError = "Error";
             SimulatedCapturedProcess scp =
-                new SimulatedCapturedProcess(null, expectedError, 1);
+                new SimulatedCapturedProcess(1, null, expectedError);
             SimulatedCapturedProcessFactory factory = new SimulatedCapturedProcessFactory(scp);
             Parent.Svn svn = new Parent.Svn(factory);
             var actualPair = svn.ExecuteXml(Parent.SubCommand.Info, ".");

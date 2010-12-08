@@ -5,6 +5,7 @@ using SoftwareNinjas.BranchAndReviewTools.Core;
 using System.IO;
 using System.Threading;
 using System.Xml;
+using SoftwareNinjas.Core.Process;
 
 namespace SoftwareNinjas.BranchAndReviewTools.SvnExe
 {
