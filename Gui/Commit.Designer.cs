@@ -112,6 +112,7 @@
             // 
             // patchText
             // 
+            this.patchText.BackColor = System.Drawing.SystemColors.Window;
             this.patchText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.patchText.Font = new System.Drawing.Font ("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte) ( 0 ) ));
             this.patchText.Location = new System.Drawing.Point (0, 0);
