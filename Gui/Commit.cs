@@ -12,6 +12,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
     public partial class Commit : Form
     {
+        private const string EqualSeparator = "===================================================================";
+
         private readonly string _workingFolder;
         public string WorkingFolder
         {
@@ -72,12 +74,37 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     var fixedRelativePath = StripLeadingSlash (relativePath);
                     var header = String.Format ("File: {0}", fixedRelativePath);
 
-                    // TODO: cache the server version to avoid a round-trip for every diff
-                    var fileVersion = new ChangesetVersionSpec (change.Version);
-                    // TODO: "tf.exe diff" shows a relative path, while this produces a server path
-                    var source = Difference.CreateTargetDiffItem (_versionControlServer, change, fileVersion);
-                    var target = new DiffItemLocalFile (change.LocalItem, 0, lastModifiedDate, false);
-                    Difference.DiffFiles (_versionControlServer, source, target, diffOptions, header, true);
+                    if (ItemType.Folder == change.ItemType)
+                    {
+                        if (0 == change.Version)
+                        {
+                            sw.WriteLine("New folder: {0}", fixedRelativePath);
+                        }
+                        else if (change.IsRename)
+                        {
+                            sw.WriteLine("Folder: {0}", fixedRelativePath);
+                            sw.WriteLine(EqualSeparator);
+                            sw.WriteLine("Old name: {0}", GetLastPathItem(change.SourceServerItem));
+                            sw.WriteLine("New name: {0}", GetLastPathItem(change.ServerItem));
+                            sw.WriteLine(EqualSeparator);
+                        }
+                    }
+                    else
+                    {
+                        if (0 == change.Version)
+                        {
+                            sw.WriteLine("New file: {0}", fixedRelativePath);
+                        }
+                        else
+                        {
+                            // TODO: cache the server version to avoid a round-trip for every diff
+                            var fileVersion = new ChangesetVersionSpec(change.Version);
+                            // TODO: "tf.exe diff" shows a relative path, while this produces a server path
+                            var source = Difference.CreateTargetDiffItem(_versionControlServer, change, fileVersion);
+                            var target = new DiffItemLocalFile(change.LocalItem, 0, lastModifiedDate, false);
+                            Difference.DiffFiles(_versionControlServer, source, target, diffOptions, header, true);
+                        }
+                    }
                 }
                 sw.Flush ();
                 ms.Seek (0, SeekOrigin.Begin);
@@ -87,12 +114,19 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
+        internal static string GetLastPathItem(string path)
+        {
+            var index = path.LastIndexOf('/');
+            string result = index != -1 ? path.Substring(index + 1) : path;
+            return result;
+        }
+
         private const string DifferenceExpressionTemplate = "^{0}(.+)";
         internal static string DifferenceLeft (string hayStack, string needle)
         {
             var escapedNeedle = needle.Replace ("\\", "\\\\");
             var expression = String.Format (DifferenceExpressionTemplate, escapedNeedle);
-            var regex = new Regex (expression);
+            var regex = new Regex (expression, RegexOptions.IgnoreCase);
             var match = regex.Match (hayStack);
             var result = match.Groups[1].Value;
             return result;
