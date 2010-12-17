@@ -55,7 +55,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         // TODO: TFS-specific, move to plug-in
         internal string LoadDiff()
         {
-            changedFiles.Items.Clear();
             var lastModifiedDate = DateTime.Now;
             using (var ms = new MemoryStream ())
             using (var sw = new StreamWriter(ms))
@@ -68,18 +67,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     CultureInfo = CultureInfo.CurrentCulture,
                     StreamWriter = sw,
                 };
-                var changes = _workspace.GetPendingChangesEnumerable ();
-                foreach (var change in changes)
+                foreach (ListViewItem listItem in changedFiles.SelectedItems)
                 {
+                    var change = (PendingChange) listItem.Tag;
                     var relativePath = DifferenceLeft (change.LocalItem, _workingFolder);
                     var fixedRelativePath = StripLeadingSlash (relativePath);
                     var header = String.Format ("File: {0}", fixedRelativePath);
-
-                    var listItem = new ListViewItem(new [] { fixedRelativePath, change.ChangeTypeName })
-                    {
-                        Tag = change
-                    };
-                    changedFiles.Items.Add(listItem);
 
                     if (ItemType.Folder == change.ItemType)
                     {
@@ -147,12 +140,25 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void Commit_Load(object sender, EventArgs e)
         {
+            patchText.Text = String.Empty;
             RefreshDiff();
         }
 
         private void RefreshDiff()
         {
-            patchText.Text = LoadDiff();
+            changedFiles.Items.Clear ();
+            var changes = _workspace.GetPendingChangesEnumerable ();
+            foreach (var change in changes)
+            {
+                var relativePath = DifferenceLeft (change.LocalItem, _workingFolder);
+                var fixedRelativePath = StripLeadingSlash (relativePath);
+
+                var listItem = new ListViewItem (new[] { fixedRelativePath, change.ChangeTypeName })
+                {
+                    Tag = change
+                };
+                changedFiles.Items.Add (listItem);
+            }
         }
 
         private void Commit_KeyUp(object sender, KeyEventArgs e)
@@ -211,6 +217,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private void changedFiles_DoubleClick (object sender, EventArgs e)
         {
             LaunchDiff();
+        }
+
+        private void changedFiles_SelectedIndexChanged (object sender, EventArgs e)
+        {
+            patchText.Text = LoadDiff();
         }
     }
 }

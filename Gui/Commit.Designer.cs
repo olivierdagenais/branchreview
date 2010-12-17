@@ -109,6 +109,7 @@
             this.changedFiles.TabIndex = 0;
             this.changedFiles.UseCompatibleStateImageBehavior = false;
             this.changedFiles.View = System.Windows.Forms.View.Details;
+            this.changedFiles.SelectedIndexChanged += new System.EventHandler (this.changedFiles_SelectedIndexChanged);
             this.changedFiles.DoubleClick += new System.EventHandler (this.changedFiles_DoubleClick);
             this.changedFiles.KeyUp += new System.Windows.Forms.KeyEventHandler (this.changedFiles_KeyUp);
             // 
