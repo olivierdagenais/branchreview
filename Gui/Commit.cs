@@ -223,5 +223,28 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             patchText.Text = LoadDiff();
         }
+
+        private string DoCommit()
+        {
+            var changes = _workspace.GetPendingChanges();
+            var changeSetNumber = _workspace.CheckIn(changes, changeLog.Text);
+            string firstLine;
+            using (var sr = new StringReader(changeLog.Text))
+            {
+                firstLine = sr.ReadLine();
+            }
+            changeLog.Text = String.Empty;
+            RefreshDiff();
+            var result = String.Format("C{0}: {1}", changeSetNumber, firstLine);
+            return result;
+        }
+
+        private void changeLog_KeyUp (object sender, KeyEventArgs e)
+        {
+            if (Keys.Enter == e.KeyCode && e.Control)
+            {
+                statusBarText.Text = DoCommit();
+            }
+        }
     }
 }

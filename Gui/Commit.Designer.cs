@@ -36,12 +36,15 @@
             this.changedFilesPathColumn = new System.Windows.Forms.ColumnHeader ();
             this.changedFilesTypeColumn = new System.Windows.Forms.ColumnHeader ();
             this.patchText = new System.Windows.Forms.TextBox ();
+            this.statusBar = new System.Windows.Forms.StatusStrip ();
+            this.statusBarText = new System.Windows.Forms.ToolStripStatusLabel ();
             this.verticalDivisor.Panel1.SuspendLayout ();
             this.verticalDivisor.Panel2.SuspendLayout ();
             this.verticalDivisor.SuspendLayout ();
             this.changesDivisor.Panel1.SuspendLayout ();
             this.changesDivisor.Panel2.SuspendLayout ();
             this.changesDivisor.SuspendLayout ();
+            this.statusBar.SuspendLayout ();
             this.SuspendLayout ();
             // 
             // verticalDivisor
@@ -58,8 +61,8 @@
             // verticalDivisor.Panel2
             // 
             this.verticalDivisor.Panel2.Controls.Add (this.changesDivisor);
-            this.verticalDivisor.Size = new System.Drawing.Size (792, 573);
-            this.verticalDivisor.SplitterDistance = 119;
+            this.verticalDivisor.Size = new System.Drawing.Size (792, 551);
+            this.verticalDivisor.SplitterDistance = 114;
             this.verticalDivisor.TabIndex = 0;
             this.verticalDivisor.TabStop = false;
             // 
@@ -71,9 +74,10 @@
             this.changeLog.Multiline = true;
             this.changeLog.Name = "changeLog";
             this.changeLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.changeLog.Size = new System.Drawing.Size (792, 119);
+            this.changeLog.Size = new System.Drawing.Size (792, 114);
             this.changeLog.TabIndex = 0;
             this.changeLog.Text = "Initial creation of a Gui project with a skeleton for the Commit window.";
+            this.changeLog.KeyUp += new System.Windows.Forms.KeyEventHandler (this.changeLog_KeyUp);
             // 
             // changesDivisor
             // 
@@ -88,7 +92,7 @@
             // changesDivisor.Panel2
             // 
             this.changesDivisor.Panel2.Controls.Add (this.patchText);
-            this.changesDivisor.Size = new System.Drawing.Size (792, 450);
+            this.changesDivisor.Size = new System.Drawing.Size (792, 433);
             this.changesDivisor.SplitterDistance = 330;
             this.changesDivisor.TabIndex = 1;
             this.changesDivisor.TabStop = false;
@@ -104,7 +108,7 @@
             this.changedFiles.HideSelection = false;
             this.changedFiles.Location = new System.Drawing.Point (0, 0);
             this.changedFiles.Name = "changedFiles";
-            this.changedFiles.Size = new System.Drawing.Size (330, 450);
+            this.changedFiles.Size = new System.Drawing.Size (330, 433);
             this.changedFiles.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.changedFiles.TabIndex = 0;
             this.changedFiles.UseCompatibleStateImageBehavior = false;
@@ -132,9 +136,25 @@
             this.patchText.Name = "patchText";
             this.patchText.ReadOnly = true;
             this.patchText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.patchText.Size = new System.Drawing.Size (458, 450);
+            this.patchText.Size = new System.Drawing.Size (458, 433);
             this.patchText.TabIndex = 0;
             this.patchText.Text = resources.GetString ("patchText.Text");
+            // 
+            // statusBar
+            // 
+            this.statusBar.Items.AddRange (new System.Windows.Forms.ToolStripItem[] {
+            this.statusBarText});
+            this.statusBar.Location = new System.Drawing.Point (0, 551);
+            this.statusBar.Name = "statusBar";
+            this.statusBar.Size = new System.Drawing.Size (792, 22);
+            this.statusBar.TabIndex = 1;
+            this.statusBar.Text = "statusStrip1";
+            // 
+            // statusBarText
+            // 
+            this.statusBarText.Name = "statusBarText";
+            this.statusBarText.Size = new System.Drawing.Size (48, 17);
+            this.statusBarText.Text = "Ready";
             // 
             // Commit
             // 
@@ -142,6 +162,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size (792, 573);
             this.Controls.Add (this.verticalDivisor);
+            this.Controls.Add (this.statusBar);
             this.KeyPreview = true;
             this.Name = "Commit";
             this.Text = "Commit - PATH";
@@ -155,7 +176,10 @@
             this.changesDivisor.Panel2.ResumeLayout (false);
             this.changesDivisor.Panel2.PerformLayout ();
             this.changesDivisor.ResumeLayout (false);
+            this.statusBar.ResumeLayout (false);
+            this.statusBar.PerformLayout ();
             this.ResumeLayout (false);
+            this.PerformLayout ();
 
         }
 
@@ -168,5 +192,7 @@
         private System.Windows.Forms.ListView changedFiles;
         private System.Windows.Forms.ColumnHeader changedFilesPathColumn;
         private System.Windows.Forms.ColumnHeader changedFilesTypeColumn;
+        private System.Windows.Forms.StatusStrip statusBar;
+        private System.Windows.Forms.ToolStripStatusLabel statusBarText;
     }
 }
