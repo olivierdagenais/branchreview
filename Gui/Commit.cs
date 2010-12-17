@@ -55,6 +55,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         // TODO: TFS-specific, move to plug-in
         internal string LoadDiff()
         {
+            changedFiles.Items.Clear();
             var lastModifiedDate = DateTime.Now;
             using (var ms = new MemoryStream ())
             using (var sw = new StreamWriter(ms))
@@ -73,6 +74,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     var relativePath = DifferenceLeft (change.LocalItem, _workingFolder);
                     var fixedRelativePath = StripLeadingSlash (relativePath);
                     var header = String.Format ("File: {0}", fixedRelativePath);
+
+                    var listItem = new ListViewItem(new [] { fixedRelativePath, change.ChangeTypeName })
+                    {
+                        Tag = change
+                    };
+                    changedFiles.Items.Add(listItem);
 
                     if (ItemType.Folder == change.ItemType)
                     {

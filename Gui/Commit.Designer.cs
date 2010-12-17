@@ -34,6 +34,7 @@
             this.changesDivisor = new System.Windows.Forms.SplitContainer ();
             this.changedFiles = new System.Windows.Forms.ListView ();
             this.changedFilesPathColumn = new System.Windows.Forms.ColumnHeader ();
+            this.changedFilesTypeColumn = new System.Windows.Forms.ColumnHeader ();
             this.patchText = new System.Windows.Forms.TextBox ();
             this.verticalDivisor.Panel1.SuspendLayout ();
             this.verticalDivisor.Panel2.SuspendLayout ();
@@ -88,19 +89,22 @@
             // 
             this.changesDivisor.Panel2.Controls.Add (this.patchText);
             this.changesDivisor.Size = new System.Drawing.Size (792, 450);
-            this.changesDivisor.SplitterDistance = 255;
+            this.changesDivisor.SplitterDistance = 330;
             this.changesDivisor.TabIndex = 1;
             this.changesDivisor.TabStop = false;
             // 
             // changedFiles
             // 
             this.changedFiles.Columns.AddRange (new System.Windows.Forms.ColumnHeader[] {
-            this.changedFilesPathColumn});
+            this.changedFilesPathColumn,
+            this.changedFilesTypeColumn});
             this.changedFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.changedFiles.FullRowSelect = true;
             this.changedFiles.HideSelection = false;
             this.changedFiles.Location = new System.Drawing.Point (0, 0);
             this.changedFiles.Name = "changedFiles";
-            this.changedFiles.Size = new System.Drawing.Size (255, 450);
+            this.changedFiles.Size = new System.Drawing.Size (330, 450);
+            this.changedFiles.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.changedFiles.TabIndex = 0;
             this.changedFiles.UseCompatibleStateImageBehavior = false;
             this.changedFiles.View = System.Windows.Forms.View.Details;
@@ -109,6 +113,10 @@
             // 
             this.changedFilesPathColumn.Text = "Path";
             this.changedFilesPathColumn.Width = 250;
+            // 
+            // changedFilesTypeColumn
+            // 
+            this.changedFilesTypeColumn.Text = "Status";
             // 
             // patchText
             // 
@@ -120,7 +128,7 @@
             this.patchText.Name = "patchText";
             this.patchText.ReadOnly = true;
             this.patchText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.patchText.Size = new System.Drawing.Size (533, 450);
+            this.patchText.Size = new System.Drawing.Size (458, 450);
             this.patchText.TabIndex = 0;
             this.patchText.Text = resources.GetString ("patchText.Text");
             // 
@@ -155,5 +163,6 @@
         private System.Windows.Forms.TextBox patchText;
         private System.Windows.Forms.ListView changedFiles;
         private System.Windows.Forms.ColumnHeader changedFilesPathColumn;
+        private System.Windows.Forms.ColumnHeader changedFilesTypeColumn;
     }
 }
