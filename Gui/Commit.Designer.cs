@@ -95,6 +95,7 @@
             // 
             // changedFiles
             // 
+            this.changedFiles.AllowColumnReorder = true;
             this.changedFiles.Columns.AddRange (new System.Windows.Forms.ColumnHeader[] {
             this.changedFilesPathColumn,
             this.changedFilesTypeColumn});
