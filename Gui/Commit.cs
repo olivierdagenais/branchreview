@@ -162,5 +162,55 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 RefreshDiff();
             }
         }
+
+        private void LaunchDiff()
+        {
+            var lastModifiedDate = DateTime.Now;
+            foreach (ListViewItem listItem in changedFiles.SelectedItems)
+            {
+                var change = (PendingChange) listItem.Tag;
+                if (ItemType.Folder == change.ItemType)
+                {
+                    if (0 == change.Version)
+                    {
+                        // new folder, ignore
+                    }
+                    else if (change.IsRename)
+                    {
+                        // renamed folder, ignore
+                    }
+                }
+                else
+                {
+                    if (0 == change.Version)
+                    {
+                        var source = new DiffItemLocalFile (String.Empty, 0, lastModifiedDate, true);
+                        var target = new DiffItemLocalFile (change.LocalItem, 0, lastModifiedDate, false);
+                        Difference.VisualDiffItems (_versionControlServer, source, target);
+                    }
+                    else
+                    {
+                        // TODO: cache the server version to avoid a round-trip for every diff
+                        var fileVersion = new ChangesetVersionSpec (change.Version);
+                        var source = Difference.CreateTargetDiffItem (_versionControlServer, change, fileVersion);
+                        var target = new DiffItemLocalFile (change.LocalItem, 0, lastModifiedDate, false);
+                        Difference.VisualDiffItems(_versionControlServer, source, target);
+                    }
+                }
+            }
+        }
+
+        private void changedFiles_KeyUp (object sender, KeyEventArgs e)
+        {
+            if (Keys.Enter == e.KeyCode)
+            {
+                LaunchDiff();
+            }
+        }
+
+        private void changedFiles_DoubleClick (object sender, EventArgs e)
+        {
+            LaunchDiff();
+        }
     }
 }
