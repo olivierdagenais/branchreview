@@ -36,12 +36,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         public Commit(string workingFolder)
         {
-            _workingFolder = workingFolder;
-
             InitializeComponent();
 
             // TODO: TFS-specific, move to plug-in
-            var wi = Workstation.Current.GetLocalWorkspaceInfo (_workingFolder);
+            var wi = Workstation.Current.GetLocalWorkspaceInfo (workingFolder);
+            // TODO: scan wi.MappedPaths for best match to workingFolder, then set _workingFolder to one of those
+            _workingFolder = workingFolder;
             var tpc = new TfsTeamProjectCollection (wi.ServerUri);
             _versionControlServer = tpc.GetService<VersionControlServer> ();
             _workspace = _versionControlServer.GetWorkspace (wi);
@@ -128,7 +128,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             var expression = String.Format (DifferenceExpressionTemplate, escapedNeedle);
             var regex = new Regex (expression, RegexOptions.IgnoreCase);
             var match = regex.Match (hayStack);
-            var result = match.Groups[1].Value;
+            var result = match.Success ? match.Groups[1].Value : hayStack;
             return result;
         }
 
@@ -146,6 +146,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void RefreshDiff()
         {
+            // TODO: preserve selection, if any
             changedFiles.Items.Clear ();
             var changes = _workspace.GetPendingChangesEnumerable ();
             foreach (var change in changes)
@@ -158,6 +159,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     Tag = change
                 };
                 changedFiles.Items.Add (listItem);
+            }
+            // TODO: restore selection, if any was preserved earlier, and that should restore patchText
+            if (0 == changedFiles.Items.Count)
+            {
+                patchText.Text = String.Empty;
+            }
+            else
+            {
+                changedFiles.SelectedIndices.Add (0);
             }
         }
 
@@ -239,11 +249,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             return result;
         }
 
-        private void changeLog_KeyUp (object sender, KeyEventArgs e)
+        private void changeLog_KeyDown (object sender, KeyEventArgs e)
         {
             if (Keys.Enter == e.KeyCode && e.Control)
             {
                 statusBarText.Text = DoCommit();
+                e.SuppressKeyPress = true;
             }
         }
     }

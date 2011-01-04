@@ -77,7 +77,7 @@
             this.changeLog.Size = new System.Drawing.Size (792, 114);
             this.changeLog.TabIndex = 0;
             this.changeLog.Text = "Initial creation of a Gui project with a skeleton for the Commit window.";
-            this.changeLog.KeyUp += new System.Windows.Forms.KeyEventHandler (this.changeLog_KeyUp);
+            this.changeLog.KeyDown += new System.Windows.Forms.KeyEventHandler (this.changeLog_KeyDown);
             // 
             // changesDivisor
             // 
