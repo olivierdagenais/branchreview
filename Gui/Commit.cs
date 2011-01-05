@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -146,7 +147,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void RefreshDiff()
         {
-            // TODO: preserve selection, if any
+            // TODO: also preserve focused item?
+            var oldSelection = new Dictionary<string, string>();
+            foreach (ListViewItem listViewItem in changedFiles.SelectedItems)
+            {
+                oldSelection.Add(listViewItem.SubItems[0].Text, null);
+            }
+
             changedFiles.Items.Clear ();
             var changes = _workspace.GetPendingChangesEnumerable ();
             foreach (var change in changes)
@@ -167,8 +174,17 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
             else
             {
-                changedFiles.SelectedIndices.Add (0);
+                foreach (ListViewItem item in changedFiles.Items)
+                {
+                    var path = item.SubItems[0].Text;
+                    if (oldSelection.ContainsKey(path))
+                    {
+                        item.Selected = true;
+                        oldSelection.Remove(path);
+                    }
+                }
             }
+            changeLog.Focus();
         }
 
         private void Commit_KeyUp(object sender, KeyEventArgs e)
