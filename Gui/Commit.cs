@@ -41,15 +41,28 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
             // TODO: TFS-specific, move to plug-in
             var wi = Workstation.Current.GetLocalWorkspaceInfo (workingFolder);
-            // TODO: scan wi.MappedPaths for best match to workingFolder, then set _workingFolder to one of those
-            _workingFolder = workingFolder;
-            var tpc = new TfsTeamProjectCollection (wi.ServerUri);
-            _versionControlServer = tpc.GetService<VersionControlServer> ();
-            _workspace = _versionControlServer.GetWorkspace (wi);
+            if (null == wi)
+            {
+                changeLog.Enabled = false;
+                changedFiles.Enabled = false;
+                patchText.Enabled = false;
 
-            // ReSharper disable DoNotCallOverridableMethodsInConstructor
-            Text = "Commit - " + _workingFolder;
-            // ReSharper restore DoNotCallOverridableMethodsInConstructor
+                // ReSharper disable DoNotCallOverridableMethodsInConstructor
+                Text = "No workspace mapped at: " + workingFolder;
+                // ReSharper restore DoNotCallOverridableMethodsInConstructor
+            }
+            else
+            {
+                // TODO: scan wi.MappedPaths for best match to workingFolder, then set _workingFolder to one of those
+                _workingFolder = workingFolder;
+                var tpc = new TfsTeamProjectCollection (wi.ServerUri);
+                _versionControlServer = tpc.GetService<VersionControlServer> ();
+                _workspace = _versionControlServer.GetWorkspace (wi);
+
+                // ReSharper disable DoNotCallOverridableMethodsInConstructor
+                Text = "Commit - " + _workingFolder;
+                // ReSharper restore DoNotCallOverridableMethodsInConstructor
+            }
             changeLog.Text = "";
         }
 
@@ -142,7 +155,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private void Commit_Load(object sender, EventArgs e)
         {
             patchText.Text = String.Empty;
-            RefreshDiff();
+            // TODO: also disable keyboard shortcuts if there is no valid workspace
+            if (_workspace != null)
+            {
+                RefreshDiff ();
+            }
         }
 
         private void RefreshDiff()
