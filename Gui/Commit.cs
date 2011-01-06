@@ -191,6 +191,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
             else
             {
+                changedFiles.SelectedIndexChanged -= changedFiles_SelectedIndexChanged;
                 foreach (ListViewItem item in changedFiles.Items)
                 {
                     var path = item.SubItems[0].Text;
@@ -200,6 +201,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                         oldSelection.Remove(path);
                     }
                 }
+                changedFiles_SelectedIndexChanged (this, null);
+                changedFiles.SelectedIndexChanged += changedFiles_SelectedIndexChanged;
             }
             changeLog.Focus();
         }
@@ -264,6 +267,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void changedFiles_SelectedIndexChanged (object sender, EventArgs e)
         {
+            // TODO: look into throttling this event if we can't cache remote items
             patchText.Text = LoadDiff();
         }
 
