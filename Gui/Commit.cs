@@ -107,7 +107,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     {
                         if (0 == change.Version)
                         {
-                            sw.WriteLine("New file: {0}", fixedRelativePath);
+                            var source = new DiffItemLocalFile (String.Empty, 0, lastModifiedDate, true);
+                            var target = new DiffItemLocalFile (change.LocalItem, 0, lastModifiedDate, false);
+                            Difference.DiffFiles (_versionControlServer, source, target, diffOptions, header, true);
                         }
                         else
                         {
@@ -164,7 +166,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void RefreshDiff()
         {
-            // TODO: also preserve focused item?
+            // TODO: also preserve focused item(s)?
             var oldSelection = new Dictionary<string, string>();
             foreach (ListViewItem listViewItem in changedFiles.SelectedItems)
             {
