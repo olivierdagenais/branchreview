@@ -159,7 +159,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void Commit_Load(object sender, EventArgs e)
         {
-            patchText.Text = String.Empty;
+            patchText.SetReadOnlyText(String.Empty);
             // TODO: also disable keyboard shortcuts if there is no valid workspace
             if (_workspace != null)
             {
@@ -192,7 +192,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             // TODO: restore selection, if any was preserved earlier, and that should restore patchText
             if (0 == changedFiles.Items.Count)
             {
-                patchText.Text = String.Empty;
+                patchText.SetReadOnlyText(String.Empty);
             }
             else
             {
