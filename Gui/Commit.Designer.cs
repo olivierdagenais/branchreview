@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager (typeof (Commit));
             this.verticalDivisor = new System.Windows.Forms.SplitContainer ();
-            this.changeLog = new System.Windows.Forms.TextBox ();
+            this.changeLog = new ScintillaNet.Scintilla ();
             this.changesDivisor = new System.Windows.Forms.SplitContainer ();
             this.changedFiles = new System.Windows.Forms.ListView ();
             this.changedFilesPathColumn = new System.Windows.Forms.ColumnHeader ();
             this.changedFilesTypeColumn = new System.Windows.Forms.ColumnHeader ();
-            this.patchText = new System.Windows.Forms.TextBox ();
+            this.patchText = new ScintillaNet.Scintilla ();
             this.statusBar = new System.Windows.Forms.StatusStrip ();
             this.statusBarText = new System.Windows.Forms.ToolStripStatusLabel ();
             this.verticalDivisor.Panel1.SuspendLayout ();
@@ -69,11 +69,8 @@
             // changeLog
             // 
             this.changeLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.changeLog.Font = new System.Drawing.Font ("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte) ( 0 ) ));
             this.changeLog.Location = new System.Drawing.Point (0, 0);
-            this.changeLog.Multiline = true;
             this.changeLog.Name = "changeLog";
-            this.changeLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.changeLog.Size = new System.Drawing.Size (792, 114);
             this.changeLog.TabIndex = 0;
             this.changeLog.Text = "Initial creation of a Gui project with a skeleton for the Commit window.";
@@ -130,12 +127,8 @@
             // 
             this.patchText.BackColor = System.Drawing.SystemColors.Window;
             this.patchText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.patchText.Font = new System.Drawing.Font ("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte) ( 0 ) ));
             this.patchText.Location = new System.Drawing.Point (0, 0);
-            this.patchText.Multiline = true;
             this.patchText.Name = "patchText";
-            this.patchText.ReadOnly = true;
-            this.patchText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.patchText.Size = new System.Drawing.Size (458, 433);
             this.patchText.TabIndex = 0;
             this.patchText.Text = resources.GetString ("patchText.Text");
@@ -186,9 +179,9 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer verticalDivisor;
-        private System.Windows.Forms.TextBox changeLog;
+        private ScintillaNet.Scintilla changeLog;
         private System.Windows.Forms.SplitContainer changesDivisor;
-        private System.Windows.Forms.TextBox patchText;
+        private ScintillaNet.Scintilla patchText;
         private System.Windows.Forms.ListView changedFiles;
         private System.Windows.Forms.ColumnHeader changedFilesPathColumn;
         private System.Windows.Forms.ColumnHeader changedFilesTypeColumn;

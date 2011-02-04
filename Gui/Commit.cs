@@ -38,6 +38,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         public Commit(string workingFolder)
         {
             InitializeComponent();
+            changeLog.InitializeDefaults ();
+            patchText.InitializeDefaults ();
+            patchText.InitializeDiff ();
 
             // TODO: TFS-specific, move to plug-in
             var wi = Workstation.Current.GetLocalWorkspaceInfo (workingFolder);
@@ -270,7 +273,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private void changedFiles_SelectedIndexChanged (object sender, EventArgs e)
         {
             // TODO: look into throttling this event if we can't cache remote items
-            patchText.Text = LoadDiff();
+            patchText.SetReadOnlyText(LoadDiff());
         }
 
         private string DoCommit()

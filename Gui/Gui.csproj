@@ -65,6 +65,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Tools\nant\bin\lib\net\2.0\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="ScintillaNet">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ScintillaNet.dll</HintPath>
+    </Reference>
     <Reference Include="SoftwareNinjas.Core, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Tools\SoftwareNinjas.Core.dll</HintPath>
@@ -105,7 +109,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ScintillaExtensions.cs" />
     <Compile Include="Test\Commit.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SciLexer.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ScintillaNet.dll">
+    </Content>
+    <Content Include="ScintillaNet.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
