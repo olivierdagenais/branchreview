@@ -34,15 +34,15 @@
     <target name="test" depends="compile">
         <foreach item="String" in="${projects}" delim="," property="project">
             <echo message="Testing ${project}..."/>
-            <nunit2>
-                <formatter type="Plain" />
-                <test>
-                    <assemblies>
-                        <include name="${project}/bin/${configuration}/SoftwareNinjas.BranchAndReviewTools.${project}.dll" />
-                        <include name="${project}/bin/${configuration}/SoftwareNinjas.BranchAndReviewTools.${project}.exe" />
-                    </assemblies>
-                </test>
-            </nunit2>
+            <property
+                name="baseFile"
+                value="${project}/bin/${configuration}/SoftwareNinjas.BranchAndReviewTools.${project}" />
+            <exec program="Tools/nunit/nunit-console.exe">
+                <arg file="${baseFile}.dll" if="${file::exists(baseFile + '.dll')}" />
+                <arg file="${baseFile}.exe" if="${file::exists(baseFile + '.exe')}" />
+                <arg value="/nologo" />
+                <arg value="/nodots" />
+            </exec>
             <!-- TODO: verify assemblies with FxCop -->
         </foreach>
     </target>
