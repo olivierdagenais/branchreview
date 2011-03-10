@@ -1340,348 +1340,6 @@
             
             <seealso cref="M:System.IO.Path.Combine(System.String,System.String)"/>
         </member>
-        <member name="T:System.Action">
-            <summary>
-            Encapsulates a method that takes no parameters and does not return a value.
-            </summary>
-        </member>
-        <member name="T:System.Action`2">
-            <summary>
-            Encapsulates a method that has two parameters and does not return a value.
-            </summary>
-            
-            <typeparam name="T1">
-            The type of the first parameter of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <typeparam name="T2">
-            The type of the second parameter of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <param name="arg1">
-            The first parameter of the method that this delegate encapsulates.
-            </param>
-            
-            <param name="arg2">
-            The second parameter of the method that this delegate encapsulates.
-            </param>
-        </member>
-        <member name="T:System.Action`3">
-            <summary>
-            Encapsulates a method that takes three parameters and does not return a value.
-            </summary>
-            
-            <typeparam name="T1">
-            The type of the first parameter of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <typeparam name="T2">
-            The type of the second parameter of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <typeparam name="T3">
-            The type of the third parameter of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <param name="arg1">
-            The first parameter of the method that this delegate encapsulates.
-            </param>
-            
-            <param name="arg2">
-            The second parameter of the method that this delegate encapsulates.
-            </param>
-            
-            <param name="arg3">
-            The third parameter of the method that this delegate encapsulates.
-            </param>
-        </member>
-        <member name="T:System.Action`4">
-            <summary>
-            Encapsulates a method that has four parameters and does not return a value.
-            </summary>
-            
-            <typeparam name="T1">
-            The type of the first parameter of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <typeparam name="T2">
-            The type of the second parameter of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <typeparam name="T3">
-            The type of the third parameter of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <typeparam name="T4">
-            The type of the fourth parameter of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <param name="arg1">
-            The first parameter of the method that this delegate encapsulates.
-            </param>
-            
-            <param name="arg2">
-            The second parameter of the method that this delegate encapsulates.
-            </param>
-            
-            <param name="arg3">
-            The third parameter of the method that this delegate encapsulates.
-            </param>
-            
-            <param name="arg4">
-            The fourth parameter of the method that this delegate encapsulates.
-            </param>
-        </member>
-        <member name="T:System.Func`1">
-            <summary>
-            Encapsulates a method that has no parameters and returns a value of the type specified by the
-            <typeparamref name="TResult"/> parameter.
-            </summary>
-            
-            <typeparam name="TResult">
-            The type of the return value of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <returns>
-            The return value of the method that this delegate encapsulates.
-            </returns>
-        </member>
-        <member name="T:System.Func`2">
-            <summary>
-            Encapsulates a method that has one parameter and returns a value of the type specified by the
-            <typeparamref name="TResult"/> parameter.
-            </summary>
-            
-            <typeparam name="T1">
-            The type of the parameter of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <typeparam name="TResult">
-            The type of the return value of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <param name="arg">
-            The parameter of the method that this delegate encapsulates.
-            </param>
-            
-            <returns>
-            The return value of the method that this delegate encapsulates.
-            </returns>
-        </member>
-        <member name="T:System.Func`3">
-            <summary>
-            Encapsulates a method that has two parameters and returns a value of the type specified by the
-            <typeparamref name="TResult"/> parameter.
-            </summary>
-            
-            <typeparam name="T1">
-            The type of the first parameter of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <typeparam name="T2">
-            The type of the second parameter of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <typeparam name="TResult">
-            The type of the return value of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <param name="arg1">
-            The first parameter of the method that this delegate encapsulates.
-            </param>
-            
-            <param name="arg2">
-            The second parameter of the method that this delegate encapsulates.
-            </param>
-            
-            <returns>
-            The return value of the method that this delegate encapsulates.
-            </returns>
-        </member>
-        <member name="T:System.Func`4">
-            <summary>
-            Encapsulates a method that has three parameters and returns a value of the type specified by the
-            <typeparamref name="TResult"/> parameter.
-            </summary>
-            
-            <typeparam name="T1">
-            The type of the first parameter of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <typeparam name="T2">
-            The type of the second parameter of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <typeparam name="T3">
-            The type of the third parameter of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <typeparam name="TResult">
-            The type of the return value of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <param name="arg1">
-            The first parameter of the method that this delegate encapsulates.
-            </param>
-            
-            <param name="arg2">
-            The second parameter of the method that this delegate encapsulates.
-            </param>
-            
-            <param name="arg3">
-            The third parameter of the method that this delegate encapsulates.
-            </param>
-            
-            <returns>
-            The return value of the method that this delegate encapsulates.
-            </returns>
-        </member>
-        <member name="T:System.Func`5">
-            <summary>
-            Encapsulates a method that has four parameters and returns a value of the type specified by the
-            <typeparamref name="TResult"/> parameter.
-            </summary>
-            
-            <typeparam name="T1">
-            The type of the first parameter of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <typeparam name="T2">
-            The type of the second parameter of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <typeparam name="T3">
-            The type of the third parameter of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <typeparam name="T4">
-            The type of the fourth parameter of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <typeparam name="TResult">
-            The type of the return value of the method that this delegate encapsulates.
-            </typeparam>
-            
-            <param name="arg1">
-            The first parameter of the method that this delegate encapsulates.
-            </param>
-            
-            <param name="arg2">
-            The second parameter of the method that this delegate encapsulates.
-            </param>
-            
-            <param name="arg3">
-            The third parameter of the method that this delegate encapsulates.
-            </param>
-            
-            <param name="arg4">
-            The fourth parameter of the method that this delegate encapsulates.
-            </param>
-            
-            <returns>
-            The return value of the method that this delegate encapsulates.
-            </returns>
-        </member>
-        <member name="T:System.Linq.Enumerable">
-            <summary>
-            Re-implements parts of System.Core.dll for use with .NET 2.0
-            </summary>
-        </member>
-        <member name="M:System.Linq.Enumerable.Last``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Returns the last element of a sequence.
-            </summary>
-            
-            <typeparam name="TSource">
-            The type of the elements of <paramref name="source"/>.
-            </typeparam>
-            
-            <param name="source">
-            An <see cref="T:System.Collections.Generic.IEnumerable`1"/> to return the last element of.
-            </param>
-            
-            <returns>
-            The value at the last position in the source sequence.
-            </returns>
-            
-            <exception cref="T:System.ArgumentNullException">
-            <paramref name="source"/> is <see langword="null"/>.
-            </exception>
-            
-            <exception cref="T:System.InvalidOperationException">
-            The source sequence is empty.
-            </exception>
-        </member>
-        <member name="M:System.Linq.Enumerable.Any``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Determines whether a sequence contains any elements.
-            </summary>
-            
-            <typeparam name="TSource">
-            The type of the elements of <paramref name="source"/>.
-            </typeparam>
-            
-            <param name="source">
-            An <see cref="T:System.Collections.Generic.IEnumerable`1"/> to check for emptiness.
-            </param>
-            
-            <returns>
-            <see langword="true"/> if the source sequence contains any elements; otherwise <see langword="false"/>.
-            </returns>
-            
-            <exception cref="T:System.ArgumentNullException">
-            <paramref name="source"/> is <see langword="null"/>.
-            </exception>
-        </member>
-        <member name="T:System.Linq.Test.Enumerable">
-            <summary>
-            A class to test <see cref="T:System.Linq.Enumerable"/>.
-            </summary>
-        </member>
-        <member name="M:System.Linq.Test.Enumerable.Last_FromMsdnExample">
-            <summary>
-            Tests <see cref="M:System.Linq.Enumerable.Last``1(System.Collections.Generic.IEnumerable{``0})"/>
-            with an adaptation of the example in the MSDN code documentation.
-            </summary>
-        </member>
-        <member name="M:System.Linq.Test.Enumerable.Last_EmptySequence">
-            <summary>
-            Tests <see cref="M:System.Linq.Enumerable.Last``1(System.Collections.Generic.IEnumerable{``0})"/>
-            with an empty sequence.
-            </summary>
-        </member>
-        <member name="M:System.Linq.Test.Enumerable.Last_NullSequence">
-            <summary>
-            Tests <see cref="M:System.Linq.Enumerable.Last``1(System.Collections.Generic.IEnumerable{``0})"/>
-            with a null sequence.
-            </summary>
-        </member>
-        <member name="M:System.Linq.Test.Enumerable.Any_FromMsdnExample">
-            <summary>
-            Tests <see cref="M:System.Linq.Enumerable.Any``1(System.Collections.Generic.IEnumerable{``0})"/>
-            with an adaptation of the example in the MSDN code documentation.
-            </summary>
-        </member>
-        <member name="M:System.Linq.Test.Enumerable.Any_EmptySequence">
-            <summary>
-            Tests <see cref="M:System.Linq.Enumerable.Any``1(System.Collections.Generic.IEnumerable{``0})"/>
-            with an empty sequence.
-            </summary>
-        </member>
-        <member name="M:System.Linq.Test.Enumerable.Any_NullSequence">
-            <summary>
-            Tests <see cref="M:System.Linq.Enumerable.Any``1(System.Collections.Generic.IEnumerable{``0})"/>
-            with a null sequence.
-            </summary>
-        </member>
-        <member name="T:System.Runtime.CompilerServices.ExtensionAttribute">
-            <summary>
-            Enable C# 3.0 extensions without referencing System.Core.dll
-            </summary>
-            
-            <seealso href="http://www.danielmoth.com/Blog/2007/05/using-extension-methods-in-fx-20.html"/>
-            <seealso href="http://social.msdn.microsoft.com/forums/en-US/vcsharp2008prerelease/thread/9d88f8b1-ff03-4ea6-bd41-8cca9f2cd485/"/>
-        </member>
         <member name="T:SoftwareNinjas.Core.RegisteredUserAttribute">
             <summary>
             Represents data about the user for which an assembly was compiled.
@@ -1947,6 +1605,12 @@
             Runs all tests.
             </summary>
         </member>
+        <member name="M:SoftwareNinjas.Core.Test.EqualsTester`1.AssertAssumptions">
+            <summary>
+            Confirms that <c>x</c>, <c>y</c> and <c>z</c> are all equal to each other and that <c>a</c> is different
+            from all of them.
+            </summary>
+        </member>
         <member name="M:SoftwareNinjas.Core.Test.EqualsTester`1.AssertReflexivity">
             <summary>
             Confirms that <c>x.Equals(x)</c> returns <see langword="true"/> for any <c>x</c>.
@@ -1984,6 +1648,23 @@
             <summary>
             Confirms that if two instances of <typeparamref name="T"/> compare as equal, the
             <see cref="M:System.Object.GetHashCode"/> method for each object returns the same value.
+            </summary>
+        </member>
+        <member name="T:SoftwareNinjas.Core.Test.EqualsTesterTest">
+            <summary>
+            A class to test <see cref="T:SoftwareNinjas.Core.Test.EqualsTester`1"/>.
+            </summary>
+        </member>
+        <member name="M:SoftwareNinjas.Core.Test.EqualsTesterTest.Run_InvalidAssumptions_FirstThreeNotEqual">
+            <summary>
+            Tests the <see cref="M:SoftwareNinjas.Core.Test.EqualsTester`1.Run"/> method with
+            x, y and z that aren't all equal to one another.
+            </summary>
+        </member>
+        <member name="M:SoftwareNinjas.Core.Test.EqualsTesterTest.Run_InvalidAssumptions_LastOneNotDifferent">
+            <summary>
+            Tests the <see cref="M:SoftwareNinjas.Core.Test.EqualsTester`1.Run"/> method with
+            a equal to x, y and z.
             </summary>
         </member>
         <member name="T:SoftwareNinjas.Core.Test.PairTest">
