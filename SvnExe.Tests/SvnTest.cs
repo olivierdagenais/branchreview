@@ -1,16 +1,15 @@
 ﻿using System;
-using SoftwareNinjas.Core.Process.Test;
-using Parent = SoftwareNinjas.BranchAndReviewTools.SvnExe;
-using NUnit.Framework;
 using System.IO;
+using SoftwareNinjas.Core.Process.Test;
+using NUnit.Framework;
 
-namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
+namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Tests
 {
     /// <summary>
-    /// A class to test <see cref="Parent.Svn"/>.
+    /// A class to test <see cref="Svn"/>.
     /// </summary>
     [TestFixture]
-    public class Svn
+    public class SvnTest
     {
         private string _inputFolder;
         private string _outputFolder;
@@ -19,11 +18,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
         /// <summary>
         /// Initializes a new instance for use with some short-lived files.
         /// </summary>
-        public Svn()
+        public SvnTest()
         {
-            _inputFolder = Path.Combine(Environment.CurrentDirectory, "../../../SvnExe/Test");
+            _inputFolder = Path.Combine(Environment.CurrentDirectory, "../../../SvnExe.Tests");
             _outputFolder = Path.Combine(Environment.CurrentDirectory, "../../../TestOutput");
-            _versionStamp = Parent.Svn.DetermineSubversionVersionStamp(Parent.Svn.CurrentVersion);
+            _versionStamp = Svn.DetermineSubversionVersionStamp(Svn.CurrentVersion);
         }
 
         /// <summary>
@@ -82,8 +81,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
             var sub = GetOutputFolderPath(scenario);
             Directory.CreateDirectory(sub);
             File.Copy(
-                Path.Combine(_inputFolder, scenario + "/" + Parent.Svn.ConfigFile),
-                sub + "/" + Parent.Svn.ConfigFile);
+                Path.Combine(_inputFolder, scenario + "/" + Svn.ConfigFile),
+                sub + "/" + Svn.ConfigFile);
             string result = sub;
             return result;
         }
@@ -94,7 +93,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
         [Test]
         public void DetermineSubversionVersionStamp()
         {
-            Assert.AreEqual("svn-win32-1.5.6", Parent.Svn.DetermineSubversionVersionStamp(new Version(1, 5, 6)));
+            Assert.AreEqual("svn-win32-1.5.6", Svn.DetermineSubversionVersionStamp(new Version(1, 5, 6)));
         }
 
         /// <summary>
@@ -103,7 +102,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
         [Test]
         public void CheckConfiguration_FolderDoesNotExist()
         {
-            Assert.AreEqual(null, Parent.Svn.CheckConfiguration(null, GetOutputFolderPath("FolderDoesNotExist")));
+            Assert.AreEqual(null, Svn.CheckConfiguration(null, GetOutputFolderPath("FolderDoesNotExist")));
         }
 
         /// <summary>
@@ -114,7 +113,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
         {
             var sub = GetOutputFolderPath("FileDoesNotExist");
             Directory.CreateDirectory(sub);
-            Assert.AreEqual(null, Parent.Svn.CheckConfiguration(null, sub));
+            Assert.AreEqual(null, Svn.CheckConfiguration(null, sub));
         }
 
         /// <summary>
@@ -125,7 +124,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
         {
             Assert.AreEqual(
                 null,
-                Parent.Svn.CheckConfiguration(_versionStamp, PrepareTestFile("NoEntryInFile")));
+                Svn.CheckConfiguration(_versionStamp, PrepareTestFile("NoEntryInFile")));
         }
 
         /// <summary>
@@ -136,7 +135,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
         {
             Assert.AreEqual(
                 null,
-                Parent.Svn.CheckConfiguration(_versionStamp, PrepareTestFile("EntryPointsToInvalidLocation")));
+                Svn.CheckConfiguration(_versionStamp, PrepareTestFile("EntryPointsToInvalidLocation")));
         }
 
         /// <summary>
@@ -145,7 +144,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
         /// </summary>
         public void CheckConfiguration_EntryPointsToValidLocation()
         {
-            string result = Parent.Svn.CheckConfiguration(_versionStamp, Parent.Svn.ConfigFolderPath);
+            string result = Svn.CheckConfiguration(_versionStamp, Svn.ConfigFolderPath);
             Assert.IsNotNull(result);
             Assert.IsTrue(File.Exists(result));
         }
@@ -158,9 +157,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
         {
             var sub = GetOutputFolderPath("SaveConfiguration");
             // recursive test is recursive (...and records the location of its own file)
-            var expected = Path.Combine(sub, Parent.Svn.ConfigFile);
-            Parent.Svn.SaveConfiguration(sub, _versionStamp, expected);
-            string actual = Parent.Svn.CheckConfiguration(_versionStamp, sub);
+            var expected = Path.Combine(sub, Svn.ConfigFile);
+            Svn.SaveConfiguration(sub, _versionStamp, expected);
+            string actual = Svn.CheckConfiguration(_versionStamp, sub);
             Assert.AreEqual(expected, actual);
         }
 
@@ -171,14 +170,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
         public void ExtractSubversionBinaries()
         {
             var sub = GetOutputFolderPath("ExtractSubversionBinaries");
-            var pathToBin = Parent.Svn.ExtractSubversionBinaries(sub, _versionStamp);
+            var pathToBin = Svn.ExtractSubversionBinaries(sub, _versionStamp);
             Assert.IsTrue(Directory.Exists(Path.Combine(sub, _versionStamp)));
             Assert.IsTrue(File.Exists(pathToBin));
             Assert.AreEqual("svn.exe", Path.GetFileName(pathToBin));
         }
 
         /// <summary>
-        /// Tests <see cref="Parent.Svn.ExecuteXml(SubCommand,object[])"/> with a
+        /// Tests <see cref="Svn.ExecuteXml"/> with a
         /// <see cref="SimulatedCapturedProcess"/> that returns a string representation of XML in stdout.
         /// </summary>
         [Test]
@@ -187,15 +186,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
             SimulatedCapturedProcess scp =
                 new SimulatedCapturedProcess(0, "<info />", null);
             SimulatedCapturedProcessFactory factory = new SimulatedCapturedProcessFactory(scp);
-            Parent.Svn svn = new Parent.Svn(factory);
-            var actualPair = svn.ExecuteXml(Parent.SubCommand.Info, ".");
+            Svn svn = new Svn(factory);
+            var actualPair = svn.ExecuteXml(SubCommand.Info, ".");
             Assert.IsNotNull(actualPair.First);
             Assert.IsNull(actualPair.Second);
             Assert.AreEqual("info", actualPair.First.DocumentElement.Name);
         }
 
         /// <summary>
-        /// Tests <see cref="Parent.Svn.ExecuteXml(SubCommand,object[])"/> with a
+        /// Tests <see cref="Svn.ExecuteXml"/> with a
         /// <see cref="SimulatedCapturedProcess"/> that returns an error message in stderr.
         /// </summary>
         [Test]
@@ -205,8 +204,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
             SimulatedCapturedProcess scp =
                 new SimulatedCapturedProcess(1, null, expectedError);
             SimulatedCapturedProcessFactory factory = new SimulatedCapturedProcessFactory(scp);
-            Parent.Svn svn = new Parent.Svn(factory);
-            var actualPair = svn.ExecuteXml(Parent.SubCommand.Info, ".");
+            Svn svn = new Svn(factory);
+            var actualPair = svn.ExecuteXml(SubCommand.Info, ".");
             Assert.IsNull(actualPair.First);
             Assert.AreEqual(expectedError, actualPair.Second);
         }
@@ -219,14 +218,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
         {
             var sub = GetOutputFolderPath("Integration");
 
-            var svn = new Parent.Svn(Parent.Svn.CurrentVersion, sub);
+            var svn = new Svn(Svn.CurrentVersion, sub);
             var actualBinaryPath = svn.PathToExecutable;
 
             Assert.IsTrue(File.Exists(actualBinaryPath));
 
             var folder = Path.GetDirectoryName(actualBinaryPath);
             var greatGrandParent = Path.Combine(folder, "../..");
-            var configFile = Path.Combine(greatGrandParent, Parent.Svn.ConfigFile);
+            var configFile = Path.Combine(greatGrandParent, Svn.ConfigFile);
             Assert.IsTrue(File.Exists(configFile));
             string entireFile;
             using (var sr = new StreamReader(configFile))

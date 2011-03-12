@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BA6AA408-8948-47A8-A3D8-4A50136A7602}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{ACB0A65D-3D87-4ACB-8B72-35982ACD700F}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SoftwareNinjas.BranchAndReviewTools.Gui</RootNamespace>
-    <AssemblyName>SoftwareNinjas.BranchAndReviewTools.Gui</AssemblyName>
+    <RootNamespace>SoftwareNinjas.BranchAndReviewTools.Gui.Tests</RootNamespace>
+    <AssemblyName>SoftwareNinjas.BranchAndReviewTools.Gui.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -62,9 +62,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Tools\Microsoft.TeamFoundation.VersionControl.Common.dll</HintPath>
     </Reference>
-    <Reference Include="ScintillaNet">
+    <Reference Include="nunit.framework">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>ScintillaNet.dll</HintPath>
+      <HintPath>..\Tools\nunit\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="SoftwareNinjas.Core">
       <SpecificVersion>False</SpecificVersion>
@@ -75,47 +75,15 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Commit.Designer.cs">
-      <DependentUpon>Commit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Commit.resx">
-      <DependentUpon>Commit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <Compile Include="Properties\CustomInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <None Include="app.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="ScintillaExtensions.cs" />
+    <Compile Include="CommitTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SciLexer.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ScintillaNet.dll">
-    </Content>
-    <Content Include="ScintillaNet.xml" />
+    <ProjectReference Include="..\Gui\Gui.csproj">
+      <Project>{BA6AA408-8948-47A8-A3D8-4A50136A7602}</Project>
+      <Name>Gui</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

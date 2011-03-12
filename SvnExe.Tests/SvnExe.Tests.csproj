@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7F251D4B-C45E-49E3-AF9E-360E11D98F8B}</ProjectGuid>
+    <ProjectGuid>{9426D20D-C173-4F45-8F9F-2759EAB1F208}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SoftwareNinjas.BranchAndReviewTools.SvnExe</RootNamespace>
-    <AssemblyName>SoftwareNinjas.BranchAndReviewTools.SvnExe</AssemblyName>
+    <RootNamespace>SoftwareNinjas.BranchAndReviewTools.SvnExe.Tests</RootNamespace>
+    <AssemblyName>SoftwareNinjas.BranchAndReviewTools.SvnExe.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,7 +40,11 @@
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dependencies\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>..\SvnExe\Dependencies\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Tools\nunit\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="SoftwareNinjas.Core">
       <SpecificVersion>False</SpecificVersion>
@@ -53,24 +57,22 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\CustomInfo.cs" />
-    <Compile Include="Svn.cs" />
-    <Compile Include="SubCommand.cs" />
-    <Compile Include="SubversionClient.cs" />
+    <Compile Include="SubversionClientTest.cs" />
+    <Compile Include="SvnTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <EmbeddedResource Include="Resources\template.config" />
-    <EmbeddedResource Include="Resources\svn-win32-1.5.6.zip" />
+    <None Include="EntryPointsToInvalidLocation\SoftwareNinjas.BranchAndReviewTools.SvnExe.dll.config" />
+    <None Include="NoEntryInFile\SoftwareNinjas.BranchAndReviewTools.SvnExe.dll.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{E16DEA44-4FD9-4B61-82F3-E40273345052}</Project>
       <Name>Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Dependencies\ICSharpCode.SharpZipLib.dll" />
-    <Content Include="Dependencies\ICSharpCode.SharpZipLib.xml" />
+    <ProjectReference Include="..\SvnExe\SvnExe.csproj">
+      <Project>{7F251D4B-C45E-49E3-AF9E-360E11D98F8B}</Project>
+      <Name>SvnExe</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

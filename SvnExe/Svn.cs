@@ -79,9 +79,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe
         internal static string ExtractSubversionBinaries(string configFolderPath, string versionStamp)
         {
             string result = null;
-            var me = Assembly.GetCallingAssembly();
-            var sourcePath = String.Format(CultureInfo.InvariantCulture, "Resources.{0}.zip", versionStamp);
-            using (var ins = me.GetManifestResourceStream(typeof(Svn), sourcePath))
+            
+            var sourcePath = "Resources.{0}.zip".FormatInvariant(versionStamp);
+            using (var ins = AssemblyExtensions.OpenScopedResourceStream<Svn>(sourcePath))
             {
                 ExtractZip(ins, configFolderPath, (entry) => {
                     if (Path.GetFileName(entry.Name) == "svn.exe")
@@ -134,8 +134,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe
             var pathToConfigFile = Path.Combine(configFolderPath, ConfigFile);
             using (var sw = new StreamWriter(pathToConfigFile))
             {
-                var me = Assembly.GetCallingAssembly();
-                using (var ins = me.GetManifestResourceStream(typeof(Svn), "Resources.template.config"))
+                using (var ins = AssemblyExtensions.OpenScopedResourceStream<Svn> ("Resources.template.config"))
                 {
                     using (var sr = new StreamReader(ins))
                     {

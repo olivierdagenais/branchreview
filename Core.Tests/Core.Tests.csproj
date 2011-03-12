@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7F251D4B-C45E-49E3-AF9E-360E11D98F8B}</ProjectGuid>
+    <ProjectGuid>{D0A4A309-0622-4B3E-8176-D34CF2B1E5E5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SoftwareNinjas.BranchAndReviewTools.SvnExe</RootNamespace>
-    <AssemblyName>SoftwareNinjas.BranchAndReviewTools.SvnExe</AssemblyName>
+    <RootNamespace>SoftwareNinjas.BranchAndReviewTools.Core.Tests</RootNamespace>
+    <AssemblyName>SoftwareNinjas.BranchAndReviewTools.Core.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -21,8 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
@@ -33,44 +31,28 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ICSharpCode.SharpZipLib">
+    <Reference Include="nunit.framework">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dependencies\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>..\Tools\nunit\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="SoftwareNinjas.Core">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Tools\SoftwareNinjas.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
-    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\CustomInfo.cs" />
-    <Compile Include="Svn.cs" />
-    <Compile Include="SubCommand.cs" />
-    <Compile Include="SubversionClient.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <EmbeddedResource Include="Resources\template.config" />
-    <EmbeddedResource Include="Resources\svn-win32-1.5.6.zip" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{E16DEA44-4FD9-4B61-82F3-E40273345052}</Project>
       <Name>Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Dependencies\ICSharpCode.SharpZipLib.dll" />
-    <Content Include="Dependencies\ICSharpCode.SharpZipLib.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -36,7 +36,7 @@
             <echo message="Testing ${project}..."/>
             <property
                 name="baseFile"
-                value="${project}/bin/${configuration}/SoftwareNinjas.BranchAndReviewTools.${project}" />
+                value="${project}.Tests/bin/${configuration}/SoftwareNinjas.BranchAndReviewTools.${project}.Tests" />
             <exec program="Tools/nunit/nunit-console.exe">
                 <arg file="${baseFile}.dll" if="${file::exists(baseFile + '.dll')}" />
                 <arg file="${baseFile}.exe" if="${file::exists(baseFile + '.exe')}" />
@@ -73,6 +73,7 @@
                 <include name="*/bin/${configuration}/SoftwareNinjas.*.dll"/>
                 <include name="*/bin/${configuration}/SoftwareNinjas.*.exe"/>
                 <include name="*/bin/${configuration}/SoftwareNinjas.*.xml"/>
+                <exclude name="*.Tests/bin/**"/>
             </fileset>
         </copy>
         <copy todir="Deploy/${versionFolder}/doc">

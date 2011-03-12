@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Xml;
-
 using NUnit.Framework;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.Core.Process.Test;
-using Parent = SoftwareNinjas.BranchAndReviewTools.SvnExe;
 
-namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
+namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Tests
 {
     /// <summary>
-    /// A class to test <see cref="Parent.SubversionClient"/>.
+    /// A class to test <see cref="SubversionClient"/>.
     /// </summary>
     [TestFixture]
-    public class SubversionClient
+    public class SubversionClientTest
     {
 
         private const string infoXml = @"<?xml version=""1.0""?>
@@ -42,7 +38,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
         private const string errorMessage = "Bad stuff";
 
         /// <summary>
-        /// Tests <see cref="Parent.SubversionClient.Create(XmlNode)"/> with some XML taken from the output of executing
+        /// Tests <see cref="SubversionClient.Create"/> with some XML taken from the output of executing
         /// <c>svn info --xml .</c> on a working copy of this project.
         /// </summary>
         [Test]
@@ -50,7 +46,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(infoXml);
-            SvnInfo actualInfo = Parent.SubversionClient.Create(doc);
+            SvnInfo actualInfo = SubversionClient.Create(doc);
             CheckSvnInfo(actualInfo);
         }
 
@@ -64,28 +60,28 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe.Test
 
         /// <summary>
         /// Tests the <see cref="ISubversionClient.Info(string)"/> implementation of
-        /// <see cref="Parent.SubversionClient"/> by simulating success.
+        /// <see cref="SubversionClient"/> by simulating success.
         /// </summary>
         [Test]
         public void Info_Simulated_Success()
         {
             SimulatedCapturedProcess instance = new SimulatedCapturedProcess(0, infoXml, null);
             SimulatedCapturedProcessFactory factory = new SimulatedCapturedProcessFactory(instance);
-            ISubversionClient client = new Parent.SubversionClient(factory);
+            ISubversionClient client = new SubversionClient(factory);
             SvnInfo actualInfo = client.Info(".");
             CheckSvnInfo(actualInfo);
         }
 
         /// <summary>
         /// Tests the <see cref="ISubversionClient.Info(string)"/> implementation of
-        /// <see cref="Parent.SubversionClient"/> by simulating failure.
+        /// <see cref="SubversionClient"/> by simulating failure.
         /// </summary>
         [Test, ExpectedException(typeof(ApplicationException), ExpectedMessage = errorMessage )]
         public void Info_Simulated_Failure()
         {
             SimulatedCapturedProcess instance = new SimulatedCapturedProcess(1, null, errorMessage);
             SimulatedCapturedProcessFactory factory = new SimulatedCapturedProcessFactory(instance);
-            ISubversionClient client = new Parent.SubversionClient(factory);
+            ISubversionClient client = new SubversionClient(factory);
             SvnInfo actualInfo = client.Info(".");
         }
     }
