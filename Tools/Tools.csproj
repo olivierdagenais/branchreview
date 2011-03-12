@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CustomInfo_cs.xsl" />
+    <None Include="nunit\nunit-console-x86.exe.config" />
     <None Include="nunit\nunit-console.exe.config" />
     <None Include="nunit\nunit-console.exe" />
     <None Include="nunit\nunit.framework.dll" />
@@ -129,5 +130,12 @@
     <None Include="Microsoft.TeamFoundation.Client.dll" />
     <None Include="Microsoft.TeamFoundation.VersionControl.Client.dll" />
     <None Include="Microsoft.TeamFoundation.VersionControl.Common.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="nunit\nunit-console-runner.dll" />
+    <None Include="nunit\nunit-console-x86.exe" />
+    <None Include="nunit\nunit.core.dll" />
+    <None Include="nunit\nunit.core.interfaces.dll" />
+    <None Include="nunit\nunit.util.dll" />
   </ItemGroup>
 </Project>

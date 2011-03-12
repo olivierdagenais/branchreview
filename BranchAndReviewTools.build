@@ -37,7 +37,7 @@
             <property
                 name="baseFile"
                 value="${project}.Tests/bin/${configuration}/SoftwareNinjas.BranchAndReviewTools.${project}.Tests" />
-            <exec program="Tools/nunit/nunit-console.exe">
+            <exec program="Tools/nunit/nunit-console-x86.exe">
                 <arg file="${baseFile}.dll" if="${file::exists(baseFile + '.dll')}" />
                 <arg file="${baseFile}.exe" if="${file::exists(baseFile + '.exe')}" />
                 <arg value="/nologo" />
