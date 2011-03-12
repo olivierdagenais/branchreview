@@ -17,7 +17,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.SvnExe
     internal class Svn
     {
         public const int UnzipBlockSize = 2048;
-        public static readonly string ConfigFile = Assembly.GetCallingAssembly().GetName().Name + ".dll.config";
+        public static readonly string ConfigFile = Assembly.GetExecutingAssembly().GetName().Name + ".dll.config";
         public static readonly Version CurrentVersion = new Version(1, 5, 6);
         private string _pathToExecutable = null;
         private ICapturedProcessFactory _capturedProcessFactory = new CapturedProcessFactory();
