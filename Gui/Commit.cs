@@ -197,13 +197,21 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             else
             {
                 changedFiles.SelectedIndexChanged -= changedFiles_SelectedIndexChanged;
-                foreach (ListViewItem item in changedFiles.Items)
+                if (0 == oldSelection.Count)
                 {
-                    var path = item.SubItems[0].Text;
-                    if (oldSelection.ContainsKey(path))
+                    // if nothing was selected, select the first one
+                    changedFiles.Items[0].Selected = true;
+                }
+                else
+                {
+                    foreach (ListViewItem item in changedFiles.Items)
                     {
-                        item.Selected = true;
-                        oldSelection.Remove(path);
+                        var path = item.SubItems[0].Text;
+                        if (oldSelection.ContainsKey(path))
+                        {
+                            item.Selected = true;
+                            oldSelection.Remove(path);
+                        }
                     }
                 }
                 changedFiles_SelectedIndexChanged (this, null);
