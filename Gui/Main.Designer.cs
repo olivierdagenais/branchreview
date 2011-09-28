@@ -31,6 +31,7 @@
             System.Windows.Forms.ToolStripSeparator viewMenuRefreshSeparator;
             System.Windows.Forms.ToolStripSeparator tasksDummyMenuItem;
             System.Windows.Forms.ToolStripSeparator branchesDummyMenuItem;
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusBarText = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBarProgress = new System.Windows.Forms.ToolStripProgressBar();
@@ -54,16 +55,16 @@
             this.searchLabel = new System.Windows.Forms.ToolStripMenuItem();
             this.tabs = new System.Windows.Forms.TabControl();
             this.taskTab = new System.Windows.Forms.TabPage();
+            this.taskGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
             this.branchesTab = new System.Windows.Forms.TabPage();
+            this.branchGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
             this.activityTab = new System.Windows.Forms.TabPage();
             this.commitTab = new System.Windows.Forms.TabPage();
             this.commitHorizontalDivider = new System.Windows.Forms.SplitContainer();
             this.changeLog = new ScintillaNet.Scintilla();
             this.commitVerticalDivider = new System.Windows.Forms.SplitContainer();
-            this.patchText = new ScintillaNet.Scintilla();
-            this.taskGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
-            this.branchGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
             this.changedFiles = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
+            this.patchText = new ScintillaNet.Scintilla();
             viewMenuRefreshSeparator = new System.Windows.Forms.ToolStripSeparator();
             tasksDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
             branchesDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
@@ -72,7 +73,9 @@
             this.menuStrip.SuspendLayout();
             this.tabs.SuspendLayout();
             this.taskTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).BeginInit();
             this.branchesTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).BeginInit();
             this.commitTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commitHorizontalDivider)).BeginInit();
             this.commitHorizontalDivider.Panel1.SuspendLayout();
@@ -83,16 +86,14 @@
             this.commitVerticalDivider.Panel1.SuspendLayout();
             this.commitVerticalDivider.Panel2.SuspendLayout();
             this.commitVerticalDivider.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.patchText)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.changedFiles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patchText)).BeginInit();
             this.SuspendLayout();
             // 
             // viewMenuRefreshSeparator
             // 
             viewMenuRefreshSeparator.Name = "viewMenuRefreshSeparator";
-            viewMenuRefreshSeparator.Size = new System.Drawing.Size(181, 6);
+            viewMenuRefreshSeparator.Size = new System.Drawing.Size(168, 6);
             // 
             // tasksDummyMenuItem
             // 
@@ -119,7 +120,7 @@
             // 
             this.statusBarText.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.statusBarText.Name = "statusBarText";
-            this.statusBarText.Size = new System.Drawing.Size(48, 17);
+            this.statusBarText.Size = new System.Drawing.Size(43, 17);
             this.statusBarText.Text = "Ready";
             // 
             // statusBarProgress
@@ -161,7 +162,7 @@
             this.searchLabel});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(792, 27);
+            this.menuStrip.Size = new System.Drawing.Size(792, 25);
             this.menuStrip.TabIndex = 0;
             // 
             // fileMenu
@@ -172,13 +173,13 @@
             this.fileMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.fileMenu.Name = "fileMenu";
             this.fileMenu.ShowDropDownArrow = false;
-            this.fileMenu.Size = new System.Drawing.Size(34, 20);
+            this.fileMenu.Size = new System.Drawing.Size(30, 18);
             this.fileMenu.Text = "&File";
             // 
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(95, 22);
             this.exitMenuItem.Text = "E&xit";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
@@ -190,14 +191,14 @@
             this.editMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.editMenu.Name = "editMenu";
             this.editMenu.ShowDropDownArrow = false;
-            this.editMenu.Size = new System.Drawing.Size(37, 20);
+            this.editMenu.Size = new System.Drawing.Size(32, 18);
             this.editMenu.Text = "&Edit";
             // 
             // searchMenuItem
             // 
             this.searchMenuItem.Name = "searchMenuItem";
             this.searchMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.searchMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.searchMenuItem.Size = new System.Drawing.Size(157, 22);
             this.searchMenuItem.Text = "&Search";
             this.searchMenuItem.Click += new System.EventHandler(this.searchMenuItem_Click);
             // 
@@ -214,14 +215,14 @@
             this.viewMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.viewMenu.Name = "viewMenu";
             this.viewMenu.ShowDropDownArrow = false;
-            this.viewMenu.Size = new System.Drawing.Size(43, 20);
+            this.viewMenu.Size = new System.Drawing.Size(38, 18);
             this.viewMenu.Text = "&View";
             // 
             // tasksMenuItem
             // 
             this.tasksMenuItem.Name = "tasksMenuItem";
             this.tasksMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D1)));
-            this.tasksMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.tasksMenuItem.Size = new System.Drawing.Size(171, 22);
             this.tasksMenuItem.Text = "&Tasks";
             this.tasksMenuItem.Click += new System.EventHandler(this.tasksMenuItem_Click);
             // 
@@ -229,7 +230,7 @@
             // 
             this.branchesMenuItem.Name = "branchesMenuItem";
             this.branchesMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D2)));
-            this.branchesMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.branchesMenuItem.Size = new System.Drawing.Size(171, 22);
             this.branchesMenuItem.Text = "&Branches";
             this.branchesMenuItem.Click += new System.EventHandler(this.branchesMenuItem_Click);
             // 
@@ -237,7 +238,7 @@
             // 
             this.logMenuItem.Name = "logMenuItem";
             this.logMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D3)));
-            this.logMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.logMenuItem.Size = new System.Drawing.Size(171, 22);
             this.logMenuItem.Text = "&Log";
             this.logMenuItem.Click += new System.EventHandler(this.logMenuItem_Click);
             // 
@@ -245,7 +246,7 @@
             // 
             this.commitMenuItem.Name = "commitMenuItem";
             this.commitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D4)));
-            this.commitMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.commitMenuItem.Size = new System.Drawing.Size(171, 22);
             this.commitMenuItem.Text = "&Changes";
             this.commitMenuItem.Click += new System.EventHandler(this.commitMenuItem_Click);
             // 
@@ -253,7 +254,7 @@
             // 
             this.refreshMenuItem.Name = "refreshMenuItem";
             this.refreshMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.refreshMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.refreshMenuItem.Size = new System.Drawing.Size(171, 22);
             this.refreshMenuItem.Text = "&Refresh";
             this.refreshMenuItem.Click += new System.EventHandler(this.refreshMenuItem_Click);
             // 
@@ -265,7 +266,7 @@
             this.tasksMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tasksMenu.Name = "tasksMenu";
             this.tasksMenu.ShowDropDownArrow = false;
-            this.tasksMenu.Size = new System.Drawing.Size(50, 20);
+            this.tasksMenu.Size = new System.Drawing.Size(44, 18);
             this.tasksMenu.Text = "&Tasks";
             this.tasksMenu.DropDownOpening += new System.EventHandler(this.tasksMenu_DropDownOpening);
             // 
@@ -277,7 +278,7 @@
             this.branchesMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.branchesMenu.Name = "branchesMenu";
             this.branchesMenu.ShowDropDownArrow = false;
-            this.branchesMenu.Size = new System.Drawing.Size(72, 20);
+            this.branchesMenu.Size = new System.Drawing.Size(64, 18);
             this.branchesMenu.Text = "&Branches";
             this.branchesMenu.DropDownOpening += new System.EventHandler(this.branchesMenu_DropDownOpening);
             // 
@@ -287,7 +288,7 @@
             this.activityMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.activityMenu.Name = "activityMenu";
             this.activityMenu.ShowDropDownArrow = false;
-            this.activityMenu.Size = new System.Drawing.Size(35, 20);
+            this.activityMenu.Size = new System.Drawing.Size(31, 18);
             this.activityMenu.Text = "&Log";
             // 
             // commitMenu
@@ -296,7 +297,7 @@
             this.commitMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.commitMenu.Name = "commitMenu";
             this.commitMenu.ShowDropDownArrow = false;
-            this.commitMenu.Size = new System.Drawing.Size(68, 20);
+            this.commitMenu.Size = new System.Drawing.Size(61, 18);
             this.commitMenu.Text = "&Changes";
             // 
             // searchTextBox
@@ -305,7 +306,7 @@
             this.searchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.searchTextBox.HideSelection = false;
             this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(200, 23);
+            this.searchTextBox.Size = new System.Drawing.Size(200, 21);
             this.searchTextBox.Enter += new System.EventHandler(this.searchTextBox_Enter);
             this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             // 
@@ -313,7 +314,7 @@
             // 
             this.searchLabel.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.searchLabel.Name = "searchLabel";
-            this.searchLabel.Size = new System.Drawing.Size(66, 23);
+            this.searchLabel.Size = new System.Drawing.Size(59, 21);
             this.searchLabel.Text = "&Search";
             this.searchLabel.Click += new System.EventHandler(this.searchLabel_Click);
             // 
@@ -324,11 +325,11 @@
             this.tabs.Controls.Add(this.activityTab);
             this.tabs.Controls.Add(this.commitTab);
             this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabs.Location = new System.Drawing.Point(0, 27);
+            this.tabs.Location = new System.Drawing.Point(0, 25);
             this.tabs.Margin = new System.Windows.Forms.Padding(0);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(792, 524);
+            this.tabs.Size = new System.Drawing.Size(792, 526);
             this.tabs.TabIndex = 0;
             this.tabs.TabStop = false;
             this.tabs.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabs_Selected);
@@ -339,10 +340,27 @@
             this.taskTab.Location = new System.Drawing.Point(4, 22);
             this.taskTab.Name = "taskTab";
             this.taskTab.Padding = new System.Windows.Forms.Padding(3);
-            this.taskTab.Size = new System.Drawing.Size(784, 498);
+            this.taskTab.Size = new System.Drawing.Size(784, 500);
             this.taskTab.TabIndex = 1;
             this.taskTab.Text = "Tasks";
             this.taskTab.UseVisualStyleBackColor = true;
+            // 
+            // taskGrid
+            // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.taskGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.taskGrid.DataTable = null;
+            this.taskGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.taskGrid.Filter = null;
+            this.taskGrid.Location = new System.Drawing.Point(3, 3);
+            this.taskGrid.Name = "taskGrid";
+            this.taskGrid.RowTemplate.Height = 23;
+            this.taskGrid.Size = new System.Drawing.Size(778, 494);
+            this.taskGrid.TabIndex = 0;
+            this.taskGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.taskGrid_RowContextMenuStripNeeded);
+            this.taskGrid.DoubleClick += new System.EventHandler(this.taskGrid_DoubleClick);
+            this.taskGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.taskGrid_KeyDown);
+            this.taskGrid.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Grid_PreviewKeyDown);
             // 
             // branchesTab
             // 
@@ -350,17 +368,34 @@
             this.branchesTab.Location = new System.Drawing.Point(4, 22);
             this.branchesTab.Name = "branchesTab";
             this.branchesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.branchesTab.Size = new System.Drawing.Size(784, 498);
+            this.branchesTab.Size = new System.Drawing.Size(784, 500);
             this.branchesTab.TabIndex = 2;
             this.branchesTab.Text = "Branches";
             this.branchesTab.UseVisualStyleBackColor = true;
+            // 
+            // branchGrid
+            // 
+            this.branchGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.branchGrid.DataTable = null;
+            this.branchGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.branchGrid.Filter = null;
+            this.branchGrid.Location = new System.Drawing.Point(3, 3);
+            this.branchGrid.MultiSelect = false;
+            this.branchGrid.Name = "branchGrid";
+            this.branchGrid.RowTemplate.Height = 23;
+            this.branchGrid.Size = new System.Drawing.Size(778, 492);
+            this.branchGrid.TabIndex = 0;
+            this.branchGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.branchGrid_RowContextMenuStripNeeded);
+            this.branchGrid.DoubleClick += new System.EventHandler(this.branchGrid_DoubleClick);
+            this.branchGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.branchGrid_KeyDown);
+            this.branchGrid.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Grid_PreviewKeyDown);
             // 
             // activityTab
             // 
             this.activityTab.Location = new System.Drawing.Point(4, 22);
             this.activityTab.Name = "activityTab";
             this.activityTab.Padding = new System.Windows.Forms.Padding(3);
-            this.activityTab.Size = new System.Drawing.Size(784, 498);
+            this.activityTab.Size = new System.Drawing.Size(784, 500);
             this.activityTab.TabIndex = 3;
             this.activityTab.Text = "Log";
             this.activityTab.UseVisualStyleBackColor = true;
@@ -370,7 +405,7 @@
             this.commitTab.Controls.Add(this.commitHorizontalDivider);
             this.commitTab.Location = new System.Drawing.Point(4, 22);
             this.commitTab.Name = "commitTab";
-            this.commitTab.Size = new System.Drawing.Size(784, 498);
+            this.commitTab.Size = new System.Drawing.Size(784, 500);
             this.commitTab.TabIndex = 4;
             this.commitTab.Text = "Changes";
             this.commitTab.UseVisualStyleBackColor = true;
@@ -431,6 +466,22 @@
             this.commitVerticalDivider.TabIndex = 0;
             this.commitVerticalDivider.TabStop = false;
             // 
+            // changedFiles
+            // 
+            this.changedFiles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.changedFiles.DataTable = null;
+            this.changedFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.changedFiles.Filter = null;
+            this.changedFiles.Location = new System.Drawing.Point(0, 0);
+            this.changedFiles.Name = "changedFiles";
+            this.changedFiles.RowTemplate.Height = 23;
+            this.changedFiles.Size = new System.Drawing.Size(273, 263);
+            this.changedFiles.TabIndex = 0;
+            this.changedFiles.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.changedFiles_RowContextMenuStripNeeded);
+            this.changedFiles.DoubleClick += new System.EventHandler(this.changedFiles_DoubleClick);
+            this.changedFiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.changedFiles_KeyDown);
+            this.changedFiles.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Grid_PreviewKeyDown);
+            // 
             // patchText
             // 
             this.patchText.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -446,52 +497,6 @@
             this.patchText.Styles.LineNumber.FontName = "Verdana";
             this.patchText.Styles.Max.FontName = "Verdana";
             this.patchText.TabIndex = 0;
-            // 
-            // taskGrid
-            // 
-            this.taskGrid.DataTable = null;
-            this.taskGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.taskGrid.Filter = null;
-            this.taskGrid.Location = new System.Drawing.Point(3, 3);
-            this.taskGrid.Name = "taskGrid";
-            this.taskGrid.RowTemplate.Height = 23;
-            this.taskGrid.Size = new System.Drawing.Size(778, 492);
-            this.taskGrid.TabIndex = 0;
-            this.taskGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.taskGrid_RowContextMenuStripNeeded);
-            this.taskGrid.DoubleClick += new System.EventHandler(this.taskGrid_DoubleClick);
-            this.taskGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.taskGrid_KeyDown);
-            this.taskGrid.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Grid_PreviewKeyDown);
-            // 
-            // branchGrid
-            // 
-            this.branchGrid.DataTable = null;
-            this.branchGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.branchGrid.Filter = null;
-            this.branchGrid.Location = new System.Drawing.Point(3, 3);
-            this.branchGrid.MultiSelect = false;
-            this.branchGrid.Name = "branchGrid";
-            this.branchGrid.RowTemplate.Height = 23;
-            this.branchGrid.Size = new System.Drawing.Size(778, 492);
-            this.branchGrid.TabIndex = 0;
-            this.branchGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.branchGrid_RowContextMenuStripNeeded);
-            this.branchGrid.DoubleClick += new System.EventHandler(this.branchGrid_DoubleClick);
-            this.branchGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.branchGrid_KeyDown);
-            this.branchGrid.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Grid_PreviewKeyDown);
-            // 
-            // changedFiles
-            // 
-            this.changedFiles.DataTable = null;
-            this.changedFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.changedFiles.Filter = null;
-            this.changedFiles.Location = new System.Drawing.Point(0, 0);
-            this.changedFiles.Name = "changedFiles";
-            this.changedFiles.RowTemplate.Height = 23;
-            this.changedFiles.Size = new System.Drawing.Size(273, 263);
-            this.changedFiles.TabIndex = 0;
-            this.changedFiles.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.changedFiles_RowContextMenuStripNeeded);
-            this.changedFiles.DoubleClick += new System.EventHandler(this.changedFiles_DoubleClick);
-            this.changedFiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.changedFiles_KeyDown);
-            this.changedFiles.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Grid_PreviewKeyDown);
             // 
             // Main
             // 
@@ -511,7 +516,9 @@
             this.menuStrip.PerformLayout();
             this.tabs.ResumeLayout(false);
             this.taskTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).EndInit();
             this.branchesTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).EndInit();
             this.commitTab.ResumeLayout(false);
             this.commitHorizontalDivider.Panel1.ResumeLayout(false);
             this.commitHorizontalDivider.Panel2.ResumeLayout(false);
@@ -522,10 +529,8 @@
             this.commitVerticalDivider.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.commitVerticalDivider)).EndInit();
             this.commitVerticalDivider.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.patchText)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.changedFiles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patchText)).EndInit();
             this.ResumeLayout(false);
 
         }
