@@ -28,6 +28,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             FormClosing += Main_Closing;
             _taskRepository = new Mock.TaskRepository();
             _sourceRepository = new Mock.SourceRepository();
+            this.pendingChanges.ChangeLog.KeyDown += ChangeLog_KeyDown;
 
             activityChangeInspector.ActionsForChangesFunction = _sourceRepository.GetActionsForRevisionChanges;
             activityChangeInspector.ChangesFunction = _sourceRepository.GetRevisionChanges;
@@ -390,9 +391,44 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void commitMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO: confirm if necessary and commit!
+            if (tabs.SelectedTab != commitTab)
+            {
+                tabs.SelectedTab = commitTab;
+                var dataSource = pendingChanges.FileGrid.Grid.DataSource;
+                var itemCount = dataSource.Rows.Count;
+                var result = MessageBox.Show(
+                    "Are you sure you want to commit {0} item{1} to {2}?".FormatInvariant(
+                        itemCount,
+                        itemCount == 1 ? "" : "s",
+                        _currentBranchId
+                    ),
+                    "Please confirm",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
+                );
+                if (result != DialogResult.Yes)
+                {
+                    return;
+                }
+            }
+            DoCommit();
         }
 
+        void ChangeLog_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keys.Enter == e.KeyCode && e.Control)
+            {
+                DoCommit();
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void DoCommit()
+        {
+            // TODO: ask the ISourceRepository to commit with the specified ChangeLog on the current branch
+            // TODO: Update the status bar with the first line from the ChangeLog
+        }
         #endregion
     }
 }
