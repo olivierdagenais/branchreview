@@ -1,0 +1,765 @@
+<?xml version="1.0"?>
+<log>
+<logentry
+   revision="84">
+<author>olivier.dagenais</author>
+<date>2010-03-27T15:43:42.479541Z</date>
+<msg>branches, tags and trunk were moved under the new 'todd' folder.</msg>
+</logentry>
+<logentry
+   revision="83">
+<author>olivier.dagenais</author>
+<date>2010-03-03T03:13:15.528017Z</date>
+<msg>Reintegrating the InsertGeneratedTemplates offline branch.
+</msg>
+</logentry>
+<logentry
+   revision="82">
+<author>olivier.dagenais</author>
+<date>2009-12-04T15:54:38.763476Z</date>
+<msg>1 - Fixed a bug in Collapse() that was not preserving the ISpecial.EndPosition.Line of the collapsed version.
+
+2 - Implemented the AttachDocumentationComments() method and associated tests.
+
+3 - Upgraded to CORE version 1.0.35, which brings IEnumerable&lt;T&gt;.FirstOrDefault() and T.PreOrder(Func&lt;T,IEnumerable&lt;T&gt;&gt;)
+</msg>
+</logentry>
+<logentry
+   revision="81">
+<author>olivier.dagenais</author>
+<date>2009-11-22T22:56:03.481137Z</date>
+<msg>1 - Updated CORE to version 1.0.32
+
+2 - Implemented some code documentation comment-related extension methods, in preparation for some more extensive support.
+</msg>
+</logentry>
+<logentry
+   revision="80">
+<author>olivier.dagenais</author>
+<date>2009-10-25T20:18:28.419337Z</date>
+<msg>Added support for generating tests for instance methods, by first generating a call to the constructor, as necessary.
+</msg>
+</logentry>
+<logentry
+   revision="79">
+<author>olivier.dagenais</author>
+<date>2009-10-25T19:31:43.329618Z</date>
+<msg>1 - Generalized AbstractMethodTemplate and its subclasses to operate on ParametrizedNode instances, since both MethodDeclaration and ConstructorDeclaration derive from it, meaning the templates will be free to consider constructors a lot more like regular methods.
+
+2 - Now making use of the recently-introduced GetTypeReference method to obtain the return value of a method or the type created by a constructor.  Updated the templates to use this instead of "Method.TypeReference", which is no longer available.
+</msg>
+</logentry>
+<logentry
+   revision="78">
+<author>olivier.dagenais</author>
+<date>2009-10-25T13:48:16.701683Z</date>
+<msg>1 - Converted the read-only HasReturnValue property into a read-only field that will be assigned to once at construction.
+
+2 - Renamed "ReturnVariableName" to "VariableName".
+
+3 - Increased the visibility of some test helpers for re-use.
+
+4 - Added the GetTypeReference() extension method for upcoming use.
+</msg>
+</logentry>
+<logentry
+   revision="77">
+<author>olivier.dagenais</author>
+<date>2009-10-23T01:13:11.734034Z</date>
+<msg>1 - Fixed a bug in the initialization of NeedsInstance.  This exposed a bug in the GenerateTestMethod_Typical test case, which was also fixed.
+
+2 - Added a port of the DetermineInstanceVariableName() method plus a few tests.
+
+3 - Added the InstanceOrClass field, which makes use of the previously-mentioned method.
+
+4 - Made use of InstanceOrClass in the template, thus _almost_ supporting instance method tests. (pending the addition of instance initialization code)
+</msg>
+</logentry>
+<logentry
+   revision="76">
+<author>olivier.dagenais</author>
+<date>2009-10-22T23:55:18.215647Z</date>
+<msg>1 - Extracted the method-calling part (including the creation and initialization of local variables representing the method's parameters) out of TestMethod and into MethodCallStub.  It is also possible to specify a name for the variable that will contain the method's return value.
+
+2 - Fixed a bug where the method's return value type wasn't being determined by the DetermineDeclarationForType() method.
+</msg>
+</logentry>
+<logentry
+   revision="75">
+<author>olivier.dagenais</author>
+<date>2009-10-22T01:37:19.584624Z</date>
+<msg>1 - Updated CORE to version 1.0.30.
+
+2 - Extracted the AbstractMethodTemplate from TestMethod, for re-use, including a few renames for generality.  Since all the helper methods, properties and fields were pulled up, the test fixture was similarly renamed.
+
+3 - Made use of the recently-introduced DetermineDeclarationForType() method in TestMethod template.
+</msg>
+</logentry>
+<logentry
+   revision="74">
+<author>olivier.dagenais</author>
+<date>2009-10-19T01:41:05.047298Z</date>
+<msg>Added the DetermineDeclarationForType() method, which is currently trivial but has a TODO for [eventually] improving the output.
+</msg>
+</logentry>
+<logentry
+   revision="73">
+<author>olivier.dagenais</author>
+<date>2009-10-17T19:32:40.611736Z</date>
+<msg>1 - Upgraded CORE to version 1.0.28
+
+2 - Implemented the DetermineConstructor() method as well as some unit tests.
+
+3 - To support change #2, some unit test helpers as well as the AddParameter() extension method were added.
+
+4 - Added the NeedsInstance public read-only field, which makes use of the recently-introduced HasFlag() extension method.
+</msg>
+</logentry>
+<logentry
+   revision="72">
+<author>olivier.dagenais</author>
+<date>2009-10-09T20:55:54.580124Z</date>
+<msg>1 - Added a parameterized constructor to TestMethod and removed the property setters to force initialization through the new constructor.
+
+2 - Introduced a local variable in HasReturnValue for clarity.
+
+3 - Converted tabs to 4 spaces, for consistency.
+</msg>
+</logentry>
+<logentry
+   revision="71">
+<author>olivier.dagenais</author>
+<date>2009-10-05T02:51:51.367782Z</date>
+<msg>1 - Fixed a slight mistake in a region name
+
+2 - Added support for testing methods that don't return anything (i.e. void in C# and Sub in VB).
+</msg>
+</logentry>
+<logentry
+   revision="70">
+<author>olivier.dagenais</author>
+<date>2009-10-05T02:32:52.816434Z</date>
+<msg>Implemented [most of] a TODO about providing more explicit (and sensible) default values for variables representing parameters and the method under test's return value, if applicable.
+</msg>
+</logentry>
+<logentry
+   revision="69">
+<author>olivier.dagenais</author>
+<date>2009-10-05T00:03:54.999569Z</date>
+<msg>Enhanced GenerateTestMethod() to accept a TypeDeclaration instance and generate smarter unit test method skeletons, approximating [a subset of] some of the functionality of the Java version of TODD circa version 1.1, although with several features not yet available.
+</msg>
+</logentry>
+<logentry
+   revision="68">
+<author>olivier.dagenais</author>
+<date>2009-10-04T19:17:00.189668Z</date>
+<msg>1 - Renamed JavaMethod.* to TestMethod.* and converted to C# and NUnit.
+
+2 - Converted the test method generation to operate on a MethodDeclaration (an NRefactory AST object).  The current implementation simulates [a subset of] the behaviour of the Java version of TODD, circa version 1.0
+</msg>
+</logentry>
+<logentry
+   revision="67">
+<author>olivier.dagenais</author>
+<date>2009-10-04T15:59:01.252600Z</date>
+<msg>Fixed 8 unit tests in the formatting of VB.NET to C# conversion.
+</msg>
+</logentry>
+<logentry
+   revision="66">
+<author>olivier.dagenais</author>
+<date>2009-10-04T15:57:56.452965Z</date>
+<msg>1 - Created a local solution for building and running NRefactory tests.  This required a slight change to the existing project to point to the new path for nunit.framework.dll
+
+2 - Created a shadow project for NRefactory that depends on SoftwareNinjas.Core.dll for the "faked" Linq support and thus compiles to a .NET 2.0-compatible assembly.
+
+3 - The TestOriented.Core project now depends on the newly-added NRefactory project.
+
+4 - Upgraded nunit.framework.dll to version 2.4.8.0 as the NRefactory unit tests use NUnit.Framework.SyntaxHelpers
+
+5 - Upgraded SoftwareNinjas Core, MSBuild and NAnt to version 1.0.26 to bring the "faked" Linq support.
+</msg>
+</logentry>
+<logentry
+   revision="65">
+<author>olivier.dagenais</author>
+<date>2009-10-04T00:20:37.867624Z</date>
+<msg>Importing the "Project" and "Test" projects of Mono's NRefactory sub-project for integration and customizations.
+</msg>
+</logentry>
+<logentry
+   revision="61">
+<author>olivier.dagenais</author>
+<date>2009-09-30T01:56:23.073366Z</date>
+<msg>1 - Upgraded the dependencies to version 1.0.25, to bring in some recent enhancements to the Template Compiler
+
+2 - Enhanced the Core project to enable the TemplateCompiler.
+
+3 - Using the new TemplateCompiler, was able to replace the String.Format-based JavaMethodBody with the JavaMethod T4 template and accompanying partial class which defines its properties.
+</msg>
+</logentry>
+<logentry
+   revision="60">
+<author>olivier.dagenais</author>
+<date>2009-09-29T01:22:43.155624Z</date>
+<msg>1 - Fixed some indentation in the build script.
+
+2 - Added a "documentation" target to compile wiki pages to HTML
+
+3 - Disabled the "Eclipse" project until it is needed again.
+
+4 - Upgraded the dependencies to version 1.0.22, which included the deletion of SoftwareNinjas.MSBuild.xml since it is no longer deployed.
+</msg>
+</logentry>
+<logentry
+   revision="59">
+<author>olivier.dagenais</author>
+<date>2009-08-25T01:17:15.902634Z</date>
+<msg>1 - Updated CORE dependencies to version 1.0.14
+
+2 - Introducing the UnitTest class with a template ported from the Eclipse version of TODD.
+</msg>
+</logentry>
+<logentry
+   revision="58">
+<author>olivier.dagenais</author>
+<date>2009-07-15T02:22:17.894157Z</date>
+<msg>Restored the "test" target's dependency on the "compile" target, accidentally removed in the last commit.</msg>
+</logentry>
+<logentry
+   revision="57">
+<author>olivier.dagenais</author>
+<date>2009-07-15T02:06:49.280067Z</date>
+<msg>1 - Updated CORE to version 1.0.13, which includes Visual Studio/MSBuild support for Java projects.
+
+2 - Removed ant and the ant build script since these are no longer necessary.  The only thing the new tools don't do is customize the META-INF/MANIFEST.MF file.
+</msg>
+</logentry>
+<logentry
+   revision="56">
+<author>olivier.dagenais</author>
+<date>2009-07-01T02:32:45.070458Z</date>
+<msg>1 - Added Ant 1.7.1 minus the documentation.
+
+2 - Added JUnit 4.6.
+
+3 - Added an Ant build script for the Eclipse plug-in.  It currently compiles and tests the existing code.
+
+4 - In order to make the compilation in #3 possible, added the necessary dependencies from the Eclipse PDE 3.2.1 distribution.
+</msg>
+</logentry>
+<logentry
+   revision="55">
+<author>olivier.dagenais</author>
+<date>2009-06-30T01:02:06.961076Z</date>
+<msg>1 - Moved the existing Eclipse version to a sub-folder since it will be a sub-product of TODD.
+
+2 - Created a skeleton for the SoftwareNinjas.TestOriented.Core assembly project, which will be written in C# and contain all the re-usable code for the various sub-products.
+
+3 - Added NAnt 0.85 without documentation and with a slight modification to include support for .NET 3.5
+
+4 - Added NAntContrib 0.85 without documentation and with a schema generated by the &lt;nantschema&gt; task.
+
+5 - Added SoftwareNinjas.Core and SoftwareNinjas.NAnt version 1.0.8, to provide re-usable code and handy NAnt tasks.</msg>
+</logentry>
+<logentry
+   revision="54">
+<author>olivier.dagenais</author>
+<date>2007-05-17T02:01:02.066584Z</date>
+<msg>Incorporated about 98% of Dwight's changes for the SERA submission.</msg>
+</logentry>
+<logentry
+   revision="53">
+<author>olivier.dagenais</author>
+<date>2007-05-17T01:43:03.398043Z</date>
+<msg>Loaded the LyX file into LyX version 1.4.3-5 (format 245) and re-saved, causing a whole bunch of file format changes. (but no content changes)</msg>
+</logentry>
+<logentry
+   revision="52">
+<author>olivier.dagenais</author>
+<date>2007-05-16T01:15:03.410292Z</date>
+<msg>Overview:
+Importing the original paper at submission 20 (revision 54) from my private Subversion repository.</msg>
+</logentry>
+<logentry
+   revision="49">
+<author>olivier.dagenais</author>
+<date>2007-04-22T02:43:42.999831Z</date>
+<msg>With the merging of the smart template enhancement, I think it's time for a release, so bumping the version number to 1.1.0.
+Issue: 3
+</msg>
+</logentry>
+<logentry
+   revision="48">
+<author>olivier.dagenais</author>
+<date>2007-04-22T02:40:49.447362Z</date>
+<msg>Overview:
+Pushing revisions 27-47 from https://testoriented.googlecode.com/svn/branches/smart-templates
+
+Enhances the test generation mechanism to produce richer test method stubs that contain local variables to represent parameters, a call to the method under test and a call to assertEquals with the return value of said call, if appropriate.
+
+Changes:
+Consult the individual change logs in the "smart-templates" branch for details.
+
+
+Issue: 3
+</msg>
+</logentry>
+<logentry
+   revision="45">
+<author>olivier.dagenais</author>
+<date>2007-04-21T19:48:01.711352Z</date>
+<msg>With the addition of the ui improvements, I think it's time for a release, so bumping the version number to 1.0.1.
+
+
+Issue: 1
+</msg>
+</logentry>
+<logentry
+   revision="41">
+<author>olivier.dagenais</author>
+<date>2007-04-20T01:27:24.480550Z</date>
+<msg>Overview:
+Pushing revisions 21-25 from https://testoriented.googlecode.com/svn/branches/ui-improvements
+
+Added accelerators to labels and moved the Run action up from its sub-menu.
+
+
+Changes:
+1 - The actions and command had their labels updated to use accelerators by prefixing the "accelerated" letter with an ampersand.
+
+2 - Renamed the TODD sub-menu to JUnit and set J as its accelerator.
+
+3 - By changing the @menubarPath attribute of the &lt;action&gt; element from "todd.menu/group" to "additions", the RunTestsAction now shows up in the context menu.
+
+
+Manual tests:
+1 - Debug As/Eclipse Application, then right-clicked in the Outline view, the Package Explorer and inside the Java editor and confirmed that the "Run JUnit test(s)" action was indeed showing up directly in the context menu and no longer in a TODD-specific sub-menu.  Also confirmed that said sub-menu had now been renamed to "JUnit".
+
+2 - Extensively used a private build with these changes during the development of the smart-templates branch and am very satisfied with the accelerators.
+
+
+Issue: 1
+</msg>
+</logentry>
+<logentry
+   revision="22">
+<author>olivier.dagenais</author>
+<date>2007-02-13T01:02:56.120550Z</date>
+<msg>Added issue integration properties as documented at http://www.fogcreek.com/FogBugz/docs/40/Articles/SourceControl/TortoiseSVN.html</msg>
+</logentry>
+<logentry
+   revision="17">
+<author>olivier.dagenais</author>
+<date>2006-12-10T15:12:43.914481Z</date>
+<msg>Overview:
+Slight setting change to get the Export as "Deployable plug-ins and fragments" to include our bundle localization file.
+
+
+Changes:
+1 - plugin.properties is now included in a binary build
+
+
+Manual tests:
+1 - Perform an export as an Eclipse plug-in and verify that plugin.properties is now included.</msg>
+</logentry>
+<logentry
+   revision="16">
+<author>olivier.dagenais</author>
+<date>2006-12-10T15:07:59.927204Z</date>
+<msg>Overview:
+Slight project setting change to allow the Export as "Deployable plug-ins and fragments" to succeed without errors.
+
+
+Changes:
+1 - Removed JUnit4 from the build path.
+
+2 - Added org.junit (4.1.0) as an "Imported Package".
+
+
+Manual tests:
+1 - Exported the project as an Eclipse deployable plugin without error.</msg>
+</logentry>
+<logentry
+   revision="15">
+<author>olivier.dagenais</author>
+<date>2006-12-10T15:01:57.101145Z</date>
+<msg>Overview:
+Implemented the rest of the base objectives, that is to say the ability to launch a JUnit test fixture or a single test method in either run or debug modes.
+
+
+Changes:
+1 - Created the abstract class ActionBase from which GenerateTestsAction now inherits.  The interface implementations were pulled up, as were the _Members field and the getSelectedElement() method.  ActionBase now takes over most of the input Eclipse integration points and defines two abstract methods; overloads of the run method that were already implemented in GenerateTestsAction.
+
+2 - Created the abstract class LaunchActionBase, which extends ActionBase and simplifies the implementations of the run() overloads in DebugTestsAction and RunTestsAction with the launch() method, which forwards to the "restricted" JUnitLaunchShortcut class.
+
+3 - Modified RunTestsAction and DebugTestsAction to extend LaunchActionBase, implement ActionBase's run() overloads and have those implementations call LaunchActionBase's launch() method.
+
+4 - Created the SimpleStructuredSelection class to simplify the implementation of LaunchActionBase's launch() method.
+
+
+File operations:
+ADDED src/org/dyndns/opendemogroup/todd/SimpleStructuredSelection.java
+ADDED src/org/dyndns/opendemogroup/todd/ui/actions/ActionBase.java
+ADDED src/org/dyndns/opendemogroup/todd/ui/actions/LaunchActionBase.java
+
+
+Manual tests:
+Launched Eclipse with ReallySimpleProject and tested the debug and run actions just about everywhere with classes and methods and sometimes with breakpoints.  Every time, the JUnit view would report running what I had invoked and my breakpoint was hit when I invoked a test method in debug mode.  Mission accomplished!</msg>
+</logentry>
+<logentry
+   revision="14">
+<author>olivier.dagenais</author>
+<date>2006-12-10T15:00:13.603418Z</date>
+<msg>Overview:
+Restructured the plugin's contributions to be exposed through a TODD sub-menu and added action skeletons for running and debugging tests.
+
+
+Changes:
+1 - Added a copy of a &lt;menu&gt; element to all contributions.
+
+2 - Changed all existing actions' @menubarPath attribute from "additions" to "todd.menu/group".
+
+3 - Added actions for RunTestsAction and DebugTestsAction to all contributions.
+
+4 - Created &lt;command&gt; extensions for each of the actions and linked all actions back to the new commands through the @definitionId attribute.
+
+5 - Added stub classes for the new actions.
+
+
+File operations:
+ADDED src/org/dyndns/opendemogroup/todd/ui/actions/DebugTestsAction.java
+ADDED src/org/dyndns/opendemogroup/todd/ui/actions/RunTestsAction.java
+
+
+Manual tests:
+Launched Eclipse on ReallySimpleProject and right-clicked on the usual targets.  The TODD sub-menu appeared, as did the three actions under it.  Made sure the Generate Test(s) action still worked and set breakpoints in the Run Test(s) and Debug Test(s) actions to make sure they could also be invoked.  Mission accomplished.</msg>
+</logentry>
+<logentry
+   revision="13">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:59:27.840233Z</date>
+<msg>Overview:
+Restructured the plugin's contributions to be exposed through a TODD sub-menu and added action skeletons for running and debugging tests.
+
+
+Changes:
+1 - Added a copy of a &lt;menu&gt; element to all contributions.
+
+2 - Changed all existing actions' @menubarPath attribute from "additions" to "todd.menu/group".
+
+3 - Added actions for RunTestsAction and DebugTestsAction to all contributions.
+
+4 - Created &lt;command&gt; extensions for each of the actions and linked all actions back to the new commands through the @definitionId attribute.
+
+5 - Added stub classes for the new actions.
+
+
+File operations:
+ADDED src/org/dyndns/opendemogroup/todd/ui/actions/DebugTestsAction.java
+ADDED src/org/dyndns/opendemogroup/todd/ui/actions/RunTestsAction.java
+
+
+Manual tests:
+Launched Eclipse on ReallySimpleProject and right-clicked on the usual targets.  The TODD sub-menu appeared, as did the three actions under it.  Made sure the Generate Test(s) action still worked and set breakpoints in the Run Test(s) and Debug Test(s) actions to make sure they could also be invoked.  Mission accomplished.</msg>
+</logentry>
+<logentry
+   revision="12">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:57:38.531588Z</date>
+<msg>Overview:
+Implemented the action's functionality when invoked on an IType (a class), such that it will generate tests for each of the selected IType's (public or package) methods.
+
+
+Changes:
+1 - Disabled the IFile extension until it is implemented in the code.  This has the side-effect of interpreting an invocation on a "class" node in the Package Explorer to actually come up as IType (as opposed to IFile).
+
+2 - Extracted a few method overloads for GenerateTestsAction#run to represent the special cases that are handled, such as IMethod and IType.
+
+3 - Implemented the overload run(IType), which calls run(IMethod).
+
+4 - While implementing #2 and #3, updated some TODOs.
+
+
+Manual tests:
+1 - Launched Eclipse on ReallySimpleProject and invoked action in the Package Explorer, in the outline and in the Java Editor on methods and classes.  All worked as advertised.</msg>
+</logentry>
+<logentry
+   revision="11">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:56:45.789421Z</date>
+<msg>Overview:
+Enabled the invocation of the action from within a Java Editor and added a few more invocation possibilities, not all of which have been implemented.
+
+
+Changes:
+1 - Added extensions to IType objects and CompilationUnitEditor viewers.  Also took the opportunity to enable multiple files to be selected, since the code already enumerates the items provided by a structured selection.
+
+2 - Change 1b meant that the action now had to implement the IEditorActionDelegate interface, which introduced the setActiveEditor() method.
+
+3 - selectionChanged() was modified to no longer try to enable/disable the action based on the selection when it was discovered that it wasn't as reliable at detecting text selection changes the same way it detected structured selection changes.  Besides, with the ICompilationUnit.getElementAt() method, we can accept pretty much any selection.
+
+4 - It looks like run() can erase the selection without any adverse side effects that I could detect and thus it was modified to do so, as well as try to detect a selection if _Members was found to be null.
+
+5 - Implemented getSelectedElement() - which is called by the previous change - to replace the selection acquisition code that would have been in selectionChanged().
+
+6 - (incidental) Removed the println() call in a catch block when there's an exception thrown, to be consistent with all other TODOed potential error conditions.
+
+7 - (incidental) Added a TODO to remind the implementor(s) that some TODOs may be obsoleted by code written since.
+
+8 - (incidental) Sort of implemented a TODO by replacing it with a less important TODO after handling the null check.
+
+9 - (incidental) Added more TODOs.
+
+
+Manual tests:
+Launched a clean Eclipse and imported ReallySimpleProject.
+1 - Right-clicked on as many non-JavaEditor targets that could invoke the action and invoked it.  IFile and IType still aren't fully implemented (the action is invoked, but doesn't do anything) and I noticed IFile is reported when clicking on a class in the Package Explorer.  At least the context menu lists our action everywhere I clicked and expected it to be there.
+
+2 - Right-clicked inside the Java Editor and tried invoking the action from a few places and confirmed that the element being discovered by the new getSelectedElement() was indeed what I had intended would be detected based on the location of the cursor inside the code.
+</msg>
+</logentry>
+<logentry
+   revision="10">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:55:29.121482Z</date>
+<msg>Overview:
+Re-ordered some methods inside GenerateTestsAction, changed some visibilities and moved/renamed org.dyndns.opendemogroup.todd.ui.actions.test.GenerateTestsAction to/as org.dyndns.opendemogroup.todd.ui.actions.GenerateTestsActionTest.
+
+
+Changes:
+1 - Used Eclipse's Outline view to drag-and-drop related methods together in GenerateTestsAction.
+
+2 - Increased the visibility of a few methods in same class.
+
+3 - Moved and renamed (...).test.GenerateTestsAction to (...).GenerateTestsActionTest, which involved some slight changes in the file itself to identify the new package and class names.
+
+
+File operations:
+MOVE (copy with history, followed by deletion of original)
+src/org/dyndns/opendemogroup/todd/ui/actions/test/GenerateTestsAction.java
+TO
+src/org/dyndns/opendemogroup/todd/ui/actions/GenerateTestsActionTest.java
+
+
+Manual tests:
+1 - Ran a Project/Clean... from within Eclipse and checked the Problems list; no errors.
+2 - Right-clicked on the generateTestMethodContents_Typical method and selected Run As/JUnit Test.  The test passed.</msg>
+</logentry>
+<logentry
+   revision="9">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:52:20.543643Z</date>
+<msg>Overview:
+The plug-in will now create a testing class, according to the Eclipse convention, when one can not be found (and thus is assumed to not already exist).  The search is now also conforming to the Eclipse convention. (ATC's name is CUT's name + "Test" and lives in the same package)
+
+
+Changes:
+1 - (incidental) Removed an already-implemented TODO in the SimpleSearchRequestor class.
+
+2 - (incidental) Added a comment to IObjectActionDelegate#setActivePart(IAction, IWorkbenchPart).
+
+3 - (incidental) Broke up the template string in generateTestMethodContents on separate lines to make it easier to read.
+
+4 - The fetchAssociatedTestClass method now uses the Eclipse convention when searching for an associated test class, although the previous implementation is still provided in the form of comments, with a TODO to parametrize the convention.
+
+5 - Now calling createAssociatedTestClass if an associated test class could not be found (implemented two TODOs).  This caused a TODO to be moved closer to where it would be implemented. (i.e. check if the found class is indeed a test fixture)
+
+6 - Two new public static methods were added:  generateTestClassContents and generateCompilationUnitContents.  They return a string representation of the test class and its compilation unit, respectively.
+
+
+Manual tests:
+1 - Keeping with the theme of testing against ReallySimpleProject, launched my action against the UnformatterTest class's Unformat_Typical method and the plug-in created the UnformatterTestTest class and a Unformat_Typical_TODO method.  Mission accomplished!</msg>
+</logentry>
+<logentry
+   revision="8">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:50:18.327522Z</date>
+<msg>Overview:
+A Java editor will now be opened when generating a test method, thus enabling the user to see the addition right away, modify it and even undo it!
+
+
+Changes:
+1 - Implemented a TODO to open the Java Editor where the new method is to be added.  After the method is added, a call is made to focus on it.
+
+2 - To support change #1, the plug-in now includes org.eclipse.jdt.ui as a dependency.
+
+3 - Some lower-priority TODOs were also added to support change #1.
+
+4 - (incidental) generateTestMethodContents was refactored to accept the line separator (newLine) as a parameter and a new method, determineLineSeparator, was written to determine what the separator should be by first looking at the existing source code, then at the Eclipse preference and lastly at the platform default.
+
+5 - In response to change #4, the generateTestMethodContents_Typical unit test had its lameness reduced significantly through some refactorings.
+
+
+Unit tests:
+org.dyndns.opendemogroup.todd.test.GenerateTestsAction.generateTestMethodContents_Typical
+
+
+Manual tests:
+1 - Launched Eclipse, loaded ReallySimpleProject, drilled down to the Unformat method in the Package Explorer, launched my action and the editor for the util.test.Unformatter class opened up, with the focus on the newly-generated method.  The editor showed up as modified but not saved and the generation was undoable.  Mission accomplished.</msg>
+</logentry>
+<logentry
+   revision="7">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:49:11.221195Z</date>
+<msg>Overview:
+The base case of generating a method to test another now works (barely)!
+
+
+Changes:
+1 - Changed fetchAssociatedTestClass to return an IType instead of its ICompilationUnit, since it looks like the latter could hold more than one of the former.  Besides, if I need the ICompilationUnit, I can always obtain it from the IType.
+
+2 - Change #1 simplified greatly the IMethod overload of fetchAssociatedTestClass.
+
+3 - Implemented generateTestMethodContents which takes an IMethod representing the method to test and generates a string representing a test method to exercise the former.
+
+4 - Called the new generateTestMethodContents method from within generateTest and shuffled a few TODOs accordingly.
+
+5 - Wrote a rather lame unit test to verify the functionality of generateTestMethodContents and to determine what exception was being thrown when I wasn't able to get it to work at all due to errors in the format string.
+
+6 - Change #5 forced the inclusion of JUnit 4 in the project's classpath.
+
+
+File operations:
+ADDED src/org/dyndns/opendemogroup/todd/ui/actions/test/GenerateTestsAction.java
+
+
+Unit tests:
+org.dyndns.opendemogroup.todd.ui.actions.test.GenerateTestsAction.generateTestMethodContents_Typical
+
+
+Manual tests:
+1 - Launched Eclipse, opened up ReallySimpleProject, expanded the nodes in the Package Explorer until I exposed the Unformat method and then invoked my action.  After exposing the util.test.Unformatter class's methods, I could see the new Unformat_TODO method in the hierarchy.  A double-click on it opened the editor and confirmed the code generation had indeed taken place.  Mission accomplished.
+</msg>
+</logentry>
+<logentry
+   revision="6">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:41:29.186348Z</date>
+<msg>Overview:
+Now using the JDT's java search engine to track down an associated test class based on the convention of placing test classes in a sub-package called "test" and called the same as the class under test.
+
+
+Changes:
+1 - Implemented most of fetchAssociatedTestClass by delegating the actual searching to a new method called findClass.
+
+2 - Implemented findClass using the JDT SearchEngine class and related classes, based on the topic "Using the Java search engine" at http://help.eclipse.org/help30/index.jsp?topic=/org.eclipse.jdt.doc.isv/guide/jdt_api_search.htm
+
+3 - Implemented the SimpleSearchRequestor for use in searching.
+
+
+File operations:
+ADDED src/org/dyndns/opendemogroup/todd/SimpleSearchRequestor.java
+
+
+Manual tests:
+1 - Launched Eclipse, imported the first iteration of the ReallySimpleProject, invoked our action on a method and hit a breakpoint in findClass.  Stepped through and confirmed that no results were returned by the search because that version did not have an associated test class.
+
+2 - Repeated the first test but with the most recent ReallySimpleProject and this time the search found a single result; the associated test class.  Mission accomplished.
+</msg>
+</logentry>
+<logentry
+   revision="5">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:40:13.648667Z</date>
+<msg>Overview:
+Implemented a few TODOs surrounding the retrieval of an associated test class for the current selection.
+
+
+Changes:
+1 - Moved a few TODOs from generateTest into the new fetchAssociatedTestClass method and updated a few more TODOs accordingly.
+
+2 - Implemented two overloads of the fetchAssociatedTestClass method, one which takes an IType instance and another which takes an IMethod instance, obtains an IType and calls the first overload.
+
+
+Manual tests:
+1 - Launched a clean Eclipse, imported ReallySimpleProject and invoked the "Generate test(s)..." action on the Unformatter.Unformat method.  Set a breakpoint inside of fetchAssociatedTestClass to verify that the packageName and classNames were indeed correct.
+
+2 - Repeated the test with the com.ibm.lab.soln.jdt.excerpt project to verify that IPackageFragment's elementName wasn't just the last part of the package name.
+</msg>
+</logentry>
+<logentry
+   revision="4">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:39:26.845171Z</date>
+<msg>Overview:
+Added some TODOs surrounding the generation of tests for methods.
+
+
+Changes:
+1 - Had to make _Members more general after it was revealed that not all items implement IMember, specifically IFile.  This also affected the enumeration.
+
+2 - Moved a comment closer to what it was describing and tweaked a word so that it is clearer.
+
+3 - Added a block to handle IFile in run().
+
+4 - Created a stub generateTest method that takes an IMethod and wrote lots of TODOs.
+
+
+Manual tests:
+Launched Eclipse, set some breakpoints in run() and right-clicked on a few places to confirm that I was able to get an IFile.
+</msg>
+</logentry>
+<logentry
+   revision="3">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:36:33.482960Z</date>
+<msg>Overview:
+Based on the article by Dan Kehn, implemented a general outline for the "Generate test(s)..." action where it starts peeking at the selection and sorting through it.
+
+
+Changes:
+1 - GenerateTestsAction.selectionChanged now collects some IMember instances if they are detected and sets the enabledness of the action accordingly.
+
+2 - GenerateTestsAction.run now checks the new _Members list (of IMember instances) and enumerates it for future processing.
+
+3 - Wrote lots of TODOs for future steps.
+
+
+Manual tests:
+1 - Set some breakpoints and launched a clean workspace in which some Java project was imported and then I tried to invoke the "Generate test(s)..." on various objects.  When I couldn't hit a breakpoint, I left a TODO.
+</msg>
+</logentry>
+<logentry
+   revision="2">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:34:58.343160Z</date>
+<msg>Overview:
+Bare bones implementation that demonstrates the feasibility of extending Eclipse with a few context menu additions.
+
+
+Changes:
+Added initial project files and plugin definition partly generated from a wizard and inspired by the following:
+- http://www.eclipse.org/articles/Article-action-contribution/Contributing%20Actions%20to%20the%20Eclipse%20Workbench.html
+- http://help.eclipse.org/help32/topic/org.eclipse.platform.doc.isv/reference/extension-points/org_eclipse_ui_popupMenus.html
+- the PMD Eclipse plugin source code
+
+
+File operations:
+ADDED .classpath
+ADDED .project
+ADDED build.properties
+ADDED META-INF
+ADDED plugin.properties
+ADDED plugin.xml
+ADDED .settings\org.eclipse.jdt.ui.prefs
+ADDED META-INF\MANIFEST.MF
+ADDED src\org\dyndns\opendemogroup\todd\Activator.java
+ADDED src\org\dyndns\opendemogroup\todd\ui\actions\GenerateTestsAction.java
+
+
+Manual tests:
+1 - Launched Eclipse, created a new Java project, added a Class.  Invoked the context for the new file in:
+1.1 - Package Explorer
+1.2 - Navigator
+1.3 - the file itself
+1.4 - On the class node in the Outline
+1.5 - On a method node in the Outline
+...all of which popped a dialog box.  I even set a breakpoint in GenerateTestsAction's run method and inspected the IAction parameter to see what was coming in from different contexts.</msg>
+</logentry>
+<logentry
+   revision="1">
+<date>2006-12-09T22:21:46.256558Z</date>
+<msg>Initial directory structure.</msg>
+</logentry>
+</log>

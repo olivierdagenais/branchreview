@@ -1,0 +1,2790 @@
+<?xml version="1.0"?>
+<log>
+<logentry
+   revision="308">
+<author>olivier.dagenais</author>
+<date>2011-09-03T21:11:06.438915Z</date>
+<msg>Oops, dependencies in the NAnt build script break the full suitability evaluation by repeatedly re-creating the working copies, throwing away incremental work.</msg>
+</logentry>
+<logentry
+   revision="307">
+<author>olivier.dagenais</author>
+<date>2011-09-03T20:58:11.966552Z</date>
+<msg>Create a manual strategy for the StringExtensions project, for consistency.</msg>
+</logentry>
+<logentry
+   revision="306">
+<author>olivier.dagenais</author>
+<date>2011-09-03T20:42:13.882592Z</date>
+<msg>Added the ability to run manual tests and made sure all solutions had a ManualTests project.</msg>
+</logentry>
+<logentry
+   revision="305">
+<author>olivier.dagenais</author>
+<date>2011-09-03T19:13:39.658998Z</date>
+<msg>Renamed the testWithCoverage target to runGeneratedTestsWithCoverage.</msg>
+</logentry>
+<logentry
+   revision="304">
+<author>olivier.dagenais</author>
+<date>2011-09-03T19:09:33.077795Z</date>
+<msg>Moved the code metrics calculation up, after the first compilation.</msg>
+</logentry>
+<logentry
+   revision="303">
+<author>olivier.dagenais</author>
+<date>2011-09-03T19:06:08.743817Z</date>
+<msg>Stripped the step numbers for easier shuffling in the future, since the order is already as written.</msg>
+</logentry>
+<logentry
+   revision="302">
+<author>olivier.dagenais</author>
+<date>2011-08-28T14:42:07.483083Z</date>
+<msg>Make the PublicInterfaceComparer work with all projects.
+1 - Upgraded to CORE 1.0.80 to get a CLI version of PublicInterfaceComparer since the NAnt version loads assemblies differently enough to fail with PivotStack.
+2 - The use of the CLI version means we need to write to a file, then read back from it, hence using the lineCount task to do that.
+3 - Introducing the manual strategy for the PivotStack project, which already has a few method extractions.</msg>
+</logentry>
+<logentry
+   revision="301">
+<author>olivier.dagenais</author>
+<date>2011-08-20T02:15:42.936609Z</date>
+<msg>Lots of small corrections to section 3.5.</msg>
+</logentry>
+<logentry
+   revision="300">
+<author>olivier.dagenais</author>
+<date>2011-08-20T02:15:36.438592Z</date>
+<msg>Lots of small changes and corrections to section 3.4, including a new citation.</msg>
+</logentry>
+<logentry
+   revision="299">
+<author>olivier.dagenais</author>
+<date>2011-08-20T02:15:29.705657Z</date>
+<msg>Lots of small changes in section 3.3.</msg>
+</logentry>
+<logentry
+   revision="298">
+<author>olivier.dagenais</author>
+<date>2011-08-18T01:13:24.728910Z</date>
+<msg>Added more details to the references, mostly in the form of line numbers.</msg>
+</logentry>
+<logentry
+   revision="297">
+<author>olivier.dagenais</author>
+<date>2011-08-18T01:13:19.338531Z</date>
+<msg>1 - Instead of having to hunt down places where -- should be used, added some XSL to take care of it from instances of ' - '.
+2 - Some more minor fixes.</msg>
+</logentry>
+<logentry
+   revision="296">
+<author>olivier.dagenais</author>
+<date>2011-08-18T01:13:11.049397Z</date>
+<msg>Lots of small changes.</msg>
+</logentry>
+<logentry
+   revision="295">
+<author>olivier.dagenais</author>
+<date>2011-08-18T01:13:05.992553Z</date>
+<msg>Added two notes about the name and purpose of the second column.</msg>
+</logentry>
+<logentry
+   revision="294">
+<author>olivier.dagenais</author>
+<date>2011-08-18T01:12:55.020747Z</date>
+<msg>The CUT's public interface does not have to be affected if visibility is increased private-&gt;internal and protected-&gt;protected internal.</msg>
+</logentry>
+<logentry
+   revision="293">
+<author>olivier.dagenais</author>
+<date>2011-08-18T01:12:48.229463Z</date>
+<msg>Added a paragraph with two very supportive quotes discovered recently from two books.</msg>
+</logentry>
+<logentry
+   revision="292">
+<author>olivier.dagenais</author>
+<date>2011-08-18T01:12:42.201812Z</date>
+<msg>Fixed some fancy single and double quotes.</msg>
+</logentry>
+<logentry
+   revision="291">
+<author>olivier.dagenais</author>
+<date>2011-08-18T01:12:35.509506Z</date>
+<msg>Added the "Functional Programming for Java Developers" book with lots of notes.</msg>
+</logentry>
+<logentry
+   revision="290">
+<author>olivier.dagenais</author>
+<date>2011-07-29T01:16:33.685736Z</date>
+<msg>Introducing the visibility-state strategy where all mutable fields had their visibility increased so that unit tests and Pex can see them.</msg>
+</logentry>
+<logentry
+   revision="289">
+<author>olivier.dagenais</author>
+<date>2011-07-29T01:14:45.912739Z</date>
+<msg>Re-inlined some methods because they cause side-effects.</msg>
+</logentry>
+<logentry
+   revision="288">
+<author>olivier.dagenais</author>
+<date>2011-07-29T00:52:47.735898Z</date>
+<msg>Restoring the ProcessNode() method since the extraction wasn't stateless; the method caused side-effects on the second argument.</msg>
+</logentry>
+<logentry
+   revision="287">
+<author>olivier.dagenais</author>
+<date>2011-07-29T00:48:58.213768Z</date>
+<msg>Extracted a few simple stateless methods.</msg>
+</logentry>
+<logentry
+   revision="286">
+<author>olivier.dagenais</author>
+<date>2011-07-29T00:19:27.347515Z</date>
+<msg>Extracted the stateless ValidateFileFormat() method.</msg>
+</logentry>
+<logentry
+   revision="285">
+<author>olivier.dagenais</author>
+<date>2011-07-28T23:57:06.002703Z</date>
+<msg>Restoring some methods to private since they have side-effects or interact with the environment.</msg>
+</logentry>
+<logentry
+   revision="284">
+<author>olivier.dagenais</author>
+<date>2011-07-28T23:32:34.082392Z</date>
+<msg>Extracted the VerifyZeroHash() stateless method.</msg>
+</logentry>
+<logentry
+   revision="283">
+<author>olivier.dagenais</author>
+<date>2011-07-28T23:25:45.999484Z</date>
+<msg>Extracted the stateless VerifyBuffer() method.</msg>
+</logentry>
+<logentry
+   revision="282">
+<author>olivier.dagenais</author>
+<date>2011-07-28T23:02:48.155690Z</date>
+<msg>Undid a method extraction because it wasn't stateless: it interacts with the environment.</msg>
+</logentry>
+<logentry
+   revision="281">
+<author>olivier.dagenais</author>
+<date>2011-07-28T22:30:44.249979Z</date>
+<msg>Hid 3 methods because they interact with the environment/have side-effects.</msg>
+</logentry>
+<logentry
+   revision="280">
+<author>olivier.dagenais</author>
+<date>2011-07-28T22:26:19.949040Z</date>
+<msg>Extracted the stateless Validate() method overload.</msg>
+</logentry>
+<logentry
+   revision="279">
+<author>olivier.dagenais</author>
+<date>2011-07-28T22:17:41.629443Z</date>
+<msg>Three methods were switched back to private after realizing they had side-effects.</msg>
+</logentry>
+<logentry
+   revision="278">
+<author>olivier.dagenais</author>
+<date>2011-07-28T21:39:56.416893Z</date>
+<msg>Extracted the stateless GetKeyParts() method which shows the special case of more than one output.</msg>
+</logentry>
+<logentry
+   revision="277">
+<author>olivier.dagenais</author>
+<date>2011-07-28T21:28:47.566900Z</date>
+<msg>Extracted the stateless LoadXmlKey() method, which required a bit of re-ordering.</msg>
+</logentry>
+<logentry
+   revision="276">
+<author>olivier.dagenais</author>
+<date>2011-07-28T21:24:41.011631Z</date>
+<msg>Made two methods private again after noticing they interact with the environment.</msg>
+</logentry>
+<logentry
+   revision="275">
+<author>olivier.dagenais</author>
+<date>2011-07-28T21:21:15.581873Z</date>
+<msg>Extracted the LoadKey() method and made the calling LoadKeyFile() method private again after noticing that it has side-effects.</msg>
+</logentry>
+<logentry
+   revision="274">
+<author>olivier.dagenais</author>
+<date>2011-07-28T20:25:07.835001Z</date>
+<msg>Extracted a few very simple stateless methods.</msg>
+</logentry>
+<logentry
+   revision="273">
+<author>olivier.dagenais</author>
+<date>2011-07-28T20:24:16.267712Z</date>
+<msg>Extracted the ComputeArcFourState() stateless method.</msg>
+</logentry>
+<logentry
+   revision="272">
+<author>olivier.dagenais</author>
+<date>2011-07-28T20:08:23.556664Z</date>
+<msg>Extracting the CombineEntropy() stateless method, which suggested the previously-extracted method of the same name should be renamed to CombineAndNormalizeEntropy() to avoid confusion.</msg>
+</logentry>
+<logentry
+   revision="271">
+<author>olivier.dagenais</author>
+<date>2011-07-28T19:59:55.573266Z</date>
+<msg>Extracted the CombineEntropy() stateless method.</msg>
+</logentry>
+<logentry
+   revision="270">
+<author>olivier.dagenais</author>
+<date>2011-07-28T19:57:49.151355Z</date>
+<msg>Extracted the NormalizeEntropy() stateless method from two blocks of copy-pasted code.</msg>
+</logentry>
+<logentry
+   revision="269">
+<author>olivier.dagenais</author>
+<date>2011-07-28T19:40:07.951615Z</date>
+<msg>Deleted a test class from both KeePassLib strategies.</msg>
+</logentry>
+<logentry
+   revision="268">
+<author>olivier.dagenais</author>
+<date>2011-07-28T18:01:07.298125Z</date>
+<msg>Yet another CORE update (1.0.74) to fix yet more PublicInterfaceComparer bugs.</msg>
+</logentry>
+<logentry
+   revision="267">
+<author>olivier.dagenais</author>
+<date>2011-07-28T15:57:09.299237Z</date>
+<msg>1 - Upgraded to CORE version 1.0.73 to bring in a fix that would cause the publicInterfaceComparer to crash when it scanned KeePassLib.
+2 - Introducing a stricter interpretation of the "visibility" strategy that only makes state (i.e. fields) more visible and not methods.  Preliminary tests indicate that Pex does not seem to have a significantly easier time than "base".</msg>
+</logentry>
+<logentry
+   revision="266">
+<author>olivier.dagenais</author>
+<date>2011-07-28T02:19:51.716121Z</date>
+<msg>1 - Updated to CORE version 1.0.72, which recognizes "protected" and "protected internal" as visible and thus yields different scores.
+2 - Fixed the "visibility" strategy to use "protected internal" instead of "internal" when "protected" was used.  This still makes it more visible to Pex while maintaining visibility to derived classes in other assemblies.
+3 - Found some implicit private members and changed their visibility to internal.</msg>
+</logentry>
+<logentry
+   revision="265">
+<author>olivier.dagenais</author>
+<date>2011-07-27T21:02:24.756259Z</date>
+<msg>Oops, I just realized I had simply fiddled with the signature of PhraseModifierFormat() instead of extracting a stateless method.  Doing it the old way was changing the public interface of PhraseBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="264">
+<author>olivier.dagenais</author>
+<date>2011-07-27T02:28:38.783097Z</date>
+<msg>Added a bit of content and made some fixes to section 4.2.</msg>
+</logentry>
+<logentry
+   revision="263">
+<author>olivier.dagenais</author>
+<date>2011-07-27T02:18:29.408030Z</date>
+<msg>1 - Upgraded to CORE version 1.0.68 to bring in the new publicInterfaceComparer task.
+2 - Introducing the Visual Studio Code Metrics PowerTool to compute the maintainability index.  Unfortunately, it looks like this will result in a fair amount of copy/pasting and separate spreadsheets.
+3 - Updated the build script to include the public interface comparison (which forces a compilation of the base strategy) so that it will submit to the updated form/spreadsheet.</msg>
+</logentry>
+<logentry
+   revision="262">
+<author>olivier.dagenais</author>
+<date>2011-07-26T16:32:20.422121Z</date>
+<msg>Added the "visibility" strategy, where "private" and "protected" were replaced with "internal".</msg>
+</logentry>
+<logentry
+   revision="261">
+<author>olivier.dagenais</author>
+<date>2011-07-25T23:53:29.640579Z</date>
+<msg>Renamed "variation" to "strategy" and updated related variable names at the same time.</msg>
+</logentry>
+<logentry
+   revision="260">
+<author>olivier.dagenais</author>
+<date>2011-07-25T22:41:26.583461Z</date>
+<msg>Replaced the body of the SafeShowMessageBoxInternal() method with a stub because Pex was triggering it, thus halting the build until someone dismissed the dialog box.</msg>
+</logentry>
+<logentry
+   revision="259">
+<author>olivier.dagenais</author>
+<date>2011-07-24T02:12:02.451518Z</date>
+<msg>1 - Found a book with some interesting passages, so added it to the database, but not yet to the document.
+2 - Added a bit of content but mostly TODOs for what's coming next.</msg>
+</logentry>
+<logentry
+   revision="258">
+<author>olivier.dagenais</author>
+<date>2011-07-23T00:16:02.690757Z</date>
+<msg>1 - Figured out how to cite several references at once, so collapsed all of the multi-references.
+2 - Fixed a use of underline.
+3 - Found another source for "defects are more expensive to fix the more you wait".
+4 - Added some notes.
+5 - Started adding/fixing content for section 4.1.</msg>
+</logentry>
+<logentry
+   revision="257">
+<author>olivier.dagenais</author>
+<date>2011-07-19T21:22:52.586726Z</date>
+<msg>First batch of changes suggested by Marie-Noëlle.</msg>
+</logentry>
+<logentry
+   revision="256">
+<author>olivier.dagenais</author>
+<date>2011-07-19T21:16:27.272424Z</date>
+<msg>Added the ability to underline.</msg>
+</logentry>
+<logentry
+   revision="255">
+<author>olivier.dagenais</author>
+<date>2011-07-19T21:04:54.134870Z</date>
+<msg>Now including bin in the list of folders to clean.</msg>
+</logentry>
+<logentry
+   revision="254">
+<author>olivier.dagenais</author>
+<date>2011-07-18T20:32:53.222861Z</date>
+<msg>Added a feature to iTeX to convert a double quote preceded by a space to the LaTeX way of opening quotes, that is to say two backticks.</msg>
+</logentry>
+<logentry
+   revision="253">
+<author>olivier.dagenais</author>
+<date>2011-07-18T20:07:37.060604Z</date>
+<msg>Switched to XeTeX to be able to disable ligatures without disabling other text enhancements.</msg>
+</logentry>
+<logentry
+   revision="252">
+<author>olivier.dagenais</author>
+<date>2011-07-18T12:36:40.770508Z</date>
+<msg>Fixed typo in reference.</msg>
+</logentry>
+<logentry
+   revision="251">
+<author>olivier.dagenais</author>
+<date>2011-07-16T15:59:52.327116Z</date>
+<msg>Added an awesome quote by Binder to the state problem section.</msg>
+</logentry>
+<logentry
+   revision="250">
+<author>olivier.dagenais</author>
+<date>2011-07-16T02:12:56.108099Z</date>
+<msg>1 - Slight improvements to Step 1.
+2 - A lot of the motivations in Step 4 were moved to Design Decisions and some enhancements were performed at the same time.
+3 - Added content for the Decisions made section and cleaned up some notes.
+4 - Moved some notes to the Results chapter.
+5 - Deleted the Reproducibility section since that should be covered in Experiment design.</msg>
+</logentry>
+<logentry
+   revision="249">
+<author>olivier.dagenais</author>
+<date>2011-07-15T15:24:21.920639Z</date>
+<msg>Noticed the authors' names were missing some "decorations" on some of the letters.</msg>
+</logentry>
+<logentry
+   revision="248">
+<author>olivier.dagenais</author>
+<date>2011-07-15T14:35:52.346585Z</date>
+<msg>Added note about possible talking point.</msg>
+</logentry>
+<logentry
+   revision="247">
+<author>olivier.dagenais</author>
+<date>2011-07-15T13:38:55.698184Z</date>
+<msg>Introducing the "Stateless version" of MortonLayout where the DecodeAxis() method was extracted to show that sometimes, computations should stay together for readability and/or performance.
+Also noted same in subsection 3.3.2</msg>
+</logentry>
+<logentry
+   revision="246">
+<author>olivier.dagenais</author>
+<date>2011-07-15T13:13:33.202332Z</date>
+<msg>Imported the tests for MortonLayout from the PivotStack project and adjusted the layout slightly.</msg>
+</logentry>
+<logentry
+   revision="245">
+<author>olivier.dagenais</author>
+<date>2011-07-15T12:49:28.552922Z</date>
+<msg>Importing (and adapting) the MortonLayout class from the PivotStack project to illustrate "computation coupling".</msg>
+</logentry>
+<logentry
+   revision="244">
+<author>olivier.dagenais</author>
+<date>2011-07-15T12:39:20.924624Z</date>
+<msg>Added two citations recommended by Dwight.</msg>
+</logentry>
+<logentry
+   revision="243">
+<author>olivier.dagenais</author>
+<date>2011-07-15T12:25:26.977515Z</date>
+<msg>Enhanced Step 2 with a few insights that relate my idea to existing work in the field.</msg>
+</logentry>
+<logentry
+   revision="242">
+<author>olivier.dagenais</author>
+<date>2011-07-14T21:19:47.178181Z</date>
+<msg>Added an example of re-ordering to separate computations.</msg>
+</logentry>
+<logentry
+   revision="241">
+<author>olivier.dagenais</author>
+<date>2011-07-14T21:11:56.774646Z</date>
+<msg>Introducing the Stateless version of CartesianCoordinate, which had a few lines re-ordered in ToPolar().</msg>
+</logentry>
+<logentry
+   revision="240">
+<author>olivier.dagenais</author>
+<date>2011-07-14T20:56:16.653073Z</date>
+<msg>Introducing the stateless version of QuadraticEquation with the Root() method extracted.</msg>
+</logentry>
+<logentry
+   revision="239">
+<author>olivier.dagenais</author>
+<date>2011-07-14T20:36:24.937227Z</date>
+<msg>Added some tests for ComputeRoots()</msg>
+</logentry>
+<logentry
+   revision="238">
+<author>olivier.dagenais</author>
+<date>2011-07-14T19:59:40.100004Z</date>
+<msg>Oops, forgot to include the square root.</msg>
+</logentry>
+<logentry
+   revision="237">
+<author>olivier.dagenais</author>
+<date>2011-07-14T19:57:00.231534Z</date>
+<msg>Introducing the PolarCoordinate, CartesianCoordinate and QuadraticEquation classes to use as examples.</msg>
+</logentry>
+<logentry
+   revision="236">
+<author>olivier.dagenais</author>
+<date>2011-07-14T18:04:02.088109Z</date>
+<msg>Implemented a TODO about finding an example of a non-stateless method that would cause a candidate block to be split.</msg>
+</logentry>
+<logentry
+   revision="235">
+<author>olivier.dagenais</author>
+<date>2011-07-14T17:42:48.367403Z</date>
+<msg>Introducing the Stateless version of SubversionClient, with two stateless methods extracted and two unit tests added.</msg>
+</logentry>
+<logentry
+   revision="234">
+<author>olivier.dagenais</author>
+<date>2011-07-14T16:45:27.200906Z</date>
+<msg>Introducing the SubversionClient class, inspired from functionality in BART.</msg>
+</logentry>
+<logentry
+   revision="233">
+<author>olivier.dagenais</author>
+<date>2011-07-14T15:40:03.796479Z</date>
+<msg>Made some changes based on review feedback, mostly wording but added a new example and modified an existing one to allow for a better comparison.</msg>
+</logentry>
+<logentry
+   revision="232">
+<author>olivier.dagenais</author>
+<date>2011-07-14T01:42:52.281047Z</date>
+<msg>Added a citation for explicit interface implementations and fixed some related wording.</msg>
+</logentry>
+<logentry
+   revision="231">
+<author>olivier.dagenais</author>
+<date>2011-07-14T01:38:01.547065Z</date>
+<msg>1 - Added a note to the Design section to emphasize the importance of pure code refactoring.
+2 - Provided content for the Applicability section.
+3 - Removed notes that have since been handled/discussed or are no longer relevant.</msg>
+</logentry>
+<logentry
+   revision="230">
+<author>olivier.dagenais</author>
+<date>2011-07-13T15:14:14.402467Z</date>
+<msg>Introducing the proposed Stateless and Immutable attributes along with samples of their use, plus one unit test.</msg>
+</logentry>
+<logentry
+   revision="229">
+<author>olivier.dagenais</author>
+<date>2011-07-13T02:17:57.911703Z</date>
+<msg>- Enhanced one of the interesting candidate block categories and two of the uninteresting ones.
+- Increasing the amount of sample code shown for testing parsing and formatting.
+- Provided content for Section 3.3 (Suitability) with a TODO for a potential subsection 3.3.5</msg>
+</logentry>
+<logentry
+   revision="228">
+<author>olivier.dagenais</author>
+<date>2011-07-13T01:37:25.397758Z</date>
+<msg>Introducing MutableVector and EuclideanVectorSpace to demonstrate a method that could still benefit from SME even though it does not manipulate HMS.</msg>
+</logentry>
+<logentry
+   revision="227">
+<author>olivier.dagenais</author>
+<date>2011-07-12T15:59:48.357660Z</date>
+<msg>Re-ordered the tests so it matches the order of the parsing and formatting code in the CUT.</msg>
+</logentry>
+<logentry
+   revision="226">
+<author>olivier.dagenais</author>
+<date>2011-07-12T02:26:05.748933Z</date>
+<msg>- Added a TODO about static vs. instance methods in candidate block identification.
+- Decided to pluralize return values everywhere for simplicity since I already do it for input parameters anyway.
+- Provided content for steps 4, 5 and 6.
+- Added yet more notes and potential talking points.</msg>
+</logentry>
+<logentry
+   revision="225">
+<author>olivier.dagenais</author>
+<date>2011-07-12T02:11:39.862763Z</date>
+<msg>Extracted the stateless CrossProduct() method and added a unit test for it.</msg>
+</logentry>
+<logentry
+   revision="224">
+<author>olivier.dagenais</author>
+<date>2011-07-12T02:07:55.920169Z</date>
+<msg>For the Stateless version, extracted the DotProduct() method and added a unit test for it.</msg>
+</logentry>
+<logentry
+   revision="223">
+<author>olivier.dagenais</author>
+<date>2011-07-12T01:17:49.340260Z</date>
+<msg>Introducing a Plane class (and its dependent Vector class) that illustrates some inline math and a unit test.</msg>
+</logentry>
+<logentry
+   revision="222">
+<author>olivier.dagenais</author>
+<date>2011-07-11T20:54:16.506480Z</date>
+<msg>Added another test for the CodeFormatMatchEvaluator; one that is more direct but requires more "arrange".</msg>
+</logentry>
+<logentry
+   revision="221">
+<author>olivier.dagenais</author>
+<date>2011-07-11T20:08:48.580473Z</date>
+<msg>Introducing a variation of SME:  Regex instance extraction.  This means the tests don't have to create an instance of the Regex class that could be configured differently from the one used during execution (if RegexOptions had been used).  It could also increase performance, assuming the Regex class does not attempt to cache compiled patterns when calling the static methods.</msg>
+</logentry>
+<logentry
+   revision="220">
+<author>olivier.dagenais</author>
+<date>2011-07-11T19:59:54.000510Z</date>
+<msg>Introducing a variation of SME: constant extraction.  This allows the parsing to be tested independently of the replacement, as shown by the new unit test.</msg>
+</logentry>
+<logentry
+   revision="219">
+<author>olivier.dagenais</author>
+<date>2011-07-11T19:40:16.156923Z</date>
+<msg>Introducing a simplified and reflowed version of the CodeBlockModifier from the Textile project, with SME on the CodeFormatMatchEvaluator() method and two unit tests.</msg>
+</logentry>
+<logentry
+   revision="218">
+<author>olivier.dagenais</author>
+<date>2011-07-11T19:31:48.146548Z</date>
+<msg>Introducing a simplified and reflowed version of the CodeBlockModifier from the Textile project, with a unit test.</msg>
+</logentry>
+<logentry
+   revision="217">
+<author>nado18@gmail.com</author>
+<date>2011-07-09T04:35:10.485753Z</date>
+<msg>Generating eBook for thesis in ePub format
+
+1- Converting thesis to ePub
+    1.1- Adding xsl to output thesis in html
+    1.2- Adding css stylesheet to go along html
+    1.3- Adding ePub stub into which generated html and css are dropped
+2- Adding Makefile to automate step 1
+3- Adding thesis.html and thesis.epub to svn:ignore property
+
+</msg>
+</logentry>
+<logentry
+   revision="216">
+<author>olivier.dagenais</author>
+<date>2011-07-08T18:27:49.726094Z</date>
+<msg>- Further improved Overview, Step 1 and Step 2
+- Provided some initial content for Step 3
+- Added yet more notes/discussion about scope and philosophy</msg>
+</logentry>
+<logentry
+   revision="215">
+<author>olivier.dagenais</author>
+<date>2011-07-08T16:16:21.432574Z</date>
+<msg>- Improved Step 1 by clarifying and enhancing the criteria and providing a 4th undesirable.
+- Provided some initial content for Step 2; some examples would help a lot.
+- Added some more content for examples.</msg>
+</logentry>
+<logentry
+   revision="214">
+<author>olivier.dagenais</author>
+<date>2011-07-07T20:48:52.762403Z</date>
+<msg>Added stubs for the remaining steps.</msg>
+</logentry>
+<logentry
+   revision="213">
+<author>olivier.dagenais</author>
+<date>2011-07-07T20:46:02.593183Z</date>
+<msg>Adjusted the pseudo-code procedure to be more iterative since it is unlikely that all candidate blocks would be found all at once.</msg>
+</logentry>
+<logentry
+   revision="212">
+<author>olivier.dagenais</author>
+<date>2011-07-07T20:40:12.516381Z</date>
+<msg>Refined the overview and provided lots of content for Step 1 plus introduced a possible appendix.</msg>
+</logentry>
+<logentry
+   revision="211">
+<author>olivier.dagenais</author>
+<date>2011-07-07T19:27:13.195298Z</date>
+<msg>Come to think of it, the method was calculating the radians between two coordinates and thus moved the radius multiplication into it and added a unit test.</msg>
+</logentry>
+<logentry
+   revision="210">
+<author>olivier.dagenais</author>
+<date>2011-07-07T18:28:55.520948Z</date>
+<msg>After re-inlining the local variables introduced earlier.</msg>
+</logentry>
+<logentry
+   revision="209">
+<author>olivier.dagenais</author>
+<date>2011-07-07T18:27:05.173039Z</date>
+<msg>After extracting the CalculateGreatCircleDistance() method.</msg>
+</logentry>
+<logentry
+   revision="208">
+<author>olivier.dagenais</author>
+<date>2011-07-07T18:23:58.042704Z</date>
+<msg>This is what the ComputeTourLength() method looks like after introducing local variables for the inputs and output of the candidate block, just before extraction.</msg>
+</logentry>
+<logentry
+   revision="207">
+<author>olivier.dagenais</author>
+<date>2011-07-07T18:19:48.281117Z</date>
+<msg>Introducing the [partially-] stateless variant on the Travelling Salesperson Problem that computes the great-circle distance between any two cities, assuming the salesperson will be flying.  The ToRadians() method was extracted to enable its testing.  Includes two unit tests.</msg>
+</logentry>
+<logentry
+   revision="206">
+<author>olivier.dagenais</author>
+<date>2011-07-07T18:05:29.965282Z</date>
+<msg>Introducing a variant on the Travelling Salesperson Problem that computes the great-circle distance between any two cities, assuming the salesperson will be flying.  Includes a unit test.</msg>
+</logentry>
+<logentry
+   revision="205">
+<author>olivier.dagenais</author>
+<date>2011-07-07T01:46:58.203881Z</date>
+<msg>Oops, forgot the project file.</msg>
+</logentry>
+<logentry
+   revision="204">
+<author>olivier.dagenais</author>
+<date>2011-07-07T01:46:15.194196Z</date>
+<msg>Introducing an adapted, standalone version of FootNoteFormatterState, reflowed for inclusion in the text.
+Fixed some spacing in the Stateful version.</msg>
+</logentry>
+<logentry
+   revision="203">
+<author>olivier.dagenais</author>
+<date>2011-07-07T00:57:24.223548Z</date>
+<msg>Introducing an adapted, standalone version of FootNoteFormatterState, reflowed for inclusion in the text.</msg>
+</logentry>
+<logentry
+   revision="202">
+<author>olivier.dagenais</author>
+<date>2011-07-06T23:11:33.178894Z</date>
+<msg>1 - Added a test for the template in Enter().
+2 - Extracted the FormatFootNote() method in the manual version to make the template test much simpler and direct.</msg>
+</logentry>
+<logentry
+   revision="201">
+<author>olivier.dagenais</author>
+<date>2011-07-06T18:56:44.013760Z</date>
+<msg>Reflowed the sample code to fit within the 52-characters per line limit.
+Added content to the "identification" phase and provided an example of the first category.</msg>
+</logentry>
+<logentry
+   revision="200">
+<author>olivier.dagenais</author>
+<date>2011-07-06T15:55:39.059493Z</date>
+<msg>Added the stateless version of the example of some processing that contains a candidate block inside a loop, with said candidate block extracted into its own method and the new unit test it allows.</msg>
+</logentry>
+<logentry
+   revision="199">
+<author>olivier.dagenais</author>
+<date>2011-07-06T15:51:44.499572Z</date>
+<msg>Added an example of some processing that contains a candidate block inside a loop.</msg>
+</logentry>
+<logentry
+   revision="198">
+<author>olivier.dagenais</author>
+<date>2011-07-06T12:43:05.308947Z</date>
+<msg>Now compiling and running unit tests in the samples, which incidentally fixes the missing assembly problem.</msg>
+</logentry>
+<logentry
+   revision="197">
+<author>olivier.dagenais</author>
+<date>2011-07-05T01:27:15.576792Z</date>
+<msg>1 - Shuffled the contents of the Approach chapter to have the Design section be all about how SME works.
+2 - Shifted the first line of the items in the Overview section to have a nicer collapsed view.
+3 - Introducing a pseudo-code version of the general SME procedure.
+4 - Added a draft of part of the first step of SME.</msg>
+</logentry>
+<logentry
+   revision="196">
+<author>olivier.dagenais</author>
+<date>2011-07-04T20:22:45.013652Z</date>
+<msg>Added the realCode listings style, which required redefining the lstinputlisting command to avoid a parsing error when a listing is used inside a tabular.
+Also added a few notes about decisions made.</msg>
+</logentry>
+<logentry
+   revision="195">
+<author>olivier.dagenais</author>
+<date>2011-07-04T18:29:04.537945Z</date>
+<msg>Added some notes in the Approach chapter.</msg>
+</logentry>
+<logentry
+   revision="194">
+<author>olivier.dagenais</author>
+<date>2011-07-04T15:29:51.181828Z</date>
+<msg>Added to the first subsection of the Design section.</msg>
+</logentry>
+<logentry
+   revision="193">
+<author>olivier.dagenais</author>
+<date>2011-07-04T14:40:51.763549Z</date>
+<msg>Replaced instances of "i.e." with other forms, sometimes removing it completely.
+Also fixed a typo.</msg>
+</logentry>
+<logentry
+   revision="192">
+<author>olivier.dagenais</author>
+<date>2011-06-29T02:34:40.372395Z</date>
+<msg>Started writing content for the Design section of the Approach chapter, mostly in the form of visible TODOs.</msg>
+</logentry>
+<logentry
+   revision="191">
+<author>olivier.dagenais</author>
+<date>2011-06-28T01:45:46.040786Z</date>
+<msg>Fixed typos and added some code for non-breaking spaces before references.</msg>
+</logentry>
+<logentry
+   revision="190">
+<author>olivier.dagenais</author>
+<date>2011-06-26T23:21:28.645807Z</date>
+<msg>Initial preliminary content for the Scope section.</msg>
+</logentry>
+<logentry
+   revision="189">
+<author>olivier.dagenais</author>
+<date>2011-06-26T01:12:22.673886Z</date>
+<msg>Blocks must have their options after their param and said option should not occur in the closing of the environment.</msg>
+</logentry>
+<logentry
+   revision="188">
+<author>olivier.dagenais</author>
+<date>2011-06-25T21:44:38.458065Z</date>
+<msg>It seems the Context section is unnecessary, since the Related work section would cover the same content.</msg>
+</logentry>
+<logentry
+   revision="187">
+<author>olivier.dagenais</author>
+<date>2011-06-25T20:10:14.819413Z</date>
+<msg>1 - Use non-blocking invocations of PDFXCView.
+2 - Bind F5 to the same as F7.
+3 - Contributed content for the Related work section, with lots of references.</msg>
+</logentry>
+<logentry
+   revision="186">
+<author>olivier.dagenais</author>
+<date>2011-06-11T16:45:34.730706Z</date>
+<msg>Finished adding references to existing text.</msg>
+</logentry>
+<logentry
+   revision="185">
+<author>olivier.dagenais</author>
+<date>2011-06-07T02:37:55.903290Z</date>
+<msg>1 - Forcing word-wrap initially on.
+2 - Added yet more references, fixed a few of them.
+3 - Added lots of citations.</msg>
+</logentry>
+<logentry
+   revision="184">
+<author>olivier.dagenais</author>
+<date>2011-06-04T19:57:27.541668Z</date>
+<msg>Added some missing references and corrected/enhanced a few existing ones.
+Added some code to make sure spaces before citations are non-breaking.
+Now using the url and hyperref packages to make URLs and other links in the document (table of contents, references, etc.) clickable.  This required switching to pdflatex, but also allowed some PDF properties to be set.
+Started adding citations and fixing up as well as expanding some ideas that turned out to not have been made by the authors.
+The first pair of listings had to be moved into the Motivation section to avoid an awkward blank section because the code listings are not floating.
+Introducing a batch file that closes and re-opens the PDF between builds.</msg>
+</logentry>
+<logentry
+   revision="183">
+<author>olivier.dagenais</author>
+<date>2011-05-31T03:01:12.204256Z</date>
+<msg>Added remaining papers and made a minor fix to the text.</msg>
+</logentry>
+<logentry
+   revision="182">
+<author>olivier.dagenais</author>
+<date>2011-05-30T02:40:54.500895Z</date>
+<msg>Made a few changes recommended by Dwight and added most of my references to the Bib database.</msg>
+</logentry>
+<logentry
+   revision="181">
+<author>olivier.dagenais</author>
+<date>2011-05-26T00:17:46.225982Z</date>
+<msg>Provided content for the Intents of CGT section.</msg>
+</logentry>
+<logentry
+   revision="180">
+<author>olivier.dagenais</author>
+<date>2011-05-24T01:19:32.373508Z</date>
+<msg>1 - Improved the Automatic Testing section with a note about sampling.
+2 - Provided some content for the Concolic Testing section.</msg>
+</logentry>
+<logentry
+   revision="179">
+<author>olivier.dagenais</author>
+<date>2011-05-23T02:53:50.404432Z</date>
+<msg>1 - Trimmed spaces at the end of lines.
+2 - Fixed a quote block.
+3 - Improved part of the "Automated testing" section.
+4 - Enhanced the "Motivation for CGT" section.
+5 - Relocated the "Intents of CGT" section to after the "Approaches to CGT" section.
+6 - Provided content for the RT and SBST subsections.</msg>
+</logentry>
+<logentry
+   revision="178">
+<author>olivier.dagenais</author>
+<date>2011-05-22T03:01:54.228823Z</date>
+<msg>Improved the Motivation for Computer-Generated Tests section.</msg>
+</logentry>
+<logentry
+   revision="177">
+<author>olivier.dagenais</author>
+<date>2011-05-20T02:27:05.448231Z</date>
+<msg>Added a bit of content to the "Motivation for Computer-Generated Tests" section.</msg>
+</logentry>
+<logentry
+   revision="176">
+<author>olivier.dagenais</author>
+<date>2011-05-19T01:58:05.333590Z</date>
+<msg>1 - It turns out I meant "statement coverage".
+2 - Fixed up the OOP section.
+3 - Added content to the Automated testing section.</msg>
+</logentry>
+<logentry
+   revision="175">
+<author>olivier.dagenais</author>
+<date>2011-05-17T02:46:13.394217Z</date>
+<msg>Added a few minor features to iTeX, renaming the &lt;e&gt; element to &lt;m&gt; since its primary purpose is math.
+Fixed the existing uses of &lt;e&gt; to either &lt;em&gt; or &lt;tt&gt;.
+Provided content for the Intro and OOP sections of the Background chapter.</msg>
+</logentry>
+<logentry
+   revision="174">
+<author>olivier.dagenais</author>
+<date>2011-05-14T03:25:46.145129Z</date>
+<msg>Removed some obsolete comments (some of them were transferred), moved most of the content that was in Objectives to a new "Evaluation/experiment design" section, although said content is alluded to.
+Added a note regarding a possible scope narrowing.</msg>
+</logentry>
+<logentry
+   revision="173">
+<author>olivier.dagenais</author>
+<date>2011-05-13T02:52:25.984756Z</date>
+<msg>Reworked the Goal section to be more general (improve testability) and moved the specifics (stateless method extraction) to the Objectives section, rewording in the process.</msg>
+</logentry>
+<logentry
+   revision="172">
+<author>olivier.dagenais</author>
+<date>2011-05-12T01:24:11.780030Z</date>
+<msg>Mostly small English-related improvements, but also expanded upon the combination of hidden + mutable instance state is the real problem.</msg>
+</logentry>
+<logentry
+   revision="171">
+<author>olivier.dagenais</author>
+<date>2011-05-11T02:00:07.573304Z</date>
+<msg>Made changes as suggested by Dwight.</msg>
+</logentry>
+<logentry
+   revision="170">
+<author>olivier.dagenais</author>
+<date>2011-05-10T01:53:11.034527Z</date>
+<msg>Expanded in the Problem section, providing an example in the form of two source code listings.
+Added a bit of content to the Motivation section, providing an example in the form of two source code listings.
+Reformatted the stateless SmokeDetector to fit in its half-page column.</msg>
+</logentry>
+<logentry
+   revision="169">
+<author>olivier.dagenais</author>
+<date>2011-05-10T01:21:51.250880Z</date>
+<msg>Added the Stateless project, adapting the SmokeDetector and SmokeDetectorTest samples to trivially extract a stateless method, then write a test for a subset thereof.</msg>
+</logentry>
+<logentry
+   revision="168">
+<author>olivier.dagenais</author>
+<date>2011-05-10T00:57:35.131571Z</date>
+<msg>Added the Stateful project with SmokeDetector and SmokeDetectorTest samples.</msg>
+</logentry>
+<logentry
+   revision="167">
+<author>olivier.dagenais</author>
+<date>2011-05-10T00:07:36.866008Z</date>
+<msg>Added an "Acronyms" appendix with most of the acronyms used so far.</msg>
+</logentry>
+<logentry
+   revision="166">
+<author>olivier.dagenais</author>
+<date>2011-05-10T00:04:26.945368Z</date>
+<msg>Now using the "listings" package (with appropriate configuration and references) and took the opportunity to rename a grouping of related mark-up a "region".</msg>
+</logentry>
+<logentry
+   revision="165">
+<author>olivier.dagenais</author>
+<date>2011-05-09T23:55:42.612361Z</date>
+<msg>Added a semi-related paper to the bibliography database.</msg>
+</logentry>
+<logentry
+   revision="164">
+<author>olivier.dagenais</author>
+<date>2011-05-09T01:34:07.276261Z</date>
+<msg>Replaced most of the batch file with an MSBuild script that will fail faster and allow more complicated assembly.</msg>
+</logentry>
+<logentry
+   revision="163">
+<author>olivier.dagenais</author>
+<date>2011-05-05T02:43:02.339411Z</date>
+<msg>A few small fixes, but mostly notes and TODOs.</msg>
+</logentry>
+<logentry
+   revision="162">
+<author>olivier.dagenais</author>
+<date>2011-05-04T01:34:12.956459Z</date>
+<msg>Mostly added content to the Goals section but also a bit to the Objectives section.</msg>
+</logentry>
+<logentry
+   revision="161">
+<author>olivier.dagenais</author>
+<date>2011-05-03T02:17:08.357306Z</date>
+<msg>A few corrections and enhancements to the Problem section.
+Expanded the Motivation section.
+Started writing some of the Goals section.</msg>
+</logentry>
+<logentry
+   revision="160">
+<author>olivier.dagenais</author>
+<date>2011-05-02T01:45:46.235616Z</date>
+<msg>Patched iTeX to allow for "inline comments".
+Replaced dashes with equal signs in comments, because some XSL parsers freak out if they see "--" inside a comment but not at the end of it.
+Added content mostly in the Introduction and Background chapters.</msg>
+</logentry>
+<logentry
+   revision="159">
+<author>olivier.dagenais</author>
+<date>2011-03-31T21:23:08.580756Z</date>
+<msg>Removing unused m_rel field
+</msg>
+</logentry>
+<logentry
+   revision="158">
+<author>olivier.dagenais</author>
+<date>2011-03-31T21:16:19.736815Z</date>
+<msg>Removing the unused BlockModifierAttribute class
+</msg>
+</logentry>
+<logentry
+   revision="157">
+<author>olivier.dagenais</author>
+<date>2011-03-31T21:10:56.758878Z</date>
+<msg>Moving some regexes used only by the state factory to its registration method
+</msg>
+</logentry>
+<logentry
+   revision="156">
+<author>olivier.dagenais</author>
+<date>2011-03-31T21:03:05.864552Z</date>
+<msg>Merging the StateFactory class into the TextileFormatter class
+</msg>
+</logentry>
+<logentry
+   revision="155">
+<author>olivier.dagenais</author>
+<date>2011-03-31T20:55:16.638941Z</date>
+<msg>Introducing the StateFactory to replace the FormatterStateAttribute and decentralized state "registration"
+</msg>
+</logentry>
+<logentry
+   revision="154">
+<author>olivier.dagenais</author>
+<date>2011-03-31T20:54:17.199126Z</date>
+<msg>Adding two unit tests covering very basic Textile functionality
+</msg>
+</logentry>
+<logentry
+   revision="153">
+<author>olivier.dagenais</author>
+<date>2011-03-31T12:43:23.196952Z</date>
+<msg>Created the "eric" variation from the "base" variation.</msg>
+</logentry>
+<logentry
+   revision="152">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-03-28T21:08:09.393887Z</date>
+<msg>Oops, forgot a file.</msg>
+</logentry>
+<logentry
+   revision="151">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-03-28T21:07:17.043730Z</date>
+<msg>1 - Added a Reset() method to help testing, plus a real smoke detector is likely to have such a button, anyway.
+2 - Introducing SmokeDetectorTest, which exercises most of the functionality of the smoke_detector.</msg>
+</logentry>
+<logentry
+   revision="150">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-03-28T19:33:48.528976Z</date>
+<msg>Introducing ThermostatTest, which covers the thermostat example (from Figure 1) to 100%.</msg>
+</logentry>
+<logentry
+   revision="149">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-03-28T18:50:16.912638Z</date>
+<msg>Creating the "manual" variation of the StateProblem project as a copy of the "base" variation.</msg>
+</logentry>
+<logentry
+   revision="148">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-03-28T17:59:04.856165Z</date>
+<msg>Implemented a C# version of the exam_marks example from Figure 3.
+</msg>
+</logentry>
+<logentry
+   revision="147">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-03-28T16:54:44.152259Z</date>
+<msg>Implemented a C# version of the smoke_detector example from Figure 2.
+</msg>
+</logentry>
+<logentry
+   revision="146">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-03-28T16:34:38.249460Z</date>
+<msg>Implemented a C# version of the thermostat example from Figure 1.</msg>
+</logentry>
+<logentry
+   revision="145">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-03-28T15:49:36.223679Z</date>
+<msg>Introducing the skeleton of the "StateProblem" suitability evaluation project, which will contain code from the "The State Problem for Evolutionary Testing" paper for exploration and investigation.</msg>
+</logentry>
+<logentry
+   revision="144">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-03-28T15:13:32.333178Z</date>
+<msg>Introducing the StrongPhraseBlockModifierTest, which is one line shorter in the manual variation, after a slight refactor.</msg>
+</logentry>
+<logentry
+   revision="143">
+<author>olivier.dagenais</author>
+<date>2011-03-27T01:51:55.829019Z</date>
+<msg>Introducing the SpanPhraseBlockModifierTest, which is one line shorter for the manual variation.</msg>
+</logentry>
+<logentry
+   revision="142">
+<author>olivier.dagenais</author>
+<date>2011-03-27T01:33:01.084096Z</date>
+<msg>Introducing the PreBlockModifierTest, which is one line shorter in the manual variation.  Also exposed a bug with HtmlAttributesPattern.</msg>
+</logentry>
+<logentry
+   revision="141">
+<author>olivier.dagenais</author>
+<date>2011-03-26T21:47:10.289587Z</date>
+<msg>Introducing the PhraseBlockModifierTest, which shows what happens when the method under test is protected and in an abstract class (extra helper class), plus the BuildTagElementString() method was extracted for more direct testing.</msg>
+</logentry>
+<logentry
+   revision="140">
+<author>olivier.dagenais</author>
+<date>2011-03-26T20:44:00.538196Z</date>
+<msg>Introducing the NoTextileEncoderTest, which is able to reach functionality more directly in the manual variation.</msg>
+</logentry>
+<logentry
+   revision="139">
+<author>olivier.dagenais</author>
+<date>2011-03-26T19:53:11.672590Z</date>
+<msg>Introducing the NoTextileBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to NoTextileBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="138">
+<author>olivier.dagenais</author>
+<date>2011-03-26T19:12:02.044764Z</date>
+<msg>Introducing the ItalicPhraseBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to ItalicPhraseBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="137">
+<author>olivier.dagenais</author>
+<date>2011-03-26T18:55:54.496592Z</date>
+<msg>Introducing the InsertedPhraseBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to InsertedPhraseBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="136">
+<author>olivier.dagenais</author>
+<date>2011-03-26T18:51:56.450064Z</date>
+<msg>Introducing the ImageBlockModifierTest; the manual variation has the opportunity to test the parsing separate from the re-assembly after some refactoring.</msg>
+</logentry>
+<logentry
+   revision="135">
+<author>olivier.dagenais</author>
+<date>2011-03-26T16:37:48.240849Z</date>
+<msg>Introducing the HyperLinkBlockModifierTest, which is not only 1 line simpler for the manual variation (after a few slight refactors to HyperLinkBlockModifier), but it also is able to test the parsing separate from the re-assembly.</msg>
+</logentry>
+<logentry
+   revision="134">
+<author>olivier.dagenais</author>
+<date>2011-03-26T15:04:23.060144Z</date>
+<msg>Introducing the GlyphBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to GlyphBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="133">
+<author>olivier.dagenais</author>
+<date>2011-03-12T21:37:27.527978Z</date>
+<msg>Introducing the FootNoteReferenceBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to FootNoteReferenceBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="132">
+<author>olivier.dagenais</author>
+<date>2011-03-12T21:31:44.598527Z</date>
+<msg>Introducing the EmphasisPhraseBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to EmphasisPhraseBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="131">
+<author>olivier.dagenais</author>
+<date>2011-03-12T21:15:27.062175Z</date>
+<msg>Introducing the DeletedPhraseBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to DeletedPhraseBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="130">
+<author>olivier.dagenais</author>
+<date>2011-03-12T21:06:43.632129Z</date>
+<msg>Introducing the CodeBlockModifierTest, which is 1 line simpler (and has one more test) for the manual variation, after a slight refactor to CodeBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="129">
+<author>olivier.dagenais</author>
+<date>2011-03-12T19:52:57.460382Z</date>
+<msg>Oops, forgot a file.</msg>
+</logentry>
+<logentry
+   revision="128">
+<author>olivier.dagenais</author>
+<date>2011-03-12T19:51:59.548465Z</date>
+<msg>Introducing the CitePhraseBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to CitePhraseBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="127">
+<author>olivier.dagenais</author>
+<date>2011-03-06T19:25:40.276112Z</date>
+<msg>Introducing the CapitalsBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to CapitalsBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="126">
+<author>olivier.dagenais</author>
+<date>2011-03-05T20:37:56.730207Z</date>
+<msg>Introducing the BoldPhraseBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to BoldPhraseBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="125">
+<author>olivier.dagenais</author>
+<date>2011-03-05T20:22:53.447753Z</date>
+<msg>Introducing the BlockAttributesParserTest, which is identical for both variations.</msg>
+</logentry>
+<logentry
+   revision="124">
+<author>olivier.dagenais</author>
+<date>2011-03-05T15:24:13.668417Z</date>
+<msg>Created the ManualTests project for Textile in both the base and manual variations.</msg>
+</logentry>
+<logentry
+   revision="123">
+<author>olivier.dagenais</author>
+<date>2011-03-05T14:22:12.822217Z</date>
+<msg>Added lots of notes on possible talking points.</msg>
+</logentry>
+<logentry
+   revision="122">
+<author>olivier.dagenais</author>
+<date>2011-03-03T17:15:48.512238Z</date>
+<msg>Upgraded to the latest version of iTeX, which now supports multi-line comments.</msg>
+</logentry>
+<logentry
+   revision="121">
+<author>olivier.dagenais</author>
+<date>2011-03-03T14:53:33.028523Z</date>
+<msg>Simplified the chapters to more closely match the suggested outline, added comments and turned existing notes into comments.</msg>
+</logentry>
+<logentry
+   revision="120">
+<author>olivier.dagenais</author>
+<date>2011-03-03T14:45:04.953722Z</date>
+<msg>Specifying a tab size of 2 spaces.</msg>
+</logentry>
+<logentry
+   revision="119">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-01-21T16:33:34.732065Z</date>
+<msg>Adding PivotStack as of revision f537131397, including changes up to 2011/01/21.
+Also fixed a bug in the build script due to the results form URL changing.</msg>
+</logentry>
+<logentry
+   revision="118">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-01-14T19:09:29.770028Z</date>
+<msg>Adjusted build to generate "letter"-sized pages instead of the default A4.</msg>
+</logentry>
+<logentry
+   revision="117">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-01-14T18:53:15.943372Z</date>
+<msg>Added the Mcminn03thestate BibTeX entry and a sample citation for testing.
+</msg>
+</logentry>
+<logentry
+   revision="116">
+<author>olivier.dagenais</author>
+<date>2010-09-12T01:44:07.985713Z</date>
+<msg>Creating 'increase-testability' branch as part of an experiment involving the testability-explorer (for Java programs, in this case the old Eclipse plug-in).</msg>
+</logentry>
+<logentry
+   revision="115">
+<author>olivier.dagenais</author>
+<date>2010-09-12T00:47:48.816188Z</date>
+<msg>Added the JARs of dependencies when running under Eclipse 3.2.0.</msg>
+</logentry>
+<logentry
+   revision="114">
+<author>olivier.dagenais</author>
+<date>2010-09-11T17:37:50.783626Z</date>
+<msg>Added the missing InternalsVisibleTo attribute in the KeePassLib projects to make all the internal method extraction effort in that project [finally] worth something.</msg>
+</logentry>
+<logentry
+   revision="113">
+<author>olivier.dagenais</author>
+<date>2010-09-08T01:10:12.726712Z</date>
+<msg>Disabled ligatures to make the PDF more copy-pasteable and filled in some basic template values.</msg>
+</logentry>
+<logentry
+   revision="112">
+<author>olivier.dagenais</author>
+<date>2010-09-08T01:03:28.196199Z</date>
+<msg>Initial commit of the thesis-related files:
+1 - dalthesis.cls: TeX class file from http://people.scs.carleton.ca/~jeanpier//template/
+2 - thesis.itex: The iTeX version of PhD Template.tex from http://people.scs.carleton.ca/~jeanpier//template/
+3 - iTeX.xsl: The iTeX stylesheet from http://github.com/olivierdagenais/iTeX as of commit 7453995a88b6a3ac91dee7197dd778321b2d18b1
+4 - thesis.bib: A blank BibTeX database created with JabRef
+5 - build.bat: A batch file to compile and assemble all the files into a PDF file, assuming there's a LaTeX distribution (such as TexLive) and xsl.exe in the path
+6 - SciTE.properties: Convenience keyboard mappings for the SciTE text editor to launch build.bat or the compiled PDF file.</msg>
+</logentry>
+<logentry
+   revision="111">
+<author>olivier.dagenais</author>
+<date>2010-09-08T00:47:39.518488Z</date>
+<msg>Adding top-level thesis folder</msg>
+</logentry>
+<logentry
+   revision="110">
+<author>olivier.dagenais</author>
+<date>2010-07-25T19:15:56.916677Z</date>
+<msg>Since the build numbers added too much variability to the result set, switching the first column's number to be the Subversion revision from which the suitability was conducted.  This will provide a consistent and monotonically-increasing number.
+</msg>
+</logentry>
+<logentry
+   revision="109">
+<author>olivier.dagenais</author>
+<date>2010-07-24T18:28:05.937341Z</date>
+<msg>Branched off the AtomicCms project for the manual stateless method extraction work.
+</msg>
+</logentry>
+<logentry
+   revision="108">
+<author>olivier.dagenais</author>
+<date>2010-07-24T17:33:17.225547Z</date>
+<msg>Increased the visibility of private helper methods and turned them static whenever possible.
+</msg>
+</logentry>
+<logentry
+   revision="107">
+<author>olivier.dagenais</author>
+<date>2010-07-11T00:04:22.190506Z</date>
+<msg>1 - Increased the visibility of private helper methods and turned them static whenever possible.
+
+2 - Extracted internal static methods from instance methods where it looked easy and useful to do so.
+</msg>
+</logentry>
+<logentry
+   revision="106">
+<author>olivier.dagenais</author>
+<date>2010-07-10T21:30:52.118599Z</date>
+<msg>1 - Increased the visibility of private helper methods and turned them static whenever possible.
+
+2 - Extracted internal static methods from instance methods where it looked easy and useful to do so.
+</msg>
+</logentry>
+<logentry
+   revision="105">
+<author>olivier.dagenais</author>
+<date>2010-07-10T14:59:22.736808Z</date>
+<msg>1 - Increased the visibility of private helper methods and turned them static whenever possible.
+
+2 - Extracted internal static methods from instance methods where it looked easy and useful to do so.
+</msg>
+</logentry>
+<logentry
+   revision="104">
+<author>olivier.dagenais</author>
+<date>2010-07-03T15:14:47.554944Z</date>
+<msg>1 - Increased the visibility of private helper methods and turned them static whenever possible.
+
+2 - Extracted internal static methods from instance methods where it looked easy and useful to do so.
+</msg>
+</logentry>
+<logentry
+   revision="103">
+<author>olivier.dagenais</author>
+<date>2010-06-05T18:31:35.818792Z</date>
+<msg>Branched off the KeePassLib project for the manual stateless method extraction work.</msg>
+</logentry>
+<logentry
+   revision="102">
+<author>olivier.dagenais</author>
+<date>2010-06-02T01:42:56.663800Z</date>
+<msg>Fixed a bug that hardcoded a Pex assembly path by using the pexFolder variable.</msg>
+</logentry>
+<logentry
+   revision="101">
+<author>olivier.dagenais</author>
+<date>2010-06-02T00:33:46.275665Z</date>
+<msg>1 - Upgraded to Pex version 0.91.50418.0, which required some changes to the build script:
+1.1 - Microsoft.ExtendedReflection.dll needs to be in the GAC
+1.2 - The parameter /TargetClrVersion2 was renamed to /ClrVersion2
+1.3 - The moles_appdir environment variable must be set.
+</msg>
+</logentry>
+<logentry
+   revision="100">
+<author>olivier.dagenais</author>
+<date>2010-05-30T14:01:41.548979Z</date>
+<msg>1 - Extracted BuildCodeElementString() from CodeFormatMatchEvaluator() as it is not possible to create a standalone instance of Match for testing.
+
+2 - Extracted the GetConsumedInput() method out of HandleFormattingState().</msg>
+</logentry>
+<logentry
+   revision="99">
+<author>olivier.dagenais</author>
+<date>2010-05-29T19:56:20.528567Z</date>
+<msg>1 - Increased the visibility of private helper methods and turned them static whenever possible.
+
+2 - Extracted internal static methods from instance methods where it looked easy and useful to do so.
+</msg>
+</logentry>
+<logentry
+   revision="98">
+<author>olivier.dagenais</author>
+<date>2010-05-29T14:39:27.983767Z</date>
+<msg>Branched off the Textile project for the manual stateless method extraction work.</msg>
+</logentry>
+<logentry
+   revision="97">
+<author>olivier.dagenais</author>
+<date>2010-05-04T02:23:33.288124Z</date>
+<msg>In order to avoid assertion failures interrupting the build, switching to Release mode, but adjusting the definition of "Release" to be with full symbols and no optimizations, so like Debug, but without the DEBUG constant defined.</msg>
+</logentry>
+<logentry
+   revision="96">
+<author>olivier.dagenais</author>
+<date>2010-05-01T21:11:54.506299Z</date>
+<msg>Fixed CoverLib.dll's location for COM registration.</msg>
+</logentry>
+<logentry
+   revision="95">
+<author>olivier.dagenais</author>
+<date>2010-05-01T21:05:28.393254Z</date>
+<msg>The Pex wizard dies with a NullReferenceException when running under Hudson (but is fine outside Hudson) _unless_ Fusion logging is enabled.
+1 - Added a "prepare" target to the build script to import the newly-introduced HKLM_Software_Microsoft_Fusion.reg file into the registry as well as register the two COM components needed.
+2 - Deleted the two batch files that used to register said COM components.</msg>
+</logentry>
+<logentry
+   revision="94">
+<author>olivier.dagenais</author>
+<date>2010-05-01T17:02:31.355106Z</date>
+<msg>Added vcomp90.dll (Microsoft's OpenMP) since it's a dependency of Microsoft.Z3.dll</msg>
+</logentry>
+<logentry
+   revision="93">
+<author>olivier.dagenais</author>
+<date>2010-04-25T01:29:16.322374Z</date>
+<msg>1 - Converted stray TABs to spaces in XSL files.
+
+2 - Added yet another workaround in the FixPexWizard.xsl stylesheet for the unqualified Microsoft.Pex.Linq reference that started being added for the AtomicCms project.
+
+3 - Added Microsoft.Pex.Linq.dll now that I notice it is being used.
+</msg>
+</logentry>
+<logentry
+   revision="92">
+<author>olivier.dagenais</author>
+<date>2010-04-25T00:04:53.910006Z</date>
+<msg>Added the AtomicCms project for suitability testing, using the source code "Atomic CMS 2.0 source" downloaded on 2010/04/24 from the website http://atomiccms.codeplex.com/  Since the solution consists of a few libraries and an ASP.NET MVC project, the projects (except for the unit tests) were merged into a single Class Library project to simplify suitability evaluation and the references were moved one level up to reduce the amount of copying that takes place during working copy creation.
+</msg>
+</logentry>
+<logentry
+   revision="91">
+<author>olivier.dagenais</author>
+<date>2010-04-24T19:20:17.034646Z</date>
+<msg>1 - Added the Textile.NET project for suitability testing, using the source code downloaded as of changeset 26030 from the website http://textilenet.codeplex.com/  Only the class library itself is included (the DressingRoom GUI, the NAnt task and the UnitTests projects were discarded) and the only change that was made was to expose the internals to more assemblies.
+
+2 - The addition of Textile exposed another bug in the Pex generation phase with respect to project file updates and thus FixPexGenerator.xsl was updated to remove redundant references to the assembly under test.</msg>
+</logentry>
+<logentry
+   revision="90">
+<author>olivier.dagenais</author>
+<date>2010-04-22T00:50:41.439918Z</date>
+<msg>1 - Added KeePassLib - the [mostly] non-GUI subset of KeePass that appears to be meant as a reusable component - to the list of projects.  The source code was obtained from KeePass-2.10-Source.zip, downloaded 2010/04/19, because the open-source project has no public version control system, only source drops.  The following changes were made:
+1.1 - The MessageService.SafeShowMessageBox() was replaced with a stub as Pex kept triggering message boxes during exploration.
+
+2 - Temporarily disabled the toddVariation and the step in which that variation is created.  There's no point running the analysis twice on the same code.
+</msg>
+</logentry>
+<logentry
+   revision="89">
+<author>olivier.dagenais</author>
+<date>2010-04-18T04:34:40.740874Z</date>
+<msg>1 - Updated SoftwareNinjas.NAnt to version 1.0.47 and added SoftwareNinjas.Core to satisfy some dependencies.
+
+2 - Added NCover version 1.5.8, as found in the TestDriven.NET distribution.
+
+3 - Added a few missing files from the Pex distribution.
+
+4 - Implemented the suitability evaluation by determining the code coverage that Pex is able to provide with its generated tests on an unmodified project ("base"), one modified by hand ("manual") and one modified by TODD ("testoriented").  The StringExtensions projects had to be modified slightly due to a bug in this version of Pex.
+</msg>
+</logentry>
+<logentry
+   revision="88">
+<author>olivier.dagenais</author>
+<date>2010-03-27T22:22:46.657334Z</date>
+<msg>Added NAnt tasks library version 1.0.36 based on version used for TODD sub-project.
+</msg>
+</logentry>
+<logentry
+   revision="87">
+<author>olivier.dagenais</author>
+<date>2010-03-27T22:13:35.838172Z</date>
+<msg>1 - Initial set-up of automated build using a NAnt script based on the one used by TODD.
+
+2 - Fixed reference to NUnit in StringExtensions.Tests.csproj.
+</msg>
+</logentry>
+<logentry
+   revision="86">
+<author>olivier.dagenais</author>
+<date>2010-03-27T17:20:13.064459Z</date>
+<msg>Initial prototype of suitability evaluation project, including the StringExtensions test project for Pex as well as portable distributions of Pex version 0.22.50128.1 and NUnit 2.4.8.</msg>
+</logentry>
+<logentry
+   revision="85">
+<author>olivier.dagenais</author>
+<date>2010-03-27T15:53:16.516799Z</date>
+<msg>Added "suitability" folder/sub-project and standard sub-folders.</msg>
+</logentry>
+<logentry
+   revision="84">
+<author>olivier.dagenais</author>
+<date>2010-03-27T15:43:42.479541Z</date>
+<msg>branches, tags and trunk were moved under the new 'todd' folder.</msg>
+</logentry>
+<logentry
+   revision="83">
+<author>olivier.dagenais</author>
+<date>2010-03-03T03:13:15.528017Z</date>
+<msg>Reintegrating the InsertGeneratedTemplates offline branch.
+</msg>
+</logentry>
+<logentry
+   revision="82">
+<author>olivier.dagenais</author>
+<date>2009-12-04T15:54:38.763476Z</date>
+<msg>1 - Fixed a bug in Collapse() that was not preserving the ISpecial.EndPosition.Line of the collapsed version.
+
+2 - Implemented the AttachDocumentationComments() method and associated tests.
+
+3 - Upgraded to CORE version 1.0.35, which brings IEnumerable&lt;T&gt;.FirstOrDefault() and T.PreOrder(Func&lt;T,IEnumerable&lt;T&gt;&gt;)
+</msg>
+</logentry>
+<logentry
+   revision="81">
+<author>olivier.dagenais</author>
+<date>2009-11-22T22:56:03.481137Z</date>
+<msg>1 - Updated CORE to version 1.0.32
+
+2 - Implemented some code documentation comment-related extension methods, in preparation for some more extensive support.
+</msg>
+</logentry>
+<logentry
+   revision="80">
+<author>olivier.dagenais</author>
+<date>2009-10-25T20:18:28.419337Z</date>
+<msg>Added support for generating tests for instance methods, by first generating a call to the constructor, as necessary.
+</msg>
+</logentry>
+<logentry
+   revision="79">
+<author>olivier.dagenais</author>
+<date>2009-10-25T19:31:43.329618Z</date>
+<msg>1 - Generalized AbstractMethodTemplate and its subclasses to operate on ParametrizedNode instances, since both MethodDeclaration and ConstructorDeclaration derive from it, meaning the templates will be free to consider constructors a lot more like regular methods.
+
+2 - Now making use of the recently-introduced GetTypeReference method to obtain the return value of a method or the type created by a constructor.  Updated the templates to use this instead of "Method.TypeReference", which is no longer available.
+</msg>
+</logentry>
+<logentry
+   revision="78">
+<author>olivier.dagenais</author>
+<date>2009-10-25T13:48:16.701683Z</date>
+<msg>1 - Converted the read-only HasReturnValue property into a read-only field that will be assigned to once at construction.
+
+2 - Renamed "ReturnVariableName" to "VariableName".
+
+3 - Increased the visibility of some test helpers for re-use.
+
+4 - Added the GetTypeReference() extension method for upcoming use.
+</msg>
+</logentry>
+<logentry
+   revision="77">
+<author>olivier.dagenais</author>
+<date>2009-10-23T01:13:11.734034Z</date>
+<msg>1 - Fixed a bug in the initialization of NeedsInstance.  This exposed a bug in the GenerateTestMethod_Typical test case, which was also fixed.
+
+2 - Added a port of the DetermineInstanceVariableName() method plus a few tests.
+
+3 - Added the InstanceOrClass field, which makes use of the previously-mentioned method.
+
+4 - Made use of InstanceOrClass in the template, thus _almost_ supporting instance method tests. (pending the addition of instance initialization code)
+</msg>
+</logentry>
+<logentry
+   revision="76">
+<author>olivier.dagenais</author>
+<date>2009-10-22T23:55:18.215647Z</date>
+<msg>1 - Extracted the method-calling part (including the creation and initialization of local variables representing the method's parameters) out of TestMethod and into MethodCallStub.  It is also possible to specify a name for the variable that will contain the method's return value.
+
+2 - Fixed a bug where the method's return value type wasn't being determined by the DetermineDeclarationForType() method.
+</msg>
+</logentry>
+<logentry
+   revision="75">
+<author>olivier.dagenais</author>
+<date>2009-10-22T01:37:19.584624Z</date>
+<msg>1 - Updated CORE to version 1.0.30.
+
+2 - Extracted the AbstractMethodTemplate from TestMethod, for re-use, including a few renames for generality.  Since all the helper methods, properties and fields were pulled up, the test fixture was similarly renamed.
+
+3 - Made use of the recently-introduced DetermineDeclarationForType() method in TestMethod template.
+</msg>
+</logentry>
+<logentry
+   revision="74">
+<author>olivier.dagenais</author>
+<date>2009-10-19T01:41:05.047298Z</date>
+<msg>Added the DetermineDeclarationForType() method, which is currently trivial but has a TODO for [eventually] improving the output.
+</msg>
+</logentry>
+<logentry
+   revision="73">
+<author>olivier.dagenais</author>
+<date>2009-10-17T19:32:40.611736Z</date>
+<msg>1 - Upgraded CORE to version 1.0.28
+
+2 - Implemented the DetermineConstructor() method as well as some unit tests.
+
+3 - To support change #2, some unit test helpers as well as the AddParameter() extension method were added.
+
+4 - Added the NeedsInstance public read-only field, which makes use of the recently-introduced HasFlag() extension method.
+</msg>
+</logentry>
+<logentry
+   revision="72">
+<author>olivier.dagenais</author>
+<date>2009-10-09T20:55:54.580124Z</date>
+<msg>1 - Added a parameterized constructor to TestMethod and removed the property setters to force initialization through the new constructor.
+
+2 - Introduced a local variable in HasReturnValue for clarity.
+
+3 - Converted tabs to 4 spaces, for consistency.
+</msg>
+</logentry>
+<logentry
+   revision="71">
+<author>olivier.dagenais</author>
+<date>2009-10-05T02:51:51.367782Z</date>
+<msg>1 - Fixed a slight mistake in a region name
+
+2 - Added support for testing methods that don't return anything (i.e. void in C# and Sub in VB).
+</msg>
+</logentry>
+<logentry
+   revision="70">
+<author>olivier.dagenais</author>
+<date>2009-10-05T02:32:52.816434Z</date>
+<msg>Implemented [most of] a TODO about providing more explicit (and sensible) default values for variables representing parameters and the method under test's return value, if applicable.
+</msg>
+</logentry>
+<logentry
+   revision="69">
+<author>olivier.dagenais</author>
+<date>2009-10-05T00:03:54.999569Z</date>
+<msg>Enhanced GenerateTestMethod() to accept a TypeDeclaration instance and generate smarter unit test method skeletons, approximating [a subset of] some of the functionality of the Java version of TODD circa version 1.1, although with several features not yet available.
+</msg>
+</logentry>
+<logentry
+   revision="68">
+<author>olivier.dagenais</author>
+<date>2009-10-04T19:17:00.189668Z</date>
+<msg>1 - Renamed JavaMethod.* to TestMethod.* and converted to C# and NUnit.
+
+2 - Converted the test method generation to operate on a MethodDeclaration (an NRefactory AST object).  The current implementation simulates [a subset of] the behaviour of the Java version of TODD, circa version 1.0
+</msg>
+</logentry>
+<logentry
+   revision="67">
+<author>olivier.dagenais</author>
+<date>2009-10-04T15:59:01.252600Z</date>
+<msg>Fixed 8 unit tests in the formatting of VB.NET to C# conversion.
+</msg>
+</logentry>
+<logentry
+   revision="66">
+<author>olivier.dagenais</author>
+<date>2009-10-04T15:57:56.452965Z</date>
+<msg>1 - Created a local solution for building and running NRefactory tests.  This required a slight change to the existing project to point to the new path for nunit.framework.dll
+
+2 - Created a shadow project for NRefactory that depends on SoftwareNinjas.Core.dll for the "faked" Linq support and thus compiles to a .NET 2.0-compatible assembly.
+
+3 - The TestOriented.Core project now depends on the newly-added NRefactory project.
+
+4 - Upgraded nunit.framework.dll to version 2.4.8.0 as the NRefactory unit tests use NUnit.Framework.SyntaxHelpers
+
+5 - Upgraded SoftwareNinjas Core, MSBuild and NAnt to version 1.0.26 to bring the "faked" Linq support.
+</msg>
+</logentry>
+<logentry
+   revision="65">
+<author>olivier.dagenais</author>
+<date>2009-10-04T00:20:37.867624Z</date>
+<msg>Importing the "Project" and "Test" projects of Mono's NRefactory sub-project for integration and customizations.
+</msg>
+</logentry>
+<logentry
+   revision="64">
+<author>olivier.dagenais</author>
+<date>2009-10-04T00:05:24.384870Z</date>
+<msg>Tagging 'current' with source revision 140969.</msg>
+</logentry>
+<logentry
+   revision="63">
+<author>olivier.dagenais</author>
+<date>2009-10-04T00:02:39.679595Z</date>
+<msg>Importing NRefactory from http://anonsvn.mono-project.com/source/trunk/monodevelop/main/contrib/NRefactory as of revision 140969, which is the same revision that was used to create the monodevelop 2.1 branch.
+</msg>
+</logentry>
+<logentry
+   revision="62">
+<author>olivier.dagenais</author>
+<date>2009-10-03T23:46:55.717681Z</date>
+<msg>Creating vendor branch area, as per http://svnbook.red-bean.com/en/1.1/ch07s05.html</msg>
+</logentry>
+<logentry
+   revision="61">
+<author>olivier.dagenais</author>
+<date>2009-09-30T01:56:23.073366Z</date>
+<msg>1 - Upgraded the dependencies to version 1.0.25, to bring in some recent enhancements to the Template Compiler
+
+2 - Enhanced the Core project to enable the TemplateCompiler.
+
+3 - Using the new TemplateCompiler, was able to replace the String.Format-based JavaMethodBody with the JavaMethod T4 template and accompanying partial class which defines its properties.
+</msg>
+</logentry>
+<logentry
+   revision="60">
+<author>olivier.dagenais</author>
+<date>2009-09-29T01:22:43.155624Z</date>
+<msg>1 - Fixed some indentation in the build script.
+
+2 - Added a "documentation" target to compile wiki pages to HTML
+
+3 - Disabled the "Eclipse" project until it is needed again.
+
+4 - Upgraded the dependencies to version 1.0.22, which included the deletion of SoftwareNinjas.MSBuild.xml since it is no longer deployed.
+</msg>
+</logentry>
+<logentry
+   revision="59">
+<author>olivier.dagenais</author>
+<date>2009-08-25T01:17:15.902634Z</date>
+<msg>1 - Updated CORE dependencies to version 1.0.14
+
+2 - Introducing the UnitTest class with a template ported from the Eclipse version of TODD.
+</msg>
+</logentry>
+<logentry
+   revision="58">
+<author>olivier.dagenais</author>
+<date>2009-07-15T02:22:17.894157Z</date>
+<msg>Restored the "test" target's dependency on the "compile" target, accidentally removed in the last commit.</msg>
+</logentry>
+<logentry
+   revision="57">
+<author>olivier.dagenais</author>
+<date>2009-07-15T02:06:49.280067Z</date>
+<msg>1 - Updated CORE to version 1.0.13, which includes Visual Studio/MSBuild support for Java projects.
+
+2 - Removed ant and the ant build script since these are no longer necessary.  The only thing the new tools don't do is customize the META-INF/MANIFEST.MF file.
+</msg>
+</logentry>
+<logentry
+   revision="56">
+<author>olivier.dagenais</author>
+<date>2009-07-01T02:32:45.070458Z</date>
+<msg>1 - Added Ant 1.7.1 minus the documentation.
+
+2 - Added JUnit 4.6.
+
+3 - Added an Ant build script for the Eclipse plug-in.  It currently compiles and tests the existing code.
+
+4 - In order to make the compilation in #3 possible, added the necessary dependencies from the Eclipse PDE 3.2.1 distribution.
+</msg>
+</logentry>
+<logentry
+   revision="55">
+<author>olivier.dagenais</author>
+<date>2009-06-30T01:02:06.961076Z</date>
+<msg>1 - Moved the existing Eclipse version to a sub-folder since it will be a sub-product of TODD.
+
+2 - Created a skeleton for the SoftwareNinjas.TestOriented.Core assembly project, which will be written in C# and contain all the re-usable code for the various sub-products.
+
+3 - Added NAnt 0.85 without documentation and with a slight modification to include support for .NET 3.5
+
+4 - Added NAntContrib 0.85 without documentation and with a schema generated by the &lt;nantschema&gt; task.
+
+5 - Added SoftwareNinjas.Core and SoftwareNinjas.NAnt version 1.0.8, to provide re-usable code and handy NAnt tasks.</msg>
+</logentry>
+<logentry
+   revision="54">
+<author>olivier.dagenais</author>
+<date>2007-05-17T02:01:02.066584Z</date>
+<msg>Incorporated about 98% of Dwight's changes for the SERA submission.</msg>
+</logentry>
+<logentry
+   revision="53">
+<author>olivier.dagenais</author>
+<date>2007-05-17T01:43:03.398043Z</date>
+<msg>Loaded the LyX file into LyX version 1.4.3-5 (format 245) and re-saved, causing a whole bunch of file format changes. (but no content changes)</msg>
+</logentry>
+<logentry
+   revision="52">
+<author>olivier.dagenais</author>
+<date>2007-05-16T01:15:03.410292Z</date>
+<msg>Overview:
+Importing the original paper at submission 20 (revision 54) from my private Subversion repository.</msg>
+</logentry>
+<logentry
+   revision="51">
+<author>olivier.dagenais</author>
+<date>2007-04-23T20:37:49.229678Z</date>
+<msg>Added screenshots of the invocation and result in version 1.1.0.</msg>
+</logentry>
+<logentry
+   revision="50">
+<author>olivier.dagenais</author>
+<date>2007-04-22T02:45:44.029377Z</date>
+<msg>Release 1.1.0 was created from revision 49.</msg>
+</logentry>
+<logentry
+   revision="49">
+<author>olivier.dagenais</author>
+<date>2007-04-22T02:43:42.999831Z</date>
+<msg>With the merging of the smart template enhancement, I think it's time for a release, so bumping the version number to 1.1.0.
+Issue: 3
+</msg>
+</logentry>
+<logentry
+   revision="48">
+<author>olivier.dagenais</author>
+<date>2007-04-22T02:40:49.447362Z</date>
+<msg>Overview:
+Pushing revisions 27-47 from https://testoriented.googlecode.com/svn/branches/smart-templates
+
+Enhances the test generation mechanism to produce richer test method stubs that contain local variables to represent parameters, a call to the method under test and a call to assertEquals with the return value of said call, if appropriate.
+
+Changes:
+Consult the individual change logs in the "smart-templates" branch for details.
+
+
+Issue: 3
+</msg>
+</logentry>
+<logentry
+   revision="47">
+<author>olivier.dagenais</author>
+<date>2007-04-22T02:28:25.956611Z</date>
+<msg>Overview:
+Fixed a bug discovered during integration testing, cleaned up some old TODOs and added some fresh ones.
+
+
+Changes:
+1 - (incidental) Removed some obsolete TODOs.
+
+2 - Fixed a bug where methods that didn't return anything (in other words, have a return type of "void") weren't getting valid tests generated for them:  TODD was generating an "actual" variable of type "void" and trying to assign the return value of the call into it.
+
+3 - Added some TODOs (and/or issue numbers) based on integration testing.
+
+
+Manual tests:
+1 - Generated a test from an instance method that doesn't return anything to confirm it was no longer trying to generate an actual variable, as well as a call to assertEquals with variables of type "void".
+
+
+Issue: 3
+</msg>
+</logentry>
+<logentry
+   revision="46">
+<author>olivier.dagenais</author>
+<date>2007-04-21T20:00:09.790909Z</date>
+<msg>Release 1.0.1 was created from revision 45.</msg>
+</logentry>
+<logentry
+   revision="45">
+<author>olivier.dagenais</author>
+<date>2007-04-21T19:48:01.711352Z</date>
+<msg>With the addition of the ui improvements, I think it's time for a release, so bumping the version number to 1.0.1.
+
+
+Issue: 1
+</msg>
+</logentry>
+<logentry
+   revision="44">
+<author>olivier.dagenais</author>
+<date>2007-04-21T19:29:53.381419Z</date>
+<msg>Release 1.0.0 was created from revision 17.
+
+Issue: 1</msg>
+</logentry>
+<logentry
+   revision="43">
+<author>olivier.dagenais</author>
+<date>2007-04-21T19:06:51.619021Z</date>
+<msg>Overview:
+Fixed a few bugs identified during integration testing.
+
+
+Changes:
+1 - Fixed a bug where the wrong class (IType) was being provided to generateTestMethod, leading to the incorrect generation of constructors for tests on instance methods.
+
+2 - As a result of change #1, renamed some parameters to be clearer about their intent.  Also documented other parameters at the same time.
+
+3 - Noticed that a test generation on a class without an explicit constructor was generating code that wouldn't compile and thus:
+3.1 - If a constructor is not found, an instance variable declaration will still be generated but will be initialized as null.
+3.2 - Added a TODO to take care of implicit constructors later.  This is also logged as Issue 4.
+
+4 - Fixed a bug where an unsupported type signature (i.e. a generic instance) would give a declaration of "null" (which wouldn't compile at all), where "Object" is a "safer" default. (although it still causes a compile error, but that's better than the 5 you get otherwise)
+
+5 - (incidental) Removed an unused variable in determineInitializationForType.
+
+6 - (incidental) Extracted the constant DECLARATION_AND_INITIALIZATION and used it where appropriate and added a TODO to use it even more.
+
+
+Unit tests:
+GenerateTestsActionTest.generateTestMethod_NoExplicitConstructors
+GenerateTestsActionTest.generateCallStub_ZeroArgumentMethod
+GenerateTestsActionTest.generateCallStub_OneObjectArgumentMethod
+GenerateTestsActionTest.generateCallStub_OneInterfaceArgumentMethod
+GenerateTestsActionTest.generateCallStub_OneClassArgumentMethod
+GenerateTestsActionTest.generateCallStub_OneGenericArgumentMethod
+GenerateTestsActionTest.generateCallStub_ZeroArgumentMethodWithReturn
+GenerateTestsActionTest.generateCallStub_TwoArgumentMethodWithClassReturn
+
+
+Manual tests:
+1 - Brought up the context menu on the line "public static String[] Unformat ( String format, String formattedString ) {" in ReallySimpleProject's Unformatter class, selected "TODD" and then "Generate test(s)".  In UnformatterTest, the following appeared:
+	/**
+	 * Tests the &lt;i&gt;Unformat&lt;/i&gt; method with
+	 * TODO: write about scenario
+	 */
+	@Test public void Unformat_TODO ( ) {
+		fail ( "TODO: initialize variable(s) and expected value" );
+		String format = "TODO";
+		String formattedString = "TODO";
+		String[] actual = Unformatter.Unformat ( format, formattedString );
+		String[] expected = new String[] { "TODO" };
+		assertEquals ( expected, actual );
+	}
+1.1 - The code compiles without warnings.
+1.2 - The test fails at the call to "fail", without modifications.
+1.3 - Removing the call to "fail", the test fails at the assertEquals.
+1.4 - Fixing the "expected" variable to match what the Unformat method is [currently] hardcoded to return got the test to pass.
+...mission accomplished!
+
+
+Issue: 3
+</msg>
+</logentry>
+<logentry
+   revision="42">
+<author>olivier.dagenais</author>
+<date>2007-04-20T01:48:41.973588Z</date>
+<msg>Pulled revisions 27-41 from https://testoriented.googlecode.com/svn/trunk
+
+
+Issue: 3
+</msg>
+</logentry>
+<logentry
+   revision="41">
+<author>olivier.dagenais</author>
+<date>2007-04-20T01:27:24.480550Z</date>
+<msg>Overview:
+Pushing revisions 21-25 from https://testoriented.googlecode.com/svn/branches/ui-improvements
+
+Added accelerators to labels and moved the Run action up from its sub-menu.
+
+
+Changes:
+1 - The actions and command had their labels updated to use accelerators by prefixing the "accelerated" letter with an ampersand.
+
+2 - Renamed the TODD sub-menu to JUnit and set J as its accelerator.
+
+3 - By changing the @menubarPath attribute of the &lt;action&gt; element from "todd.menu/group" to "additions", the RunTestsAction now shows up in the context menu.
+
+
+Manual tests:
+1 - Debug As/Eclipse Application, then right-clicked in the Outline view, the Package Explorer and inside the Java editor and confirmed that the "Run JUnit test(s)" action was indeed showing up directly in the context menu and no longer in a TODD-specific sub-menu.  Also confirmed that said sub-menu had now been renamed to "JUnit".
+
+2 - Extensively used a private build with these changes during the development of the smart-templates branch and am very satisfied with the accelerators.
+
+
+Issue: 1
+</msg>
+</logentry>
+<logentry
+   revision="40">
+<author>olivier.dagenais</author>
+<date>2007-04-19T02:17:12.590657Z</date>
+<msg>Overview:
+Pretty much completed the low-level work.  The code is now ready for integration testing.
+
+
+Changes:
+1 - Implemented the prelude part of the method stub generation, which pretty much completes its implementation.
+
+2 - Now that generateCallStub is implemented, used it to make the call to the methodToTest (in generateTestMethodBody), along with all the surrounding code that it entails.  This also obsoleted a bit of code that was generating some TODOs and so it was removed.
+
+3 - Now that the generateCallStub needs to peek into the method's IType, augmented TestingClass and TestingMethod to more easily create that link for testing purposes.
+
+4 - Greatly expanded the unit test generateTestMethod_Typical as well as adjusted it to better fit with Java's naming conventions.
+
+5 - Other unit tests were also updated, mostly to provide a TestingClass instance to the existing TestingMethod instances.
+
+
+Unit tests:
+GenerateTestsActionTest.generateCallStub_TwoArgumentMethodWithReturn
+GenerateTestsActionTest.generateCallStub_StaticMethod
+GenerateTestsActionTest.generateCallStub_StaticMethodWithReturn
+
+
+Issue: 3
+</msg>
+</logentry>
+<logentry
+   revision="39">
+<author>olivier.dagenais</author>
+<date>2007-04-18T01:54:41.762743Z</date>
+<msg>Overview:
+Very quick refactoring (rename) for clarity and consistency.
+
+
+Changes:
+1 - Renamed the reconstructTypeSignature method to determineDeclarationForType for clarity.
+
+2 - Updated the unit tests accordingly.
+
+
+Unit tests:
+In GenerateTestsActionTest, renamed:
+reconstructTypeSignature_ArrayOfArrayOfInt -&gt; determineDeclarationForType_ArrayOfArrayOfInt
+reconstructTypeSignature_ResolvedJavaLangString -&gt; determineDeclarationForType_ResolvedJavaLangString
+reconstructTypeSignature_UnresolvedString -&gt; determineDeclarationForType_UnresolvedString
+reconstructTypeSignature_UnresolvedJavaLangString -&gt; determineDeclarationForType_UnresolvedJavaLangString
+
+
+Issue: 3
+</msg>
+</logentry>
+<logentry
+   revision="38">
+<author>olivier.dagenais</author>
+<date>2007-04-18T01:50:16.604984Z</date>
+<msg>Overview:
+Adding code that [mostly] generates the Java source code necessary to call a method.
+
+
+Changes:
+1 - (incidental) Renamed a local variable from flags to methodFlags for clarity.
+
+2 - Added the generateCallStub method, which will (when it's done) generate code that calls the provided method.  If the method has any arguments, local variables with the same names and types will also be generated and initialized to default values.  That last part is working, the parameter list is also working and all that's left is the "prelude", which is to say picking between the method name or the construction and then assigning the result (if any) to a local variable.
+
+3 - Added a call to the new method from within generateTestMethodBody and updated tests accordingly.
+
+4 - In preparation for one of the TODOs, TestingMethod's returnType now defaults to void.
+
+5 - (incidental) Noticed that the javadoc I had written should have been using the &lt;code&gt; element and not the &lt;c&gt; element and thus fixed all instances inside the test class.
+
+6 - (incidental) To reduce code duplication, extracted the creation of a testing method called "eat", which takes a string parameter called "meat", to its own method.  Updated existing tests to use it.
+
+
+Unit tests:
+GenerateTestsActionTest.generateCallStub_OneArgumentMethod
+GenerateTestsActionTest.generateCallStub_TwoArgumentMethod
+GenerateTestsActionTest.generateCallStub_Constructor
+
+
+Issue: 3
+</msg>
+</logentry>
+<logentry
+   revision="37">
+<author>olivier.dagenais</author>
+<date>2007-04-15T23:07:00.734372Z</date>
+<msg>Overview:
+Added some code to "guess" a good constructor to call, but am not calling it yet because there's another method that needs to be written first to do that.
+
+
+Changes:
+1 - Created the method determinePreferredConstructor, which scans an IType instance's methods and tries to pick the best constructor.
+
+2 - Moved a few TODOs from generateTestMethodBody into the new method.
+
+3 - (incidental) Added a few more TODOs about special cases and new features.
+
+4 - (incidental) Documented a few methods which were missing their javadoc.
+
+5 - Made some additions (and a slight refactoring) to the TestingClass and TestingMethod mocks to support the tests of change #1.
+
+
+Unit tests:
+GenerateTestsActionTest.determinePreferredConstructor_Typical
+GenerateTestsActionTest.determinePreferredConstructor_LongerFirst
+GenerateTestsActionTest.determinePreferredConstructor_InaccessibleDefaultConstructor
+
+
+Issue: 3
+</msg>
+</logentry>
+<logentry
+   revision="36">
+<author>olivier.dagenais</author>
+<date>2007-04-15T19:30:22.509795Z</date>
+<msg>Overview:
+Initialization and declaration generation code is advancing well and there might be just enough functionality to push through to the next stage of plugging both together to generate parameter initialization lines.
+
+
+Changes:
+1 - Added preliminary support in declaration and initialization methods for resolved and unresolved types, although only very simple cases are currently handled.  For example, there's no generics support yet.  Still, a type is decoded and is looked up in a new map representing complex type default values and if it's not found there, it will eventually be the responsibility of a constructor to initialize an instance, if possible.
+
+2 - Added TODOs for turning some currently-hardcoded hashtables into configurable ones.
+
+3 - Improved support for array type initialization and extracted that code into its own method:  determineInitializationForArray.
+
+
+Unit tests:
+GenerateTestsActionTest.determineInitializationForType_ArrayOfArrayOfInt
+GenerateTestsActionTest.determineInitializationForType_ResolvedJavaLangString
+GenerateTestsActionTest.determineInitializationForType_UnresolvedString
+GenerateTestsActionTest.determineInitializationForType_UnresolvedJavaLangString
+GenerateTestsActionTest.reconstructTypeSignature_ResolvedJavaLangString
+GenerateTestsActionTest.reconstructTypeSignature_UnresolvedString
+GenerateTestsActionTest.reconstructTypeSignature_UnresolvedJavaLangString
+
+
+Issue: 3
+</msg>
+</logentry>
+<logentry
+   revision="35">
+<author>olivier.dagenais</author>
+<date>2007-04-15T18:00:06.260300Z</date>
+<msg>Overview:
+Implemented a bit of the type initialization and also started the type declaration.
+
+
+Changes:
+1 - Renamed simpleTypeMapping to simpleTypeDefaultValues, so that a similar look-up, simpleTypeByName, could be introduced and not make it confusing.
+
+2 - (incidental) As change #1 was being implemented, noticed that the Signature class had a set of handy constants for representing the corresponding codes and thus used those instead throughout the class.
+
+3 - Noticed that the NamingConcentions class had the interesting method suggestLocalVariableNames and thus added a TODO for possibly using it later.
+
+4 - Change #1 was mostly due to the fact that I also need to decode the signatures back into their source representations and thus introduced the reconstructTypeSignature method.
+
+5 - Implemented a bit of the array case of both initialization and declaration.
+
+
+Unit tests:
+GenerateTestsActionTest.determineInitializationForType_ArrayOfInt
+GenerateTestsActionTest.reconstructTypeSignature_ArrayOfArrayOfInt
+
+
+Issue: 3
+</msg>
+</logentry>
+<logentry
+   revision="34">
+<author>olivier.dagenais</author>
+<date>2007-04-15T00:34:02.766888Z</date>
+<msg>Overview:
+Before implementing the TODO that calls the constructor of the class under test, we need code that can initialize variables or parameters with values sensible for the corresponding types and so wrote determineInitializationForType, which parses one string (a signature representation of the type) and returns another (a representation of the default value as would be written in the code).
+
+
+Changes:
+1 - Implemented determineInitializationForType for "simple types" (i.e. no arrays, generics or classes).
+
+2 - (incidental) Added TODOs for special cases to consider during construction generation as well as a potential improvement in the determineLineSeparator method.
+
+
+Unit tests:
+GenerateTestsActionTest.determineInitializationForType_Character
+
+
+Issue: 3
+</msg>
+</logentry>
+<logentry
+   revision="33">
+<author>olivier.dagenais</author>
+<date>2007-04-13T15:55:13.078851Z</date>
+<msg>Overview:
+Slight refactor of the newLine semi-constant to simplify code that needs to use it.
+
+
+Changes:
+1 - Converted the local variable newLine to a field, so that it wouldn't have to be passed around to so many methods.  This caused a bunch of static methods to become instance methods, but that's fine.
+
+2 - Change #1 was reflected in the unit tests.
+
+
+Issue: 3
+</msg>
+</logentry>
+<logentry
+   revision="32">
+<author>olivier.dagenais</author>
+<date>2007-04-13T15:14:06.100050Z</date>
+<msg>Overview:
+Added some code to suggest an instance variable name for a class and used it in the test method stub generation.
+
+
+Changes:
+1 - Added the determineInstanceVariableName method, which computes a suitable name for a local variable representing an instance of the class whose name it takes as a parameter.
+
+2 - Now using the new determineInstanceVariableName method in generateTestMethodBody, as well as added a TODO regarding the testing of abstract classes.
+
+3 - Change #2 improved the quality/accuracy of one of the generated comments and thus updated the corresponding unit testing accordingly.
+
+
+Unit tests:
+GenerateTestsActionTest.determineInstanceVariableName_UpperCaseFirstLetter
+GenerateTestsActionTest.determineInstanceVariableName_lowerCaseFirstLetter
+
+
+Issue: 3
+</msg>
+</logentry>
+<logentry
+   revision="31">
+<author>olivier.dagenais</author>
+<date>2007-04-13T01:53:54.099949Z</date>
+<msg>Overview:
+Added a tiny bit of functionality and refactored to better implement said functionality as well as upcoming parts.
+
+
+Changes:
+1 - Extracted a method from some specialized code in generateTestMethod as generateTestMethodBody.  This meant that the methodName variable could be inlined, since it was now only used once.
+
+2 - To support the new generateTestMethodBody method, the appendFormat method was added.  It sort-of mirrors the functionality of .NET's StringBuilder.
+
+3 - The test method generation now includes an extra TODO as well as another detail in one of the existing TODOs.
+
+4 - Created the TestingClass to mock an IType similar to how the TestingMethod mocks an IMethod for testing purposes.
+
+
+File operations:
+ADD src/org/dyndns/opendemogroup/todd/ui/actions/TestingClass.java
+
+
+Issue: 3
+</msg>
+</logentry>
+<logentry
+   revision="30">
+<author>olivier.dagenais</author>
+<date>2007-04-12T02:32:49.613931Z</date>
+<msg>Overview:
+Still more preparatory work for implementing smart test stub generation.
+
+
+Changes:
+1 - (incidental) Noticed that the Flags class had some handy static methods for determining if a method is private or protected and so replaced some bit-twiddling with explicit and clearer method calls.
+
+2 - In preparation for smarter test stub generation, increasing the number of parameters to GenerateTestsAction.generateTestMethod to include an IType representing the class in which the new test method is to be added.
+
+3 - In preparation for smart test stub generation, separating the test method body from the test method signature/container.  The body will eventually be generated in one or more external methods and inserted somewhere in the rest.  This separation should also make it easier to implement issue 2.
+
+4 - Updated unit test to match change #3.
+
+5 - In preparation for smarter test stub generation, extracted the TestingMethod helper class to its own compilation unit (which dragged with it a bunch of imports).  Aside from making the class public, there were no other changes.
+
+6 - (incidental) Extracted the local newLine variable in the unit test as a constant since I have a feeling it will be useful in more tests coming up real soon now.  Also renamed another local variable for clarity.
+
+
+File operations:
+ADD src/org/dyndns/opendemogroup/todd/ui/actions/TestingMethod.java
+
+
+Issue: 3
+</msg>
+</logentry>
+<logentry
+   revision="29">
+<author>olivier.dagenais</author>
+<date>2007-04-11T02:01:48.920453Z</date>
+<msg>Overview:
+Fixed two warnings and renamed a method for clarity and future-proofing.
+
+
+Changes:
+1 - (incidental) Removed two unused imports to silence some warnings.
+
+2 - Renamed the generateTestMethodContents method to generateTestMethod as well as the corresponding unit test.
+
+
+Unit tests:
+generateTestMethodContents_Typical -&gt; generateTestMethod_Typical
+
+
+Issue: 3
+</msg>
+</logentry>
+<logentry
+   revision="28">
+<author>olivier.dagenais</author>
+<date>2007-04-11T01:35:07.454550Z</date>
+<msg>Copied from trunk at revision 27.
+
+Issue: 3</msg>
+</logentry>
+<logentry
+   revision="27">
+<author>olivier.dagenais</author>
+<date>2007-02-16T19:28:02.323956Z</date>
+<msg>Edited wiki page through web user interface.
+
+</msg>
+</logentry>
+<logentry
+   revision="26">
+<author>olivier.dagenais</author>
+<date>2007-02-16T18:20:13.230335Z</date>
+<msg>Added traceability for a recently-fixed issue.
+
+</msg>
+</logentry>
+<logentry
+   revision="25">
+<author>olivier.dagenais</author>
+<date>2007-02-13T01:30:14.704456Z</date>
+<msg>Overview:
+Added accelerators to labels and moved the Run action up from its sub-menu.
+
+
+Changes:
+1 - The actions and command had their labels updated to use accelerators by prefixing the "accelerated" letter with an ampersand.
+
+2 - Renamed the TODD sub-menu to JUnit and set J as its accelerator.
+
+3 - By changing the @menubarPath attribute of the &lt;action&gt; element from "todd.menu/group" to "additions", the RunTestsAction now shows up in the context menu.
+
+
+Manual tests:
+1 - Debug As/Eclipse Application, then right-clicked in the Outline view, the Package Explorer and inside the Java editor and confirmed that the "Run JUnit test(s)" action was indeed showing up directly in the context menu and no longer in a TODD-specific sub-menu.  Also confirmed that said sub-menu had now been renamed to "JUnit".
+
+Issue: 1
+</msg>
+</logentry>
+<logentry
+   revision="24">
+<author>olivier.dagenais</author>
+<date>2007-02-13T01:17:59.585393Z</date>
+<msg>Edited wiki page through web user interface.
+
+
+</msg>
+</logentry>
+<logentry
+   revision="23">
+<author>olivier.dagenais</author>
+<date>2007-02-13T01:11:03.559990Z</date>
+<msg>Created wiki page through web user interface.
+</msg>
+</logentry>
+<logentry
+   revision="22">
+<author>olivier.dagenais</author>
+<date>2007-02-13T01:02:56.120550Z</date>
+<msg>Added issue integration properties as documented at http://www.fogcreek.com/FogBugz/docs/40/Articles/SourceControl/TortoiseSVN.html</msg>
+</logentry>
+<logentry
+   revision="21">
+<author>olivier.dagenais</author>
+<date>2007-02-12T02:43:25.860723Z</date>
+<msg>Branching from revision 20 to experiment with some user interface improvements.</msg>
+</logentry>
+<logentry
+   revision="20">
+<author>olivier.dagenais</author>
+<date>2007-02-12T01:55:14.316513Z</date>
+<msg>Cleaned up the EnhancementIdeas page and inserted the screenshot of TODD as it shipped.
+
+
+
+
+</msg>
+</logentry>
+<logentry
+   revision="19">
+<author>olivier.dagenais</author>
+<date>2007-02-12T01:50:27.288625Z</date>
+<msg>Adding an image that is used to show the current contributions to the Java Editor's context menu.</msg>
+</logentry>
+<logentry
+   revision="18">
+<author>olivier.dagenais</author>
+<date>2007-02-12T01:39:26.953025Z</date>
+<msg>Created wiki page through web user interface.
+
+
+
+
+
+</msg>
+</logentry>
+<logentry
+   revision="17">
+<author>olivier.dagenais</author>
+<date>2006-12-10T15:12:43.914481Z</date>
+<msg>Overview:
+Slight setting change to get the Export as "Deployable plug-ins and fragments" to include our bundle localization file.
+
+
+Changes:
+1 - plugin.properties is now included in a binary build
+
+
+Manual tests:
+1 - Perform an export as an Eclipse plug-in and verify that plugin.properties is now included.</msg>
+</logentry>
+<logentry
+   revision="16">
+<author>olivier.dagenais</author>
+<date>2006-12-10T15:07:59.927204Z</date>
+<msg>Overview:
+Slight project setting change to allow the Export as "Deployable plug-ins and fragments" to succeed without errors.
+
+
+Changes:
+1 - Removed JUnit4 from the build path.
+
+2 - Added org.junit (4.1.0) as an "Imported Package".
+
+
+Manual tests:
+1 - Exported the project as an Eclipse deployable plugin without error.</msg>
+</logentry>
+<logentry
+   revision="15">
+<author>olivier.dagenais</author>
+<date>2006-12-10T15:01:57.101145Z</date>
+<msg>Overview:
+Implemented the rest of the base objectives, that is to say the ability to launch a JUnit test fixture or a single test method in either run or debug modes.
+
+
+Changes:
+1 - Created the abstract class ActionBase from which GenerateTestsAction now inherits.  The interface implementations were pulled up, as were the _Members field and the getSelectedElement() method.  ActionBase now takes over most of the input Eclipse integration points and defines two abstract methods; overloads of the run method that were already implemented in GenerateTestsAction.
+
+2 - Created the abstract class LaunchActionBase, which extends ActionBase and simplifies the implementations of the run() overloads in DebugTestsAction and RunTestsAction with the launch() method, which forwards to the "restricted" JUnitLaunchShortcut class.
+
+3 - Modified RunTestsAction and DebugTestsAction to extend LaunchActionBase, implement ActionBase's run() overloads and have those implementations call LaunchActionBase's launch() method.
+
+4 - Created the SimpleStructuredSelection class to simplify the implementation of LaunchActionBase's launch() method.
+
+
+File operations:
+ADDED src/org/dyndns/opendemogroup/todd/SimpleStructuredSelection.java
+ADDED src/org/dyndns/opendemogroup/todd/ui/actions/ActionBase.java
+ADDED src/org/dyndns/opendemogroup/todd/ui/actions/LaunchActionBase.java
+
+
+Manual tests:
+Launched Eclipse with ReallySimpleProject and tested the debug and run actions just about everywhere with classes and methods and sometimes with breakpoints.  Every time, the JUnit view would report running what I had invoked and my breakpoint was hit when I invoked a test method in debug mode.  Mission accomplished!</msg>
+</logentry>
+<logentry
+   revision="14">
+<author>olivier.dagenais</author>
+<date>2006-12-10T15:00:13.603418Z</date>
+<msg>Overview:
+Restructured the plugin's contributions to be exposed through a TODD sub-menu and added action skeletons for running and debugging tests.
+
+
+Changes:
+1 - Added a copy of a &lt;menu&gt; element to all contributions.
+
+2 - Changed all existing actions' @menubarPath attribute from "additions" to "todd.menu/group".
+
+3 - Added actions for RunTestsAction and DebugTestsAction to all contributions.
+
+4 - Created &lt;command&gt; extensions for each of the actions and linked all actions back to the new commands through the @definitionId attribute.
+
+5 - Added stub classes for the new actions.
+
+
+File operations:
+ADDED src/org/dyndns/opendemogroup/todd/ui/actions/DebugTestsAction.java
+ADDED src/org/dyndns/opendemogroup/todd/ui/actions/RunTestsAction.java
+
+
+Manual tests:
+Launched Eclipse on ReallySimpleProject and right-clicked on the usual targets.  The TODD sub-menu appeared, as did the three actions under it.  Made sure the Generate Test(s) action still worked and set breakpoints in the Run Test(s) and Debug Test(s) actions to make sure they could also be invoked.  Mission accomplished.</msg>
+</logentry>
+<logentry
+   revision="13">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:59:27.840233Z</date>
+<msg>Overview:
+Restructured the plugin's contributions to be exposed through a TODD sub-menu and added action skeletons for running and debugging tests.
+
+
+Changes:
+1 - Added a copy of a &lt;menu&gt; element to all contributions.
+
+2 - Changed all existing actions' @menubarPath attribute from "additions" to "todd.menu/group".
+
+3 - Added actions for RunTestsAction and DebugTestsAction to all contributions.
+
+4 - Created &lt;command&gt; extensions for each of the actions and linked all actions back to the new commands through the @definitionId attribute.
+
+5 - Added stub classes for the new actions.
+
+
+File operations:
+ADDED src/org/dyndns/opendemogroup/todd/ui/actions/DebugTestsAction.java
+ADDED src/org/dyndns/opendemogroup/todd/ui/actions/RunTestsAction.java
+
+
+Manual tests:
+Launched Eclipse on ReallySimpleProject and right-clicked on the usual targets.  The TODD sub-menu appeared, as did the three actions under it.  Made sure the Generate Test(s) action still worked and set breakpoints in the Run Test(s) and Debug Test(s) actions to make sure they could also be invoked.  Mission accomplished.</msg>
+</logentry>
+<logentry
+   revision="12">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:57:38.531588Z</date>
+<msg>Overview:
+Implemented the action's functionality when invoked on an IType (a class), such that it will generate tests for each of the selected IType's (public or package) methods.
+
+
+Changes:
+1 - Disabled the IFile extension until it is implemented in the code.  This has the side-effect of interpreting an invocation on a "class" node in the Package Explorer to actually come up as IType (as opposed to IFile).
+
+2 - Extracted a few method overloads for GenerateTestsAction#run to represent the special cases that are handled, such as IMethod and IType.
+
+3 - Implemented the overload run(IType), which calls run(IMethod).
+
+4 - While implementing #2 and #3, updated some TODOs.
+
+
+Manual tests:
+1 - Launched Eclipse on ReallySimpleProject and invoked action in the Package Explorer, in the outline and in the Java Editor on methods and classes.  All worked as advertised.</msg>
+</logentry>
+<logentry
+   revision="11">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:56:45.789421Z</date>
+<msg>Overview:
+Enabled the invocation of the action from within a Java Editor and added a few more invocation possibilities, not all of which have been implemented.
+
+
+Changes:
+1 - Added extensions to IType objects and CompilationUnitEditor viewers.  Also took the opportunity to enable multiple files to be selected, since the code already enumerates the items provided by a structured selection.
+
+2 - Change 1b meant that the action now had to implement the IEditorActionDelegate interface, which introduced the setActiveEditor() method.
+
+3 - selectionChanged() was modified to no longer try to enable/disable the action based on the selection when it was discovered that it wasn't as reliable at detecting text selection changes the same way it detected structured selection changes.  Besides, with the ICompilationUnit.getElementAt() method, we can accept pretty much any selection.
+
+4 - It looks like run() can erase the selection without any adverse side effects that I could detect and thus it was modified to do so, as well as try to detect a selection if _Members was found to be null.
+
+5 - Implemented getSelectedElement() - which is called by the previous change - to replace the selection acquisition code that would have been in selectionChanged().
+
+6 - (incidental) Removed the println() call in a catch block when there's an exception thrown, to be consistent with all other TODOed potential error conditions.
+
+7 - (incidental) Added a TODO to remind the implementor(s) that some TODOs may be obsoleted by code written since.
+
+8 - (incidental) Sort of implemented a TODO by replacing it with a less important TODO after handling the null check.
+
+9 - (incidental) Added more TODOs.
+
+
+Manual tests:
+Launched a clean Eclipse and imported ReallySimpleProject.
+1 - Right-clicked on as many non-JavaEditor targets that could invoke the action and invoked it.  IFile and IType still aren't fully implemented (the action is invoked, but doesn't do anything) and I noticed IFile is reported when clicking on a class in the Package Explorer.  At least the context menu lists our action everywhere I clicked and expected it to be there.
+
+2 - Right-clicked inside the Java Editor and tried invoking the action from a few places and confirmed that the element being discovered by the new getSelectedElement() was indeed what I had intended would be detected based on the location of the cursor inside the code.
+</msg>
+</logentry>
+<logentry
+   revision="10">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:55:29.121482Z</date>
+<msg>Overview:
+Re-ordered some methods inside GenerateTestsAction, changed some visibilities and moved/renamed org.dyndns.opendemogroup.todd.ui.actions.test.GenerateTestsAction to/as org.dyndns.opendemogroup.todd.ui.actions.GenerateTestsActionTest.
+
+
+Changes:
+1 - Used Eclipse's Outline view to drag-and-drop related methods together in GenerateTestsAction.
+
+2 - Increased the visibility of a few methods in same class.
+
+3 - Moved and renamed (...).test.GenerateTestsAction to (...).GenerateTestsActionTest, which involved some slight changes in the file itself to identify the new package and class names.
+
+
+File operations:
+MOVE (copy with history, followed by deletion of original)
+src/org/dyndns/opendemogroup/todd/ui/actions/test/GenerateTestsAction.java
+TO
+src/org/dyndns/opendemogroup/todd/ui/actions/GenerateTestsActionTest.java
+
+
+Manual tests:
+1 - Ran a Project/Clean... from within Eclipse and checked the Problems list; no errors.
+2 - Right-clicked on the generateTestMethodContents_Typical method and selected Run As/JUnit Test.  The test passed.</msg>
+</logentry>
+<logentry
+   revision="9">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:52:20.543643Z</date>
+<msg>Overview:
+The plug-in will now create a testing class, according to the Eclipse convention, when one can not be found (and thus is assumed to not already exist).  The search is now also conforming to the Eclipse convention. (ATC's name is CUT's name + "Test" and lives in the same package)
+
+
+Changes:
+1 - (incidental) Removed an already-implemented TODO in the SimpleSearchRequestor class.
+
+2 - (incidental) Added a comment to IObjectActionDelegate#setActivePart(IAction, IWorkbenchPart).
+
+3 - (incidental) Broke up the template string in generateTestMethodContents on separate lines to make it easier to read.
+
+4 - The fetchAssociatedTestClass method now uses the Eclipse convention when searching for an associated test class, although the previous implementation is still provided in the form of comments, with a TODO to parametrize the convention.
+
+5 - Now calling createAssociatedTestClass if an associated test class could not be found (implemented two TODOs).  This caused a TODO to be moved closer to where it would be implemented. (i.e. check if the found class is indeed a test fixture)
+
+6 - Two new public static methods were added:  generateTestClassContents and generateCompilationUnitContents.  They return a string representation of the test class and its compilation unit, respectively.
+
+
+Manual tests:
+1 - Keeping with the theme of testing against ReallySimpleProject, launched my action against the UnformatterTest class's Unformat_Typical method and the plug-in created the UnformatterTestTest class and a Unformat_Typical_TODO method.  Mission accomplished!</msg>
+</logentry>
+<logentry
+   revision="8">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:50:18.327522Z</date>
+<msg>Overview:
+A Java editor will now be opened when generating a test method, thus enabling the user to see the addition right away, modify it and even undo it!
+
+
+Changes:
+1 - Implemented a TODO to open the Java Editor where the new method is to be added.  After the method is added, a call is made to focus on it.
+
+2 - To support change #1, the plug-in now includes org.eclipse.jdt.ui as a dependency.
+
+3 - Some lower-priority TODOs were also added to support change #1.
+
+4 - (incidental) generateTestMethodContents was refactored to accept the line separator (newLine) as a parameter and a new method, determineLineSeparator, was written to determine what the separator should be by first looking at the existing source code, then at the Eclipse preference and lastly at the platform default.
+
+5 - In response to change #4, the generateTestMethodContents_Typical unit test had its lameness reduced significantly through some refactorings.
+
+
+Unit tests:
+org.dyndns.opendemogroup.todd.test.GenerateTestsAction.generateTestMethodContents_Typical
+
+
+Manual tests:
+1 - Launched Eclipse, loaded ReallySimpleProject, drilled down to the Unformat method in the Package Explorer, launched my action and the editor for the util.test.Unformatter class opened up, with the focus on the newly-generated method.  The editor showed up as modified but not saved and the generation was undoable.  Mission accomplished.</msg>
+</logentry>
+<logentry
+   revision="7">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:49:11.221195Z</date>
+<msg>Overview:
+The base case of generating a method to test another now works (barely)!
+
+
+Changes:
+1 - Changed fetchAssociatedTestClass to return an IType instead of its ICompilationUnit, since it looks like the latter could hold more than one of the former.  Besides, if I need the ICompilationUnit, I can always obtain it from the IType.
+
+2 - Change #1 simplified greatly the IMethod overload of fetchAssociatedTestClass.
+
+3 - Implemented generateTestMethodContents which takes an IMethod representing the method to test and generates a string representing a test method to exercise the former.
+
+4 - Called the new generateTestMethodContents method from within generateTest and shuffled a few TODOs accordingly.
+
+5 - Wrote a rather lame unit test to verify the functionality of generateTestMethodContents and to determine what exception was being thrown when I wasn't able to get it to work at all due to errors in the format string.
+
+6 - Change #5 forced the inclusion of JUnit 4 in the project's classpath.
+
+
+File operations:
+ADDED src/org/dyndns/opendemogroup/todd/ui/actions/test/GenerateTestsAction.java
+
+
+Unit tests:
+org.dyndns.opendemogroup.todd.ui.actions.test.GenerateTestsAction.generateTestMethodContents_Typical
+
+
+Manual tests:
+1 - Launched Eclipse, opened up ReallySimpleProject, expanded the nodes in the Package Explorer until I exposed the Unformat method and then invoked my action.  After exposing the util.test.Unformatter class's methods, I could see the new Unformat_TODO method in the hierarchy.  A double-click on it opened the editor and confirmed the code generation had indeed taken place.  Mission accomplished.
+</msg>
+</logentry>
+<logentry
+   revision="6">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:41:29.186348Z</date>
+<msg>Overview:
+Now using the JDT's java search engine to track down an associated test class based on the convention of placing test classes in a sub-package called "test" and called the same as the class under test.
+
+
+Changes:
+1 - Implemented most of fetchAssociatedTestClass by delegating the actual searching to a new method called findClass.
+
+2 - Implemented findClass using the JDT SearchEngine class and related classes, based on the topic "Using the Java search engine" at http://help.eclipse.org/help30/index.jsp?topic=/org.eclipse.jdt.doc.isv/guide/jdt_api_search.htm
+
+3 - Implemented the SimpleSearchRequestor for use in searching.
+
+
+File operations:
+ADDED src/org/dyndns/opendemogroup/todd/SimpleSearchRequestor.java
+
+
+Manual tests:
+1 - Launched Eclipse, imported the first iteration of the ReallySimpleProject, invoked our action on a method and hit a breakpoint in findClass.  Stepped through and confirmed that no results were returned by the search because that version did not have an associated test class.
+
+2 - Repeated the first test but with the most recent ReallySimpleProject and this time the search found a single result; the associated test class.  Mission accomplished.
+</msg>
+</logentry>
+<logentry
+   revision="5">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:40:13.648667Z</date>
+<msg>Overview:
+Implemented a few TODOs surrounding the retrieval of an associated test class for the current selection.
+
+
+Changes:
+1 - Moved a few TODOs from generateTest into the new fetchAssociatedTestClass method and updated a few more TODOs accordingly.
+
+2 - Implemented two overloads of the fetchAssociatedTestClass method, one which takes an IType instance and another which takes an IMethod instance, obtains an IType and calls the first overload.
+
+
+Manual tests:
+1 - Launched a clean Eclipse, imported ReallySimpleProject and invoked the "Generate test(s)..." action on the Unformatter.Unformat method.  Set a breakpoint inside of fetchAssociatedTestClass to verify that the packageName and classNames were indeed correct.
+
+2 - Repeated the test with the com.ibm.lab.soln.jdt.excerpt project to verify that IPackageFragment's elementName wasn't just the last part of the package name.
+</msg>
+</logentry>
+<logentry
+   revision="4">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:39:26.845171Z</date>
+<msg>Overview:
+Added some TODOs surrounding the generation of tests for methods.
+
+
+Changes:
+1 - Had to make _Members more general after it was revealed that not all items implement IMember, specifically IFile.  This also affected the enumeration.
+
+2 - Moved a comment closer to what it was describing and tweaked a word so that it is clearer.
+
+3 - Added a block to handle IFile in run().
+
+4 - Created a stub generateTest method that takes an IMethod and wrote lots of TODOs.
+
+
+Manual tests:
+Launched Eclipse, set some breakpoints in run() and right-clicked on a few places to confirm that I was able to get an IFile.
+</msg>
+</logentry>
+<logentry
+   revision="3">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:36:33.482960Z</date>
+<msg>Overview:
+Based on the article by Dan Kehn, implemented a general outline for the "Generate test(s)..." action where it starts peeking at the selection and sorting through it.
+
+
+Changes:
+1 - GenerateTestsAction.selectionChanged now collects some IMember instances if they are detected and sets the enabledness of the action accordingly.
+
+2 - GenerateTestsAction.run now checks the new _Members list (of IMember instances) and enumerates it for future processing.
+
+3 - Wrote lots of TODOs for future steps.
+
+
+Manual tests:
+1 - Set some breakpoints and launched a clean workspace in which some Java project was imported and then I tried to invoke the "Generate test(s)..." on various objects.  When I couldn't hit a breakpoint, I left a TODO.
+</msg>
+</logentry>
+<logentry
+   revision="2">
+<author>olivier.dagenais</author>
+<date>2006-12-10T14:34:58.343160Z</date>
+<msg>Overview:
+Bare bones implementation that demonstrates the feasibility of extending Eclipse with a few context menu additions.
+
+
+Changes:
+Added initial project files and plugin definition partly generated from a wizard and inspired by the following:
+- http://www.eclipse.org/articles/Article-action-contribution/Contributing%20Actions%20to%20the%20Eclipse%20Workbench.html
+- http://help.eclipse.org/help32/topic/org.eclipse.platform.doc.isv/reference/extension-points/org_eclipse_ui_popupMenus.html
+- the PMD Eclipse plugin source code
+
+
+File operations:
+ADDED .classpath
+ADDED .project
+ADDED build.properties
+ADDED META-INF
+ADDED plugin.properties
+ADDED plugin.xml
+ADDED .settings\org.eclipse.jdt.ui.prefs
+ADDED META-INF\MANIFEST.MF
+ADDED src\org\dyndns\opendemogroup\todd\Activator.java
+ADDED src\org\dyndns\opendemogroup\todd\ui\actions\GenerateTestsAction.java
+
+
+Manual tests:
+1 - Launched Eclipse, created a new Java project, added a Class.  Invoked the context for the new file in:
+1.1 - Package Explorer
+1.2 - Navigator
+1.3 - the file itself
+1.4 - On the class node in the Outline
+1.5 - On a method node in the Outline
+...all of which popped a dialog box.  I even set a breakpoint in GenerateTestsAction's run method and inspected the IAction parameter to see what was coming in from different contexts.</msg>
+</logentry>
+<logentry
+   revision="1">
+<date>2006-12-09T22:21:46.256558Z</date>
+<msg>Initial directory structure.</msg>
+</logentry>
+</log>

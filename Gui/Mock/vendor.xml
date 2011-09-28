@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<log>
+<logentry
+   revision="64">
+<author>olivier.dagenais</author>
+<date>2009-10-04T00:05:24.384870Z</date>
+<msg>Tagging 'current' with source revision 140969.</msg>
+</logentry>
+<logentry
+   revision="63">
+<author>olivier.dagenais</author>
+<date>2009-10-04T00:02:39.679595Z</date>
+<msg>Importing NRefactory from http://anonsvn.mono-project.com/source/trunk/monodevelop/main/contrib/NRefactory as of revision 140969, which is the same revision that was used to create the monodevelop 2.1 branch.
+</msg>
+</logentry>
+<logentry
+   revision="62">
+<author>olivier.dagenais</author>
+<date>2009-10-03T23:46:55.717681Z</date>
+<msg>Creating vendor branch area, as per http://svnbook.red-bean.com/en/1.1/ch07s05.html</msg>
+</logentry>
+</log>

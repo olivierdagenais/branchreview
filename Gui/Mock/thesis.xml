@@ -1,0 +1,794 @@
+<?xml version="1.0"?>
+<log>
+<logentry
+   revision="301">
+<author>olivier.dagenais</author>
+<date>2011-08-20T02:15:42.936609Z</date>
+<msg>Lots of small corrections to section 3.5.</msg>
+</logentry>
+<logentry
+   revision="300">
+<author>olivier.dagenais</author>
+<date>2011-08-20T02:15:36.438592Z</date>
+<msg>Lots of small changes and corrections to section 3.4, including a new citation.</msg>
+</logentry>
+<logentry
+   revision="299">
+<author>olivier.dagenais</author>
+<date>2011-08-20T02:15:29.705657Z</date>
+<msg>Lots of small changes in section 3.3.</msg>
+</logentry>
+<logentry
+   revision="298">
+<author>olivier.dagenais</author>
+<date>2011-08-18T01:13:24.728910Z</date>
+<msg>Added more details to the references, mostly in the form of line numbers.</msg>
+</logentry>
+<logentry
+   revision="297">
+<author>olivier.dagenais</author>
+<date>2011-08-18T01:13:19.338531Z</date>
+<msg>1 - Instead of having to hunt down places where -- should be used, added some XSL to take care of it from instances of ' - '.
+2 - Some more minor fixes.</msg>
+</logentry>
+<logentry
+   revision="296">
+<author>olivier.dagenais</author>
+<date>2011-08-18T01:13:11.049397Z</date>
+<msg>Lots of small changes.</msg>
+</logentry>
+<logentry
+   revision="295">
+<author>olivier.dagenais</author>
+<date>2011-08-18T01:13:05.992553Z</date>
+<msg>Added two notes about the name and purpose of the second column.</msg>
+</logentry>
+<logentry
+   revision="294">
+<author>olivier.dagenais</author>
+<date>2011-08-18T01:12:55.020747Z</date>
+<msg>The CUT's public interface does not have to be affected if visibility is increased private-&gt;internal and protected-&gt;protected internal.</msg>
+</logentry>
+<logentry
+   revision="293">
+<author>olivier.dagenais</author>
+<date>2011-08-18T01:12:48.229463Z</date>
+<msg>Added a paragraph with two very supportive quotes discovered recently from two books.</msg>
+</logentry>
+<logentry
+   revision="292">
+<author>olivier.dagenais</author>
+<date>2011-08-18T01:12:42.201812Z</date>
+<msg>Fixed some fancy single and double quotes.</msg>
+</logentry>
+<logentry
+   revision="291">
+<author>olivier.dagenais</author>
+<date>2011-08-18T01:12:35.509506Z</date>
+<msg>Added the "Functional Programming for Java Developers" book with lots of notes.</msg>
+</logentry>
+<logentry
+   revision="264">
+<author>olivier.dagenais</author>
+<date>2011-07-27T02:28:38.783097Z</date>
+<msg>Added a bit of content and made some fixes to section 4.2.</msg>
+</logentry>
+<logentry
+   revision="259">
+<author>olivier.dagenais</author>
+<date>2011-07-24T02:12:02.451518Z</date>
+<msg>1 - Found a book with some interesting passages, so added it to the database, but not yet to the document.
+2 - Added a bit of content but mostly TODOs for what's coming next.</msg>
+</logentry>
+<logentry
+   revision="258">
+<author>olivier.dagenais</author>
+<date>2011-07-23T00:16:02.690757Z</date>
+<msg>1 - Figured out how to cite several references at once, so collapsed all of the multi-references.
+2 - Fixed a use of underline.
+3 - Found another source for "defects are more expensive to fix the more you wait".
+4 - Added some notes.
+5 - Started adding/fixing content for section 4.1.</msg>
+</logentry>
+<logentry
+   revision="257">
+<author>olivier.dagenais</author>
+<date>2011-07-19T21:22:52.586726Z</date>
+<msg>First batch of changes suggested by Marie-Noëlle.</msg>
+</logentry>
+<logentry
+   revision="256">
+<author>olivier.dagenais</author>
+<date>2011-07-19T21:16:27.272424Z</date>
+<msg>Added the ability to underline.</msg>
+</logentry>
+<logentry
+   revision="255">
+<author>olivier.dagenais</author>
+<date>2011-07-19T21:04:54.134870Z</date>
+<msg>Now including bin in the list of folders to clean.</msg>
+</logentry>
+<logentry
+   revision="254">
+<author>olivier.dagenais</author>
+<date>2011-07-18T20:32:53.222861Z</date>
+<msg>Added a feature to iTeX to convert a double quote preceded by a space to the LaTeX way of opening quotes, that is to say two backticks.</msg>
+</logentry>
+<logentry
+   revision="253">
+<author>olivier.dagenais</author>
+<date>2011-07-18T20:07:37.060604Z</date>
+<msg>Switched to XeTeX to be able to disable ligatures without disabling other text enhancements.</msg>
+</logentry>
+<logentry
+   revision="252">
+<author>olivier.dagenais</author>
+<date>2011-07-18T12:36:40.770508Z</date>
+<msg>Fixed typo in reference.</msg>
+</logentry>
+<logentry
+   revision="251">
+<author>olivier.dagenais</author>
+<date>2011-07-16T15:59:52.327116Z</date>
+<msg>Added an awesome quote by Binder to the state problem section.</msg>
+</logentry>
+<logentry
+   revision="250">
+<author>olivier.dagenais</author>
+<date>2011-07-16T02:12:56.108099Z</date>
+<msg>1 - Slight improvements to Step 1.
+2 - A lot of the motivations in Step 4 were moved to Design Decisions and some enhancements were performed at the same time.
+3 - Added content for the Decisions made section and cleaned up some notes.
+4 - Moved some notes to the Results chapter.
+5 - Deleted the Reproducibility section since that should be covered in Experiment design.</msg>
+</logentry>
+<logentry
+   revision="249">
+<author>olivier.dagenais</author>
+<date>2011-07-15T15:24:21.920639Z</date>
+<msg>Noticed the authors' names were missing some "decorations" on some of the letters.</msg>
+</logentry>
+<logentry
+   revision="248">
+<author>olivier.dagenais</author>
+<date>2011-07-15T14:35:52.346585Z</date>
+<msg>Added note about possible talking point.</msg>
+</logentry>
+<logentry
+   revision="247">
+<author>olivier.dagenais</author>
+<date>2011-07-15T13:38:55.698184Z</date>
+<msg>Introducing the "Stateless version" of MortonLayout where the DecodeAxis() method was extracted to show that sometimes, computations should stay together for readability and/or performance.
+Also noted same in subsection 3.3.2</msg>
+</logentry>
+<logentry
+   revision="246">
+<author>olivier.dagenais</author>
+<date>2011-07-15T13:13:33.202332Z</date>
+<msg>Imported the tests for MortonLayout from the PivotStack project and adjusted the layout slightly.</msg>
+</logentry>
+<logentry
+   revision="245">
+<author>olivier.dagenais</author>
+<date>2011-07-15T12:49:28.552922Z</date>
+<msg>Importing (and adapting) the MortonLayout class from the PivotStack project to illustrate "computation coupling".</msg>
+</logentry>
+<logentry
+   revision="244">
+<author>olivier.dagenais</author>
+<date>2011-07-15T12:39:20.924624Z</date>
+<msg>Added two citations recommended by Dwight.</msg>
+</logentry>
+<logentry
+   revision="243">
+<author>olivier.dagenais</author>
+<date>2011-07-15T12:25:26.977515Z</date>
+<msg>Enhanced Step 2 with a few insights that relate my idea to existing work in the field.</msg>
+</logentry>
+<logentry
+   revision="242">
+<author>olivier.dagenais</author>
+<date>2011-07-14T21:19:47.178181Z</date>
+<msg>Added an example of re-ordering to separate computations.</msg>
+</logentry>
+<logentry
+   revision="241">
+<author>olivier.dagenais</author>
+<date>2011-07-14T21:11:56.774646Z</date>
+<msg>Introducing the Stateless version of CartesianCoordinate, which had a few lines re-ordered in ToPolar().</msg>
+</logentry>
+<logentry
+   revision="240">
+<author>olivier.dagenais</author>
+<date>2011-07-14T20:56:16.653073Z</date>
+<msg>Introducing the stateless version of QuadraticEquation with the Root() method extracted.</msg>
+</logentry>
+<logentry
+   revision="239">
+<author>olivier.dagenais</author>
+<date>2011-07-14T20:36:24.937227Z</date>
+<msg>Added some tests for ComputeRoots()</msg>
+</logentry>
+<logentry
+   revision="238">
+<author>olivier.dagenais</author>
+<date>2011-07-14T19:59:40.100004Z</date>
+<msg>Oops, forgot to include the square root.</msg>
+</logentry>
+<logentry
+   revision="237">
+<author>olivier.dagenais</author>
+<date>2011-07-14T19:57:00.231534Z</date>
+<msg>Introducing the PolarCoordinate, CartesianCoordinate and QuadraticEquation classes to use as examples.</msg>
+</logentry>
+<logentry
+   revision="236">
+<author>olivier.dagenais</author>
+<date>2011-07-14T18:04:02.088109Z</date>
+<msg>Implemented a TODO about finding an example of a non-stateless method that would cause a candidate block to be split.</msg>
+</logentry>
+<logentry
+   revision="235">
+<author>olivier.dagenais</author>
+<date>2011-07-14T17:42:48.367403Z</date>
+<msg>Introducing the Stateless version of SubversionClient, with two stateless methods extracted and two unit tests added.</msg>
+</logentry>
+<logentry
+   revision="234">
+<author>olivier.dagenais</author>
+<date>2011-07-14T16:45:27.200906Z</date>
+<msg>Introducing the SubversionClient class, inspired from functionality in BART.</msg>
+</logentry>
+<logentry
+   revision="233">
+<author>olivier.dagenais</author>
+<date>2011-07-14T15:40:03.796479Z</date>
+<msg>Made some changes based on review feedback, mostly wording but added a new example and modified an existing one to allow for a better comparison.</msg>
+</logentry>
+<logentry
+   revision="232">
+<author>olivier.dagenais</author>
+<date>2011-07-14T01:42:52.281047Z</date>
+<msg>Added a citation for explicit interface implementations and fixed some related wording.</msg>
+</logentry>
+<logentry
+   revision="231">
+<author>olivier.dagenais</author>
+<date>2011-07-14T01:38:01.547065Z</date>
+<msg>1 - Added a note to the Design section to emphasize the importance of pure code refactoring.
+2 - Provided content for the Applicability section.
+3 - Removed notes that have since been handled/discussed or are no longer relevant.</msg>
+</logentry>
+<logentry
+   revision="230">
+<author>olivier.dagenais</author>
+<date>2011-07-13T15:14:14.402467Z</date>
+<msg>Introducing the proposed Stateless and Immutable attributes along with samples of their use, plus one unit test.</msg>
+</logentry>
+<logentry
+   revision="229">
+<author>olivier.dagenais</author>
+<date>2011-07-13T02:17:57.911703Z</date>
+<msg>- Enhanced one of the interesting candidate block categories and two of the uninteresting ones.
+- Increasing the amount of sample code shown for testing parsing and formatting.
+- Provided content for Section 3.3 (Suitability) with a TODO for a potential subsection 3.3.5</msg>
+</logentry>
+<logentry
+   revision="228">
+<author>olivier.dagenais</author>
+<date>2011-07-13T01:37:25.397758Z</date>
+<msg>Introducing MutableVector and EuclideanVectorSpace to demonstrate a method that could still benefit from SME even though it does not manipulate HMS.</msg>
+</logentry>
+<logentry
+   revision="227">
+<author>olivier.dagenais</author>
+<date>2011-07-12T15:59:48.357660Z</date>
+<msg>Re-ordered the tests so it matches the order of the parsing and formatting code in the CUT.</msg>
+</logentry>
+<logentry
+   revision="226">
+<author>olivier.dagenais</author>
+<date>2011-07-12T02:26:05.748933Z</date>
+<msg>- Added a TODO about static vs. instance methods in candidate block identification.
+- Decided to pluralize return values everywhere for simplicity since I already do it for input parameters anyway.
+- Provided content for steps 4, 5 and 6.
+- Added yet more notes and potential talking points.</msg>
+</logentry>
+<logentry
+   revision="225">
+<author>olivier.dagenais</author>
+<date>2011-07-12T02:11:39.862763Z</date>
+<msg>Extracted the stateless CrossProduct() method and added a unit test for it.</msg>
+</logentry>
+<logentry
+   revision="224">
+<author>olivier.dagenais</author>
+<date>2011-07-12T02:07:55.920169Z</date>
+<msg>For the Stateless version, extracted the DotProduct() method and added a unit test for it.</msg>
+</logentry>
+<logentry
+   revision="223">
+<author>olivier.dagenais</author>
+<date>2011-07-12T01:17:49.340260Z</date>
+<msg>Introducing a Plane class (and its dependent Vector class) that illustrates some inline math and a unit test.</msg>
+</logentry>
+<logentry
+   revision="222">
+<author>olivier.dagenais</author>
+<date>2011-07-11T20:54:16.506480Z</date>
+<msg>Added another test for the CodeFormatMatchEvaluator; one that is more direct but requires more "arrange".</msg>
+</logentry>
+<logentry
+   revision="221">
+<author>olivier.dagenais</author>
+<date>2011-07-11T20:08:48.580473Z</date>
+<msg>Introducing a variation of SME:  Regex instance extraction.  This means the tests don't have to create an instance of the Regex class that could be configured differently from the one used during execution (if RegexOptions had been used).  It could also increase performance, assuming the Regex class does not attempt to cache compiled patterns when calling the static methods.</msg>
+</logentry>
+<logentry
+   revision="220">
+<author>olivier.dagenais</author>
+<date>2011-07-11T19:59:54.000510Z</date>
+<msg>Introducing a variation of SME: constant extraction.  This allows the parsing to be tested independently of the replacement, as shown by the new unit test.</msg>
+</logentry>
+<logentry
+   revision="219">
+<author>olivier.dagenais</author>
+<date>2011-07-11T19:40:16.156923Z</date>
+<msg>Introducing a simplified and reflowed version of the CodeBlockModifier from the Textile project, with SME on the CodeFormatMatchEvaluator() method and two unit tests.</msg>
+</logentry>
+<logentry
+   revision="218">
+<author>olivier.dagenais</author>
+<date>2011-07-11T19:31:48.146548Z</date>
+<msg>Introducing a simplified and reflowed version of the CodeBlockModifier from the Textile project, with a unit test.</msg>
+</logentry>
+<logentry
+   revision="217">
+<author>nado18@gmail.com</author>
+<date>2011-07-09T04:35:10.485753Z</date>
+<msg>Generating eBook for thesis in ePub format
+
+1- Converting thesis to ePub
+    1.1- Adding xsl to output thesis in html
+    1.2- Adding css stylesheet to go along html
+    1.3- Adding ePub stub into which generated html and css are dropped
+2- Adding Makefile to automate step 1
+3- Adding thesis.html and thesis.epub to svn:ignore property
+
+</msg>
+</logentry>
+<logentry
+   revision="216">
+<author>olivier.dagenais</author>
+<date>2011-07-08T18:27:49.726094Z</date>
+<msg>- Further improved Overview, Step 1 and Step 2
+- Provided some initial content for Step 3
+- Added yet more notes/discussion about scope and philosophy</msg>
+</logentry>
+<logentry
+   revision="215">
+<author>olivier.dagenais</author>
+<date>2011-07-08T16:16:21.432574Z</date>
+<msg>- Improved Step 1 by clarifying and enhancing the criteria and providing a 4th undesirable.
+- Provided some initial content for Step 2; some examples would help a lot.
+- Added some more content for examples.</msg>
+</logentry>
+<logentry
+   revision="214">
+<author>olivier.dagenais</author>
+<date>2011-07-07T20:48:52.762403Z</date>
+<msg>Added stubs for the remaining steps.</msg>
+</logentry>
+<logentry
+   revision="213">
+<author>olivier.dagenais</author>
+<date>2011-07-07T20:46:02.593183Z</date>
+<msg>Adjusted the pseudo-code procedure to be more iterative since it is unlikely that all candidate blocks would be found all at once.</msg>
+</logentry>
+<logentry
+   revision="212">
+<author>olivier.dagenais</author>
+<date>2011-07-07T20:40:12.516381Z</date>
+<msg>Refined the overview and provided lots of content for Step 1 plus introduced a possible appendix.</msg>
+</logentry>
+<logentry
+   revision="211">
+<author>olivier.dagenais</author>
+<date>2011-07-07T19:27:13.195298Z</date>
+<msg>Come to think of it, the method was calculating the radians between two coordinates and thus moved the radius multiplication into it and added a unit test.</msg>
+</logentry>
+<logentry
+   revision="210">
+<author>olivier.dagenais</author>
+<date>2011-07-07T18:28:55.520948Z</date>
+<msg>After re-inlining the local variables introduced earlier.</msg>
+</logentry>
+<logentry
+   revision="209">
+<author>olivier.dagenais</author>
+<date>2011-07-07T18:27:05.173039Z</date>
+<msg>After extracting the CalculateGreatCircleDistance() method.</msg>
+</logentry>
+<logentry
+   revision="208">
+<author>olivier.dagenais</author>
+<date>2011-07-07T18:23:58.042704Z</date>
+<msg>This is what the ComputeTourLength() method looks like after introducing local variables for the inputs and output of the candidate block, just before extraction.</msg>
+</logentry>
+<logentry
+   revision="207">
+<author>olivier.dagenais</author>
+<date>2011-07-07T18:19:48.281117Z</date>
+<msg>Introducing the [partially-] stateless variant on the Travelling Salesperson Problem that computes the great-circle distance between any two cities, assuming the salesperson will be flying.  The ToRadians() method was extracted to enable its testing.  Includes two unit tests.</msg>
+</logentry>
+<logentry
+   revision="206">
+<author>olivier.dagenais</author>
+<date>2011-07-07T18:05:29.965282Z</date>
+<msg>Introducing a variant on the Travelling Salesperson Problem that computes the great-circle distance between any two cities, assuming the salesperson will be flying.  Includes a unit test.</msg>
+</logentry>
+<logentry
+   revision="205">
+<author>olivier.dagenais</author>
+<date>2011-07-07T01:46:58.203881Z</date>
+<msg>Oops, forgot the project file.</msg>
+</logentry>
+<logentry
+   revision="204">
+<author>olivier.dagenais</author>
+<date>2011-07-07T01:46:15.194196Z</date>
+<msg>Introducing an adapted, standalone version of FootNoteFormatterState, reflowed for inclusion in the text.
+Fixed some spacing in the Stateful version.</msg>
+</logentry>
+<logentry
+   revision="203">
+<author>olivier.dagenais</author>
+<date>2011-07-07T00:57:24.223548Z</date>
+<msg>Introducing an adapted, standalone version of FootNoteFormatterState, reflowed for inclusion in the text.</msg>
+</logentry>
+<logentry
+   revision="201">
+<author>olivier.dagenais</author>
+<date>2011-07-06T18:56:44.013760Z</date>
+<msg>Reflowed the sample code to fit within the 52-characters per line limit.
+Added content to the "identification" phase and provided an example of the first category.</msg>
+</logentry>
+<logentry
+   revision="200">
+<author>olivier.dagenais</author>
+<date>2011-07-06T15:55:39.059493Z</date>
+<msg>Added the stateless version of the example of some processing that contains a candidate block inside a loop, with said candidate block extracted into its own method and the new unit test it allows.</msg>
+</logentry>
+<logentry
+   revision="199">
+<author>olivier.dagenais</author>
+<date>2011-07-06T15:51:44.499572Z</date>
+<msg>Added an example of some processing that contains a candidate block inside a loop.</msg>
+</logentry>
+<logentry
+   revision="198">
+<author>olivier.dagenais</author>
+<date>2011-07-06T12:43:05.308947Z</date>
+<msg>Now compiling and running unit tests in the samples, which incidentally fixes the missing assembly problem.</msg>
+</logentry>
+<logentry
+   revision="197">
+<author>olivier.dagenais</author>
+<date>2011-07-05T01:27:15.576792Z</date>
+<msg>1 - Shuffled the contents of the Approach chapter to have the Design section be all about how SME works.
+2 - Shifted the first line of the items in the Overview section to have a nicer collapsed view.
+3 - Introducing a pseudo-code version of the general SME procedure.
+4 - Added a draft of part of the first step of SME.</msg>
+</logentry>
+<logentry
+   revision="196">
+<author>olivier.dagenais</author>
+<date>2011-07-04T20:22:45.013652Z</date>
+<msg>Added the realCode listings style, which required redefining the lstinputlisting command to avoid a parsing error when a listing is used inside a tabular.
+Also added a few notes about decisions made.</msg>
+</logentry>
+<logentry
+   revision="195">
+<author>olivier.dagenais</author>
+<date>2011-07-04T18:29:04.537945Z</date>
+<msg>Added some notes in the Approach chapter.</msg>
+</logentry>
+<logentry
+   revision="194">
+<author>olivier.dagenais</author>
+<date>2011-07-04T15:29:51.181828Z</date>
+<msg>Added to the first subsection of the Design section.</msg>
+</logentry>
+<logentry
+   revision="193">
+<author>olivier.dagenais</author>
+<date>2011-07-04T14:40:51.763549Z</date>
+<msg>Replaced instances of "i.e." with other forms, sometimes removing it completely.
+Also fixed a typo.</msg>
+</logentry>
+<logentry
+   revision="192">
+<author>olivier.dagenais</author>
+<date>2011-06-29T02:34:40.372395Z</date>
+<msg>Started writing content for the Design section of the Approach chapter, mostly in the form of visible TODOs.</msg>
+</logentry>
+<logentry
+   revision="191">
+<author>olivier.dagenais</author>
+<date>2011-06-28T01:45:46.040786Z</date>
+<msg>Fixed typos and added some code for non-breaking spaces before references.</msg>
+</logentry>
+<logentry
+   revision="190">
+<author>olivier.dagenais</author>
+<date>2011-06-26T23:21:28.645807Z</date>
+<msg>Initial preliminary content for the Scope section.</msg>
+</logentry>
+<logentry
+   revision="189">
+<author>olivier.dagenais</author>
+<date>2011-06-26T01:12:22.673886Z</date>
+<msg>Blocks must have their options after their param and said option should not occur in the closing of the environment.</msg>
+</logentry>
+<logentry
+   revision="188">
+<author>olivier.dagenais</author>
+<date>2011-06-25T21:44:38.458065Z</date>
+<msg>It seems the Context section is unnecessary, since the Related work section would cover the same content.</msg>
+</logentry>
+<logentry
+   revision="187">
+<author>olivier.dagenais</author>
+<date>2011-06-25T20:10:14.819413Z</date>
+<msg>1 - Use non-blocking invocations of PDFXCView.
+2 - Bind F5 to the same as F7.
+3 - Contributed content for the Related work section, with lots of references.</msg>
+</logentry>
+<logentry
+   revision="186">
+<author>olivier.dagenais</author>
+<date>2011-06-11T16:45:34.730706Z</date>
+<msg>Finished adding references to existing text.</msg>
+</logentry>
+<logentry
+   revision="185">
+<author>olivier.dagenais</author>
+<date>2011-06-07T02:37:55.903290Z</date>
+<msg>1 - Forcing word-wrap initially on.
+2 - Added yet more references, fixed a few of them.
+3 - Added lots of citations.</msg>
+</logentry>
+<logentry
+   revision="184">
+<author>olivier.dagenais</author>
+<date>2011-06-04T19:57:27.541668Z</date>
+<msg>Added some missing references and corrected/enhanced a few existing ones.
+Added some code to make sure spaces before citations are non-breaking.
+Now using the url and hyperref packages to make URLs and other links in the document (table of contents, references, etc.) clickable.  This required switching to pdflatex, but also allowed some PDF properties to be set.
+Started adding citations and fixing up as well as expanding some ideas that turned out to not have been made by the authors.
+The first pair of listings had to be moved into the Motivation section to avoid an awkward blank section because the code listings are not floating.
+Introducing a batch file that closes and re-opens the PDF between builds.</msg>
+</logentry>
+<logentry
+   revision="183">
+<author>olivier.dagenais</author>
+<date>2011-05-31T03:01:12.204256Z</date>
+<msg>Added remaining papers and made a minor fix to the text.</msg>
+</logentry>
+<logentry
+   revision="182">
+<author>olivier.dagenais</author>
+<date>2011-05-30T02:40:54.500895Z</date>
+<msg>Made a few changes recommended by Dwight and added most of my references to the Bib database.</msg>
+</logentry>
+<logentry
+   revision="181">
+<author>olivier.dagenais</author>
+<date>2011-05-26T00:17:46.225982Z</date>
+<msg>Provided content for the Intents of CGT section.</msg>
+</logentry>
+<logentry
+   revision="180">
+<author>olivier.dagenais</author>
+<date>2011-05-24T01:19:32.373508Z</date>
+<msg>1 - Improved the Automatic Testing section with a note about sampling.
+2 - Provided some content for the Concolic Testing section.</msg>
+</logentry>
+<logentry
+   revision="179">
+<author>olivier.dagenais</author>
+<date>2011-05-23T02:53:50.404432Z</date>
+<msg>1 - Trimmed spaces at the end of lines.
+2 - Fixed a quote block.
+3 - Improved part of the "Automated testing" section.
+4 - Enhanced the "Motivation for CGT" section.
+5 - Relocated the "Intents of CGT" section to after the "Approaches to CGT" section.
+6 - Provided content for the RT and SBST subsections.</msg>
+</logentry>
+<logentry
+   revision="178">
+<author>olivier.dagenais</author>
+<date>2011-05-22T03:01:54.228823Z</date>
+<msg>Improved the Motivation for Computer-Generated Tests section.</msg>
+</logentry>
+<logentry
+   revision="177">
+<author>olivier.dagenais</author>
+<date>2011-05-20T02:27:05.448231Z</date>
+<msg>Added a bit of content to the "Motivation for Computer-Generated Tests" section.</msg>
+</logentry>
+<logentry
+   revision="176">
+<author>olivier.dagenais</author>
+<date>2011-05-19T01:58:05.333590Z</date>
+<msg>1 - It turns out I meant "statement coverage".
+2 - Fixed up the OOP section.
+3 - Added content to the Automated testing section.</msg>
+</logentry>
+<logentry
+   revision="175">
+<author>olivier.dagenais</author>
+<date>2011-05-17T02:46:13.394217Z</date>
+<msg>Added a few minor features to iTeX, renaming the &lt;e&gt; element to &lt;m&gt; since its primary purpose is math.
+Fixed the existing uses of &lt;e&gt; to either &lt;em&gt; or &lt;tt&gt;.
+Provided content for the Intro and OOP sections of the Background chapter.</msg>
+</logentry>
+<logentry
+   revision="174">
+<author>olivier.dagenais</author>
+<date>2011-05-14T03:25:46.145129Z</date>
+<msg>Removed some obsolete comments (some of them were transferred), moved most of the content that was in Objectives to a new "Evaluation/experiment design" section, although said content is alluded to.
+Added a note regarding a possible scope narrowing.</msg>
+</logentry>
+<logentry
+   revision="173">
+<author>olivier.dagenais</author>
+<date>2011-05-13T02:52:25.984756Z</date>
+<msg>Reworked the Goal section to be more general (improve testability) and moved the specifics (stateless method extraction) to the Objectives section, rewording in the process.</msg>
+</logentry>
+<logentry
+   revision="172">
+<author>olivier.dagenais</author>
+<date>2011-05-12T01:24:11.780030Z</date>
+<msg>Mostly small English-related improvements, but also expanded upon the combination of hidden + mutable instance state is the real problem.</msg>
+</logentry>
+<logentry
+   revision="171">
+<author>olivier.dagenais</author>
+<date>2011-05-11T02:00:07.573304Z</date>
+<msg>Made changes as suggested by Dwight.</msg>
+</logentry>
+<logentry
+   revision="170">
+<author>olivier.dagenais</author>
+<date>2011-05-10T01:53:11.034527Z</date>
+<msg>Expanded in the Problem section, providing an example in the form of two source code listings.
+Added a bit of content to the Motivation section, providing an example in the form of two source code listings.
+Reformatted the stateless SmokeDetector to fit in its half-page column.</msg>
+</logentry>
+<logentry
+   revision="169">
+<author>olivier.dagenais</author>
+<date>2011-05-10T01:21:51.250880Z</date>
+<msg>Added the Stateless project, adapting the SmokeDetector and SmokeDetectorTest samples to trivially extract a stateless method, then write a test for a subset thereof.</msg>
+</logentry>
+<logentry
+   revision="168">
+<author>olivier.dagenais</author>
+<date>2011-05-10T00:57:35.131571Z</date>
+<msg>Added the Stateful project with SmokeDetector and SmokeDetectorTest samples.</msg>
+</logentry>
+<logentry
+   revision="167">
+<author>olivier.dagenais</author>
+<date>2011-05-10T00:07:36.866008Z</date>
+<msg>Added an "Acronyms" appendix with most of the acronyms used so far.</msg>
+</logentry>
+<logentry
+   revision="166">
+<author>olivier.dagenais</author>
+<date>2011-05-10T00:04:26.945368Z</date>
+<msg>Now using the "listings" package (with appropriate configuration and references) and took the opportunity to rename a grouping of related mark-up a "region".</msg>
+</logentry>
+<logentry
+   revision="165">
+<author>olivier.dagenais</author>
+<date>2011-05-09T23:55:42.612361Z</date>
+<msg>Added a semi-related paper to the bibliography database.</msg>
+</logentry>
+<logentry
+   revision="164">
+<author>olivier.dagenais</author>
+<date>2011-05-09T01:34:07.276261Z</date>
+<msg>Replaced most of the batch file with an MSBuild script that will fail faster and allow more complicated assembly.</msg>
+</logentry>
+<logentry
+   revision="163">
+<author>olivier.dagenais</author>
+<date>2011-05-05T02:43:02.339411Z</date>
+<msg>A few small fixes, but mostly notes and TODOs.</msg>
+</logentry>
+<logentry
+   revision="162">
+<author>olivier.dagenais</author>
+<date>2011-05-04T01:34:12.956459Z</date>
+<msg>Mostly added content to the Goals section but also a bit to the Objectives section.</msg>
+</logentry>
+<logentry
+   revision="161">
+<author>olivier.dagenais</author>
+<date>2011-05-03T02:17:08.357306Z</date>
+<msg>A few corrections and enhancements to the Problem section.
+Expanded the Motivation section.
+Started writing some of the Goals section.</msg>
+</logentry>
+<logentry
+   revision="160">
+<author>olivier.dagenais</author>
+<date>2011-05-02T01:45:46.235616Z</date>
+<msg>Patched iTeX to allow for "inline comments".
+Replaced dashes with equal signs in comments, because some XSL parsers freak out if they see "--" inside a comment but not at the end of it.
+Added content mostly in the Introduction and Background chapters.</msg>
+</logentry>
+<logentry
+   revision="123">
+<author>olivier.dagenais</author>
+<date>2011-03-05T14:22:12.822217Z</date>
+<msg>Added lots of notes on possible talking points.</msg>
+</logentry>
+<logentry
+   revision="122">
+<author>olivier.dagenais</author>
+<date>2011-03-03T17:15:48.512238Z</date>
+<msg>Upgraded to the latest version of iTeX, which now supports multi-line comments.</msg>
+</logentry>
+<logentry
+   revision="121">
+<author>olivier.dagenais</author>
+<date>2011-03-03T14:53:33.028523Z</date>
+<msg>Simplified the chapters to more closely match the suggested outline, added comments and turned existing notes into comments.</msg>
+</logentry>
+<logentry
+   revision="120">
+<author>olivier.dagenais</author>
+<date>2011-03-03T14:45:04.953722Z</date>
+<msg>Specifying a tab size of 2 spaces.</msg>
+</logentry>
+<logentry
+   revision="118">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-01-14T19:09:29.770028Z</date>
+<msg>Adjusted build to generate "letter"-sized pages instead of the default A4.</msg>
+</logentry>
+<logentry
+   revision="117">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-01-14T18:53:15.943372Z</date>
+<msg>Added the Mcminn03thestate BibTeX entry and a sample citation for testing.
+</msg>
+</logentry>
+<logentry
+   revision="113">
+<author>olivier.dagenais</author>
+<date>2010-09-08T01:10:12.726712Z</date>
+<msg>Disabled ligatures to make the PDF more copy-pasteable and filled in some basic template values.</msg>
+</logentry>
+<logentry
+   revision="112">
+<author>olivier.dagenais</author>
+<date>2010-09-08T01:03:28.196199Z</date>
+<msg>Initial commit of the thesis-related files:
+1 - dalthesis.cls: TeX class file from http://people.scs.carleton.ca/~jeanpier//template/
+2 - thesis.itex: The iTeX version of PhD Template.tex from http://people.scs.carleton.ca/~jeanpier//template/
+3 - iTeX.xsl: The iTeX stylesheet from http://github.com/olivierdagenais/iTeX as of commit 7453995a88b6a3ac91dee7197dd778321b2d18b1
+4 - thesis.bib: A blank BibTeX database created with JabRef
+5 - build.bat: A batch file to compile and assemble all the files into a PDF file, assuming there's a LaTeX distribution (such as TexLive) and xsl.exe in the path
+6 - SciTE.properties: Convenience keyboard mappings for the SciTE text editor to launch build.bat or the compiled PDF file.</msg>
+</logentry>
+<logentry
+   revision="111">
+<author>olivier.dagenais</author>
+<date>2010-09-08T00:47:39.518488Z</date>
+<msg>Adding top-level thesis folder</msg>
+</logentry>
+</log>

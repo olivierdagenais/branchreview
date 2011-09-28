@@ -97,6 +97,11 @@
     <Compile Include="ScintillaExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Mock\root.xml" />
+    <EmbeddedResource Include="Mock\suitability.xml" />
+    <EmbeddedResource Include="Mock\thesis.xml" />
+    <EmbeddedResource Include="Mock\todd.xml" />
+    <EmbeddedResource Include="Mock\vendor.xml" />
     <Content Include="SciLexer.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

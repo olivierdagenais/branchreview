@@ -1,0 +1,632 @@
+<?xml version="1.0"?>
+<log>
+<logentry
+   revision="289">
+<author>olivier.dagenais</author>
+<date>2011-07-29T01:14:45.912739Z</date>
+<msg>Re-inlined some methods because they cause side-effects.</msg>
+</logentry>
+<logentry
+   revision="288">
+<author>olivier.dagenais</author>
+<date>2011-07-29T00:52:47.735898Z</date>
+<msg>Restoring the ProcessNode() method since the extraction wasn't stateless; the method caused side-effects on the second argument.</msg>
+</logentry>
+<logentry
+   revision="287">
+<author>olivier.dagenais</author>
+<date>2011-07-29T00:48:58.213768Z</date>
+<msg>Extracted a few simple stateless methods.</msg>
+</logentry>
+<logentry
+   revision="286">
+<author>olivier.dagenais</author>
+<date>2011-07-29T00:19:27.347515Z</date>
+<msg>Extracted the stateless ValidateFileFormat() method.</msg>
+</logentry>
+<logentry
+   revision="285">
+<author>olivier.dagenais</author>
+<date>2011-07-28T23:57:06.002703Z</date>
+<msg>Restoring some methods to private since they have side-effects or interact with the environment.</msg>
+</logentry>
+<logentry
+   revision="284">
+<author>olivier.dagenais</author>
+<date>2011-07-28T23:32:34.082392Z</date>
+<msg>Extracted the VerifyZeroHash() stateless method.</msg>
+</logentry>
+<logentry
+   revision="283">
+<author>olivier.dagenais</author>
+<date>2011-07-28T23:25:45.999484Z</date>
+<msg>Extracted the stateless VerifyBuffer() method.</msg>
+</logentry>
+<logentry
+   revision="282">
+<author>olivier.dagenais</author>
+<date>2011-07-28T23:02:48.155690Z</date>
+<msg>Undid a method extraction because it wasn't stateless: it interacts with the environment.</msg>
+</logentry>
+<logentry
+   revision="281">
+<author>olivier.dagenais</author>
+<date>2011-07-28T22:30:44.249979Z</date>
+<msg>Hid 3 methods because they interact with the environment/have side-effects.</msg>
+</logentry>
+<logentry
+   revision="280">
+<author>olivier.dagenais</author>
+<date>2011-07-28T22:26:19.949040Z</date>
+<msg>Extracted the stateless Validate() method overload.</msg>
+</logentry>
+<logentry
+   revision="279">
+<author>olivier.dagenais</author>
+<date>2011-07-28T22:17:41.629443Z</date>
+<msg>Three methods were switched back to private after realizing they had side-effects.</msg>
+</logentry>
+<logentry
+   revision="278">
+<author>olivier.dagenais</author>
+<date>2011-07-28T21:39:56.416893Z</date>
+<msg>Extracted the stateless GetKeyParts() method which shows the special case of more than one output.</msg>
+</logentry>
+<logentry
+   revision="277">
+<author>olivier.dagenais</author>
+<date>2011-07-28T21:28:47.566900Z</date>
+<msg>Extracted the stateless LoadXmlKey() method, which required a bit of re-ordering.</msg>
+</logentry>
+<logentry
+   revision="276">
+<author>olivier.dagenais</author>
+<date>2011-07-28T21:24:41.011631Z</date>
+<msg>Made two methods private again after noticing they interact with the environment.</msg>
+</logentry>
+<logentry
+   revision="275">
+<author>olivier.dagenais</author>
+<date>2011-07-28T21:21:15.581873Z</date>
+<msg>Extracted the LoadKey() method and made the calling LoadKeyFile() method private again after noticing that it has side-effects.</msg>
+</logentry>
+<logentry
+   revision="274">
+<author>olivier.dagenais</author>
+<date>2011-07-28T20:25:07.835001Z</date>
+<msg>Extracted a few very simple stateless methods.</msg>
+</logentry>
+<logentry
+   revision="273">
+<author>olivier.dagenais</author>
+<date>2011-07-28T20:24:16.267712Z</date>
+<msg>Extracted the ComputeArcFourState() stateless method.</msg>
+</logentry>
+<logentry
+   revision="272">
+<author>olivier.dagenais</author>
+<date>2011-07-28T20:08:23.556664Z</date>
+<msg>Extracting the CombineEntropy() stateless method, which suggested the previously-extracted method of the same name should be renamed to CombineAndNormalizeEntropy() to avoid confusion.</msg>
+</logentry>
+<logentry
+   revision="271">
+<author>olivier.dagenais</author>
+<date>2011-07-28T19:59:55.573266Z</date>
+<msg>Extracted the CombineEntropy() stateless method.</msg>
+</logentry>
+<logentry
+   revision="270">
+<author>olivier.dagenais</author>
+<date>2011-07-28T19:57:49.151355Z</date>
+<msg>Extracted the NormalizeEntropy() stateless method from two blocks of copy-pasted code.</msg>
+</logentry>
+<logentry
+   revision="269">
+<author>olivier.dagenais</author>
+<date>2011-07-28T19:40:07.951615Z</date>
+<msg>Deleted a test class from both KeePassLib strategies.</msg>
+</logentry>
+<logentry
+   revision="268">
+<author>olivier.dagenais</author>
+<date>2011-07-28T18:01:07.298125Z</date>
+<msg>Yet another CORE update (1.0.74) to fix yet more PublicInterfaceComparer bugs.</msg>
+</logentry>
+<logentry
+   revision="267">
+<author>olivier.dagenais</author>
+<date>2011-07-28T15:57:09.299237Z</date>
+<msg>1 - Upgraded to CORE version 1.0.73 to bring in a fix that would cause the publicInterfaceComparer to crash when it scanned KeePassLib.
+2 - Introducing a stricter interpretation of the "visibility" strategy that only makes state (i.e. fields) more visible and not methods.  Preliminary tests indicate that Pex does not seem to have a significantly easier time than "base".</msg>
+</logentry>
+<logentry
+   revision="266">
+<author>olivier.dagenais</author>
+<date>2011-07-28T02:19:51.716121Z</date>
+<msg>1 - Updated to CORE version 1.0.72, which recognizes "protected" and "protected internal" as visible and thus yields different scores.
+2 - Fixed the "visibility" strategy to use "protected internal" instead of "internal" when "protected" was used.  This still makes it more visible to Pex while maintaining visibility to derived classes in other assemblies.
+3 - Found some implicit private members and changed their visibility to internal.</msg>
+</logentry>
+<logentry
+   revision="265">
+<author>olivier.dagenais</author>
+<date>2011-07-27T21:02:24.756259Z</date>
+<msg>Oops, I just realized I had simply fiddled with the signature of PhraseModifierFormat() instead of extracting a stateless method.  Doing it the old way was changing the public interface of PhraseBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="263">
+<author>olivier.dagenais</author>
+<date>2011-07-27T02:18:29.408030Z</date>
+<msg>1 - Upgraded to CORE version 1.0.68 to bring in the new publicInterfaceComparer task.
+2 - Introducing the Visual Studio Code Metrics PowerTool to compute the maintainability index.  Unfortunately, it looks like this will result in a fair amount of copy/pasting and separate spreadsheets.
+3 - Updated the build script to include the public interface comparison (which forces a compilation of the base strategy) so that it will submit to the updated form/spreadsheet.</msg>
+</logentry>
+<logentry
+   revision="262">
+<author>olivier.dagenais</author>
+<date>2011-07-26T16:32:20.422121Z</date>
+<msg>Added the "visibility" strategy, where "private" and "protected" were replaced with "internal".</msg>
+</logentry>
+<logentry
+   revision="261">
+<author>olivier.dagenais</author>
+<date>2011-07-25T23:53:29.640579Z</date>
+<msg>Renamed "variation" to "strategy" and updated related variable names at the same time.</msg>
+</logentry>
+<logentry
+   revision="260">
+<author>olivier.dagenais</author>
+<date>2011-07-25T22:41:26.583461Z</date>
+<msg>Replaced the body of the SafeShowMessageBoxInternal() method with a stub because Pex was triggering it, thus halting the build until someone dismissed the dialog box.</msg>
+</logentry>
+<logentry
+   revision="202">
+<author>olivier.dagenais</author>
+<date>2011-07-06T23:11:33.178894Z</date>
+<msg>1 - Added a test for the template in Enter().
+2 - Extracted the FormatFootNote() method in the manual version to make the template test much simpler and direct.</msg>
+</logentry>
+<logentry
+   revision="159">
+<author>olivier.dagenais</author>
+<date>2011-03-31T21:23:08.580756Z</date>
+<msg>Removing unused m_rel field
+</msg>
+</logentry>
+<logentry
+   revision="158">
+<author>olivier.dagenais</author>
+<date>2011-03-31T21:16:19.736815Z</date>
+<msg>Removing the unused BlockModifierAttribute class
+</msg>
+</logentry>
+<logentry
+   revision="157">
+<author>olivier.dagenais</author>
+<date>2011-03-31T21:10:56.758878Z</date>
+<msg>Moving some regexes used only by the state factory to its registration method
+</msg>
+</logentry>
+<logentry
+   revision="156">
+<author>olivier.dagenais</author>
+<date>2011-03-31T21:03:05.864552Z</date>
+<msg>Merging the StateFactory class into the TextileFormatter class
+</msg>
+</logentry>
+<logentry
+   revision="155">
+<author>olivier.dagenais</author>
+<date>2011-03-31T20:55:16.638941Z</date>
+<msg>Introducing the StateFactory to replace the FormatterStateAttribute and decentralized state "registration"
+</msg>
+</logentry>
+<logentry
+   revision="154">
+<author>olivier.dagenais</author>
+<date>2011-03-31T20:54:17.199126Z</date>
+<msg>Adding two unit tests covering very basic Textile functionality
+</msg>
+</logentry>
+<logentry
+   revision="153">
+<author>olivier.dagenais</author>
+<date>2011-03-31T12:43:23.196952Z</date>
+<msg>Created the "eric" variation from the "base" variation.</msg>
+</logentry>
+<logentry
+   revision="152">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-03-28T21:08:09.393887Z</date>
+<msg>Oops, forgot a file.</msg>
+</logentry>
+<logentry
+   revision="151">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-03-28T21:07:17.043730Z</date>
+<msg>1 - Added a Reset() method to help testing, plus a real smoke detector is likely to have such a button, anyway.
+2 - Introducing SmokeDetectorTest, which exercises most of the functionality of the smoke_detector.</msg>
+</logentry>
+<logentry
+   revision="150">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-03-28T19:33:48.528976Z</date>
+<msg>Introducing ThermostatTest, which covers the thermostat example (from Figure 1) to 100%.</msg>
+</logentry>
+<logentry
+   revision="149">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-03-28T18:50:16.912638Z</date>
+<msg>Creating the "manual" variation of the StateProblem project as a copy of the "base" variation.</msg>
+</logentry>
+<logentry
+   revision="148">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-03-28T17:59:04.856165Z</date>
+<msg>Implemented a C# version of the exam_marks example from Figure 3.
+</msg>
+</logentry>
+<logentry
+   revision="147">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-03-28T16:54:44.152259Z</date>
+<msg>Implemented a C# version of the smoke_detector example from Figure 2.
+</msg>
+</logentry>
+<logentry
+   revision="146">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-03-28T16:34:38.249460Z</date>
+<msg>Implemented a C# version of the thermostat example from Figure 1.</msg>
+</logentry>
+<logentry
+   revision="145">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-03-28T15:49:36.223679Z</date>
+<msg>Introducing the skeleton of the "StateProblem" suitability evaluation project, which will contain code from the "The State Problem for Evolutionary Testing" paper for exploration and investigation.</msg>
+</logentry>
+<logentry
+   revision="144">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-03-28T15:13:32.333178Z</date>
+<msg>Introducing the StrongPhraseBlockModifierTest, which is one line shorter in the manual variation, after a slight refactor.</msg>
+</logentry>
+<logentry
+   revision="143">
+<author>olivier.dagenais</author>
+<date>2011-03-27T01:51:55.829019Z</date>
+<msg>Introducing the SpanPhraseBlockModifierTest, which is one line shorter for the manual variation.</msg>
+</logentry>
+<logentry
+   revision="142">
+<author>olivier.dagenais</author>
+<date>2011-03-27T01:33:01.084096Z</date>
+<msg>Introducing the PreBlockModifierTest, which is one line shorter in the manual variation.  Also exposed a bug with HtmlAttributesPattern.</msg>
+</logentry>
+<logentry
+   revision="141">
+<author>olivier.dagenais</author>
+<date>2011-03-26T21:47:10.289587Z</date>
+<msg>Introducing the PhraseBlockModifierTest, which shows what happens when the method under test is protected and in an abstract class (extra helper class), plus the BuildTagElementString() method was extracted for more direct testing.</msg>
+</logentry>
+<logentry
+   revision="140">
+<author>olivier.dagenais</author>
+<date>2011-03-26T20:44:00.538196Z</date>
+<msg>Introducing the NoTextileEncoderTest, which is able to reach functionality more directly in the manual variation.</msg>
+</logentry>
+<logentry
+   revision="139">
+<author>olivier.dagenais</author>
+<date>2011-03-26T19:53:11.672590Z</date>
+<msg>Introducing the NoTextileBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to NoTextileBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="138">
+<author>olivier.dagenais</author>
+<date>2011-03-26T19:12:02.044764Z</date>
+<msg>Introducing the ItalicPhraseBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to ItalicPhraseBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="137">
+<author>olivier.dagenais</author>
+<date>2011-03-26T18:55:54.496592Z</date>
+<msg>Introducing the InsertedPhraseBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to InsertedPhraseBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="136">
+<author>olivier.dagenais</author>
+<date>2011-03-26T18:51:56.450064Z</date>
+<msg>Introducing the ImageBlockModifierTest; the manual variation has the opportunity to test the parsing separate from the re-assembly after some refactoring.</msg>
+</logentry>
+<logentry
+   revision="135">
+<author>olivier.dagenais</author>
+<date>2011-03-26T16:37:48.240849Z</date>
+<msg>Introducing the HyperLinkBlockModifierTest, which is not only 1 line simpler for the manual variation (after a few slight refactors to HyperLinkBlockModifier), but it also is able to test the parsing separate from the re-assembly.</msg>
+</logentry>
+<logentry
+   revision="134">
+<author>olivier.dagenais</author>
+<date>2011-03-26T15:04:23.060144Z</date>
+<msg>Introducing the GlyphBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to GlyphBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="133">
+<author>olivier.dagenais</author>
+<date>2011-03-12T21:37:27.527978Z</date>
+<msg>Introducing the FootNoteReferenceBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to FootNoteReferenceBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="132">
+<author>olivier.dagenais</author>
+<date>2011-03-12T21:31:44.598527Z</date>
+<msg>Introducing the EmphasisPhraseBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to EmphasisPhraseBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="131">
+<author>olivier.dagenais</author>
+<date>2011-03-12T21:15:27.062175Z</date>
+<msg>Introducing the DeletedPhraseBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to DeletedPhraseBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="130">
+<author>olivier.dagenais</author>
+<date>2011-03-12T21:06:43.632129Z</date>
+<msg>Introducing the CodeBlockModifierTest, which is 1 line simpler (and has one more test) for the manual variation, after a slight refactor to CodeBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="129">
+<author>olivier.dagenais</author>
+<date>2011-03-12T19:52:57.460382Z</date>
+<msg>Oops, forgot a file.</msg>
+</logentry>
+<logentry
+   revision="128">
+<author>olivier.dagenais</author>
+<date>2011-03-12T19:51:59.548465Z</date>
+<msg>Introducing the CitePhraseBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to CitePhraseBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="127">
+<author>olivier.dagenais</author>
+<date>2011-03-06T19:25:40.276112Z</date>
+<msg>Introducing the CapitalsBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to CapitalsBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="126">
+<author>olivier.dagenais</author>
+<date>2011-03-05T20:37:56.730207Z</date>
+<msg>Introducing the BoldPhraseBlockModifierTest, which is 1 line simpler for the manual variation, after a slight refactor to BoldPhraseBlockModifier.</msg>
+</logentry>
+<logentry
+   revision="125">
+<author>olivier.dagenais</author>
+<date>2011-03-05T20:22:53.447753Z</date>
+<msg>Introducing the BlockAttributesParserTest, which is identical for both variations.</msg>
+</logentry>
+<logentry
+   revision="124">
+<author>olivier.dagenais</author>
+<date>2011-03-05T15:24:13.668417Z</date>
+<msg>Created the ManualTests project for Textile in both the base and manual variations.</msg>
+</logentry>
+<logentry
+   revision="119">
+<author>olivier.dagenais@gmail.com</author>
+<date>2011-01-21T16:33:34.732065Z</date>
+<msg>Adding PivotStack as of revision f537131397, including changes up to 2011/01/21.
+Also fixed a bug in the build script due to the results form URL changing.</msg>
+</logentry>
+<logentry
+   revision="114">
+<author>olivier.dagenais</author>
+<date>2010-09-11T17:37:50.783626Z</date>
+<msg>Added the missing InternalsVisibleTo attribute in the KeePassLib projects to make all the internal method extraction effort in that project [finally] worth something.</msg>
+</logentry>
+<logentry
+   revision="110">
+<author>olivier.dagenais</author>
+<date>2010-07-25T19:15:56.916677Z</date>
+<msg>Since the build numbers added too much variability to the result set, switching the first column's number to be the Subversion revision from which the suitability was conducted.  This will provide a consistent and monotonically-increasing number.
+</msg>
+</logentry>
+<logentry
+   revision="109">
+<author>olivier.dagenais</author>
+<date>2010-07-24T18:28:05.937341Z</date>
+<msg>Branched off the AtomicCms project for the manual stateless method extraction work.
+</msg>
+</logentry>
+<logentry
+   revision="108">
+<author>olivier.dagenais</author>
+<date>2010-07-24T17:33:17.225547Z</date>
+<msg>Increased the visibility of private helper methods and turned them static whenever possible.
+</msg>
+</logentry>
+<logentry
+   revision="107">
+<author>olivier.dagenais</author>
+<date>2010-07-11T00:04:22.190506Z</date>
+<msg>1 - Increased the visibility of private helper methods and turned them static whenever possible.
+
+2 - Extracted internal static methods from instance methods where it looked easy and useful to do so.
+</msg>
+</logentry>
+<logentry
+   revision="106">
+<author>olivier.dagenais</author>
+<date>2010-07-10T21:30:52.118599Z</date>
+<msg>1 - Increased the visibility of private helper methods and turned them static whenever possible.
+
+2 - Extracted internal static methods from instance methods where it looked easy and useful to do so.
+</msg>
+</logentry>
+<logentry
+   revision="105">
+<author>olivier.dagenais</author>
+<date>2010-07-10T14:59:22.736808Z</date>
+<msg>1 - Increased the visibility of private helper methods and turned them static whenever possible.
+
+2 - Extracted internal static methods from instance methods where it looked easy and useful to do so.
+</msg>
+</logentry>
+<logentry
+   revision="104">
+<author>olivier.dagenais</author>
+<date>2010-07-03T15:14:47.554944Z</date>
+<msg>1 - Increased the visibility of private helper methods and turned them static whenever possible.
+
+2 - Extracted internal static methods from instance methods where it looked easy and useful to do so.
+</msg>
+</logentry>
+<logentry
+   revision="103">
+<author>olivier.dagenais</author>
+<date>2010-06-05T18:31:35.818792Z</date>
+<msg>Branched off the KeePassLib project for the manual stateless method extraction work.</msg>
+</logentry>
+<logentry
+   revision="102">
+<author>olivier.dagenais</author>
+<date>2010-06-02T01:42:56.663800Z</date>
+<msg>Fixed a bug that hardcoded a Pex assembly path by using the pexFolder variable.</msg>
+</logentry>
+<logentry
+   revision="101">
+<author>olivier.dagenais</author>
+<date>2010-06-02T00:33:46.275665Z</date>
+<msg>1 - Upgraded to Pex version 0.91.50418.0, which required some changes to the build script:
+1.1 - Microsoft.ExtendedReflection.dll needs to be in the GAC
+1.2 - The parameter /TargetClrVersion2 was renamed to /ClrVersion2
+1.3 - The moles_appdir environment variable must be set.
+</msg>
+</logentry>
+<logentry
+   revision="100">
+<author>olivier.dagenais</author>
+<date>2010-05-30T14:01:41.548979Z</date>
+<msg>1 - Extracted BuildCodeElementString() from CodeFormatMatchEvaluator() as it is not possible to create a standalone instance of Match for testing.
+
+2 - Extracted the GetConsumedInput() method out of HandleFormattingState().</msg>
+</logentry>
+<logentry
+   revision="99">
+<author>olivier.dagenais</author>
+<date>2010-05-29T19:56:20.528567Z</date>
+<msg>1 - Increased the visibility of private helper methods and turned them static whenever possible.
+
+2 - Extracted internal static methods from instance methods where it looked easy and useful to do so.
+</msg>
+</logentry>
+<logentry
+   revision="98">
+<author>olivier.dagenais</author>
+<date>2010-05-29T14:39:27.983767Z</date>
+<msg>Branched off the Textile project for the manual stateless method extraction work.</msg>
+</logentry>
+<logentry
+   revision="97">
+<author>olivier.dagenais</author>
+<date>2010-05-04T02:23:33.288124Z</date>
+<msg>In order to avoid assertion failures interrupting the build, switching to Release mode, but adjusting the definition of "Release" to be with full symbols and no optimizations, so like Debug, but without the DEBUG constant defined.</msg>
+</logentry>
+<logentry
+   revision="96">
+<author>olivier.dagenais</author>
+<date>2010-05-01T21:11:54.506299Z</date>
+<msg>Fixed CoverLib.dll's location for COM registration.</msg>
+</logentry>
+<logentry
+   revision="95">
+<author>olivier.dagenais</author>
+<date>2010-05-01T21:05:28.393254Z</date>
+<msg>The Pex wizard dies with a NullReferenceException when running under Hudson (but is fine outside Hudson) _unless_ Fusion logging is enabled.
+1 - Added a "prepare" target to the build script to import the newly-introduced HKLM_Software_Microsoft_Fusion.reg file into the registry as well as register the two COM components needed.
+2 - Deleted the two batch files that used to register said COM components.</msg>
+</logentry>
+<logentry
+   revision="94">
+<author>olivier.dagenais</author>
+<date>2010-05-01T17:02:31.355106Z</date>
+<msg>Added vcomp90.dll (Microsoft's OpenMP) since it's a dependency of Microsoft.Z3.dll</msg>
+</logentry>
+<logentry
+   revision="93">
+<author>olivier.dagenais</author>
+<date>2010-04-25T01:29:16.322374Z</date>
+<msg>1 - Converted stray TABs to spaces in XSL files.
+
+2 - Added yet another workaround in the FixPexWizard.xsl stylesheet for the unqualified Microsoft.Pex.Linq reference that started being added for the AtomicCms project.
+
+3 - Added Microsoft.Pex.Linq.dll now that I notice it is being used.
+</msg>
+</logentry>
+<logentry
+   revision="92">
+<author>olivier.dagenais</author>
+<date>2010-04-25T00:04:53.910006Z</date>
+<msg>Added the AtomicCms project for suitability testing, using the source code "Atomic CMS 2.0 source" downloaded on 2010/04/24 from the website http://atomiccms.codeplex.com/  Since the solution consists of a few libraries and an ASP.NET MVC project, the projects (except for the unit tests) were merged into a single Class Library project to simplify suitability evaluation and the references were moved one level up to reduce the amount of copying that takes place during working copy creation.
+</msg>
+</logentry>
+<logentry
+   revision="91">
+<author>olivier.dagenais</author>
+<date>2010-04-24T19:20:17.034646Z</date>
+<msg>1 - Added the Textile.NET project for suitability testing, using the source code downloaded as of changeset 26030 from the website http://textilenet.codeplex.com/  Only the class library itself is included (the DressingRoom GUI, the NAnt task and the UnitTests projects were discarded) and the only change that was made was to expose the internals to more assemblies.
+
+2 - The addition of Textile exposed another bug in the Pex generation phase with respect to project file updates and thus FixPexGenerator.xsl was updated to remove redundant references to the assembly under test.</msg>
+</logentry>
+<logentry
+   revision="90">
+<author>olivier.dagenais</author>
+<date>2010-04-22T00:50:41.439918Z</date>
+<msg>1 - Added KeePassLib - the [mostly] non-GUI subset of KeePass that appears to be meant as a reusable component - to the list of projects.  The source code was obtained from KeePass-2.10-Source.zip, downloaded 2010/04/19, because the open-source project has no public version control system, only source drops.  The following changes were made:
+1.1 - The MessageService.SafeShowMessageBox() was replaced with a stub as Pex kept triggering message boxes during exploration.
+
+2 - Temporarily disabled the toddVariation and the step in which that variation is created.  There's no point running the analysis twice on the same code.
+</msg>
+</logentry>
+<logentry
+   revision="89">
+<author>olivier.dagenais</author>
+<date>2010-04-18T04:34:40.740874Z</date>
+<msg>1 - Updated SoftwareNinjas.NAnt to version 1.0.47 and added SoftwareNinjas.Core to satisfy some dependencies.
+
+2 - Added NCover version 1.5.8, as found in the TestDriven.NET distribution.
+
+3 - Added a few missing files from the Pex distribution.
+
+4 - Implemented the suitability evaluation by determining the code coverage that Pex is able to provide with its generated tests on an unmodified project ("base"), one modified by hand ("manual") and one modified by TODD ("testoriented").  The StringExtensions projects had to be modified slightly due to a bug in this version of Pex.
+</msg>
+</logentry>
+<logentry
+   revision="88">
+<author>olivier.dagenais</author>
+<date>2010-03-27T22:22:46.657334Z</date>
+<msg>Added NAnt tasks library version 1.0.36 based on version used for TODD sub-project.
+</msg>
+</logentry>
+<logentry
+   revision="87">
+<author>olivier.dagenais</author>
+<date>2010-03-27T22:13:35.838172Z</date>
+<msg>1 - Initial set-up of automated build using a NAnt script based on the one used by TODD.
+
+2 - Fixed reference to NUnit in StringExtensions.Tests.csproj.
+</msg>
+</logentry>
+<logentry
+   revision="86">
+<author>olivier.dagenais</author>
+<date>2010-03-27T17:20:13.064459Z</date>
+<msg>Initial prototype of suitability evaluation project, including the StringExtensions test project for Pex as well as portable distributions of Pex version 0.22.50128.1 and NUnit 2.4.8.</msg>
+</logentry>
+<logentry
+   revision="85">
+<author>olivier.dagenais</author>
+<date>2010-03-27T15:53:16.516799Z</date>
+<msg>Added "suitability" folder/sub-project and standard sub-folders.</msg>
+</logentry>
+</log>

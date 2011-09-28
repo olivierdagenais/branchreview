@@ -58,10 +58,15 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mock\SourceRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\CustomInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{E16DEA44-4FD9-4B61-82F3-E40273345052}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gui\Gui.csproj">
       <Project>{BA6AA408-8948-47A8-A3D8-4A50136A7602}</Project>
       <Name>Gui</Name>
