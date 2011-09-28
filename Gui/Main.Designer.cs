@@ -235,6 +235,7 @@
             // 
             // commitHorizontalDivider
             // 
+            this.commitHorizontalDivider.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.commitHorizontalDivider.Dock = System.Windows.Forms.DockStyle.Fill;
             this.commitHorizontalDivider.Location = new System.Drawing.Point(0, 0);
             this.commitHorizontalDivider.Name = "commitHorizontalDivider";
@@ -270,6 +271,7 @@
             // 
             // commitVerticalDivider
             // 
+            this.commitVerticalDivider.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.commitVerticalDivider.Dock = System.Windows.Forms.DockStyle.Fill;
             this.commitVerticalDivider.Location = new System.Drawing.Point(0, 0);
             this.commitVerticalDivider.Name = "commitVerticalDivider";
