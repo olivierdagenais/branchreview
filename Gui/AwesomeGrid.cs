@@ -21,8 +21,20 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             InitializeComponent();
             Configure();
             this.Grid.AlternatingRowsDefaultCellStyle = AlternatingRowStyle;
+            this.Grid.DoubleClick += Grid_DoubleClick;
+            this.Grid.KeyDown += Grid_KeyDown;
             this.Grid.RowContextMenuStripNeeded += Grid_RowContextMenuStripNeeded;
             this.Grid.SelectionChanged += Grid_SelectionChanged;
+        }
+
+        void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            OnKeyDown(e);
+        }
+
+        void Grid_DoubleClick(object sender, EventArgs e)
+        {
+            OnDoubleClick(e);
         }
 
         private void Configure()
