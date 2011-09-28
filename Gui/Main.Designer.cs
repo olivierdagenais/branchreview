@@ -156,6 +156,9 @@
             this.taskGrid.Size = new System.Drawing.Size(778, 469);
             this.taskGrid.TabIndex = 0;
             this.taskGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.taskGrid_RowContextMenuStripNeeded);
+            this.taskGrid.DoubleClick += new System.EventHandler(this.taskGrid_DoubleClick);
+            this.taskGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.taskGrid_KeyDown);
+            this.taskGrid.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Grid_PreviewKeyDown);
             // 
             // branchesTab
             // 
@@ -266,6 +269,7 @@
             this.changedFiles.Name = "changedFiles";
             this.changedFiles.Size = new System.Drawing.Size(276, 391);
             this.changedFiles.TabIndex = 0;
+            this.changedFiles.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Grid_PreviewKeyDown);
             // 
             // patchText
             // 

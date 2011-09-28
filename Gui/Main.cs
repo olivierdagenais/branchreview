@@ -314,5 +314,35 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             SwitchCurrentTab(true);
         }
+
+        private ContextMenuStrip BuildTaskActionMenuForRow(int rowIndex)
+        {
+            var row = taskGrid.Rows[rowIndex];
+            var taskId = row.Cells["ID"].Value;
+            var actions = _taskRepository.GetActionsForTask(taskId);
+            return BuildActionMenu(actions);
+        }
+
+        private void taskGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                InvokeDefaultTaskGridAction();
+            }
+        }
+
+        private void InvokeDefaultTaskGridAction()
+        {
+            var selectdRow = taskGrid.SelectedRows[0].Index;
+            var menu = BuildTaskActionMenuForRow(selectdRow);
+            menu.Items[0].PerformClick();
+        }
+
+        private void taskGrid_DoubleClick(object sender, EventArgs e)
+        {
+            InvokeDefaultTaskGridAction();
+        }
     }
 }
