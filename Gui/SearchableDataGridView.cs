@@ -12,6 +12,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         public SearchableDataGridView()
         {
             this.DataBindingComplete += SearchableDataGridView_DataBindingComplete;
+            this.Resize += SearchableDataGridView_Resize;
+        }
+
+        void SearchableDataGridView_Resize(object sender, EventArgs e)
+        {
+            AutoSizeColumns();
         }
 
         #region http://social.msdn.microsoft.com/Forums/en/winforms/thread/ef369cf3-58e9-4997-acc3-87a51d83011c
@@ -62,13 +68,21 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         void SearchableDataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
+            AutoSizeColumns();
+        }
+
+        private void AutoSizeColumns()
+        {
             AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             var dataGridViewColumns = this.Columns.Cast<DataGridViewColumn>().ToList();
             var widths = dataGridViewColumns.Select(c => c.Width).ToList();
             AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            double totalWidths = widths.Aggregate(0, (a, b) => a + b);
+            var clientWidth = this.ClientSize.Width;
+            var multiplier = clientWidth/totalWidths;
             for (var c = 0; c < widths.Count; c++ )
             {
-                dataGridViewColumns[c].Width = widths[c];
+                dataGridViewColumns[c].Width = (int) (widths[c] * multiplier);
             }
         }
 
