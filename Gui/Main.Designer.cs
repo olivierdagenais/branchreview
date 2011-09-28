@@ -307,8 +307,7 @@
             this.taskGrid.Size = new System.Drawing.Size(778, 495);
             this.taskGrid.TabIndex = 0;
             this.taskGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.taskGrid_RowContextMenuStripNeeded);
-            this.taskGrid.DoubleClick += new System.EventHandler(this.taskGrid_DoubleClick);
-            this.taskGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.taskGrid_KeyDown);
+            this.taskGrid.RowInvoked += new System.EventHandler(this.taskGrid_RowInvoked);
             // 
             // branchesTab
             // 
@@ -351,8 +350,7 @@
             this.branchGrid.Size = new System.Drawing.Size(776, 120);
             this.branchGrid.TabIndex = 0;
             this.branchGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.branchGrid_RowContextMenuStripNeeded);
-            this.branchGrid.DoubleClick += new System.EventHandler(this.branchGrid_DoubleClick);
-            this.branchGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.branchGrid_KeyDown);
+            this.branchGrid.RowInvoked += new System.EventHandler(this.branchGrid_RowInvoked);
             // 
             // activityTopBottomPanel
             // 

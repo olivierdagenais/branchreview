@@ -15,6 +15,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         public event DataGridViewRowContextMenuStripNeededEventHandler RowContextMenuStripNeeded;
         public event EventHandler SelectionChanged;
+        public event EventHandler RowInvoked;
 
         public AwesomeGrid()
         {
@@ -43,14 +44,22 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             set { CaptionLabel.Text = value; }
         }
 
+        protected void OnRowInvoked(EventArgs e)
+        {
+            if (RowInvoked != null)
+            {
+                RowInvoked(this, e);
+            }
+        }
+
         void Grid_KeyDown(object sender, KeyEventArgs e)
         {
-            OnKeyDown(e);
+            OnRowInvoked(e);
         }
 
         void Grid_DoubleClick(object sender, EventArgs e)
         {
-            OnDoubleClick(e);
+            OnRowInvoked(e);
         }
 
         private void Configure()

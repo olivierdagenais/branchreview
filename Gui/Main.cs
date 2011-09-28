@@ -227,25 +227,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             _sourceRepository.CreateBranch(taskId);
         }
 
-        private void taskGrid_DoubleClick(object sender, EventArgs e)
-        {
-            InvokeDefaultTaskGridAction();
-        }
-
-        private void taskGrid_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-                InvokeDefaultTaskGridAction();
-            }
-        }
-
         private void taskGrid_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
         {
             var menu = BuildTaskActionMenu();
             e.ContextMenuStrip = menu;
+        }
+
+        private void taskGrid_RowInvoked(object sender, EventArgs e)
+        {
+            InvokeDefaultTaskGridAction();
         }
 
         private ContextMenuStrip BuildTaskActionMenu()
@@ -304,25 +294,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
-        private void branchGrid_DoubleClick(object sender, EventArgs e)
-        {
-            InvokeDefaultBranchGridAction();
-        }
-
-        private void branchGrid_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-                InvokeDefaultBranchGridAction();
-            }
-        }
-
         private void branchGrid_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
         {
             var menu = BuildBranchActionMenu();
             e.ContextMenuStrip = menu;
+        }
+
+        private void branchGrid_RowInvoked(object sender, EventArgs e)
+        {
+            InvokeDefaultBranchGridAction();
         }
 
         private ContextMenuStrip BuildBranchActionMenu()
