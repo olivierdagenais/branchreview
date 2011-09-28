@@ -66,6 +66,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             var row = taskGrid.Rows[e.RowIndex];
             var taskId = row.Cells["ID"].Value;
+            var menu = BuildTaskActionMenu(taskId);
+            e.ContextMenuStrip = menu;
+        }
+
+        private ContextMenuStrip BuildTaskActionMenu(object taskId)
+        {
             var actions = _taskRepository.GetActionsForTask(taskId);
             var menu = new ContextMenuStrip();
             foreach (var taskAction in actions)
@@ -85,8 +91,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 item.Enabled = action.Enabled;
                 menu.Items.Add(item);
             }
-            e.ContextMenuStrip = menu;
-
+            return menu;
         }
     }
 }
