@@ -198,7 +198,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void searchMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO: invoke the search of the focused grid
+            SendKeys.Send(/* Ctrl+F */ "^f");
         }
 
         #endregion

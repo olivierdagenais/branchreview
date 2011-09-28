@@ -183,7 +183,7 @@
             // searchMenuItem
             // 
             this.searchMenuItem.Name = "searchMenuItem";
-            this.searchMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.searchMenuItem.ShortcutKeyDisplayString = "Ctrl+F";
             this.searchMenuItem.Size = new System.Drawing.Size(157, 22);
             this.searchMenuItem.Text = "&Search";
             this.searchMenuItem.Click += new System.EventHandler(this.searchMenuItem_Click);

@@ -57,6 +57,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 e.SuppressKeyPress = true;
                 OnRowInvoked(e);
             }
+            else if (e.KeyCode == Keys.F && e.Modifiers == Keys.Control)
+            {
+                SearchTextBox.Focus();
+            }
         }
 
         void Grid_DoubleClick(object sender, EventArgs e)
