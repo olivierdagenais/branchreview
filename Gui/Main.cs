@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
@@ -12,12 +11,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private static readonly DataGridViewCellStyle AlternatingRowStyle =
             new DataGridViewCellStyle { BackColor = Color.WhiteSmoke };
         private readonly ITaskRepository _taskRepository;
+        private readonly ISourceRepository _sourceRepository;
         private readonly ReadOnlyCollection<SearchableDataGridView> _searchableGrids;
 
         public Main()
         {
             InitializeComponent();
             ConfigureDataGridView(taskGrid);
+            ConfigureDataGridView(branchGrid);
             // one per tab
             _searchableGrids = new ReadOnlyCollection<SearchableDataGridView>(new[]
             {
@@ -30,6 +31,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             FormClosing += Main_Closing;
             _taskRepository = new Mock.TaskRepository();
             taskGrid.DataTable = _taskRepository.LoadTasks();
+            _sourceRepository = new Mock.SourceRepository();
+            branchGrid.DataTable = _sourceRepository.LoadBranches();
         }
 
         private static void ConfigureDataGridView(DataGridView gridView)

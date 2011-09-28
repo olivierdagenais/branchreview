@@ -36,6 +36,7 @@
             this.taskTab = new System.Windows.Forms.TabPage();
             this.taskGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
             this.branchesTab = new System.Windows.Forms.TabPage();
+            this.branchGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
             this.activityTab = new System.Windows.Forms.TabPage();
             this.commitTab = new System.Windows.Forms.TabPage();
             this.menuStrip = new System.Windows.Forms.ToolStrip();
@@ -51,6 +52,8 @@
             this.tabs.SuspendLayout();
             this.taskTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).BeginInit();
+            this.branchesTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).BeginInit();
             this.menuStrip.SuspendLayout();
             this.searchStrip.SuspendLayout();
             this.SuspendLayout();
@@ -137,6 +140,7 @@
             // 
             // branchesTab
             // 
+            this.branchesTab.Controls.Add(this.branchGrid);
             this.branchesTab.Location = new System.Drawing.Point(4, 22);
             this.branchesTab.Name = "branchesTab";
             this.branchesTab.Padding = new System.Windows.Forms.Padding(3);
@@ -144,6 +148,17 @@
             this.branchesTab.TabIndex = 2;
             this.branchesTab.Text = "Branches";
             this.branchesTab.UseVisualStyleBackColor = true;
+            // 
+            // branchGrid
+            // 
+            this.branchGrid.DataTable = null;
+            this.branchGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.branchGrid.Filter = null;
+            this.branchGrid.Location = new System.Drawing.Point(3, 3);
+            this.branchGrid.MultiSelect = false;
+            this.branchGrid.Name = "branchGrid";
+            this.branchGrid.Size = new System.Drawing.Size(778, 469);
+            this.branchGrid.TabIndex = 0;
             // 
             // activityTab
             // 
@@ -238,6 +253,8 @@
             this.tabs.ResumeLayout(false);
             this.taskTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).EndInit();
+            this.branchesTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.searchStrip.ResumeLayout(false);
@@ -265,5 +282,6 @@
         private System.Windows.Forms.ToolStripLabel searchLabel;
         private System.Windows.Forms.ToolStripTextBox searchTextBox;
         private SearchableDataGridView taskGrid;
+        private SearchableDataGridView branchGrid;
     }
 }
