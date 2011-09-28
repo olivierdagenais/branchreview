@@ -318,6 +318,8 @@
             // menuStrip
             // 
             this.menuStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip.GripMargin = new System.Windows.Forms.Padding(0);
+            this.menuStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
             this.viewMenu,
@@ -325,7 +327,7 @@
             this.branchesMenu,
             this.activityMenu,
             this.commitMenu});
-            this.menuStrip.Location = global::SoftwareNinjas.BranchAndReviewTools.Gui.Properties.Settings.Default.MenuLocation;
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(309, 25);
             this.menuStrip.TabIndex = 0;
@@ -450,10 +452,12 @@
             // 
             this.searchStrip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.searchStrip.GripMargin = new System.Windows.Forms.Padding(0);
+            this.searchStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.searchStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchLabel,
             this.searchTextBox});
-            this.searchStrip.Location = global::SoftwareNinjas.BranchAndReviewTools.Gui.Properties.Settings.Default.SearchLocation;
+            this.searchStrip.Location = new System.Drawing.Point(400, 0);
             this.searchStrip.Name = "searchStrip";
             this.searchStrip.Size = new System.Drawing.Size(259, 25);
             this.searchStrip.TabIndex = 1;

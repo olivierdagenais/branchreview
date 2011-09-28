@@ -39,9 +39,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 null,
             });
             Load += Main_Load;
+            Resize += Main_Resize;
             FormClosing += Main_Closing;
             _taskRepository = new Mock.TaskRepository();
             _sourceRepository = new Mock.SourceRepository();
+        }
+
+        void Main_Resize(object sender, EventArgs e)
+        {
+            searchStrip.Location = new Point(ClientSize.Width - searchStrip.Size.Width, 0);
         }
 
         void Main_Load(object sender, EventArgs e)
@@ -49,16 +55,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             var settings = Settings.Default;
             ClientSize = settings.WindowSize;
             WindowState = settings.WindowState;
-            menuStrip.Location = settings.MenuLocation;
-            searchStrip.Location = settings.SearchLocation;
             SwitchCurrentTab(true);
         }
 
         void Main_Closing(object sender, CancelEventArgs e)
         {
             var settings = Settings.Default;
-            settings.MenuLocation = new Point(menuStrip.Location.X - 3, menuStrip.Location.Y);
-            settings.SearchLocation = searchStrip.Location;
             settings.WindowSize = ClientSize;
             settings.WindowState = WindowState;
             settings.Save();
