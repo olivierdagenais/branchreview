@@ -75,7 +75,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             WindowState = settings.WindowState;
             menuStrip.Location = settings.MenuLocation;
             searchStrip.Location = settings.SearchLocation;
-            tabs_Selected(this, null);
+            SwitchCurrentTab(true);
         }
 
         void Main_Closing(object sender, CancelEventArgs e)
