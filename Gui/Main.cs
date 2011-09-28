@@ -19,53 +19,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private readonly ISourceRepository _sourceRepository;
         private readonly ReadOnlyCollection<SearchableDataGridView> _searchableGrids;
 
-        private readonly ToolStrip searchStrip;
-        private readonly ToolStripLabel searchLabel;
-        private readonly ToolStripTextBox searchTextBox;
-
         private object _currentBranchId;
         private object _currentTaskId;
 
         public Main()
         {
             InitializeComponent();
-            #region Custom initialization to work around a bug in the Visual Studio winforms designer
-            this.searchStrip = new ToolStrip();
-            this.searchLabel = new ToolStripLabel();
-            this.searchTextBox = new ToolStripTextBox();
-            this.searchStrip.SuspendLayout();
-            // 
-            // searchStrip
-            // 
-            this.searchStrip.Anchor = AnchorStyles.None;
-            this.searchStrip.Dock = DockStyle.None;
-            this.searchStrip.GripMargin = new Padding(0);
-            this.searchStrip.GripStyle = ToolStripGripStyle.Hidden;
-            this.searchStrip.Items.AddRange(new ToolStripItem[] {
-            this.searchLabel,
-            this.searchTextBox});
-            this.searchStrip.Location = new Point(400, 0);
-            this.searchStrip.Name = "searchStrip";
-            this.searchStrip.Size = new Size(259, 25);
-            this.searchStrip.TabIndex = 1;
-            // 
-            // searchLabel
-            // 
-            this.searchLabel.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            this.searchLabel.Name = "searchLabel";
-            this.searchLabel.Size = new Size(54, 22);
-            this.searchLabel.Text = "&Search";
-            // 
-            // searchTextBox
-            // 
-            this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new Size(200, 25);
-            this.searchTextBox.TextChanged += this.searchTextBox_TextChanged;
-
-            this.searchStrip.ResumeLayout(false);
-            this.searchStrip.PerformLayout();
-            #endregion
-
             ConfigureDataGridView(taskGrid, false);
             ConfigureDataGridView(branchGrid, false);
             ConfigureDataGridView(changedFiles, true);
@@ -81,16 +40,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 null,
             });
             Load += Main_Load;
-            Resize += Main_Resize;
             FormClosing += Main_Closing;
             _taskRepository = new Mock.TaskRepository();
             _sourceRepository = new Mock.SourceRepository();
-        }
-
-        void Main_Resize(object sender, EventArgs e)
-        {
-            menuStrip.Location = Point.Empty;
-            searchStrip.Location = new Point(ClientSize.Width - searchStrip.Size.Width, 0);
         }
 
         void Main_Load(object sender, EventArgs e)
@@ -307,6 +259,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         }
 
         private void searchMenuItem_Click(object sender, EventArgs e)
+        {
+            searchTextBox.Focus();
+        }
+
+        private void searchLabel_Click(object sender, EventArgs e)
         {
             searchTextBox.Focus();
         }

@@ -50,6 +50,8 @@
             this.branchesMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.activityMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.commitMenu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.searchTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.searchLabel = new System.Windows.Forms.ToolStripMenuItem();
             this.tabs = new System.Windows.Forms.TabControl();
             this.taskTab = new System.Windows.Forms.TabPage();
             this.branchesTab = new System.Windows.Forms.TabPage();
@@ -140,14 +142,13 @@
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel.Size = new System.Drawing.Size(792, 551);
+            this.tableLayoutPanel.Size = new System.Drawing.Size(792, 573);
             this.tableLayoutPanel.TabIndex = 0;
             // 
             // menuStrip
             // 
-            this.menuStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menuStrip.GripMargin = new System.Windows.Forms.Padding(0);
-            this.menuStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
             this.editMenu,
@@ -155,10 +156,12 @@
             this.tasksMenu,
             this.branchesMenu,
             this.activityMenu,
-            this.commitMenu});
+            this.commitMenu,
+            this.searchTextBox,
+            this.searchLabel});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(342, 25);
+            this.menuStrip.Size = new System.Drawing.Size(792, 27);
             this.menuStrip.TabIndex = 0;
             // 
             // fileMenu
@@ -169,7 +172,7 @@
             this.fileMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.fileMenu.Name = "fileMenu";
             this.fileMenu.ShowDropDownArrow = false;
-            this.fileMenu.Size = new System.Drawing.Size(34, 22);
+            this.fileMenu.Size = new System.Drawing.Size(34, 20);
             this.fileMenu.Text = "&File";
             // 
             // exitMenuItem
@@ -187,7 +190,7 @@
             this.editMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.editMenu.Name = "editMenu";
             this.editMenu.ShowDropDownArrow = false;
-            this.editMenu.Size = new System.Drawing.Size(37, 22);
+            this.editMenu.Size = new System.Drawing.Size(37, 20);
             this.editMenu.Text = "&Edit";
             // 
             // searchMenuItem
@@ -211,7 +214,7 @@
             this.viewMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.viewMenu.Name = "viewMenu";
             this.viewMenu.ShowDropDownArrow = false;
-            this.viewMenu.Size = new System.Drawing.Size(43, 22);
+            this.viewMenu.Size = new System.Drawing.Size(43, 20);
             this.viewMenu.Text = "&View";
             // 
             // tasksMenuItem
@@ -262,7 +265,7 @@
             this.tasksMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tasksMenu.Name = "tasksMenu";
             this.tasksMenu.ShowDropDownArrow = false;
-            this.tasksMenu.Size = new System.Drawing.Size(50, 22);
+            this.tasksMenu.Size = new System.Drawing.Size(50, 20);
             this.tasksMenu.Text = "&Tasks";
             this.tasksMenu.DropDownOpening += new System.EventHandler(this.tasksMenu_DropDownOpening);
             // 
@@ -274,7 +277,7 @@
             this.branchesMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.branchesMenu.Name = "branchesMenu";
             this.branchesMenu.ShowDropDownArrow = false;
-            this.branchesMenu.Size = new System.Drawing.Size(72, 22);
+            this.branchesMenu.Size = new System.Drawing.Size(72, 20);
             this.branchesMenu.Text = "&Branches";
             this.branchesMenu.DropDownOpening += new System.EventHandler(this.branchesMenu_DropDownOpening);
             // 
@@ -284,7 +287,7 @@
             this.activityMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.activityMenu.Name = "activityMenu";
             this.activityMenu.ShowDropDownArrow = false;
-            this.activityMenu.Size = new System.Drawing.Size(35, 22);
+            this.activityMenu.Size = new System.Drawing.Size(35, 20);
             this.activityMenu.Text = "&Log";
             // 
             // commitMenu
@@ -293,8 +296,25 @@
             this.commitMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.commitMenu.Name = "commitMenu";
             this.commitMenu.ShowDropDownArrow = false;
-            this.commitMenu.Size = new System.Drawing.Size(68, 22);
+            this.commitMenu.Size = new System.Drawing.Size(68, 20);
             this.commitMenu.Text = "&Changes";
+            // 
+            // searchTextBox
+            // 
+            this.searchTextBox.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.searchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.searchTextBox.HideSelection = false;
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(200, 23);
+            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
+            // 
+            // searchLabel
+            // 
+            this.searchLabel.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.searchLabel.Name = "searchLabel";
+            this.searchLabel.Size = new System.Drawing.Size(66, 23);
+            this.searchLabel.Text = "&Search";
+            this.searchLabel.Click += new System.EventHandler(this.searchLabel_Click);
             // 
             // tabs
             // 
@@ -303,11 +323,11 @@
             this.tabs.Controls.Add(this.activityTab);
             this.tabs.Controls.Add(this.commitTab);
             this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabs.Location = new System.Drawing.Point(0, 25);
+            this.tabs.Location = new System.Drawing.Point(0, 27);
             this.tabs.Margin = new System.Windows.Forms.Padding(0);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(792, 526);
+            this.tabs.Size = new System.Drawing.Size(792, 524);
             this.tabs.TabIndex = 0;
             this.tabs.TabStop = false;
             this.tabs.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabs_Selected);
@@ -318,7 +338,7 @@
             this.taskTab.Location = new System.Drawing.Point(4, 22);
             this.taskTab.Name = "taskTab";
             this.taskTab.Padding = new System.Windows.Forms.Padding(3);
-            this.taskTab.Size = new System.Drawing.Size(784, 500);
+            this.taskTab.Size = new System.Drawing.Size(784, 498);
             this.taskTab.TabIndex = 1;
             this.taskTab.Text = "Tasks";
             this.taskTab.UseVisualStyleBackColor = true;
@@ -329,7 +349,7 @@
             this.branchesTab.Location = new System.Drawing.Point(4, 22);
             this.branchesTab.Name = "branchesTab";
             this.branchesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.branchesTab.Size = new System.Drawing.Size(778, 494);
+            this.branchesTab.Size = new System.Drawing.Size(784, 498);
             this.branchesTab.TabIndex = 2;
             this.branchesTab.Text = "Branches";
             this.branchesTab.UseVisualStyleBackColor = true;
@@ -339,7 +359,7 @@
             this.activityTab.Location = new System.Drawing.Point(4, 22);
             this.activityTab.Name = "activityTab";
             this.activityTab.Padding = new System.Windows.Forms.Padding(3);
-            this.activityTab.Size = new System.Drawing.Size(778, 494);
+            this.activityTab.Size = new System.Drawing.Size(784, 498);
             this.activityTab.TabIndex = 3;
             this.activityTab.Text = "Log";
             this.activityTab.UseVisualStyleBackColor = true;
@@ -349,7 +369,7 @@
             this.commitTab.Controls.Add(this.commitHorizontalDivider);
             this.commitTab.Location = new System.Drawing.Point(4, 22);
             this.commitTab.Name = "commitTab";
-            this.commitTab.Size = new System.Drawing.Size(778, 494);
+            this.commitTab.Size = new System.Drawing.Size(784, 498);
             this.commitTab.TabIndex = 4;
             this.commitTab.Text = "Changes";
             this.commitTab.UseVisualStyleBackColor = true;
@@ -369,8 +389,8 @@
             // commitHorizontalDivider.Panel2
             // 
             this.commitHorizontalDivider.Panel2.Controls.Add(this.commitVerticalDivider);
-            this.commitHorizontalDivider.Size = new System.Drawing.Size(778, 494);
-            this.commitHorizontalDivider.SplitterDistance = 228;
+            this.commitHorizontalDivider.Size = new System.Drawing.Size(784, 498);
+            this.commitHorizontalDivider.SplitterDistance = 229;
             this.commitHorizontalDivider.TabIndex = 0;
             this.commitHorizontalDivider.TabStop = false;
             // 
@@ -379,7 +399,7 @@
             this.changeLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.changeLog.Location = new System.Drawing.Point(0, 0);
             this.changeLog.Name = "changeLog";
-            this.changeLog.Size = new System.Drawing.Size(776, 226);
+            this.changeLog.Size = new System.Drawing.Size(782, 227);
             this.changeLog.Styles.BraceBad.FontName = "Verdana";
             this.changeLog.Styles.BraceLight.FontName = "Verdana";
             this.changeLog.Styles.ControlChar.FontName = "Verdana";
@@ -404,8 +424,8 @@
             // commitVerticalDivider.Panel2
             // 
             this.commitVerticalDivider.Panel2.Controls.Add(this.patchText);
-            this.commitVerticalDivider.Size = new System.Drawing.Size(778, 262);
-            this.commitVerticalDivider.SplitterDistance = 273;
+            this.commitVerticalDivider.Size = new System.Drawing.Size(784, 265);
+            this.commitVerticalDivider.SplitterDistance = 275;
             this.commitVerticalDivider.SplitterWidth = 6;
             this.commitVerticalDivider.TabIndex = 0;
             this.commitVerticalDivider.TabStop = false;
@@ -415,7 +435,7 @@
             this.patchText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.patchText.Location = new System.Drawing.Point(0, 0);
             this.patchText.Name = "patchText";
-            this.patchText.Size = new System.Drawing.Size(497, 260);
+            this.patchText.Size = new System.Drawing.Size(501, 263);
             this.patchText.Styles.BraceBad.FontName = "Verdana";
             this.patchText.Styles.BraceLight.FontName = "Verdana";
             this.patchText.Styles.ControlChar.FontName = "Verdana";
@@ -434,7 +454,7 @@
             this.taskGrid.Location = new System.Drawing.Point(3, 3);
             this.taskGrid.Name = "taskGrid";
             this.taskGrid.RowTemplate.Height = 23;
-            this.taskGrid.Size = new System.Drawing.Size(778, 494);
+            this.taskGrid.Size = new System.Drawing.Size(778, 492);
             this.taskGrid.TabIndex = 0;
             this.taskGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.taskGrid_RowContextMenuStripNeeded);
             this.taskGrid.DoubleClick += new System.EventHandler(this.taskGrid_DoubleClick);
@@ -450,7 +470,7 @@
             this.branchGrid.MultiSelect = false;
             this.branchGrid.Name = "branchGrid";
             this.branchGrid.RowTemplate.Height = 23;
-            this.branchGrid.Size = new System.Drawing.Size(772, 488);
+            this.branchGrid.Size = new System.Drawing.Size(778, 492);
             this.branchGrid.TabIndex = 0;
             this.branchGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.branchGrid_RowContextMenuStripNeeded);
             this.branchGrid.DoubleClick += new System.EventHandler(this.branchGrid_DoubleClick);
@@ -465,7 +485,7 @@
             this.changedFiles.Location = new System.Drawing.Point(0, 0);
             this.changedFiles.Name = "changedFiles";
             this.changedFiles.RowTemplate.Height = 23;
-            this.changedFiles.Size = new System.Drawing.Size(271, 260);
+            this.changedFiles.Size = new System.Drawing.Size(273, 263);
             this.changedFiles.TabIndex = 0;
             this.changedFiles.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.changedFiles_RowContextMenuStripNeeded);
             this.changedFiles.DoubleClick += new System.EventHandler(this.changedFiles_DoubleClick);
@@ -506,7 +526,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.changedFiles)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -543,5 +562,7 @@
         private System.Windows.Forms.ToolStripDropDownButton commitMenu;
         private System.Windows.Forms.ToolStripDropDownButton editMenu;
         private System.Windows.Forms.ToolStripMenuItem searchMenuItem;
+        private System.Windows.Forms.ToolStripTextBox searchTextBox;
+        private System.Windows.Forms.ToolStripMenuItem searchLabel;
     }
 }
