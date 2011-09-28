@@ -290,6 +290,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
+        private void searchTextBox_Enter(object sender, EventArgs e)
+        {
+            searchTextBox.SelectAll();
+        }
+
         #endregion
 
         #region Tasks
