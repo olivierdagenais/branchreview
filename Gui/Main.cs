@@ -241,6 +241,18 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         #region Tasks
 
+        private object FindSelectedTaskId()
+        {
+            var selectedRows = taskGrid.SelectedRows;
+            object taskId = null;
+            if (selectedRows.Count > 0)
+            {
+                var row = selectedRows[0];
+                taskId = row.Cells["ID"].Value;
+            }
+            return taskId;
+        }
+
         private void taskGrid_DoubleClick(object sender, EventArgs e)
         {
             InvokeDefaultTaskGridAction();
@@ -264,11 +276,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private ContextMenuStrip BuildTaskActionMenu()
         {
-            var row = taskGrid.SelectedRows[0];
-            var taskId = row.Cells["ID"].Value;
-            var actions = _taskRepository.GetTaskActions(taskId);
+            var taskId = FindSelectedTaskId();
             var menu = new ContextMenuStrip();
-            BuildActionMenu(actions, menu.Items);
+            if (taskId != null)
+            {
+                var actions = _taskRepository.GetTaskActions(taskId);
+                BuildActionMenu(actions, menu.Items);
+            }
             return menu;
         }
 
