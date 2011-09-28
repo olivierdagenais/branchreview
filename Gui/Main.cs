@@ -220,6 +220,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     taskGrid.DataTable = null;
                     taskGrid.DataTable = _taskRepository.LoadTasks();
                 }
+                searchTextBox.Text = taskGrid.Filter;
                 controlToFocus = taskGrid;
             }
             else if (tabs.SelectedTab == branchesTab)
@@ -229,6 +230,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     branchGrid.DataTable = null;
                     branchGrid.DataTable = _sourceRepository.LoadBranches();
                 }
+                searchTextBox.Text = branchGrid.Filter;
                 controlToFocus = branchGrid;
             }
             else if (tabs.SelectedTab == activityTab)
