@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             this.horizontalDivider = new System.Windows.Forms.SplitContainer();
-            this.changeLog = new ScintillaNet.Scintilla();
+            this.ChangeLog = new ScintillaNet.Scintilla();
             this.verticalDivider = new System.Windows.Forms.SplitContainer();
-            this.patchText = new ScintillaNet.Scintilla();
-            this.fileGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
+            this.PatchText = new ScintillaNet.Scintilla();
+            this.FileGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.horizontalDivider)).BeginInit();
             this.horizontalDivider.Panel1.SuspendLayout();
             this.horizontalDivider.Panel2.SuspendLayout();
             this.horizontalDivider.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.changeLog)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChangeLog)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.verticalDivider)).BeginInit();
             this.verticalDivider.Panel1.SuspendLayout();
             this.verticalDivider.Panel2.SuspendLayout();
             this.verticalDivider.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.patchText)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fileGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PatchText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FileGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // horizontalDivider
@@ -56,7 +56,7 @@
             // 
             // horizontalDivider.Panel1
             // 
-            this.horizontalDivider.Panel1.Controls.Add(this.changeLog);
+            this.horizontalDivider.Panel1.Controls.Add(this.ChangeLog);
             // 
             // horizontalDivider.Panel2
             // 
@@ -66,21 +66,21 @@
             this.horizontalDivider.TabIndex = 1;
             this.horizontalDivider.TabStop = false;
             // 
-            // changeLog
+            // ChangeLog
             // 
-            this.changeLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.changeLog.Location = new System.Drawing.Point(0, 0);
-            this.changeLog.Name = "changeLog";
-            this.changeLog.Size = new System.Drawing.Size(747, 106);
-            this.changeLog.Styles.BraceBad.FontName = "Verdana";
-            this.changeLog.Styles.BraceLight.FontName = "Verdana";
-            this.changeLog.Styles.ControlChar.FontName = "Verdana";
-            this.changeLog.Styles.Default.FontName = "Verdana";
-            this.changeLog.Styles.IndentGuide.FontName = "Verdana";
-            this.changeLog.Styles.LastPredefined.FontName = "Verdana";
-            this.changeLog.Styles.LineNumber.FontName = "Verdana";
-            this.changeLog.Styles.Max.FontName = "Verdana";
-            this.changeLog.TabIndex = 0;
+            this.ChangeLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChangeLog.Location = new System.Drawing.Point(0, 0);
+            this.ChangeLog.Name = "ChangeLog";
+            this.ChangeLog.Size = new System.Drawing.Size(747, 106);
+            this.ChangeLog.Styles.BraceBad.FontName = "Verdana";
+            this.ChangeLog.Styles.BraceLight.FontName = "Verdana";
+            this.ChangeLog.Styles.ControlChar.FontName = "Verdana";
+            this.ChangeLog.Styles.Default.FontName = "Verdana";
+            this.ChangeLog.Styles.IndentGuide.FontName = "Verdana";
+            this.ChangeLog.Styles.LastPredefined.FontName = "Verdana";
+            this.ChangeLog.Styles.LineNumber.FontName = "Verdana";
+            this.ChangeLog.Styles.Max.FontName = "Verdana";
+            this.ChangeLog.TabIndex = 0;
             // 
             // verticalDivider
             // 
@@ -91,43 +91,43 @@
             // 
             // verticalDivider.Panel1
             // 
-            this.verticalDivider.Panel1.Controls.Add(this.fileGrid);
+            this.verticalDivider.Panel1.Controls.Add(this.FileGrid);
             // 
             // verticalDivider.Panel2
             // 
-            this.verticalDivider.Panel2.Controls.Add(this.patchText);
+            this.verticalDivider.Panel2.Controls.Add(this.PatchText);
             this.verticalDivider.Size = new System.Drawing.Size(749, 444);
             this.verticalDivider.SplitterDistance = 235;
             this.verticalDivider.SplitterWidth = 6;
             this.verticalDivider.TabIndex = 0;
             this.verticalDivider.TabStop = false;
             // 
-            // patchText
+            // PatchText
             // 
-            this.patchText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.patchText.Location = new System.Drawing.Point(0, 0);
-            this.patchText.Name = "patchText";
-            this.patchText.Size = new System.Drawing.Size(506, 442);
-            this.patchText.Styles.BraceBad.FontName = "Verdana";
-            this.patchText.Styles.BraceLight.FontName = "Verdana";
-            this.patchText.Styles.ControlChar.FontName = "Verdana";
-            this.patchText.Styles.Default.FontName = "Verdana";
-            this.patchText.Styles.IndentGuide.FontName = "Verdana";
-            this.patchText.Styles.LastPredefined.FontName = "Verdana";
-            this.patchText.Styles.LineNumber.FontName = "Verdana";
-            this.patchText.Styles.Max.FontName = "Verdana";
-            this.patchText.TabIndex = 0;
+            this.PatchText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PatchText.Location = new System.Drawing.Point(0, 0);
+            this.PatchText.Name = "PatchText";
+            this.PatchText.Size = new System.Drawing.Size(506, 442);
+            this.PatchText.Styles.BraceBad.FontName = "Verdana";
+            this.PatchText.Styles.BraceLight.FontName = "Verdana";
+            this.PatchText.Styles.ControlChar.FontName = "Verdana";
+            this.PatchText.Styles.Default.FontName = "Verdana";
+            this.PatchText.Styles.IndentGuide.FontName = "Verdana";
+            this.PatchText.Styles.LastPredefined.FontName = "Verdana";
+            this.PatchText.Styles.LineNumber.FontName = "Verdana";
+            this.PatchText.Styles.Max.FontName = "Verdana";
+            this.PatchText.TabIndex = 0;
             // 
-            // fileGrid
+            // FileGrid
             // 
-            this.fileGrid.DataTable = null;
-            this.fileGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fileGrid.Filter = null;
-            this.fileGrid.Location = new System.Drawing.Point(0, 0);
-            this.fileGrid.Name = "fileGrid";
-            this.fileGrid.RowTemplate.Height = 23;
-            this.fileGrid.Size = new System.Drawing.Size(233, 442);
-            this.fileGrid.TabIndex = 0;
+            this.FileGrid.DataTable = null;
+            this.FileGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FileGrid.Filter = null;
+            this.FileGrid.Location = new System.Drawing.Point(0, 0);
+            this.FileGrid.Name = "FileGrid";
+            this.FileGrid.RowTemplate.Height = 23;
+            this.FileGrid.Size = new System.Drawing.Size(233, 442);
+            this.FileGrid.TabIndex = 0;
             // 
             // ChangeInspector
             // 
@@ -140,13 +140,13 @@
             this.horizontalDivider.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.horizontalDivider)).EndInit();
             this.horizontalDivider.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.changeLog)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChangeLog)).EndInit();
             this.verticalDivider.Panel1.ResumeLayout(false);
             this.verticalDivider.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.verticalDivider)).EndInit();
             this.verticalDivider.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.patchText)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fileGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PatchText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FileGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -154,9 +154,9 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer horizontalDivider;
-        private ScintillaNet.Scintilla changeLog;
         private System.Windows.Forms.SplitContainer verticalDivider;
-        private SearchableDataGridView fileGrid;
-        private ScintillaNet.Scintilla patchText;
+        public ScintillaNet.Scintilla PatchText;
+        public SearchableDataGridView FileGrid;
+        public ScintillaNet.Scintilla ChangeLog;
     }
 }
