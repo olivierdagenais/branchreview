@@ -32,7 +32,7 @@
             this.ChangeLog = new ScintillaNet.Scintilla();
             this.verticalDivider = new System.Windows.Forms.SplitContainer();
             this.PatchViewer = new ScintillaNet.Scintilla();
-            this.FileGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
+            this.FileGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.AwesomeGrid();
             ((System.ComponentModel.ISupportInitialize)(this.horizontalDivider)).BeginInit();
             this.horizontalDivider.Panel1.SuspendLayout();
             this.horizontalDivider.Panel2.SuspendLayout();
@@ -125,7 +125,6 @@
             this.FileGrid.Filter = null;
             this.FileGrid.Location = new System.Drawing.Point(0, 0);
             this.FileGrid.Name = "FileGrid";
-            this.FileGrid.RowTemplate.Height = 23;
             this.FileGrid.Size = new System.Drawing.Size(233, 442);
             this.FileGrid.TabIndex = 0;
             this.FileGrid.DoubleClick += new System.EventHandler(this.FileGrid_DoubleClick);
@@ -160,7 +159,7 @@
         private System.Windows.Forms.SplitContainer horizontalDivider;
         private System.Windows.Forms.SplitContainer verticalDivider;
         public ScintillaNet.Scintilla PatchViewer;
-        public SearchableDataGridView FileGrid;
+        public AwesomeGrid FileGrid;
         public ScintillaNet.Scintilla ChangeLog;
     }
 }

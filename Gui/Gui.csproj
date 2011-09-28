@@ -47,11 +47,20 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AwesomeGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AwesomeGrid.Designer.cs">
+      <DependentUpon>AwesomeGrid.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChangeInspector.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ChangeInspector.Designer.cs">
       <DependentUpon>ChangeInspector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AccessibleDataGridView.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -63,10 +72,10 @@
     <Compile Include="Mock\TaskRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchableDataGridView.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ToolStripItemCollectionExtensions.cs" />
+    <EmbeddedResource Include="AwesomeGrid.resx">
+      <DependentUpon>AwesomeGrid.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChangeInspector.resx">
       <DependentUpon>ChangeInspector.cs</DependentUpon>
     </EmbeddedResource>

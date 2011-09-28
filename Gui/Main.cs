@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
@@ -15,7 +13,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
     {
         private readonly ITaskRepository _taskRepository;
         private readonly ISourceRepository _sourceRepository;
-        private readonly ReadOnlyCollection<SearchableDataGridView> _searchableGrids;
 
         private object _currentBranchId;
         private object _currentTaskId;
@@ -23,40 +20,18 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         public Main()
         {
             InitializeComponent();
-            ConfigureDataGridView(taskGrid, false);
-            ConfigureDataGridView(branchGrid, false);
-            ConfigureDataGridView(activityRevisions, false);
-            ConfigureDataGridView(activityChangeInspector.FileGrid, true);
-            ConfigureDataGridView(changedFiles, true);
+            taskGrid.Grid.MultiSelect = false;
+            branchGrid.Grid.MultiSelect = false;
+            activityRevisions.Grid.MultiSelect = false;
+            activityChangeInspector.FileGrid.Grid.MultiSelect = true;
+            changedFiles.Grid.MultiSelect = true;
             changeLog.InitializeDefaults();
             patchText.InitializeDefaults();
             patchText.InitializeDiff();
-            // one per tab
-            _searchableGrids = new ReadOnlyCollection<SearchableDataGridView>(new[]
-            {
-                taskGrid,
-                branchGrid,
-                activityRevisions,
-                null,
-            });
             Load += Main_Load;
             FormClosing += Main_Closing;
             _taskRepository = new Mock.TaskRepository();
             _sourceRepository = new Mock.SourceRepository();
-        }
-
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if (keyData == Keys.Escape)
-            {
-                if (searchTextBox.Focused)
-                {
-                    SwitchCurrentTab(false);
-                    return true;
-                }
-            }
-            var processCmdKey = base.ProcessCmdKey(ref msg, keyData);
-            return processCmdKey;
         }
 
         void Main_Load(object sender, EventArgs e)
@@ -96,41 +71,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             SwitchCurrentTab(true);
         }
 
-        private void searchTextBox_TextChanged(object sender, EventArgs e)
-        {
-            var grid = _searchableGrids[tabs.SelectedIndex];
-            if (grid != null)
-            {
-                grid.Filter = searchTextBox.Text;
-            }
-        }
-
         #endregion
 
         #region Common
-
-        private static void ConfigureDataGridView(DataGridView gridView, bool multiSelect)
-        {
-            gridView.AllowUserToAddRows = false;
-            gridView.AllowUserToDeleteRows = false;
-            gridView.AllowUserToResizeRows = false;
-            gridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            gridView.BackgroundColor = SystemColors.Window;
-            gridView.BorderStyle = BorderStyle.None;
-            gridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            gridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridView.EditMode = DataGridViewEditMode.EditProgrammatically;
-            gridView.MultiSelect = multiSelect;
-            gridView.ReadOnly = true;
-            gridView.RowHeadersVisible = false;
-            gridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            gridView.RowTemplate.Height = 23;
-            gridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            gridView.ShowCellErrors = false;
-            gridView.ShowEditingIcon = false;
-            gridView.ShowRowErrors = false;
-            gridView.StandardTab = true;
-        }
 
         private void SetCurrentBranch(object branchId, object taskId)
         {
@@ -185,7 +128,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     taskGrid.DataTable = null;
                     taskGrid.DataTable = _taskRepository.LoadTasks();
                 }
-                searchTextBox.Text = taskGrid.Filter;
                 controlToFocus = taskGrid;
             }
             else if (tabs.SelectedTab == branchesTab)
@@ -195,7 +137,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     branchGrid.DataTable = null;
                     branchGrid.DataTable = _sourceRepository.LoadBranches();
                 }
-                searchTextBox.Text = branchGrid.Filter;
                 controlToFocus = branchGrid;
             }
             else if (tabs.SelectedTab == activityTab)
@@ -250,17 +191,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void searchMenuItem_Click(object sender, EventArgs e)
         {
-            searchTextBox.Focus();
-        }
-
-        private void searchLabel_Click(object sender, EventArgs e)
-        {
-            searchTextBox.Focus();
-        }
-
-        private void searchTextBox_Enter(object sender, EventArgs e)
-        {
-            searchTextBox.SelectAll();
+            // TODO: invoke the search of the focused grid
         }
 
         #endregion
@@ -281,7 +212,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void AddTaskSpecificActions(ToolStripItemCollection items, bool needsLeadingSeparator)
         {
-            var taskId = FindSelectedId(taskGrid);
+            var taskId = FindSelectedId(taskGrid.Grid);
             if (taskId != null)
             {
                 var specificActions = _taskRepository.GetTaskActions(taskId);
@@ -357,7 +288,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void AddBranchSpecificActions(ToolStripItemCollection items, bool needsLeadingSeparator)
         {
-            var selectedRows = branchGrid.SelectedRows;
+            var selectedRows = branchGrid.Grid.SelectedRows;
             if (selectedRows.Count > 0)
             {
                 if (needsLeadingSeparator)
@@ -462,7 +393,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private IEnumerable<object> FindSelectedIds()
         {
-            var selectedRows = changedFiles.SelectedRows.Cast<DataGridViewRow>();
+            var selectedRows = changedFiles.Grid.SelectedRows.Cast<DataGridViewRow>();
             return selectedRows.Map(row => row.Cells["ID"].Value);
         }
 
@@ -480,21 +411,21 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             changedFiles.DataTable = null;
             var pendingChanges = _sourceRepository.GetPendingChanges(_currentBranchId);
             changedFiles.DataTable = pendingChanges;
-            if (0 == changedFiles.Rows.Count)
+            if (0 == changedFiles.Grid.Rows.Count)
             {
                 patchText.SetReadOnlyText(String.Empty);
             }
             else
             {
-                changedFiles.SelectionChanged -= changedFiles_SelectionChanged;
+                changedFiles.Grid.SelectionChanged -= changedFiles_SelectionChanged;
                 if (0 == oldSelection.Count)
                 {
                     // if nothing was selected, select the first one
-                    changedFiles.Rows[0].Selected = true;
+                    changedFiles.Grid.Rows[0].Selected = true;
                 }
                 else
                 {
-                    foreach (DataGridViewRow row in changedFiles.Rows)
+                    foreach (DataGridViewRow row in changedFiles.Grid.Rows)
                     {
                         var id = row.Cells["ID"].Value;
                         if (oldSelection.ContainsKey(id))
@@ -505,7 +436,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     }
                 }
                 changedFiles_SelectionChanged(this, null);
-                changedFiles.SelectionChanged += changedFiles_SelectionChanged;
+                changedFiles.Grid.SelectionChanged += changedFiles_SelectionChanged;
             }
         }
 

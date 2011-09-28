@@ -31,7 +31,6 @@
             System.Windows.Forms.ToolStripSeparator viewMenuRefreshSeparator;
             System.Windows.Forms.ToolStripSeparator tasksDummyMenuItem;
             System.Windows.Forms.ToolStripSeparator branchesDummyMenuItem;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusBarText = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBarProgress = new System.Windows.Forms.ToolStripProgressBar();
@@ -51,21 +50,19 @@
             this.branchesMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.activityMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.commitMenu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.searchTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.searchLabel = new System.Windows.Forms.ToolStripMenuItem();
             this.tabs = new System.Windows.Forms.TabControl();
             this.taskTab = new System.Windows.Forms.TabPage();
-            this.taskGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
+            this.taskGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.AwesomeGrid();
             this.branchesTab = new System.Windows.Forms.TabPage();
-            this.branchGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
+            this.branchGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.AwesomeGrid();
             this.activityTab = new System.Windows.Forms.TabPage();
             this.activityTopBottomPanel = new System.Windows.Forms.SplitContainer();
-            this.activityRevisions = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
+            this.activityRevisions = new SoftwareNinjas.BranchAndReviewTools.Gui.AwesomeGrid();
             this.commitTab = new System.Windows.Forms.TabPage();
             this.commitHorizontalDivider = new System.Windows.Forms.SplitContainer();
             this.changeLog = new ScintillaNet.Scintilla();
             this.commitVerticalDivider = new System.Windows.Forms.SplitContainer();
-            this.changedFiles = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
+            this.changedFiles = new SoftwareNinjas.BranchAndReviewTools.Gui.AwesomeGrid();
             this.patchText = new ScintillaNet.Scintilla();
             this.activityChangeInspector = new SoftwareNinjas.BranchAndReviewTools.Gui.ChangeInspector();
             viewMenuRefreshSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -166,9 +163,7 @@
             this.tasksMenu,
             this.branchesMenu,
             this.activityMenu,
-            this.commitMenu,
-            this.searchTextBox,
-            this.searchLabel});
+            this.commitMenu});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(792, 25);
@@ -309,24 +304,6 @@
             this.commitMenu.Size = new System.Drawing.Size(61, 18);
             this.commitMenu.Text = "&Changes";
             // 
-            // searchTextBox
-            // 
-            this.searchTextBox.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.searchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.searchTextBox.HideSelection = false;
-            this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(200, 21);
-            this.searchTextBox.Enter += new System.EventHandler(this.searchTextBox_Enter);
-            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
-            // 
-            // searchLabel
-            // 
-            this.searchLabel.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.searchLabel.Name = "searchLabel";
-            this.searchLabel.Size = new System.Drawing.Size(59, 21);
-            this.searchLabel.Text = "&Search";
-            this.searchLabel.Click += new System.EventHandler(this.searchLabel_Click);
-            // 
             // tabs
             // 
             this.tabs.Controls.Add(this.taskTab);
@@ -356,14 +333,11 @@
             // 
             // taskGrid
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.taskGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.taskGrid.DataTable = null;
             this.taskGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.taskGrid.Filter = null;
             this.taskGrid.Location = new System.Drawing.Point(3, 3);
             this.taskGrid.Name = "taskGrid";
-            this.taskGrid.RowTemplate.Height = 23;
             this.taskGrid.Size = new System.Drawing.Size(778, 494);
             this.taskGrid.TabIndex = 0;
             this.taskGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.taskGrid_RowContextMenuStripNeeded);
@@ -384,14 +358,11 @@
             // 
             // branchGrid
             // 
-            this.branchGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.branchGrid.DataTable = null;
             this.branchGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.branchGrid.Filter = null;
             this.branchGrid.Location = new System.Drawing.Point(3, 3);
-            this.branchGrid.MultiSelect = false;
             this.branchGrid.Name = "branchGrid";
-            this.branchGrid.RowTemplate.Height = 23;
             this.branchGrid.Size = new System.Drawing.Size(778, 494);
             this.branchGrid.TabIndex = 0;
             this.branchGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.branchGrid_RowContextMenuStripNeeded);
@@ -431,18 +402,11 @@
             // 
             // activityRevisions
             // 
-            this.activityRevisions.AllowUserToAddRows = false;
-            this.activityRevisions.AllowUserToDeleteRows = false;
-            this.activityRevisions.AllowUserToOrderColumns = true;
-            this.activityRevisions.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.activityRevisions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.activityRevisions.DataTable = null;
             this.activityRevisions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.activityRevisions.Filter = null;
             this.activityRevisions.Location = new System.Drawing.Point(0, 0);
             this.activityRevisions.Name = "activityRevisions";
-            this.activityRevisions.ReadOnly = true;
-            this.activityRevisions.RowTemplate.Height = 23;
             this.activityRevisions.Size = new System.Drawing.Size(776, 105);
             this.activityRevisions.TabIndex = 0;
             // 
@@ -514,13 +478,11 @@
             // 
             // changedFiles
             // 
-            this.changedFiles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.changedFiles.DataTable = null;
             this.changedFiles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.changedFiles.Filter = null;
             this.changedFiles.Location = new System.Drawing.Point(0, 0);
             this.changedFiles.Name = "changedFiles";
-            this.changedFiles.RowTemplate.Height = 23;
             this.changedFiles.Size = new System.Drawing.Size(273, 265);
             this.changedFiles.TabIndex = 0;
             this.changedFiles.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.changedFiles_RowContextMenuStripNeeded);
@@ -613,13 +575,13 @@
         private System.Windows.Forms.TabPage branchesTab;
         private System.Windows.Forms.TabPage activityTab;
         private System.Windows.Forms.TabPage commitTab;
-        private SearchableDataGridView taskGrid;
-        private SearchableDataGridView branchGrid;
+        private AwesomeGrid taskGrid;
+        private AwesomeGrid branchGrid;
         private System.Windows.Forms.SplitContainer commitHorizontalDivider;
         private System.Windows.Forms.SplitContainer commitVerticalDivider;
         private ScintillaNet.Scintilla changeLog;
         private ScintillaNet.Scintilla patchText;
-        private SearchableDataGridView changedFiles;
+        private AwesomeGrid changedFiles;
         private System.Windows.Forms.ToolStripDropDownButton viewMenu;
         private System.Windows.Forms.ToolStripMenuItem refreshMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tasksMenuItem;
@@ -632,10 +594,8 @@
         private System.Windows.Forms.ToolStripDropDownButton commitMenu;
         private System.Windows.Forms.ToolStripDropDownButton editMenu;
         private System.Windows.Forms.ToolStripMenuItem searchMenuItem;
-        private System.Windows.Forms.ToolStripTextBox searchTextBox;
-        private System.Windows.Forms.ToolStripMenuItem searchLabel;
         private System.Windows.Forms.SplitContainer activityTopBottomPanel;
-        private SearchableDataGridView activityRevisions;
+        private AwesomeGrid activityRevisions;
         private ChangeInspector activityChangeInspector;
     }
 }

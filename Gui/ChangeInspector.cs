@@ -64,7 +64,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             FileGrid.DataTable = null;
             var pendingChanges = GetChanges(_context);
             FileGrid.DataTable = pendingChanges;
-            if (0 == FileGrid.Rows.Count)
+            if (0 == FileGrid.Grid.Rows.Count)
             {
                 PatchText = String.Empty;
             }
@@ -74,11 +74,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 if (0 == oldSelection.Count)
                 {
                     // if nothing was selected, select the first one
-                    FileGrid.Rows[0].Selected = true;
+                    FileGrid.Grid.Rows[0].Selected = true;
                 }
                 else
                 {
-                    foreach (DataGridViewRow row in FileGrid.Rows)
+                    foreach (DataGridViewRow row in FileGrid.Grid.Rows)
                     {
                         var id = row.Cells["ID"].Value;
                         if (oldSelection.ContainsKey(id))
@@ -95,7 +95,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private IEnumerable<object> FindSelectedIds()
         {
-            var selectedRows = FileGrid.SelectedRows.Cast<DataGridViewRow>();
+            var selectedRows = FileGrid.Grid.SelectedRows.Cast<DataGridViewRow>();
             return selectedRows.Map(row => row.Cells["ID"].Value);
         }
 
