@@ -100,6 +100,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
+        private void StartWorkOnBranch(object branchId, object taskId)
+        {
+            SetCurrentBranch(branchId, taskId);
+            tabs.SelectedTab = commitTab;
+        }
+
         private void tabs_Selected(object sender, TabControlEventArgs e)
         {
             SwitchCurrentTab(false);
@@ -291,8 +297,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 var taskId = row["TaskID"];
                 var builtInActions = new[]
                 {
-                    new MenuAction("defaultOpen", "&Open", row["BasePath"] != DBNull.Value,
+                    new MenuAction("defaultInspect", "&Inspect", true,
                                 () => SetCurrentBranch(branchId, taskId) ),
+                    new MenuAction("defaultOpen", "&Work on this", row["BasePath"] != DBNull.Value,
+                                () => StartWorkOnBranch(branchId, taskId) ),
                 };
                 items.AddActions(builtInActions);
                 var specificActions = _sourceRepository.GetBranchActions(branchId);
