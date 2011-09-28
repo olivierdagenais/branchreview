@@ -24,6 +24,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             set { PatchViewer.SetReadOnlyText(value); }
         }
 
+        public object Context { get; set; }
+
         // given a Context (the current BranchId in the "Pending Changes" case and the current revision in "Log"),
         // produces a table of the changes involved
         public Func<object, DataTable> ChangesFunction { get; set; }
@@ -44,9 +46,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             return ActionsForChangesFunction != null ? ActionsForChangesFunction(selectedIds) : MenuAction.EmptyList;
         }
-
-
-        public object Context { get; set; }
 
         #region FileGrid
         private IEnumerable<object> FindSelectedIds()
