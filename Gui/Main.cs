@@ -269,11 +269,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             var items = tasksMenu.DropDownItems;
             items.Clear();
+
             var generalActions = _taskRepository.GetTaskActions();
-            if (generalActions.Count > 0)
-            {
-                BuildActionMenu(generalActions, items);
-            }
+            BuildActionMenu(generalActions, items);
+
             var taskId = FindSelectedId(taskGrid);
             if (taskId != null)
             {
