@@ -62,7 +62,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         void Main_Load(object sender, EventArgs e)
         {
             var settings = Settings.Default;
-            ClientSize = settings.WindowSize;
+            Size = settings.WindowSize;
             WindowState = settings.WindowState;
             SwitchCurrentTab(true);
         }
@@ -70,8 +70,17 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         void Main_Closing(object sender, CancelEventArgs e)
         {
             var settings = Settings.Default;
-            settings.WindowSize = ClientSize;
             settings.WindowState = WindowState;
+            if (WindowState != FormWindowState.Normal)
+            {
+                settings.WindowLocation = RestoreBounds.Location;
+                settings.WindowSize = RestoreBounds.Size;
+            }
+            else
+            {
+                settings.WindowLocation = Location;
+                settings.WindowSize = Size;
+            }
             settings.Save();
         }
 
