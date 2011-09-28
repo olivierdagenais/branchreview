@@ -42,6 +42,9 @@
             this.commitHorizontalDivider = new System.Windows.Forms.SplitContainer();
             this.changeLog = new ScintillaNet.Scintilla();
             this.commitVerticalDivider = new System.Windows.Forms.SplitContainer();
+            this.changedFiles = new System.Windows.Forms.ListView();
+            this.changedFilesPathColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.changedFilesTypeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.patchText = new ScintillaNet.Scintilla();
             this.menuStrip = new System.Windows.Forms.ToolStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripDropDownButton();
@@ -49,9 +52,6 @@
             this.searchStrip = new System.Windows.Forms.ToolStrip();
             this.searchLabel = new System.Windows.Forms.ToolStripLabel();
             this.searchTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.changedFiles = new System.Windows.Forms.ListView();
-            this.changedFilesPathColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.changedFilesTypeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusBar.SuspendLayout();
             this.toolStripContainer.ContentPanel.SuspendLayout();
             this.toolStripContainer.TopToolStripPanel.SuspendLayout();
@@ -84,8 +84,7 @@
             this.statusBarProgress});
             this.statusBar.Location = new System.Drawing.Point(0, 551);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Padding = new System.Windows.Forms.Padding(1, 0, 12, 0);
-            this.statusBar.Size = new System.Drawing.Size(679, 22);
+            this.statusBar.Size = new System.Drawing.Size(792, 22);
             this.statusBar.TabIndex = 0;
             // 
             // statusBarText
@@ -98,7 +97,7 @@
             // statusBarProgress
             // 
             this.statusBarProgress.Name = "statusBarProgress";
-            this.statusBarProgress.Size = new System.Drawing.Size(86, 16);
+            this.statusBarProgress.Size = new System.Drawing.Size(100, 16);
             // 
             // toolStripContainer
             // 
@@ -107,13 +106,13 @@
             // toolStripContainer.ContentPanel
             // 
             this.toolStripContainer.ContentPanel.Controls.Add(this.tabs);
-            this.toolStripContainer.ContentPanel.Size = new System.Drawing.Size(679, 501);
+            this.toolStripContainer.ContentPanel.Size = new System.Drawing.Size(792, 501);
             this.toolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer.LeftToolStripPanelVisible = false;
             this.toolStripContainer.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer.Name = "toolStripContainer";
             this.toolStripContainer.RightToolStripPanelVisible = false;
-            this.toolStripContainer.Size = new System.Drawing.Size(679, 551);
+            this.toolStripContainer.Size = new System.Drawing.Size(792, 551);
             this.toolStripContainer.TabIndex = 1;
             // 
             // toolStripContainer.TopToolStripPanel
@@ -131,7 +130,7 @@
             this.tabs.Location = new System.Drawing.Point(0, 0);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(679, 501);
+            this.tabs.Size = new System.Drawing.Size(792, 501);
             this.tabs.TabIndex = 0;
             // 
             // taskTab
@@ -140,7 +139,7 @@
             this.taskTab.Location = new System.Drawing.Point(4, 22);
             this.taskTab.Name = "taskTab";
             this.taskTab.Padding = new System.Windows.Forms.Padding(3);
-            this.taskTab.Size = new System.Drawing.Size(671, 475);
+            this.taskTab.Size = new System.Drawing.Size(784, 475);
             this.taskTab.TabIndex = 1;
             this.taskTab.Text = "Tasks";
             this.taskTab.UseVisualStyleBackColor = true;
@@ -152,7 +151,7 @@
             this.taskGrid.Filter = null;
             this.taskGrid.Location = new System.Drawing.Point(3, 3);
             this.taskGrid.Name = "taskGrid";
-            this.taskGrid.Size = new System.Drawing.Size(665, 469);
+            this.taskGrid.Size = new System.Drawing.Size(778, 469);
             this.taskGrid.TabIndex = 0;
             this.taskGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.taskGrid_RowContextMenuStripNeeded);
             // 
@@ -162,7 +161,7 @@
             this.branchesTab.Location = new System.Drawing.Point(4, 22);
             this.branchesTab.Name = "branchesTab";
             this.branchesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.branchesTab.Size = new System.Drawing.Size(671, 475);
+            this.branchesTab.Size = new System.Drawing.Size(784, 475);
             this.branchesTab.TabIndex = 2;
             this.branchesTab.Text = "Branches";
             this.branchesTab.UseVisualStyleBackColor = true;
@@ -175,7 +174,7 @@
             this.branchGrid.Location = new System.Drawing.Point(3, 3);
             this.branchGrid.MultiSelect = false;
             this.branchGrid.Name = "branchGrid";
-            this.branchGrid.Size = new System.Drawing.Size(665, 469);
+            this.branchGrid.Size = new System.Drawing.Size(776, 469);
             this.branchGrid.TabIndex = 0;
             this.branchGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.branchGrid_RowContextMenuStripNeeded);
             this.branchGrid.DoubleClick += new System.EventHandler(this.branchGrid_DoubleClick);
@@ -187,7 +186,7 @@
             this.activityTab.Location = new System.Drawing.Point(4, 22);
             this.activityTab.Name = "activityTab";
             this.activityTab.Padding = new System.Windows.Forms.Padding(3);
-            this.activityTab.Size = new System.Drawing.Size(671, 475);
+            this.activityTab.Size = new System.Drawing.Size(784, 475);
             this.activityTab.TabIndex = 3;
             this.activityTab.Text = "Log";
             this.activityTab.UseVisualStyleBackColor = true;
@@ -197,7 +196,7 @@
             this.commitTab.Controls.Add(this.commitHorizontalDivider);
             this.commitTab.Location = new System.Drawing.Point(4, 22);
             this.commitTab.Name = "commitTab";
-            this.commitTab.Size = new System.Drawing.Size(671, 475);
+            this.commitTab.Size = new System.Drawing.Size(784, 475);
             this.commitTab.TabIndex = 4;
             this.commitTab.Text = "Commit";
             this.commitTab.UseVisualStyleBackColor = true;
@@ -216,7 +215,7 @@
             // commitHorizontalDivider.Panel2
             // 
             this.commitHorizontalDivider.Panel2.Controls.Add(this.commitVerticalDivider);
-            this.commitHorizontalDivider.Size = new System.Drawing.Size(784, 475);
+            this.commitHorizontalDivider.Size = new System.Drawing.Size(915, 475);
             this.commitHorizontalDivider.SplitterDistance = 80;
             this.commitHorizontalDivider.TabIndex = 0;
             // 
@@ -225,7 +224,15 @@
             this.changeLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.changeLog.Location = new System.Drawing.Point(0, 0);
             this.changeLog.Name = "changeLog";
-            this.changeLog.Size = new System.Drawing.Size(784, 80);
+            this.changeLog.Size = new System.Drawing.Size(915, 80);
+            this.changeLog.Styles.BraceBad.FontName = "Verdana";
+            this.changeLog.Styles.BraceLight.FontName = "Verdana";
+            this.changeLog.Styles.ControlChar.FontName = "Verdana";
+            this.changeLog.Styles.Default.FontName = "Verdana";
+            this.changeLog.Styles.IndentGuide.FontName = "Verdana";
+            this.changeLog.Styles.LastPredefined.FontName = "Verdana";
+            this.changeLog.Styles.LineNumber.FontName = "Verdana";
+            this.changeLog.Styles.Max.FontName = "Verdana";
             this.changeLog.TabIndex = 0;
             // 
             // commitVerticalDivider
@@ -241,18 +248,51 @@
             // commitVerticalDivider.Panel2
             // 
             this.commitVerticalDivider.Panel2.Controls.Add(this.patchText);
-            this.commitVerticalDivider.Size = new System.Drawing.Size(784, 391);
+            this.commitVerticalDivider.Size = new System.Drawing.Size(915, 391);
             this.commitVerticalDivider.SplitterDistance = 323;
-            this.commitVerticalDivider.SplitterWidth = 5;
+            this.commitVerticalDivider.SplitterWidth = 6;
             this.commitVerticalDivider.TabIndex = 0;
+            // 
+            // changedFiles
+            // 
+            this.changedFiles.AllowColumnReorder = true;
+            this.changedFiles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.changedFilesPathColumn,
+            this.changedFilesTypeColumn});
+            this.changedFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.changedFiles.FullRowSelect = true;
+            this.changedFiles.HideSelection = false;
+            this.changedFiles.Location = new System.Drawing.Point(0, 0);
+            this.changedFiles.Name = "changedFiles";
+            this.changedFiles.Size = new System.Drawing.Size(376, 391);
+            this.changedFiles.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.changedFiles.TabIndex = 0;
+            this.changedFiles.UseCompatibleStateImageBehavior = false;
+            this.changedFiles.View = System.Windows.Forms.View.Details;
+            // 
+            // changedFilesPathColumn
+            // 
+            this.changedFilesPathColumn.Text = "Path";
+            this.changedFilesPathColumn.Width = 250;
+            // 
+            // changedFilesTypeColumn
+            // 
+            this.changedFilesTypeColumn.Text = "Status";
             // 
             // patchText
             // 
-            this.patchText.BackColor = System.Drawing.SystemColors.Window;
             this.patchText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.patchText.Location = new System.Drawing.Point(0, 0);
             this.patchText.Name = "patchText";
-            this.patchText.Size = new System.Drawing.Size(456, 391);
+            this.patchText.Size = new System.Drawing.Size(532, 391);
+            this.patchText.Styles.BraceBad.FontName = "Verdana";
+            this.patchText.Styles.BraceLight.FontName = "Verdana";
+            this.patchText.Styles.ControlChar.FontName = "Verdana";
+            this.patchText.Styles.Default.FontName = "Verdana";
+            this.patchText.Styles.IndentGuide.FontName = "Verdana";
+            this.patchText.Styles.LastPredefined.FontName = "Verdana";
+            this.patchText.Styles.LineNumber.FontName = "Verdana";
+            this.patchText.Styles.Max.FontName = "Verdana";
             this.patchText.TabIndex = 0;
             // 
             // menuStrip
@@ -308,37 +348,11 @@
             this.searchTextBox.Size = new System.Drawing.Size(200, 25);
             this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             // 
-            // changedFiles
-            // 
-            this.changedFiles.AllowColumnReorder = true;
-            this.changedFiles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.changedFilesPathColumn,
-            this.changedFilesTypeColumn});
-            this.changedFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.changedFiles.FullRowSelect = true;
-            this.changedFiles.HideSelection = false;
-            this.changedFiles.Location = new System.Drawing.Point(0, 0);
-            this.changedFiles.Name = "changedFiles";
-            this.changedFiles.Size = new System.Drawing.Size(323, 391);
-            this.changedFiles.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.changedFiles.TabIndex = 0;
-            this.changedFiles.UseCompatibleStateImageBehavior = false;
-            this.changedFiles.View = System.Windows.Forms.View.Details;
-            // 
-            // changedFilesPathColumn
-            // 
-            this.changedFilesPathColumn.Text = "Path";
-            this.changedFilesPathColumn.Width = 250;
-            // 
-            // changedFilesTypeColumn
-            // 
-            this.changedFilesTypeColumn.Text = "Status";
-            // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(679, 573);
+            this.ClientSize = new System.Drawing.Size(792, 573);
             this.Controls.Add(this.toolStripContainer);
             this.Controls.Add(this.statusBar);
             this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::SoftwareNinjas.BranchAndReviewTools.Gui.Properties.Settings.Default, "WindowLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
