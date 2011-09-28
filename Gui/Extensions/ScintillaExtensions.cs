@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using ScintillaNet;
 
-namespace SoftwareNinjas.BranchAndReviewTools.Gui
+namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
 {
     internal static class ScintillaExtensions
     {

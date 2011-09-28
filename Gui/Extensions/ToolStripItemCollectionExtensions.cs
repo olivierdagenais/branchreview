@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 
-namespace SoftwareNinjas.BranchAndReviewTools.Gui
+namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
 {
     internal static class ToolStripItemCollectionExtensions
     {
