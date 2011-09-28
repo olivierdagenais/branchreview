@@ -486,21 +486,24 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         void changedFiles_SelectionChanged(object sender, EventArgs e)
         {
-            var rows = changedFiles.Rows.Cast<DataGridViewRow>();
-            var selectedRows = rows.Filter(row => row.Selected);
-            var selectedRowIds = selectedRows.Map(row => row.Cells["ID"].Value);
-            var patch = _sourceRepository.ComputeDifferences(selectedRowIds);
+            var selectedIds = FindSelectedIds();
+            var patch = _sourceRepository.ComputeDifferences(selectedIds);
             patchText.SetReadOnlyText(patch);
         }
 
         private ContextMenuStrip BuildChangedFilesActionMenu()
         {
-            var selectedRows = changedFiles.SelectedRows.Cast<DataGridViewRow>();
-            var selectedIds = selectedRows.Map(row => row.Cells["ID"].Value);
+            var selectedIds = FindSelectedIds();
             var actions = _sourceRepository.GetActionsForPendingChanges(selectedIds);
             var menu = new ContextMenuStrip();
             BuildActionMenu(actions, menu.Items);
             return menu;
+        }
+
+        private IEnumerable<object> FindSelectedIds()
+        {
+            var selectedRows = changedFiles.SelectedRows.Cast<DataGridViewRow>();
+            return selectedRows.Map(row => row.Cells["ID"].Value);
         }
 
         private void InvokeDefaultChangedFilesAction()
@@ -512,11 +515,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private void RefreshChangedFiles()
         {
             // TODO: also preserve focused item(s)?
-            var oldSelection = new HashSet<object>();
-            foreach (DataGridViewRow row in changedFiles.SelectedRows)
-            {
-                oldSelection.Add(row.Cells["ID"].Value);
-            }
+            var oldSelection = FindSelectedIds().ToDictionary(o => o);
 
             changedFiles.DataTable = null;
             var pendingChanges = _sourceRepository.GetPendingChanges(_currentBranchId);
@@ -538,7 +537,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     foreach (DataGridViewRow row in changedFiles.Rows)
                     {
                         var id = row.Cells["ID"].Value;
-                        if (oldSelection.Contains(id))
+                        if (oldSelection.ContainsKey(id))
                         {
                             row.Selected = true;
                             oldSelection.Remove(id);
