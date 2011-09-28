@@ -106,7 +106,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             }
         }
 
-        public string ComputeDifferences(IEnumerable<object> pendingChangeIds)
+        public string ComputePendingDifferences(IEnumerable<object> pendingChangeIds)
         {
             var numberOfPendingChanges = pendingChangeIds.Count();
             var suffix = (numberOfPendingChanges == 1 ? "" : "s");
@@ -139,16 +139,16 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
 ";
         }
 
-        public IList<MenuAction> GetActionsForPendingChanges(IEnumerable<object> changeIds)
+        public IList<MenuAction> GetActionsForPendingChanges(IEnumerable<object> pendingChangeIds)
         {
-            var numberOfChangeIds = changeIds.Count();
-            var suffix = ((numberOfChangeIds == 1) ? "" : "s");
+            var numberOfPendingChangeIds = pendingChangeIds.Count();
+            var suffix = ((numberOfPendingChangeIds == 1) ? "" : "s");
             return new[]
             {
                 new MenuAction("diff", "&Diff", true,
-                    () => Debug.WriteLine("Diffing {0} change{1}", numberOfChangeIds, suffix)),
+                    () => Debug.WriteLine("Diffing {0} change{1}", numberOfPendingChangeIds, suffix)),
                 new MenuAction("revert", "&Revert", true,
-                    () => Debug.WriteLine("Reverting {0} change{1}", numberOfChangeIds, suffix)),
+                    () => Debug.WriteLine("Reverting {0} change{1}", numberOfPendingChangeIds, suffix)),
             };
         }
     }

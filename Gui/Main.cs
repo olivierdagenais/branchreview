@@ -447,7 +447,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         void changedFiles_SelectionChanged(object sender, EventArgs e)
         {
             var selectedIds = FindSelectedIds();
-            var patch = _sourceRepository.ComputeDifferences(selectedIds);
+            var patch = _sourceRepository.ComputePendingDifferences(selectedIds);
             patchText.SetReadOnlyText(patch);
         }
 
