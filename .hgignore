@@ -1,0 +1,8 @@
+syntax: glob
+*.ReSharper.user
+*.suo
+bin/**
+obj/**
+TestResult.xml
+Deploy/**
+Documentation/**
