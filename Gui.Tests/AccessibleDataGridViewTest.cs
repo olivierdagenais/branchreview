@@ -29,5 +29,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests
             var actual = AccessibleDataGridView.AdjustWidths(columns, sum);
             EnumerableExtensions.EnumerateSame(columns, actual);
         }
+
+        [Test]
+        public void AdjustWidths_LastColumnWayTooWide()
+        {
+            var columns = new[] {80, 97, 110, 13657};
+            var actual = AccessibleDataGridView.AdjustWidths(columns, 1664);
+            var expected = new[] {80, 97, 110, 1377};
+            EnumerableExtensions.EnumerateSame(expected, actual);
+        }
     }
 }

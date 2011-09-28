@@ -90,7 +90,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             var result = new List<int>(widths.Count);
             foreach (var width in widths)
             {
-                result.Add(width);
+                var currentWidth = Math.Min(maxWidth, width);
+                result.Add(currentWidth);
+                maxWidth -= currentWidth;
             }
             return result;
         }
