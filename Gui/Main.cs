@@ -113,6 +113,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             gridView.StandardTab = true;
         }
 
+        // TODO: make this an extension method on ToolStipItemCollection
+        private static void AddSeparator(ToolStripItemCollection items)
+        {
+            var item = new ToolStripSeparator();
+            items.Add(item);
+        }
+
         private static void BuildActionMenu(IEnumerable<MenuAction> actions, ToolStripItemCollection items)
         {
             foreach (var menuAction in actions)
@@ -241,6 +248,39 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         #region Tasks
 
+        private void tasksMenu_DropDownOpening(object sender, EventArgs e)
+        {
+            var items = tasksMenu.DropDownItems;
+            items.Clear();
+            var generalActions = _taskRepository.GetTaskActions();
+            if (generalActions.Count > 0)
+            {
+                BuildActionMenu(generalActions, items);
+            }
+            var taskId = FindSelectedTaskId();
+            if (taskId != null)
+            {
+                var specificActions = _taskRepository.GetTaskActions(taskId);
+                if (specificActions.Count > 0)
+                {
+                    if (generalActions.Count > 0)
+                    {
+                        AddSeparator(items);
+                    }
+                    BuildActionMenu(specificActions, items);
+                    AddSeparator(items);
+                }
+                var createBranchAction = new MenuAction("createBranch", "Create Branch for task", true, 
+                    () => CreateBranch(taskId));
+                BuildActionMenu(new[] { createBranchAction }, items);
+            }
+        }
+
+        private void CreateBranch(object taskId)
+        {
+            _sourceRepository.CreateBranch(taskId);
+        }
+
         private object FindSelectedTaskId()
         {
             var selectedRows = taskGrid.SelectedRows;
@@ -280,8 +320,16 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             var menu = new ContextMenuStrip();
             if (taskId != null)
             {
-                var actions = _taskRepository.GetTaskActions(taskId);
-                BuildActionMenu(actions, menu.Items);
+                var specificActions = _taskRepository.GetTaskActions(taskId);
+                if (specificActions.Count > 0)
+                {
+                    BuildActionMenu(specificActions, menu.Items);
+                    AddSeparator(menu.Items);
+                }
+                var createBranchAction = new MenuAction("createBranch", "Create Branch for task", true, 
+                    () => CreateBranch(taskId));
+                BuildActionMenu(new[] { createBranchAction }, menu.Items);
+
             }
             return menu;
         }

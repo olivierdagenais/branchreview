@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.ToolStripSeparator viewMenuRefreshSeparator;
+            System.Windows.Forms.ToolStripSeparator tasksDummyMenuItem;
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusBarText = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBarProgress = new System.Windows.Forms.ToolStripProgressBar();
@@ -62,6 +63,7 @@
             this.activityMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.commitMenu = new System.Windows.Forms.ToolStripDropDownButton();
             viewMenuRefreshSeparator = new System.Windows.Forms.ToolStripSeparator();
+            tasksDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
             this.statusBar.SuspendLayout();
             this.toolStripContainer.ContentPanel.SuspendLayout();
             this.toolStripContainer.TopToolStripPanel.SuspendLayout();
@@ -91,6 +93,11 @@
             // 
             viewMenuRefreshSeparator.Name = "viewMenuRefreshSeparator";
             viewMenuRefreshSeparator.Size = new System.Drawing.Size(168, 6);
+            // 
+            // tasksDummyMenuItem
+            // 
+            tasksDummyMenuItem.Name = "tasksDummyMenuItem";
+            tasksDummyMenuItem.Size = new System.Drawing.Size(149, 6);
             // 
             // statusBar
             // 
@@ -423,11 +430,14 @@
             // tasksMenu
             // 
             this.tasksMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tasksMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            tasksDummyMenuItem});
             this.tasksMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tasksMenu.Name = "tasksMenu";
             this.tasksMenu.ShowDropDownArrow = false;
             this.tasksMenu.Size = new System.Drawing.Size(44, 22);
             this.tasksMenu.Text = "&Tasks";
+            this.tasksMenu.DropDownOpening += new System.EventHandler(this.tasksMenu_DropDownOpening);
             // 
             // branchesMenu
             // 
