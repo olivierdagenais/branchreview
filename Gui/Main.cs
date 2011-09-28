@@ -13,8 +13,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
     public partial class Main : Form
     {
-        private static readonly DataGridViewCellStyle AlternatingRowStyle =
-            new DataGridViewCellStyle { BackColor = Color.WhiteSmoke };
         private readonly ITaskRepository _taskRepository;
         private readonly ISourceRepository _sourceRepository;
         private readonly ReadOnlyCollection<SearchableDataGridView> _searchableGrids;
@@ -114,7 +112,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             gridView.AllowUserToAddRows = false;
             gridView.AllowUserToDeleteRows = false;
             gridView.AllowUserToResizeRows = false;
-            gridView.AlternatingRowsDefaultCellStyle = AlternatingRowStyle;
             gridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             gridView.BackgroundColor = SystemColors.Window;
             gridView.BorderStyle = BorderStyle.None;

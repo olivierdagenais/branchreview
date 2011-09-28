@@ -9,8 +9,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
     public class SearchableDataGridView : DataGridView
     {
+        private static readonly DataGridViewCellStyle AlternatingRowStyle =
+            new DataGridViewCellStyle { BackColor = Color.WhiteSmoke };
+
         public SearchableDataGridView()
         {
+            this.AlternatingRowsDefaultCellStyle = AlternatingRowStyle;
             this.DataBindingComplete += SearchableDataGridView_DataBindingComplete;
             this.Resize += SearchableDataGridView_Resize;
             this.RowPrePaint += SearchableDataGridView_RowPrePaint;
