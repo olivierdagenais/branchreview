@@ -28,28 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusBarText = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBarProgress = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripContainer = new System.Windows.Forms.ToolStripContainer();
-            this.menuStrip = new System.Windows.Forms.ToolStrip();
-            this.fileMenu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabs = new System.Windows.Forms.TabControl();
             this.taskTab = new System.Windows.Forms.TabPage();
             this.branchesTab = new System.Windows.Forms.TabPage();
             this.activityTab = new System.Windows.Forms.TabPage();
             this.commitTab = new System.Windows.Forms.TabPage();
+            this.menuStrip = new System.Windows.Forms.ToolStrip();
+            this.fileMenu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchStrip = new System.Windows.Forms.ToolStrip();
             this.searchLabel = new System.Windows.Forms.ToolStripLabel();
             this.searchTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.taskGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
             this.statusBar.SuspendLayout();
             this.toolStripContainer.ContentPanel.SuspendLayout();
             this.toolStripContainer.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer.SuspendLayout();
-            this.menuStrip.SuspendLayout();
             this.tabs.SuspendLayout();
+            this.taskTab.SuspendLayout();
+            this.menuStrip.SuspendLayout();
             this.searchStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // statusBar
@@ -96,34 +100,6 @@
             this.toolStripContainer.TopToolStripPanel.Controls.Add(this.menuStrip);
             this.toolStripContainer.TopToolStripPanel.Controls.Add(this.searchStrip);
             // 
-            // menuStrip
-            // 
-            this.menuStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileMenu});
-            this.menuStrip.Location = new System.Drawing.Point(3, 0);
-            this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(71, 25);
-            this.menuStrip.TabIndex = 0;
-            // 
-            // fileMenu
-            // 
-            this.fileMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exitMenuItem});
-            this.fileMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.fileMenu.Name = "fileMenu";
-            this.fileMenu.ShowDropDownArrow = false;
-            this.fileMenu.Size = new System.Drawing.Size(30, 22);
-            this.fileMenu.Text = "&File";
-            // 
-            // exitMenuItem
-            // 
-            this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.exitMenuItem.Text = "E&xit";
-            this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
-            // 
             // tabs
             // 
             this.tabs.Controls.Add(this.taskTab);
@@ -139,6 +115,7 @@
             // 
             // taskTab
             // 
+            this.taskTab.Controls.Add(this.taskGrid);
             this.taskTab.Location = new System.Drawing.Point(4, 22);
             this.taskTab.Name = "taskTab";
             this.taskTab.Padding = new System.Windows.Forms.Padding(3);
@@ -176,6 +153,34 @@
             this.commitTab.Text = "Commit";
             this.commitTab.UseVisualStyleBackColor = true;
             // 
+            // menuStrip
+            // 
+            this.menuStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileMenu});
+            this.menuStrip.Location = new System.Drawing.Point(3, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(40, 25);
+            this.menuStrip.TabIndex = 0;
+            // 
+            // fileMenu
+            // 
+            this.fileMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitMenuItem});
+            this.fileMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.fileMenu.Name = "fileMenu";
+            this.fileMenu.ShowDropDownArrow = false;
+            this.fileMenu.Size = new System.Drawing.Size(30, 22);
+            this.fileMenu.Text = "&File";
+            // 
+            // exitMenuItem
+            // 
+            this.exitMenuItem.Name = "exitMenuItem";
+            this.exitMenuItem.Size = new System.Drawing.Size(95, 22);
+            this.exitMenuItem.Text = "E&xit";
+            this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
+            // 
             // searchStrip
             // 
             this.searchStrip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -183,7 +188,7 @@
             this.searchStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchLabel,
             this.searchTextBox});
-            this.searchStrip.Location = new System.Drawing.Point(533, 0);
+            this.searchStrip.Location = new System.Drawing.Point(461, 0);
             this.searchStrip.Name = "searchStrip";
             this.searchStrip.Size = new System.Drawing.Size(259, 25);
             this.searchStrip.TabIndex = 1;
@@ -199,6 +204,37 @@
             // 
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(200, 25);
+            // 
+            // taskGrid
+            // 
+            this.taskGrid.AllowUserToAddRows = false;
+            this.taskGrid.AllowUserToDeleteRows = false;
+            this.taskGrid.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.taskGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.taskGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.taskGrid.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.taskGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.taskGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.taskGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.taskGrid.DataTable = null;
+            this.taskGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.taskGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.taskGrid.Filter = null;
+            this.taskGrid.Location = new System.Drawing.Point(3, 3);
+            this.taskGrid.MultiSelect = false;
+            this.taskGrid.Name = "taskGrid";
+            this.taskGrid.ReadOnly = true;
+            this.taskGrid.RowHeadersVisible = false;
+            this.taskGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.taskGrid.RowTemplate.Height = 23;
+            this.taskGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.taskGrid.ShowCellErrors = false;
+            this.taskGrid.ShowEditingIcon = false;
+            this.taskGrid.ShowRowErrors = false;
+            this.taskGrid.Size = new System.Drawing.Size(778, 494);
+            this.taskGrid.StandardTab = true;
+            this.taskGrid.TabIndex = 0;
             // 
             // Main
             // 
@@ -216,11 +252,13 @@
             this.toolStripContainer.TopToolStripPanel.PerformLayout();
             this.toolStripContainer.ResumeLayout(false);
             this.toolStripContainer.PerformLayout();
+            this.tabs.ResumeLayout(false);
+            this.taskTab.ResumeLayout(false);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            this.tabs.ResumeLayout(false);
             this.searchStrip.ResumeLayout(false);
             this.searchStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -243,5 +281,6 @@
         private System.Windows.Forms.ToolStrip searchStrip;
         private System.Windows.Forms.ToolStripLabel searchLabel;
         private System.Windows.Forms.ToolStripTextBox searchTextBox;
+        private SearchableDataGridView taskGrid;
     }
 }

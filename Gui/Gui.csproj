@@ -74,6 +74,9 @@
     <Compile Include="Mock\TaskRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchableDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Commit.resx">
       <DependentUpon>Commit.cs</DependentUpon>
     </EmbeddedResource>
