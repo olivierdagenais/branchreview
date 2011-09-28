@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using ScintillaNet;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Properties;
@@ -32,6 +33,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             _sourceRepository = new Mock.SourceRepository();
             this.pendingChanges.ChangeLog.KeyDown += ChangeLog_KeyDown;
 
+            activityChangeInspector.ChangeLog.LongLines.EdgeMode = EdgeMode.None;
             activityChangeInspector.ActionsForChangesFunction = _sourceRepository.GetActionsForRevisionChanges;
             activityChangeInspector.ChangesFunction = _sourceRepository.GetRevisionChanges;
             activityChangeInspector.ComputeDifferencesFunction = _sourceRepository.ComputeRevisionDifferences;
