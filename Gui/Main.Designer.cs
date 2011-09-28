@@ -35,10 +35,17 @@
             this.menuStrip = new System.Windows.Forms.ToolStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabs = new System.Windows.Forms.TabControl();
+            this.taskTab = new System.Windows.Forms.TabPage();
+            this.branchesTab = new System.Windows.Forms.TabPage();
+            this.activityTab = new System.Windows.Forms.TabPage();
+            this.commitTab = new System.Windows.Forms.TabPage();
             this.statusBar.SuspendLayout();
+            this.toolStripContainer.ContentPanel.SuspendLayout();
             this.toolStripContainer.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer.SuspendLayout();
             this.menuStrip.SuspendLayout();
+            this.tabs.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusBar
@@ -70,6 +77,7 @@
             // 
             // toolStripContainer.ContentPanel
             // 
+            this.toolStripContainer.ContentPanel.Controls.Add(this.tabs);
             this.toolStripContainer.ContentPanel.Size = new System.Drawing.Size(792, 526);
             this.toolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer.LeftToolStripPanelVisible = false;
@@ -90,7 +98,7 @@
             this.fileMenu});
             this.menuStrip.Location = new System.Drawing.Point(3, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(71, 25);
+            this.menuStrip.Size = new System.Drawing.Size(40, 25);
             this.menuStrip.TabIndex = 0;
             // 
             // fileMenu
@@ -111,6 +119,58 @@
             this.exitMenuItem.Text = "E&xit";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
+            // tabs
+            // 
+            this.tabs.Controls.Add(this.taskTab);
+            this.tabs.Controls.Add(this.branchesTab);
+            this.tabs.Controls.Add(this.activityTab);
+            this.tabs.Controls.Add(this.commitTab);
+            this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabs.Location = new System.Drawing.Point(0, 0);
+            this.tabs.Name = "tabs";
+            this.tabs.SelectedIndex = 0;
+            this.tabs.Size = new System.Drawing.Size(792, 526);
+            this.tabs.TabIndex = 0;
+            // 
+            // taskTab
+            // 
+            this.taskTab.Location = new System.Drawing.Point(4, 22);
+            this.taskTab.Name = "taskTab";
+            this.taskTab.Padding = new System.Windows.Forms.Padding(3);
+            this.taskTab.Size = new System.Drawing.Size(784, 500);
+            this.taskTab.TabIndex = 1;
+            this.taskTab.Text = "Tasks";
+            this.taskTab.UseVisualStyleBackColor = true;
+            // 
+            // branchesTab
+            // 
+            this.branchesTab.Location = new System.Drawing.Point(4, 22);
+            this.branchesTab.Name = "branchesTab";
+            this.branchesTab.Padding = new System.Windows.Forms.Padding(3);
+            this.branchesTab.Size = new System.Drawing.Size(784, 500);
+            this.branchesTab.TabIndex = 2;
+            this.branchesTab.Text = "Branches";
+            this.branchesTab.UseVisualStyleBackColor = true;
+            // 
+            // activityTab
+            // 
+            this.activityTab.Location = new System.Drawing.Point(4, 22);
+            this.activityTab.Name = "activityTab";
+            this.activityTab.Padding = new System.Windows.Forms.Padding(3);
+            this.activityTab.Size = new System.Drawing.Size(784, 500);
+            this.activityTab.TabIndex = 3;
+            this.activityTab.Text = "Activity/Log";
+            this.activityTab.UseVisualStyleBackColor = true;
+            // 
+            // commitTab
+            // 
+            this.commitTab.Location = new System.Drawing.Point(4, 22);
+            this.commitTab.Name = "commitTab";
+            this.commitTab.Size = new System.Drawing.Size(784, 500);
+            this.commitTab.TabIndex = 4;
+            this.commitTab.Text = "Commit";
+            this.commitTab.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -122,12 +182,14 @@
             this.Text = "Branch and Review Tools";
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
+            this.toolStripContainer.ContentPanel.ResumeLayout(false);
             this.toolStripContainer.TopToolStripPanel.ResumeLayout(false);
             this.toolStripContainer.TopToolStripPanel.PerformLayout();
             this.toolStripContainer.ResumeLayout(false);
             this.toolStripContainer.PerformLayout();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            this.tabs.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,5 +204,10 @@
         private System.Windows.Forms.ToolStrip menuStrip;
         private System.Windows.Forms.ToolStripDropDownButton fileMenu;
         private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
+        private System.Windows.Forms.TabControl tabs;
+        private System.Windows.Forms.TabPage taskTab;
+        private System.Windows.Forms.TabPage branchesTab;
+        private System.Windows.Forms.TabPage activityTab;
+        private System.Windows.Forms.TabPage commitTab;
     }
 }
