@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -104,18 +103,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             return processCmdKey;
         }
 
-        internal struct FilterChunk
-        {
-            public string Text;
-            public int? Integer;
-            public FilterChunk(string text)
-            {
-                Text = text;
-                int m;
-                Integer = Int32.TryParse (text, out m) ? (int?) m : null;
-            }
-        }
-
         private IList<Type> _columnTypes;
         private DataTable _dataTable;
         public DataTable DataTable
@@ -163,52 +150,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 var filterChunks = filterParts.Select (p => new FilterChunk(p)).ToList();
                 foreach (DataRow dataRow in _dataTable.Rows)
                 {
-                    if (Matches(dataRow, _columnTypes, filterChunks))
+                    if (dataRow.Matches(_columnTypes, filterChunks))
                     {
                         cloned.Rows.Add (dataRow.ItemArray);
                     }
                 }
                 this.Grid.DataSource = cloned;
             }
-        }
-
-        internal static bool Matches(DataRow row, IList<Type> columnTypes, IList<FilterChunk> filterChunks)
-        {
-            foreach (var chunk in filterChunks)
-            {
-                bool chunkMatchesColumn = false;
-                for (var c = 0; c < columnTypes.Count; c++)
-                {
-                    var columnType = columnTypes[c];
-                    var cellValue = row[c];
-
-                    if (columnType == typeof(int))
-                    {
-                        if (chunk.Integer.HasValue)
-                        {
-                            var v = (int) cellValue;
-                            chunkMatchesColumn = v == chunk.Integer.Value;
-                        }
-                    }
-                    else
-                    {
-                        if (cellValue != null)
-                        {
-                            var v = cellValue.ToString();
-                            chunkMatchesColumn = v.ContainsInvariantIgnoreCase(chunk.Text);
-                        }
-                    }
-
-                    if (chunkMatchesColumn)
-                    {
-                        break;
-                    }
-                }
-
-                if (!chunkMatchesColumn) return false;
-            }
-
-            return true;
         }
 
         private void SearchLabel_Click(object sender, EventArgs e)
