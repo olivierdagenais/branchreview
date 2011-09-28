@@ -38,5 +38,19 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// An ordered list of <see cref="MenuAction"/> instances from which to build a menu.
         /// </returns>
         IList<MenuAction> GetActionsForBranch(object branchId);
+
+        /// <summary>
+        /// Loads a <see cref="DataTable"/> representing the changes that have not yet been committed in the branch
+        /// identified by <paramref name="branchId"/>.
+        /// </summary>
+        /// 
+        /// <returns>
+        /// A <see cref="DataTable"/> with at least the following columns:
+        /// <list type="table">
+        ///     <listheader><term>Column name</term><description>Description</description></listheader>
+        ///     <item><term>ID</term><description>A unique identifier for the file or folder</description></item>
+        /// </list>
+        /// </returns>
+        DataTable GetPendingChanges(object branchId);
     }
 }

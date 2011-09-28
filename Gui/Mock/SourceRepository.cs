@@ -28,6 +28,38 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             }
         };
 
+        private static readonly IList<DataColumn> _pendingChangesColumns = new []
+        {
+            new DataColumn("ID", typeof(string)) { Caption = "Path" },
+            new DataColumn("Status", typeof(string)),
+        };
+        private readonly DataTable _doSftpPendingChanges = new DataTable
+        {
+            Columns =
+            {
+                _pendingChangesColumns[0],
+                _pendingChangesColumns[1],
+            },
+        };
+        private readonly DataTable _refactorInternetPendingChanges = new DataTable
+        {
+            Columns =
+            {
+                _pendingChangesColumns[0],
+                _pendingChangesColumns[1],
+            },
+            Rows =
+            {
+                {"Core/ISourceRepository.cs", "Merged"},
+                {"Gui/Mock/SourceRepository.cs", "Copied"},
+                {"Gui/app.config", "Branched"},
+                {"Gui/Main.cs", "Modified"},
+                {"Gui/Main.Designer.cs", "Added"},
+                {"Gui/Main.resx", "Deleted"},
+                {"Gui/Program.cs", "Renamed"},
+            },
+        };
+
         public DataTable LoadBranches()
         {
             return _branches;
@@ -59,6 +91,19 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
                 };
             }
             return actions;
+        }
+
+        public DataTable GetPendingChanges(object branchId)
+        {
+            switch (branchId.ToString())
+            {
+                case "435_DoSftp":
+                    return _doSftpPendingChanges;
+                case "436_RefactorInternet":
+                    return _refactorInternetPendingChanges;
+                default:
+                    throw new ArgumentException();
+            }
         }
     }
 }
