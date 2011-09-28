@@ -7,6 +7,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         public ChangeInspector()
         {
             InitializeComponent();
+            ChangeLog.InitializeDefaults();
+            PatchText.InitializeDefaults();
+            PatchText.InitializeDiff();
         }
     }
 }
