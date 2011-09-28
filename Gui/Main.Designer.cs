@@ -100,7 +100,7 @@
             // viewMenuRefreshSeparator
             // 
             viewMenuRefreshSeparator.Name = "viewMenuRefreshSeparator";
-            viewMenuRefreshSeparator.Size = new System.Drawing.Size(181, 6);
+            viewMenuRefreshSeparator.Size = new System.Drawing.Size(168, 6);
             // 
             // tasksDummyMenuItem
             // 
@@ -127,7 +127,7 @@
             // 
             this.statusBarText.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.statusBarText.Name = "statusBarText";
-            this.statusBarText.Size = new System.Drawing.Size(48, 17);
+            this.statusBarText.Size = new System.Drawing.Size(43, 17);
             this.statusBarText.Text = "Ready";
             // 
             // statusBarProgress
@@ -166,7 +166,7 @@
             this.commitMenu});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(792, 27);
+            this.menuStrip.Size = new System.Drawing.Size(792, 24);
             this.menuStrip.TabIndex = 0;
             // 
             // fileMenu
@@ -177,13 +177,13 @@
             this.fileMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.fileMenu.Name = "fileMenu";
             this.fileMenu.ShowDropDownArrow = false;
-            this.fileMenu.Size = new System.Drawing.Size(34, 20);
+            this.fileMenu.Size = new System.Drawing.Size(30, 17);
             this.fileMenu.Text = "&File";
             // 
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(95, 22);
             this.exitMenuItem.Text = "E&xit";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
@@ -195,14 +195,14 @@
             this.editMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.editMenu.Name = "editMenu";
             this.editMenu.ShowDropDownArrow = false;
-            this.editMenu.Size = new System.Drawing.Size(37, 20);
+            this.editMenu.Size = new System.Drawing.Size(32, 17);
             this.editMenu.Text = "&Edit";
             // 
             // searchMenuItem
             // 
             this.searchMenuItem.Name = "searchMenuItem";
             this.searchMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.searchMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.searchMenuItem.Size = new System.Drawing.Size(157, 22);
             this.searchMenuItem.Text = "&Search";
             this.searchMenuItem.Click += new System.EventHandler(this.searchMenuItem_Click);
             // 
@@ -218,14 +218,14 @@
             this.viewMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.viewMenu.Name = "viewMenu";
             this.viewMenu.ShowDropDownArrow = false;
-            this.viewMenu.Size = new System.Drawing.Size(43, 20);
+            this.viewMenu.Size = new System.Drawing.Size(38, 17);
             this.viewMenu.Text = "&View";
             // 
             // tasksMenuItem
             // 
             this.tasksMenuItem.Name = "tasksMenuItem";
             this.tasksMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D1)));
-            this.tasksMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.tasksMenuItem.Size = new System.Drawing.Size(171, 22);
             this.tasksMenuItem.Text = "&Tasks";
             this.tasksMenuItem.Click += new System.EventHandler(this.tasksMenuItem_Click);
             // 
@@ -233,7 +233,7 @@
             // 
             this.branchesMenuItem.Name = "branchesMenuItem";
             this.branchesMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D2)));
-            this.branchesMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.branchesMenuItem.Size = new System.Drawing.Size(171, 22);
             this.branchesMenuItem.Text = "&Branches";
             this.branchesMenuItem.Click += new System.EventHandler(this.branchesMenuItem_Click);
             // 
@@ -241,7 +241,7 @@
             // 
             this.commitMenuItem.Name = "commitMenuItem";
             this.commitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D3)));
-            this.commitMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.commitMenuItem.Size = new System.Drawing.Size(171, 22);
             this.commitMenuItem.Text = "&Changes";
             this.commitMenuItem.Click += new System.EventHandler(this.commitMenuItem_Click);
             // 
@@ -249,7 +249,7 @@
             // 
             this.refreshMenuItem.Name = "refreshMenuItem";
             this.refreshMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.refreshMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.refreshMenuItem.Size = new System.Drawing.Size(171, 22);
             this.refreshMenuItem.Text = "&Refresh";
             this.refreshMenuItem.Click += new System.EventHandler(this.refreshMenuItem_Click);
             // 
@@ -261,7 +261,7 @@
             this.tasksMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tasksMenu.Name = "tasksMenu";
             this.tasksMenu.ShowDropDownArrow = false;
-            this.tasksMenu.Size = new System.Drawing.Size(50, 20);
+            this.tasksMenu.Size = new System.Drawing.Size(44, 17);
             this.tasksMenu.Text = "&Tasks";
             this.tasksMenu.DropDownOpening += new System.EventHandler(this.tasksMenu_DropDownOpening);
             // 
@@ -273,7 +273,7 @@
             this.branchesMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.branchesMenu.Name = "branchesMenu";
             this.branchesMenu.ShowDropDownArrow = false;
-            this.branchesMenu.Size = new System.Drawing.Size(72, 20);
+            this.branchesMenu.Size = new System.Drawing.Size(64, 17);
             this.branchesMenu.Text = "&Branches";
             this.branchesMenu.DropDownOpening += new System.EventHandler(this.branchesMenu_DropDownOpening);
             // 
@@ -283,7 +283,7 @@
             this.commitMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.commitMenu.Name = "commitMenu";
             this.commitMenu.ShowDropDownArrow = false;
-            this.commitMenu.Size = new System.Drawing.Size(68, 20);
+            this.commitMenu.Size = new System.Drawing.Size(61, 17);
             this.commitMenu.Text = "&Changes";
             // 
             // tabs
@@ -292,11 +292,11 @@
             this.tabs.Controls.Add(this.branchesTab);
             this.tabs.Controls.Add(this.commitTab);
             this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabs.Location = new System.Drawing.Point(0, 27);
+            this.tabs.Location = new System.Drawing.Point(0, 24);
             this.tabs.Margin = new System.Windows.Forms.Padding(0);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(792, 524);
+            this.tabs.Size = new System.Drawing.Size(792, 527);
             this.tabs.TabIndex = 0;
             this.tabs.TabStop = false;
             this.tabs.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabs_Selected);
@@ -307,7 +307,7 @@
             this.taskTab.Location = new System.Drawing.Point(4, 22);
             this.taskTab.Name = "taskTab";
             this.taskTab.Padding = new System.Windows.Forms.Padding(3);
-            this.taskTab.Size = new System.Drawing.Size(784, 498);
+            this.taskTab.Size = new System.Drawing.Size(784, 501);
             this.taskTab.TabIndex = 1;
             this.taskTab.Text = "Tasks";
             this.taskTab.UseVisualStyleBackColor = true;
@@ -319,7 +319,7 @@
             this.taskGrid.Filter = null;
             this.taskGrid.Location = new System.Drawing.Point(3, 3);
             this.taskGrid.Name = "taskGrid";
-            this.taskGrid.Size = new System.Drawing.Size(778, 492);
+            this.taskGrid.Size = new System.Drawing.Size(778, 495);
             this.taskGrid.TabIndex = 0;
             this.taskGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.taskGrid_RowContextMenuStripNeeded);
             this.taskGrid.DoubleClick += new System.EventHandler(this.taskGrid_DoubleClick);
@@ -332,7 +332,7 @@
             this.branchesTab.Location = new System.Drawing.Point(4, 22);
             this.branchesTab.Name = "branchesTab";
             this.branchesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.branchesTab.Size = new System.Drawing.Size(784, 498);
+            this.branchesTab.Size = new System.Drawing.Size(784, 501);
             this.branchesTab.TabIndex = 2;
             this.branchesTab.Text = "Branches";
             this.branchesTab.UseVisualStyleBackColor = true;
@@ -419,7 +419,7 @@
             this.commitTab.Controls.Add(this.commitHorizontalDivider);
             this.commitTab.Location = new System.Drawing.Point(4, 22);
             this.commitTab.Name = "commitTab";
-            this.commitTab.Size = new System.Drawing.Size(784, 498);
+            this.commitTab.Size = new System.Drawing.Size(784, 501);
             this.commitTab.TabIndex = 4;
             this.commitTab.Text = "Changes";
             this.commitTab.UseVisualStyleBackColor = true;
