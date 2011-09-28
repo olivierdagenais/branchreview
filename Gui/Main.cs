@@ -16,6 +16,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private object _currentBranchId;
         private object _currentTaskId;
+        private object _currentRevision;
 
         public Main()
         {
@@ -327,7 +328,55 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             menu.Items.InvokeFirstMenuItem();
         }
 
+        private ContextMenuStrip BuildRevisionActionMenu()
+        {
+            var menu = new ContextMenuStrip();
+            AddRevisionSpecificActions(menu.Items, false);
+            return menu;
+        }
+
+        private void AddRevisionSpecificActions(ToolStripItemCollection items, bool needsLeadingSeparator)
+        {
+            var selectedItems = activityRevisions.Grid.SelectedItems;
+            if (selectedItems.Count > 0)
+            {
+                if (needsLeadingSeparator)
+                {
+                    items.AddSeparator();
+                }
+                var item = selectedItems[0];
+                var row = item.GetRow();
+                var revisionId = row["ID"];
+                var builtInActions = new[]
+                {
+                    new MenuAction("defaultOpen", "&Open", true,
+                                () => SetCurrentRevision(revisionId) ),
+                };
+                items.AddActions(builtInActions);
+                // TODO: Should there be specific actions per revision?  Maybe an external view, like TFS has...
+            }
+        }
+
+        private void SetCurrentRevision(object revisionId)
+        {
+            _currentRevision = revisionId;
+            activityChangeInspector.Context = revisionId;
+        }
+
+        private void activityRevisions_RowInvoked(object sender, EventArgs e)
+        {
+            var menu = BuildRevisionActionMenu();
+            menu.Items.InvokeFirstMenuItem();
+        }
+
+        private void activityRevisions_ContextMenuStripNeeded(object sender, ContextMenuStripNeededEventArgs e)
+        {
+            var menu = BuildRevisionActionMenu();
+            e.ContextMenuStrip = menu;
+        }
+
         #endregion
+
 
         #region Activity/Log
         #endregion

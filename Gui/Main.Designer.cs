@@ -304,7 +304,7 @@
             this.taskGrid.Name = "taskGrid";
             this.taskGrid.Size = new System.Drawing.Size(778, 495);
             this.taskGrid.TabIndex = 0;
-            this.taskGrid.ContextMenuStripNeeded += new ContextMenuStripNeededEventHandler(this.taskGrid_ContextMenuStripNeeded);
+            this.taskGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuStripNeededEventHandler(this.taskGrid_ContextMenuStripNeeded);
             this.taskGrid.RowInvoked += new System.EventHandler(this.taskGrid_RowInvoked);
             // 
             // branchesTab
@@ -348,7 +348,7 @@
             this.branchGrid.Name = "branchGrid";
             this.branchGrid.Size = new System.Drawing.Size(776, 87);
             this.branchGrid.TabIndex = 0;
-            this.branchGrid.ContextMenuStripNeeded += new ContextMenuStripNeededEventHandler(this.branchGrid_ContextMenuStripNeeded);
+            this.branchGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuStripNeededEventHandler(this.branchGrid_ContextMenuStripNeeded);
             this.branchGrid.RowInvoked += new System.EventHandler(this.branchGrid_RowInvoked);
             // 
             // activityTopBottomPanel
@@ -381,6 +381,8 @@
             this.activityRevisions.Name = "activityRevisions";
             this.activityRevisions.Size = new System.Drawing.Size(776, 83);
             this.activityRevisions.TabIndex = 0;
+            this.activityRevisions.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuStripNeededEventHandler(this.activityRevisions_ContextMenuStripNeeded);
+            this.activityRevisions.RowInvoked += new System.EventHandler(this.activityRevisions_RowInvoked);
             // 
             // activityChangeInspector
             // 
