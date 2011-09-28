@@ -9,12 +9,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
     public partial class Main : Form
     {
+        private static readonly DataGridViewCellStyle AlternatingRowStyle =
+            new DataGridViewCellStyle { BackColor = Color.WhiteSmoke };
         private readonly ITaskRepository _taskRepository;
         private readonly ReadOnlyCollection<SearchableDataGridView> _searchableGrids;
 
         public Main()
         {
             InitializeComponent();
+            ConfigureDataGridView(taskGrid);
             // one per tab
             _searchableGrids = new ReadOnlyCollection<SearchableDataGridView>(new[]
             {
@@ -27,6 +30,30 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             FormClosing += Main_Closing;
             _taskRepository = new Mock.TaskRepository();
             taskGrid.DataTable = _taskRepository.LoadTasks();
+        }
+
+        private static void ConfigureDataGridView(DataGridView gridView)
+        {
+            gridView.AllowUserToAddRows = false;
+            gridView.AllowUserToDeleteRows = false;
+            gridView.AllowUserToResizeRows = false;
+            gridView.AlternatingRowsDefaultCellStyle = AlternatingRowStyle;
+            gridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            gridView.BackgroundColor = SystemColors.Window;
+            gridView.BorderStyle = BorderStyle.None;
+            gridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            gridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridView.EditMode = DataGridViewEditMode.EditProgrammatically;
+            gridView.MultiSelect = false;
+            gridView.ReadOnly = true;
+            gridView.RowHeadersVisible = false;
+            gridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            gridView.RowTemplate.Height = 23;
+            gridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            gridView.ShowCellErrors = false;
+            gridView.ShowEditingIcon = false;
+            gridView.ShowRowErrors = false;
+            gridView.StandardTab = true;
         }
 
         void Main_Load(object sender, System.EventArgs e)
