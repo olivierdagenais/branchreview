@@ -546,13 +546,13 @@
             // 
             // activityChangeInspector
             // 
-            this.activityChangeInspector.ActionsForPendingChangesFunction = null;
+            this.activityChangeInspector.ActionsForChangesFunction = null;
             this.activityChangeInspector.ComputeDifferencesFunction = null;
             this.activityChangeInspector.Dock = System.Windows.Forms.DockStyle.Fill;
             this.activityChangeInspector.Location = new System.Drawing.Point(0, 0);
             this.activityChangeInspector.Name = "activityChangeInspector";
             this.activityChangeInspector.PatchText = "";
-            this.activityChangeInspector.PendingChangesFunction = null;
+            this.activityChangeInspector.ChangesFunction = null;
             this.activityChangeInspector.Size = new System.Drawing.Size(776, 381);
             this.activityChangeInspector.TabIndex = 0;
             // 
