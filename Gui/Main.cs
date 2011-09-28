@@ -367,7 +367,5 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         }
 
         #endregion
-
-
     }
 }
