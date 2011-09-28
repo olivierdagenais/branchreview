@@ -59,12 +59,15 @@
             this.branchesTab = new System.Windows.Forms.TabPage();
             this.branchGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
             this.activityTab = new System.Windows.Forms.TabPage();
+            this.activityTopBottomPanel = new System.Windows.Forms.SplitContainer();
+            this.activityRevisions = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
             this.commitTab = new System.Windows.Forms.TabPage();
             this.commitHorizontalDivider = new System.Windows.Forms.SplitContainer();
             this.changeLog = new ScintillaNet.Scintilla();
             this.commitVerticalDivider = new System.Windows.Forms.SplitContainer();
             this.changedFiles = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
             this.patchText = new ScintillaNet.Scintilla();
+            this.activityChangeInspector = new SoftwareNinjas.BranchAndReviewTools.Gui.ChangeInspector();
             viewMenuRefreshSeparator = new System.Windows.Forms.ToolStripSeparator();
             tasksDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
             branchesDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
@@ -76,6 +79,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).BeginInit();
             this.branchesTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).BeginInit();
+            this.activityTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.activityTopBottomPanel)).BeginInit();
+            this.activityTopBottomPanel.Panel1.SuspendLayout();
+            this.activityTopBottomPanel.Panel2.SuspendLayout();
+            this.activityTopBottomPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.activityRevisions)).BeginInit();
             this.commitTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commitHorizontalDivider)).BeginInit();
             this.commitHorizontalDivider.Panel1.SuspendLayout();
@@ -383,7 +392,7 @@
             this.branchGrid.MultiSelect = false;
             this.branchGrid.Name = "branchGrid";
             this.branchGrid.RowTemplate.Height = 23;
-            this.branchGrid.Size = new System.Drawing.Size(778, 492);
+            this.branchGrid.Size = new System.Drawing.Size(778, 494);
             this.branchGrid.TabIndex = 0;
             this.branchGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.branchGrid_RowContextMenuStripNeeded);
             this.branchGrid.DoubleClick += new System.EventHandler(this.branchGrid_DoubleClick);
@@ -392,6 +401,7 @@
             // 
             // activityTab
             // 
+            this.activityTab.Controls.Add(this.activityTopBottomPanel);
             this.activityTab.Location = new System.Drawing.Point(4, 22);
             this.activityTab.Name = "activityTab";
             this.activityTab.Padding = new System.Windows.Forms.Padding(3);
@@ -399,6 +409,42 @@
             this.activityTab.TabIndex = 3;
             this.activityTab.Text = "Log";
             this.activityTab.UseVisualStyleBackColor = true;
+            // 
+            // activityTopBottomPanel
+            // 
+            this.activityTopBottomPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.activityTopBottomPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.activityTopBottomPanel.Location = new System.Drawing.Point(3, 3);
+            this.activityTopBottomPanel.Name = "activityTopBottomPanel";
+            this.activityTopBottomPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // activityTopBottomPanel.Panel1
+            // 
+            this.activityTopBottomPanel.Panel1.Controls.Add(this.activityRevisions);
+            // 
+            // activityTopBottomPanel.Panel2
+            // 
+            this.activityTopBottomPanel.Panel2.Controls.Add(this.activityChangeInspector);
+            this.activityTopBottomPanel.Size = new System.Drawing.Size(778, 494);
+            this.activityTopBottomPanel.SplitterDistance = 107;
+            this.activityTopBottomPanel.TabIndex = 0;
+            // 
+            // activityRevisions
+            // 
+            this.activityRevisions.AllowUserToAddRows = false;
+            this.activityRevisions.AllowUserToDeleteRows = false;
+            this.activityRevisions.AllowUserToOrderColumns = true;
+            this.activityRevisions.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.activityRevisions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.activityRevisions.DataTable = null;
+            this.activityRevisions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.activityRevisions.Filter = null;
+            this.activityRevisions.Location = new System.Drawing.Point(0, 0);
+            this.activityRevisions.Name = "activityRevisions";
+            this.activityRevisions.ReadOnly = true;
+            this.activityRevisions.RowTemplate.Height = 23;
+            this.activityRevisions.Size = new System.Drawing.Size(776, 105);
+            this.activityRevisions.TabIndex = 0;
             // 
             // commitTab
             // 
@@ -425,7 +471,7 @@
             // commitHorizontalDivider.Panel2
             // 
             this.commitHorizontalDivider.Panel2.Controls.Add(this.commitVerticalDivider);
-            this.commitHorizontalDivider.Size = new System.Drawing.Size(784, 498);
+            this.commitHorizontalDivider.Size = new System.Drawing.Size(784, 500);
             this.commitHorizontalDivider.SplitterDistance = 229;
             this.commitHorizontalDivider.TabIndex = 0;
             this.commitHorizontalDivider.TabStop = false;
@@ -460,7 +506,7 @@
             // commitVerticalDivider.Panel2
             // 
             this.commitVerticalDivider.Panel2.Controls.Add(this.patchText);
-            this.commitVerticalDivider.Size = new System.Drawing.Size(784, 265);
+            this.commitVerticalDivider.Size = new System.Drawing.Size(784, 267);
             this.commitVerticalDivider.SplitterDistance = 275;
             this.commitVerticalDivider.SplitterWidth = 6;
             this.commitVerticalDivider.TabIndex = 0;
@@ -475,7 +521,7 @@
             this.changedFiles.Location = new System.Drawing.Point(0, 0);
             this.changedFiles.Name = "changedFiles";
             this.changedFiles.RowTemplate.Height = 23;
-            this.changedFiles.Size = new System.Drawing.Size(273, 263);
+            this.changedFiles.Size = new System.Drawing.Size(273, 265);
             this.changedFiles.TabIndex = 0;
             this.changedFiles.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.changedFiles_RowContextMenuStripNeeded);
             this.changedFiles.DoubleClick += new System.EventHandler(this.changedFiles_DoubleClick);
@@ -487,7 +533,7 @@
             this.patchText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.patchText.Location = new System.Drawing.Point(0, 0);
             this.patchText.Name = "patchText";
-            this.patchText.Size = new System.Drawing.Size(501, 263);
+            this.patchText.Size = new System.Drawing.Size(501, 265);
             this.patchText.Styles.BraceBad.FontName = "Verdana";
             this.patchText.Styles.BraceLight.FontName = "Verdana";
             this.patchText.Styles.ControlChar.FontName = "Verdana";
@@ -497,6 +543,18 @@
             this.patchText.Styles.LineNumber.FontName = "Verdana";
             this.patchText.Styles.Max.FontName = "Verdana";
             this.patchText.TabIndex = 0;
+            // 
+            // activityChangeInspector
+            // 
+            this.activityChangeInspector.ActionsForPendingChangesFunction = null;
+            this.activityChangeInspector.ComputeDifferencesFunction = null;
+            this.activityChangeInspector.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.activityChangeInspector.Location = new System.Drawing.Point(0, 0);
+            this.activityChangeInspector.Name = "activityChangeInspector";
+            this.activityChangeInspector.PatchText = "";
+            this.activityChangeInspector.PendingChangesFunction = null;
+            this.activityChangeInspector.Size = new System.Drawing.Size(776, 381);
+            this.activityChangeInspector.TabIndex = 0;
             // 
             // Main
             // 
@@ -519,6 +577,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).EndInit();
             this.branchesTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).EndInit();
+            this.activityTab.ResumeLayout(false);
+            this.activityTopBottomPanel.Panel1.ResumeLayout(false);
+            this.activityTopBottomPanel.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.activityTopBottomPanel)).EndInit();
+            this.activityTopBottomPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.activityRevisions)).EndInit();
             this.commitTab.ResumeLayout(false);
             this.commitHorizontalDivider.Panel1.ResumeLayout(false);
             this.commitHorizontalDivider.Panel2.ResumeLayout(false);
@@ -570,5 +634,8 @@
         private System.Windows.Forms.ToolStripMenuItem searchMenuItem;
         private System.Windows.Forms.ToolStripTextBox searchTextBox;
         private System.Windows.Forms.ToolStripMenuItem searchLabel;
+        private System.Windows.Forms.SplitContainer activityTopBottomPanel;
+        private SearchableDataGridView activityRevisions;
+        private ChangeInspector activityChangeInspector;
     }
 }
