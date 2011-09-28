@@ -65,7 +65,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             FileGrid.DataTable = null;
             var pendingChanges = GetChanges(_context);
             FileGrid.DataTable = pendingChanges;
-            var itemCount = FileGrid.Grid.Rows.Count;
+            var itemCount = FileGrid.Grid.Items.Count;
             if (0 == itemCount)
             {
                 PatchText = String.Empty;
@@ -76,16 +76,17 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 if (0 == oldSelection.Count)
                 {
                     // if nothing was selected, select the first one
-                    FileGrid.Grid.Rows[0].Selected = true;
+                    FileGrid.Grid.Items[0].Selected = true;
                 }
                 else
                 {
-                    foreach (DataGridViewRow row in FileGrid.Grid.Rows)
+                    foreach (ListViewItem item in FileGrid.Grid.Items)
                     {
-                        var id = row.Cells["ID"].Value;
+                        var row = item.GetRow();
+                        var id = row["ID"];
                         if (oldSelection.ContainsKey(id))
                         {
-                            row.Selected = true;
+                            item.Selected = true;
                             oldSelection.Remove(id);
                         }
                     }
@@ -98,11 +99,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private IEnumerable<object> FindSelectedIds()
         {
-            var selectedRows = FileGrid.Grid.SelectedRows.Cast<DataGridViewRow>();
-            return selectedRows.Map(row => row.Cells["ID"].Value);
+            var selectedItems = FileGrid.Grid.SelectedItems.Cast<ListViewItem>();
+            return selectedItems.Map(item => item.GetRow()["ID"]);
         }
 
-        void FileGrid_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
+        void FileGrid_ContextMenuStripNeeded(object sender, ContextMenuStripNeededEventArgs e)
         {
             var menu = BuildChangedFilesActionMenu();
             e.ContextMenuStrip = menu;

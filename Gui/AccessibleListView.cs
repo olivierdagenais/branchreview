@@ -81,34 +81,36 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void DataBind()
         {
-            this.SuspendLayout();
-            this.Items.Clear();
-            if (_dataSource != null)
+            using (new BeforeAfter(BeginUpdate, EndUpdate))
             {
-                var dataRows = _dataSource.AsEnumerable();
-                OrderedEnumerableRowCollection<DataRow> sortedRows;
-                if (_sortOrder == SortOrder.Ascending)
+                this.Items.Clear();
+                if (_dataSource != null)
                 {
-                    sortedRows = dataRows.OrderBy(r => r[_sortingColumn], TheColumnComparer);
-                }
-                else
-                {
-                    sortedRows = dataRows.OrderByDescending(r => r[_sortingColumn], TheColumnComparer);
-                }
-                var row = 0;
-                foreach (var dataRow in sortedRows)
-                {
-                    // TODO: Add support for hidden columns
-                    var strings = dataRow.ItemArray.Select(i => i == null ? String.Empty : i.ToString());
-                    var listViewItem = new ListViewItem(strings.ToArray())
+                    var dataRows = _dataSource.AsEnumerable();
+                    OrderedEnumerableRowCollection<DataRow> sortedRows;
+                    if (_sortOrder == SortOrder.Ascending)
                     {
-                        BackColor = (row % 2 == 0) ? this.BackColor : AlternatingBackColor,
-                    };
-                    row++;
-                    this.Items.Add(listViewItem);
+                        sortedRows = dataRows.OrderBy(r => r[_sortingColumn], TheColumnComparer);
+                    }
+                    else
+                    {
+                        sortedRows = dataRows.OrderByDescending(r => r[_sortingColumn], TheColumnComparer);
+                    }
+                    var row = 0;
+                    foreach (var dataRow in sortedRows)
+                    {
+                        // TODO: Add support for hidden columns
+                        var strings = dataRow.ItemArray.Select(i => i == null ? String.Empty : i.ToString());
+                        var listViewItem = new ListViewItem(strings.ToArray())
+                        {
+                            BackColor = (row % 2 == 0) ? this.BackColor : AlternatingBackColor,
+                            Tag = dataRow,
+                        };
+                        row++;
+                        this.Items.Add(listViewItem);
+                    }
                 }
             }
-            this.ResumeLayout();
         }
 
         public Color AlternatingBackColor { get; set; }
@@ -216,20 +218,27 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void AutoSizeColumns()
         {
-            this.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            var dataGridViewColumns = this.Columns.Cast<DataGridViewColumn>().ToList();
-            var clientWidth = this.ClientSize.Width;
-            //if (this.VerticalScrollBar.Visible)
-            //{
-            //    clientWidth -= this.VerticalScrollBar.Size.Width;
-            //}
-            var widths = dataGridViewColumns.Select(c => c.Width).ToList();
-            var adjustedWidths = AdjustWidths(widths, clientWidth);
-            double totalWidths = adjustedWidths.Aggregate(0, (a, b) => a + b);
-            var multiplier = clientWidth/totalWidths;
-            for (var c = 0; c < adjustedWidths.Count; c++ )
+            if (this.Columns.Count == 0)
             {
-                dataGridViewColumns[c].Width = (int) (adjustedWidths[c] * multiplier);
+                return;
+            }
+            using (new BeforeAfter(BeginUpdate, EndUpdate))
+            using (new BeforeAfter(() => Resize -= AccessibleListView_Resize, 
+                () => Resize += AccessibleListView_Resize))
+            {
+                this.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                // exclude the last column from these computations
+                var columnHeaders = this.Columns.Cast<ColumnHeader>().Take(this.Columns.Count - 1).ToList();
+                var clientWidth = this.ClientSize.Width;
+                var widths = columnHeaders.Select(c => c.Width).ToList();
+                var adjustedWidths = AdjustWidths(widths, clientWidth);
+                double totalWidths = adjustedWidths.Aggregate(0, (a, b) => a + b);
+                var multiplier = clientWidth/totalWidths;
+                for (var c = 0; c < adjustedWidths.Count; c++ )
+                {
+                    columnHeaders[c].Width = (int) (adjustedWidths[c] * multiplier);
+                }
+                this.Columns[columnHeaders.Count].Width = 0;
             }
         }
     }

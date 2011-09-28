@@ -31,8 +31,7 @@
             this.CaptionLabel = new System.Windows.Forms.Label();
             this.SearchTextBox = new System.Windows.Forms.TextBox();
             this.SearchLabel = new System.Windows.Forms.Label();
-            this.Grid = new SoftwareNinjas.BranchAndReviewTools.Gui.AccessibleDataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
+            this.Grid = new SoftwareNinjas.BranchAndReviewTools.Gui.AccessibleListView();
             this.SuspendLayout();
             // 
             // CaptionLabel
@@ -73,10 +72,8 @@
             this.Grid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Grid.Location = new System.Drawing.Point(0, 27);
             this.Grid.Name = "Grid";
-            this.Grid.RowTemplate.Height = 23;
             this.Grid.Size = new System.Drawing.Size(500, 260);
             this.Grid.TabIndex = 3;
             // 
@@ -90,7 +87,6 @@
             this.Controls.Add(this.Grid);
             this.Name = "AwesomeGrid";
             this.Size = new System.Drawing.Size(500, 287);
-            ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -98,7 +94,7 @@
 
         #endregion
 
-        public AccessibleDataGridView Grid;
+        public AccessibleListView Grid;
         public System.Windows.Forms.Label CaptionLabel;
         public System.Windows.Forms.TextBox SearchTextBox;
         public System.Windows.Forms.Label SearchLabel;

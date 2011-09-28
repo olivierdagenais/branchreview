@@ -43,7 +43,6 @@
             this.verticalDivider.Panel2.SuspendLayout();
             this.verticalDivider.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PatchViewer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FileGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // horizontalDivider
@@ -129,7 +128,7 @@
             this.FileGrid.TabIndex = 0;
             this.FileGrid.DoubleClick += new System.EventHandler(this.FileGrid_DoubleClick);
             this.FileGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FileGrid_KeyDown);
-            this.FileGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.FileGrid_RowContextMenuStripNeeded);
+            this.FileGrid.ContextMenuStripNeeded += new ContextMenuStripNeededEventHandler(this.FileGrid_ContextMenuStripNeeded);
             this.FileGrid.SelectionChanged += new System.EventHandler(this.FileGrid_SelectionChanged);
             // 
             // ChangeInspector
@@ -149,7 +148,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.verticalDivider)).EndInit();
             this.verticalDivider.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PatchViewer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FileGrid)).EndInit();
             this.ResumeLayout(false);
 
         }

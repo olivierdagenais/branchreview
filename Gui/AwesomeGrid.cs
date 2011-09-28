@@ -8,12 +8,9 @@ using System.Windows.Forms;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
-    public partial class AwesomeGrid : UserControl, ISupportInitialize
+    public partial class AwesomeGrid : UserControl
     {
-        private static readonly DataGridViewCellStyle AlternatingRowStyle =
-            new DataGridViewCellStyle { BackColor = Color.WhiteSmoke };
-
-        public event DataGridViewRowContextMenuStripNeededEventHandler RowContextMenuStripNeeded;
+        public event ContextMenuStripNeededEventHandler ContextMenuStripNeeded;
         public event EventHandler SelectionChanged;
         public event EventHandler RowInvoked;
 
@@ -21,12 +18,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             InitializeComponent();
             Configure();
-            this.Grid.AlternatingRowsDefaultCellStyle = AlternatingRowStyle;
+            this.Grid.AlternatingBackColor = Color.WhiteSmoke;
             this.Grid.DoubleClick += Grid_DoubleClick;
             this.Grid.KeyDown += Grid_KeyDown;
             this.Grid.PreviewKeyDown += Grid_PreviewKeyDown;
-            this.Grid.RowContextMenuStripNeeded += Grid_RowContextMenuStripNeeded;
-            this.Grid.SelectionChanged += Grid_SelectionChanged;
+            this.Grid.ContextMenuStripNeeded += Grid_ContextMenuStripNeeded;
+            this.Grid.SelectedIndexChanged += Grid_SelectedIndexChanged;
         }
 
         // method can not be made static because the Form Designer re-writes the event wire-up with "this."
@@ -64,35 +61,18 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void Configure()
         {
-            Grid.AllowUserToAddRows = false;
-            Grid.AllowUserToDeleteRows = false;
-            Grid.AllowUserToResizeRows = false;
-            Grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            Grid.BackgroundColor = SystemColors.Window;
             Grid.BorderStyle = BorderStyle.None;
-            Grid.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            Grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            Grid.EditMode = DataGridViewEditMode.EditProgrammatically;
-            Grid.ReadOnly = true;
-            Grid.RowHeadersVisible = false;
-            Grid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            Grid.RowTemplate.Height = 23;
-            Grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            Grid.ShowCellErrors = false;
-            Grid.ShowEditingIcon = false;
-            Grid.ShowRowErrors = false;
-            Grid.StandardTab = true;
         }
 
-        void Grid_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
+        void Grid_ContextMenuStripNeeded(object sender, ContextMenuStripNeededEventArgs e)
         {
-            if (RowContextMenuStripNeeded != null)
+            if (ContextMenuStripNeeded != null)
             {
-                RowContextMenuStripNeeded(sender, e);
+                ContextMenuStripNeeded(sender, e);
             }
         }
 
-        void Grid_SelectionChanged(object sender, EventArgs e)
+        void Grid_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (SelectionChanged != null)
             {
@@ -139,18 +119,18 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     var dataColumns = _dataTable.Columns.Cast<DataColumn>();
                     _columnTypes = dataColumns.Select(dc => dc.DataType).ToList();
                     #region Manage the columns based on the DataTable
-                    this.Grid.AutoGenerateColumns = false;
                     this.Grid.Columns.Clear ();
                     foreach (var dataColumn in dataColumns)
                     {
-                        var gridViewColumn = new DataGridViewTextBoxColumn
+                        var gridViewColumn = new ColumnHeader
                         {
                             Name = dataColumn.ColumnName,
-                            DataPropertyName = dataColumn.ColumnName,
-                            HeaderText = dataColumn.Caption,
+                            Text = dataColumn.Caption,
                         };
                         this.Grid.Columns.Add (gridViewColumn);
                     }
+                    // dummy column for the auto-sizing
+                    this.Grid.Columns.Add(String.Empty);
                     #endregion
                 }
                 this.Grid.DataSource = _dataTable;
@@ -225,20 +205,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
             return true;
         }
-
-        #region Implementation of ISupportInitialize
-
-        public void BeginInit()
-        {
-            ((ISupportInitialize)this.Grid).BeginInit();
-        }
-
-        public void EndInit()
-        {
-            ((ISupportInitialize) this.Grid).EndInit();
-        }
-
-        #endregion
 
         private void SearchLabel_Click(object sender, EventArgs e)
         {

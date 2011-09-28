@@ -54,20 +54,19 @@
     <Compile Include="AwesomeGrid.Designer.cs">
       <DependentUpon>AwesomeGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="BeforeAfter.cs" />
     <Compile Include="ChangeInspector.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ChangeInspector.Designer.cs">
       <DependentUpon>ChangeInspector.cs</DependentUpon>
     </Compile>
-    <Compile Include="AccessibleDataGridView.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="AccessibleListView.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ContextMenuStripNeededEventArgs.cs" />
     <Compile Include="ContextMenuStripNeededEventHandler.cs" />
+    <Compile Include="ListViewItemExtensions.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>

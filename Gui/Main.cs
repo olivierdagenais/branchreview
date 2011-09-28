@@ -174,14 +174,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             delayedWorker.Start();
         }
 
-        private static object FindSelectedId(DataGridView dataGridView)
+        private static object FindSelectedId(ListView listView)
         {
-            var selectedRows = dataGridView.SelectedRows;
+            var selectedItems = listView.SelectedItems;
             object id = null;
-            if (selectedRows.Count > 0)
+            if (selectedItems.Count > 0)
             {
-                var row = selectedRows[0];
-                id = row.Cells["ID"].Value;
+                var item = selectedItems[0];
+                id = item.GetRow()["ID"];
             }
             return id;
         }
@@ -233,7 +233,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             _sourceRepository.CreateBranch(taskId);
         }
 
-        private void taskGrid_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
+        private void taskGrid_ContextMenuStripNeeded(object sender, ContextMenuStripNeededEventArgs e)
         {
             var menu = BuildTaskActionMenu();
             e.ContextMenuStrip = menu;
@@ -275,19 +275,20 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void AddBranchSpecificActions(ToolStripItemCollection items, bool needsLeadingSeparator)
         {
-            var selectedRows = branchGrid.Grid.SelectedRows;
-            if (selectedRows.Count > 0)
+            var selectedItems = branchGrid.Grid.SelectedItems;
+            if (selectedItems.Count > 0)
             {
                 if (needsLeadingSeparator)
                 {
                     items.AddSeparator();
                 }
-                var row = selectedRows[0];
-                var branchId = row.Cells["ID"].Value;
-                var taskId = row.Cells["TaskID"].Value;
+                var item = selectedItems[0];
+                var row = item.GetRow();
+                var branchId = row["ID"];
+                var taskId = row["TaskID"];
                 var builtInActions = new[]
                 {
-                    new MenuAction("defaultOpen", "&Open", row.Cells["BasePath"].Value != DBNull.Value,
+                    new MenuAction("defaultOpen", "&Open", row["BasePath"] != DBNull.Value,
                                 () => SetCurrentBranch(branchId, taskId) ),
                 };
                 items.AddActions(builtInActions);
@@ -300,7 +301,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
-        private void branchGrid_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
+        private void branchGrid_ContextMenuStripNeeded(object sender, ContextMenuStripNeededEventArgs e)
         {
             var menu = BuildBranchActionMenu();
             e.ContextMenuStrip = menu;

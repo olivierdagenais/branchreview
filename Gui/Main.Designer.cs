@@ -67,18 +67,15 @@
             this.menuStrip.SuspendLayout();
             this.tabs.SuspendLayout();
             this.taskTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).BeginInit();
             this.branchesTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.branchGridAndRestDivider)).BeginInit();
             this.branchGridAndRestDivider.Panel1.SuspendLayout();
             this.branchGridAndRestDivider.Panel2.SuspendLayout();
             this.branchGridAndRestDivider.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.activityTopBottomPanel)).BeginInit();
             this.activityTopBottomPanel.Panel1.SuspendLayout();
             this.activityTopBottomPanel.Panel2.SuspendLayout();
             this.activityTopBottomPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.activityRevisions)).BeginInit();
             this.commitTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -307,7 +304,7 @@
             this.taskGrid.Name = "taskGrid";
             this.taskGrid.Size = new System.Drawing.Size(778, 495);
             this.taskGrid.TabIndex = 0;
-            this.taskGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.taskGrid_RowContextMenuStripNeeded);
+            this.taskGrid.ContextMenuStripNeeded += new ContextMenuStripNeededEventHandler(this.taskGrid_ContextMenuStripNeeded);
             this.taskGrid.RowInvoked += new System.EventHandler(this.taskGrid_RowInvoked);
             // 
             // branchesTab
@@ -351,7 +348,7 @@
             this.branchGrid.Name = "branchGrid";
             this.branchGrid.Size = new System.Drawing.Size(776, 87);
             this.branchGrid.TabIndex = 0;
-            this.branchGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.branchGrid_RowContextMenuStripNeeded);
+            this.branchGrid.ContextMenuStripNeeded += new ContextMenuStripNeededEventHandler(this.branchGrid_ContextMenuStripNeeded);
             this.branchGrid.RowInvoked += new System.EventHandler(this.branchGrid_RowInvoked);
             // 
             // activityTopBottomPanel
@@ -439,18 +436,15 @@
             this.menuStrip.PerformLayout();
             this.tabs.ResumeLayout(false);
             this.taskTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).EndInit();
             this.branchesTab.ResumeLayout(false);
             this.branchGridAndRestDivider.Panel1.ResumeLayout(false);
             this.branchGridAndRestDivider.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.branchGridAndRestDivider)).EndInit();
             this.branchGridAndRestDivider.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).EndInit();
             this.activityTopBottomPanel.Panel1.ResumeLayout(false);
             this.activityTopBottomPanel.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.activityTopBottomPanel)).EndInit();
             this.activityTopBottomPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.activityRevisions)).EndInit();
             this.commitTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
