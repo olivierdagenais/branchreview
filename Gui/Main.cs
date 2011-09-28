@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Properties;
+using SoftwareNinjas.Core;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
@@ -14,6 +16,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private readonly ITaskRepository _taskRepository;
         private readonly ISourceRepository _sourceRepository;
         private readonly ReadOnlyCollection<SearchableDataGridView> _searchableGrids;
+        private object _currentBranchId;
+        private object _currentTaskId;
 
         public Main()
         {
@@ -128,11 +132,32 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void branchGrid_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
         {
-            var row = branchGrid.Rows[e.RowIndex];
-            var branchId = row.Cells["ID"].Value;
-            var actions = _sourceRepository.GetActionsForBranch(branchId);
-            var menu = BuildActionMenu(actions);
+            var menu = BuildBranchActionMenuForRow(e.RowIndex);
             e.ContextMenuStrip = menu;
+        }
+
+        private ContextMenuStrip BuildBranchActionMenuForRow(int rowIndex)
+        {
+            var row = branchGrid.Rows[rowIndex];
+            var branchId = row.Cells["ID"].Value;
+            var taskId = row.Cells["TaskID"].Value;
+            var builtInActions = new[]
+            {
+                new MenuAction("defaultOpen", "Open", row.Cells["BasePath"].Value != DBNull.Value,
+                            () => SetCurrentBranch(branchId, taskId) ),
+                new MenuAction(null, MenuAction.Separator, false, null),
+            };
+            var actions = _sourceRepository.GetActionsForBranch(branchId);
+            return BuildActionMenu(builtInActions.Compose(actions));
+        }
+
+        private void SetCurrentBranch(object branchId, object taskId)
+        {
+            _currentBranchId = branchId;
+            _currentTaskId = taskId;
+            activityTab.Text = "Log for {0}".FormatInvariant(branchId);
+            commitTab.Text = "Commit to {0}".FormatInvariant(branchId);
+            tabs.SelectedTab = activityTab;
         }
     }
 }

@@ -168,7 +168,7 @@
             this.activityTab.Padding = new System.Windows.Forms.Padding(3);
             this.activityTab.Size = new System.Drawing.Size(671, 475);
             this.activityTab.TabIndex = 3;
-            this.activityTab.Text = "Activity/Log";
+            this.activityTab.Text = "Log";
             this.activityTab.UseVisualStyleBackColor = true;
             // 
             // commitTab

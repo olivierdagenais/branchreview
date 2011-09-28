@@ -22,7 +22,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             },
             Rows =
             {
-                {"123_DoFtp", 123, @"c:\src\branches\123_DoFtp", new DateTime(2011, 09, 02, 14, 32, 06), "Joe Dassin", "unmapped"},
+                {"123_DoFtp", 123, null, new DateTime(2011, 09, 02, 14, 32, 06), "Joe Dassin", "unmapped"},
                 {"435_DoSftp", 435, @"c:\src\branches\TomJones\435_DoSftp", new DateTime(2011, 08, 01, 10, 05, 57), "Tom Jones", "ready for push"},
                 {"436_RefactorInternet", 436, @"c:\src\branches\PaulAnka\436_RefactorInternet", new DateTime(2011, 09, 04, 11, 30, 36), "Paul Anka", "pending changes"},
             }
