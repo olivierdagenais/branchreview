@@ -45,6 +45,20 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             _sourceRepository = new Mock.SourceRepository();
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                if (searchTextBox.Focused)
+                {
+                    SwitchCurrentTab(false);
+                    return true;
+                }
+            }
+            var processCmdKey = base.ProcessCmdKey(ref msg, keyData);
+            return processCmdKey;
+        }
+
         void Main_Load(object sender, EventArgs e)
         {
             var settings = Settings.Default;
