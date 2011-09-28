@@ -127,7 +127,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 }
                 else
                 {
-                    item = new ToolStripButton(action.Caption, action.Image, 
+                    item = new ToolStripMenuItem(action.Caption, action.Image, 
                         (clickSender, eventArgs) => action.Execute(), action.Name);
                 }
                 item.Enabled = action.Enabled;
