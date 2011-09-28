@@ -50,21 +50,21 @@
             this.menuStrip = new System.Windows.Forms.ToolStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editMenu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.searchMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.tasksMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.branchesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.searchStrip = new System.Windows.Forms.ToolStrip();
-            this.searchLabel = new System.Windows.Forms.ToolStripLabel();
-            this.searchTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.tasksMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.branchesMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.activityMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.commitMenu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.editMenu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.searchMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchStrip = new System.Windows.Forms.ToolStrip();
+            this.searchLabel = new System.Windows.Forms.ToolStripLabel();
+            this.searchTextBox = new System.Windows.Forms.ToolStripTextBox();
             viewMenuRefreshSeparator = new System.Windows.Forms.ToolStripSeparator();
             tasksDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
             branchesDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
@@ -96,12 +96,17 @@
             // viewMenuRefreshSeparator
             // 
             viewMenuRefreshSeparator.Name = "viewMenuRefreshSeparator";
-            viewMenuRefreshSeparator.Size = new System.Drawing.Size(168, 6);
+            viewMenuRefreshSeparator.Size = new System.Drawing.Size(181, 6);
             // 
             // tasksDummyMenuItem
             // 
             tasksDummyMenuItem.Name = "tasksDummyMenuItem";
-            tasksDummyMenuItem.Size = new System.Drawing.Size(149, 6);
+            tasksDummyMenuItem.Size = new System.Drawing.Size(57, 6);
+            // 
+            // branchesDummyMenuItem
+            // 
+            branchesDummyMenuItem.Name = "branchesDummyMenuItem";
+            branchesDummyMenuItem.Size = new System.Drawing.Size(57, 6);
             // 
             // statusBar
             // 
@@ -118,7 +123,7 @@
             // 
             this.statusBarText.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.statusBarText.Name = "statusBarText";
-            this.statusBarText.Size = new System.Drawing.Size(43, 17);
+            this.statusBarText.Size = new System.Drawing.Size(48, 17);
             this.statusBarText.Text = "Ready";
             // 
             // statusBarProgress
@@ -206,7 +211,7 @@
             this.branchGrid.Location = new System.Drawing.Point(3, 3);
             this.branchGrid.MultiSelect = false;
             this.branchGrid.Name = "branchGrid";
-            this.branchGrid.Size = new System.Drawing.Size(776, 469);
+            this.branchGrid.Size = new System.Drawing.Size(778, 469);
             this.branchGrid.TabIndex = 0;
             this.branchGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.branchGrid_RowContextMenuStripNeeded);
             this.branchGrid.DoubleClick += new System.EventHandler(this.branchGrid_DoubleClick);
@@ -332,7 +337,7 @@
             this.commitMenu});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(309, 25);
+            this.menuStrip.Size = new System.Drawing.Size(342, 25);
             this.menuStrip.TabIndex = 0;
             // 
             // fileMenu
@@ -343,15 +348,34 @@
             this.fileMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.fileMenu.Name = "fileMenu";
             this.fileMenu.ShowDropDownArrow = false;
-            this.fileMenu.Size = new System.Drawing.Size(30, 22);
+            this.fileMenu.Size = new System.Drawing.Size(34, 22);
             this.fileMenu.Text = "&File";
             // 
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(95, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(100, 22);
             this.exitMenuItem.Text = "E&xit";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
+            // 
+            // editMenu
+            // 
+            this.editMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.editMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchMenuItem});
+            this.editMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.editMenu.Name = "editMenu";
+            this.editMenu.ShowDropDownArrow = false;
+            this.editMenu.Size = new System.Drawing.Size(37, 22);
+            this.editMenu.Text = "&Edit";
+            // 
+            // searchMenuItem
+            // 
+            this.searchMenuItem.Name = "searchMenuItem";
+            this.searchMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.searchMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.searchMenuItem.Text = "&Search";
+            this.searchMenuItem.Click += new System.EventHandler(this.searchMenuItem_Click);
             // 
             // viewMenu
             // 
@@ -366,14 +390,14 @@
             this.viewMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.viewMenu.Name = "viewMenu";
             this.viewMenu.ShowDropDownArrow = false;
-            this.viewMenu.Size = new System.Drawing.Size(38, 22);
+            this.viewMenu.Size = new System.Drawing.Size(43, 22);
             this.viewMenu.Text = "&View";
             // 
             // tasksMenuItem
             // 
             this.tasksMenuItem.Name = "tasksMenuItem";
             this.tasksMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D1)));
-            this.tasksMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.tasksMenuItem.Size = new System.Drawing.Size(184, 22);
             this.tasksMenuItem.Text = "&Tasks";
             this.tasksMenuItem.Click += new System.EventHandler(this.tasksMenuItem_Click);
             // 
@@ -381,7 +405,7 @@
             // 
             this.branchesMenuItem.Name = "branchesMenuItem";
             this.branchesMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D2)));
-            this.branchesMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.branchesMenuItem.Size = new System.Drawing.Size(184, 22);
             this.branchesMenuItem.Text = "&Branches";
             this.branchesMenuItem.Click += new System.EventHandler(this.branchesMenuItem_Click);
             // 
@@ -389,7 +413,7 @@
             // 
             this.logMenuItem.Name = "logMenuItem";
             this.logMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D3)));
-            this.logMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.logMenuItem.Size = new System.Drawing.Size(184, 22);
             this.logMenuItem.Text = "&Log";
             this.logMenuItem.Click += new System.EventHandler(this.logMenuItem_Click);
             // 
@@ -397,7 +421,7 @@
             // 
             this.commitMenuItem.Name = "commitMenuItem";
             this.commitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D4)));
-            this.commitMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.commitMenuItem.Size = new System.Drawing.Size(184, 22);
             this.commitMenuItem.Text = "&Changes";
             this.commitMenuItem.Click += new System.EventHandler(this.commitMenuItem_Click);
             // 
@@ -405,7 +429,7 @@
             // 
             this.refreshMenuItem.Name = "refreshMenuItem";
             this.refreshMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.refreshMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.refreshMenuItem.Size = new System.Drawing.Size(184, 22);
             this.refreshMenuItem.Text = "&Refresh";
             this.refreshMenuItem.Click += new System.EventHandler(this.refreshMenuItem_Click);
             // 
@@ -462,14 +486,14 @@
             this.searchTextBox});
             this.searchStrip.Location = new System.Drawing.Point(400, 0);
             this.searchStrip.Name = "searchStrip";
-            this.searchStrip.Size = new System.Drawing.Size(259, 25);
+            this.searchStrip.Size = new System.Drawing.Size(290, 25);
             this.searchStrip.TabIndex = 1;
             // 
             // searchLabel
             // 
             this.searchLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.searchLabel.Name = "searchLabel";
-            this.searchLabel.Size = new System.Drawing.Size(47, 22);
+            this.searchLabel.Size = new System.Drawing.Size(54, 22);
             this.searchLabel.Text = "&Search";
             // 
             // searchTextBox
@@ -477,30 +501,6 @@
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(200, 25);
             this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
-            // 
-            // branchesDummyMenuItem
-            // 
-            branchesDummyMenuItem.Name = "branchesDummyMenuItem";
-            branchesDummyMenuItem.Size = new System.Drawing.Size(149, 6);
-            // 
-            // editMenu
-            // 
-            this.editMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.editMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.searchMenuItem});
-            this.editMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.editMenu.Name = "editMenu";
-            this.editMenu.ShowDropDownArrow = false;
-            this.editMenu.Size = new System.Drawing.Size(37, 22);
-            this.editMenu.Text = "&Edit";
-            // 
-            // searchMenuItem
-            // 
-            this.searchMenuItem.Name = "searchMenuItem";
-            this.searchMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.searchMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.searchMenuItem.Text = "&Search";
-            this.searchMenuItem.Click += new System.EventHandler(this.searchMenuItem_Click);
             // 
             // Main
             // 
