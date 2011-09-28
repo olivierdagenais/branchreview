@@ -8,5 +8,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             InitializeComponent();
         }
+
+        private void exitMenuItem_Click(object sender, System.EventArgs e)
+        {
+            Close();
+        }
     }
 }
