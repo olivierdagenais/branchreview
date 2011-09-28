@@ -28,6 +28,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             _taskRepository = new Mock.TaskRepository();
             _sourceRepository = new Mock.SourceRepository();
 
+            activityChangeInspector.ActionsForChangesFunction = _sourceRepository.GetActionsForRevisionChanges;
+            activityChangeInspector.ChangesFunction = _sourceRepository.GetRevisionChanges;
+            activityChangeInspector.ComputeDifferencesFunction = _sourceRepository.ComputeRevisionDifferences;
+
             pendingChanges.ActionsForChangesFunction = _sourceRepository.GetActionsForPendingChanges;
             pendingChanges.ChangesFunction = _sourceRepository.GetPendingChanges;
             pendingChanges.ComputeDifferencesFunction = _sourceRepository.ComputePendingDifferences;
@@ -78,7 +82,17 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             _currentBranchId = branchId;
             _currentTaskId = taskId;
-            // TODO: update branch revisions, etc.
+            activityRevisions.DataTable = null;
+            activityChangeInspector.Context = null;
+            if (branchId != null)
+            {
+                activityRevisions.Caption = "Activity for {0}".FormatInvariant(branchId);
+                activityRevisions.DataTable = _sourceRepository.LoadRevisions(branchId);
+            }
+            else
+            {
+                activityRevisions.Caption = String.Empty;
+            }
         }
 
         // method can not be made static because the Form Designer re-writes the event wire-up with "this."
@@ -128,6 +142,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 {
                     branchGrid.DataTable = null;
                     branchGrid.DataTable = _sourceRepository.LoadBranches();
+                    SetCurrentBranch(null, null);
                 }
                 controlToFocus = branchGrid;
             }

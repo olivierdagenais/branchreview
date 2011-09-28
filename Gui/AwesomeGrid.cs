@@ -27,6 +27,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             this.Grid.SelectionChanged += Grid_SelectionChanged;
         }
 
+        public string Caption
+        {
+            get { return CaptionLabel.Text; }
+            set { CaptionLabel.Text = value; }
+        }
+
         void Grid_KeyDown(object sender, KeyEventArgs e)
         {
             OnKeyDown(e);
