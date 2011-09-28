@@ -43,7 +43,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             _taskRepository = new Mock.TaskRepository();
             taskGrid.DataTable = _taskRepository.LoadTasks();
             _sourceRepository = new Mock.SourceRepository();
-            branchGrid.DataTable = _sourceRepository.LoadBranches();
         }
 
         private static void ConfigureDataGridView(DataGridView gridView, bool multiSelect)
@@ -199,6 +198,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void tabs_Selected(object sender, TabControlEventArgs e)
         {
+            if (tabs.SelectedTab == branchesTab && branchGrid.DataTable == null)
+            {
+                branchGrid.DataTable = _sourceRepository.LoadBranches();
+            }
             if (tabs.SelectedTab == commitTab && _currentBranchId != null)
             {
                 RefreshChangedFiles();
