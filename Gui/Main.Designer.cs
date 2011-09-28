@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.ToolStripSeparator viewMenuRefreshSeparator;
             System.Windows.Forms.ToolStripSeparator tasksDummyMenuItem;
+            System.Windows.Forms.ToolStripSeparator branchesDummyMenuItem;
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusBarText = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBarProgress = new System.Windows.Forms.ToolStripProgressBar();
@@ -64,6 +65,7 @@
             this.commitMenu = new System.Windows.Forms.ToolStripDropDownButton();
             viewMenuRefreshSeparator = new System.Windows.Forms.ToolStripSeparator();
             tasksDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
+            branchesDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
             this.statusBar.SuspendLayout();
             this.toolStripContainer.ContentPanel.SuspendLayout();
             this.toolStripContainer.TopToolStripPanel.SuspendLayout();
@@ -402,6 +404,48 @@
             this.refreshMenuItem.Text = "&Refresh";
             this.refreshMenuItem.Click += new System.EventHandler(this.refreshMenuItem_Click);
             // 
+            // tasksMenu
+            // 
+            this.tasksMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tasksMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            tasksDummyMenuItem});
+            this.tasksMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tasksMenu.Name = "tasksMenu";
+            this.tasksMenu.ShowDropDownArrow = false;
+            this.tasksMenu.Size = new System.Drawing.Size(50, 22);
+            this.tasksMenu.Text = "&Tasks";
+            this.tasksMenu.DropDownOpening += new System.EventHandler(this.tasksMenu_DropDownOpening);
+            // 
+            // branchesMenu
+            // 
+            this.branchesMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.branchesMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            branchesDummyMenuItem});
+            this.branchesMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.branchesMenu.Name = "branchesMenu";
+            this.branchesMenu.ShowDropDownArrow = false;
+            this.branchesMenu.Size = new System.Drawing.Size(72, 22);
+            this.branchesMenu.Text = "&Branches";
+            this.branchesMenu.DropDownOpening += new System.EventHandler(this.branchesMenu_DropDownOpening);
+            // 
+            // activityMenu
+            // 
+            this.activityMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.activityMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.activityMenu.Name = "activityMenu";
+            this.activityMenu.ShowDropDownArrow = false;
+            this.activityMenu.Size = new System.Drawing.Size(35, 22);
+            this.activityMenu.Text = "&Log";
+            // 
+            // commitMenu
+            // 
+            this.commitMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.commitMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.commitMenu.Name = "commitMenu";
+            this.commitMenu.ShowDropDownArrow = false;
+            this.commitMenu.Size = new System.Drawing.Size(68, 22);
+            this.commitMenu.Text = "&Changes";
+            // 
             // searchStrip
             // 
             this.searchStrip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -427,44 +471,10 @@
             this.searchTextBox.Size = new System.Drawing.Size(200, 25);
             this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             // 
-            // tasksMenu
+            // branchesDummyMenuItem
             // 
-            this.tasksMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tasksMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            tasksDummyMenuItem});
-            this.tasksMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tasksMenu.Name = "tasksMenu";
-            this.tasksMenu.ShowDropDownArrow = false;
-            this.tasksMenu.Size = new System.Drawing.Size(44, 22);
-            this.tasksMenu.Text = "&Tasks";
-            this.tasksMenu.DropDownOpening += new System.EventHandler(this.tasksMenu_DropDownOpening);
-            // 
-            // branchesMenu
-            // 
-            this.branchesMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.branchesMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.branchesMenu.Name = "branchesMenu";
-            this.branchesMenu.ShowDropDownArrow = false;
-            this.branchesMenu.Size = new System.Drawing.Size(64, 22);
-            this.branchesMenu.Text = "&Branches";
-            // 
-            // activityMenu
-            // 
-            this.activityMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.activityMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.activityMenu.Name = "activityMenu";
-            this.activityMenu.ShowDropDownArrow = false;
-            this.activityMenu.Size = new System.Drawing.Size(31, 22);
-            this.activityMenu.Text = "&Log";
-            // 
-            // commitMenu
-            // 
-            this.commitMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.commitMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.commitMenu.Name = "commitMenu";
-            this.commitMenu.ShowDropDownArrow = false;
-            this.commitMenu.Size = new System.Drawing.Size(61, 22);
-            this.commitMenu.Text = "&Changes";
+            branchesDummyMenuItem.Name = "branchesDummyMenuItem";
+            branchesDummyMenuItem.Size = new System.Drawing.Size(149, 6);
             // 
             // Main
             // 

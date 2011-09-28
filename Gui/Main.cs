@@ -341,6 +341,45 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         #region Branches
 
+        private void branchesMenu_DropDownOpening(object sender, EventArgs e)
+        {
+            var items = branchesMenu.DropDownItems;
+            items.Clear();
+
+            var generalActions = _sourceRepository.GetBranchActions();
+            BuildActionMenu(generalActions, items);
+
+            var needsLeadingSeparator = generalActions.Count > 0;
+            AddBranchSpecificActions(items, needsLeadingSeparator);
+        }
+
+        private void AddBranchSpecificActions(ToolStripItemCollection items, bool needsLeadingSeparator)
+        {
+            var selectedRows = branchGrid.SelectedRows;
+            if (selectedRows.Count > 0)
+            {
+                if (needsLeadingSeparator)
+                {
+                    AddSeparator(items);
+                }
+                var row = selectedRows[0];
+                var branchId = row.Cells["ID"].Value;
+                var taskId = row.Cells["TaskID"].Value;
+                var builtInActions = new[]
+                {
+                    new MenuAction("defaultOpen", "&Open", row.Cells["BasePath"].Value != DBNull.Value,
+                                () => SetCurrentBranch(branchId, taskId) ),
+                };
+                BuildActionMenu(builtInActions, items);
+                var specificActions = _sourceRepository.GetBranchActions(branchId);
+                if (specificActions.Count > 0)
+                {
+                    AddSeparator(items);
+                    BuildActionMenu(specificActions, items);
+                }
+            }
+        }
+
         private void branchGrid_DoubleClick(object sender, EventArgs e)
         {
             InvokeDefaultBranchGridAction();
@@ -364,18 +403,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private ContextMenuStrip BuildBranchActionMenu()
         {
-            var row = branchGrid.SelectedRows[0];
-            var branchId = row.Cells["ID"].Value;
-            var taskId = row.Cells["TaskID"].Value;
-            var builtInActions = new[]
-            {
-                new MenuAction("defaultOpen", "&Open", row.Cells["BasePath"].Value != DBNull.Value,
-                            () => SetCurrentBranch(branchId, taskId) ),
-                MenuAction.Separator,
-            };
-            var actions = _sourceRepository.GetBranchActions(branchId);
             var menu = new ContextMenuStrip();
-            BuildActionMenu(builtInActions.Compose(actions), menu.Items);
+            AddBranchSpecificActions(menu.Items, false);
             return menu;
         }
 
