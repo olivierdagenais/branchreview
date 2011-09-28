@@ -63,6 +63,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// identified by <paramref name="branchId"/>.
         /// </summary>
         /// 
+        /// <param name="branchId">
+        /// The ID of a branch, obtained from the <c>ID</c> column of a table returned by <see cref="LoadBranches"/>.
+        /// </param>
+        /// 
         /// <returns>
         /// A <see cref="DataTable"/> with at least the following columns:
         /// <list type="table">
