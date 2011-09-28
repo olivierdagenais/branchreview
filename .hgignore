@@ -6,3 +6,4 @@ obj/**
 TestResult.xml
 Deploy/**
 Documentation/**
+*.csproj.user

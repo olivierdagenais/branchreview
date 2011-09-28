@@ -5,14 +5,14 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SoftwareNinjas.BranchAndReviewTools.Gui")]
-[assembly: AssemblyDescription("Graphical User Interface for the Branch And Review Tools")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Software Ninjas")]
-[assembly: AssemblyProduct("Branch And Review Tools (BART)")]
-[assembly: AssemblyCopyright("(C) Copyright 2011 Software Ninjas")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyTitle ( "SoftwareNinjas.BranchAndReviewTools.Tfs.Tests" )]
+[assembly: AssemblyDescription("Tests of Team Foundation Server bridge")]
+[assembly: AssemblyConfiguration ("")]
+[assembly: AssemblyCompany ("Software Ninjas")]
+[assembly: AssemblyProduct ("Branch And Review Tools (BART)")]
+[assembly: AssemblyCopyright ("(C) Copyright 2011 Software Ninjas")]
+[assembly: AssemblyTrademark ("")]
+[assembly: AssemblyCulture ("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -20,5 +20,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("4888f359-e94b-4cfe-9b1a-8efade6ff271")]
-[assembly: InternalsVisibleTo("SoftwareNinjas.BranchAndReviewTools.Gui.Tests")]
+[assembly: Guid("2ab11816-9e60-4ab6-a92c-6ef56426c560")]

@@ -22,6 +22,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gui.Tests", "Gui.Tests\Gui.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvnExe.Tests", "SvnExe.Tests\SvnExe.Tests.csproj", "{9426D20D-C173-4F45-8F9F-2759EAB1F208}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tfs", "Tfs\Tfs.csproj", "{BF66E121-EBA6-4AB6-887A-39689FC3C176}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tfs.Tests", "Tfs.Tests\Tfs.Tests.csproj", "{AE338B09-BEB9-4DD1-820B-C29735E086A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -54,6 +58,14 @@ Global
 		{9426D20D-C173-4F45-8F9F-2759EAB1F208}.Debug|x86.Build.0 = Debug|Any CPU
 		{9426D20D-C173-4F45-8F9F-2759EAB1F208}.Release|x86.ActiveCfg = Release|Any CPU
 		{9426D20D-C173-4F45-8F9F-2759EAB1F208}.Release|x86.Build.0 = Release|Any CPU
+		{BF66E121-EBA6-4AB6-887A-39689FC3C176}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BF66E121-EBA6-4AB6-887A-39689FC3C176}.Debug|x86.Build.0 = Debug|Any CPU
+		{BF66E121-EBA6-4AB6-887A-39689FC3C176}.Release|x86.ActiveCfg = Release|Any CPU
+		{BF66E121-EBA6-4AB6-887A-39689FC3C176}.Release|x86.Build.0 = Release|Any CPU
+		{AE338B09-BEB9-4DD1-820B-C29735E086A5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AE338B09-BEB9-4DD1-820B-C29735E086A5}.Debug|x86.Build.0 = Debug|Any CPU
+		{AE338B09-BEB9-4DD1-820B-C29735E086A5}.Release|x86.ActiveCfg = Release|Any CPU
+		{AE338B09-BEB9-4DD1-820B-C29735E086A5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
