@@ -367,7 +367,7 @@
             this.activityTab.Location = new System.Drawing.Point(4, 22);
             this.activityTab.Name = "activityTab";
             this.activityTab.Padding = new System.Windows.Forms.Padding(3);
-            this.activityTab.Size = new System.Drawing.Size(186, 21);
+            this.activityTab.Size = new System.Drawing.Size(778, 494);
             this.activityTab.TabIndex = 3;
             this.activityTab.Text = "Log";
             this.activityTab.UseVisualStyleBackColor = true;
@@ -377,7 +377,7 @@
             this.commitTab.Controls.Add(this.commitHorizontalDivider);
             this.commitTab.Location = new System.Drawing.Point(4, 22);
             this.commitTab.Name = "commitTab";
-            this.commitTab.Size = new System.Drawing.Size(186, 21);
+            this.commitTab.Size = new System.Drawing.Size(778, 494);
             this.commitTab.TabIndex = 4;
             this.commitTab.Text = "Changes";
             this.commitTab.UseVisualStyleBackColor = true;
@@ -397,8 +397,8 @@
             // commitHorizontalDivider.Panel2
             // 
             this.commitHorizontalDivider.Panel2.Controls.Add(this.commitVerticalDivider);
-            this.commitHorizontalDivider.Size = new System.Drawing.Size(186, 21);
-            this.commitHorizontalDivider.SplitterDistance = 84;
+            this.commitHorizontalDivider.Size = new System.Drawing.Size(778, 494);
+            this.commitHorizontalDivider.SplitterDistance = 228;
             this.commitHorizontalDivider.TabIndex = 0;
             this.commitHorizontalDivider.TabStop = false;
             // 
@@ -407,7 +407,7 @@
             this.changeLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.changeLog.Location = new System.Drawing.Point(0, 0);
             this.changeLog.Name = "changeLog";
-            this.changeLog.Size = new System.Drawing.Size(782, 82);
+            this.changeLog.Size = new System.Drawing.Size(776, 226);
             this.changeLog.Styles.BraceBad.FontName = "Verdana";
             this.changeLog.Styles.BraceLight.FontName = "Verdana";
             this.changeLog.Styles.ControlChar.FontName = "Verdana";
@@ -432,8 +432,8 @@
             // commitVerticalDivider.Panel2
             // 
             this.commitVerticalDivider.Panel2.Controls.Add(this.patchText);
-            this.commitVerticalDivider.Size = new System.Drawing.Size(784, 412);
-            this.commitVerticalDivider.SplitterDistance = 276;
+            this.commitVerticalDivider.Size = new System.Drawing.Size(778, 262);
+            this.commitVerticalDivider.SplitterDistance = 273;
             this.commitVerticalDivider.SplitterWidth = 6;
             this.commitVerticalDivider.TabIndex = 0;
             this.commitVerticalDivider.TabStop = false;
@@ -446,7 +446,7 @@
             this.changedFiles.Location = new System.Drawing.Point(0, 0);
             this.changedFiles.Name = "changedFiles";
             this.changedFiles.RowTemplate.Height = 23;
-            this.changedFiles.Size = new System.Drawing.Size(274, 410);
+            this.changedFiles.Size = new System.Drawing.Size(271, 260);
             this.changedFiles.TabIndex = 0;
             this.changedFiles.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.changedFiles_RowContextMenuStripNeeded);
             this.changedFiles.DoubleClick += new System.EventHandler(this.changedFiles_DoubleClick);
@@ -458,7 +458,7 @@
             this.patchText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.patchText.Location = new System.Drawing.Point(0, 0);
             this.patchText.Name = "patchText";
-            this.patchText.Size = new System.Drawing.Size(500, 410);
+            this.patchText.Size = new System.Drawing.Size(497, 260);
             this.patchText.Styles.BraceBad.FontName = "Verdana";
             this.patchText.Styles.BraceLight.FontName = "Verdana";
             this.patchText.Styles.ControlChar.FontName = "Verdana";
