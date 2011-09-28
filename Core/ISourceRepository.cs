@@ -52,5 +52,20 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// </list>
         /// </returns>
         DataTable GetPendingChanges(object branchId);
+
+        /// <summary>
+        /// Generates a text-based patch; the list of additions, modifications and removals to apply to each file
+        /// represented by the <paramref name="pendingChangeIds"/>.
+        /// </summary>
+        /// 
+        /// <param name="pendingChangeIds">
+        /// A sequence of file/folder IDs obtained from the <c>ID</c> column of the <see cref="DataTable"/> returned
+        /// by calling <see cref="GetPendingChanges(object)"/>.
+        /// </param>
+        /// 
+        /// <returns>
+        /// A single string representing the selected pending differences to commit.
+        /// </returns>
+        string ComputeDifferences(IEnumerable<object> pendingChangeIds);
     }
 }
