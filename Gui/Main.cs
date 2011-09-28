@@ -426,9 +426,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void DoCommit()
         {
-            // TODO: ask the ISourceRepository to commit with the specified ChangeLog on the current branch
-            // TODO: Update the status bar with the first line from the ChangeLog
+            var message = pendingChanges.ChangeLog.Text;
+            _sourceRepository.Commit(_currentBranchId, message);
+            pendingChanges.ChangeLog.Text = String.Empty;
+            SwitchCurrentTab(true);
         }
+
         #endregion
     }
 }
