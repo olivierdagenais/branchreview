@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Linq;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
@@ -52,12 +53,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             else
             {
                 var id = (int) taskId;
-                var row = _tasks.Rows[0];
+                var row = _tasks.Select("[ID] = " + id).FirstOrDefault();
                 actionsForTask = new[]
                 {
                     new TaskAction("open", "Open && Launch", true, () => Debug.WriteLine("Opening task {0}", id)),
-                    new TaskAction("resolve", "&Resolve", (string) row["Status"] == "Accepted", () => Debug.WriteLine("Resolving task {0}", id)),
-                    new TaskAction("close", "&Close", (string) row["Status"] == "Fixed", () => Debug.WriteLine("Closing task {0}", id)),
+                    new TaskAction("resolve", "&Resolve", (string) row["Status"] == "Accepted",
+                                   () => Debug.WriteLine("Resolving task {0}", id)),
+                    new TaskAction("sep1", TaskAction.Separator, true, null),
+                    new TaskAction("close", "&Close", (string) row["Status"] == "Fixed",
+                                    () => Debug.WriteLine("Closing task {0}", id)),
                 };
             }
             return actionsForTask;

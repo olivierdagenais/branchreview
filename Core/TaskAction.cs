@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Core
 {
@@ -7,9 +8,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
     /// </summary>
     public class TaskAction
     {
+        /// <summary>
+        /// Special caption to use for a separator menu item.
+        /// </summary>
+        public const string Separator = "---";
+
         private readonly string _name, _caption;
-        private readonly bool _isEnabled;
+        private readonly bool _enabled;
         private readonly Action _action;
+        private readonly Image _image;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TaskAction"/> class.
@@ -21,22 +28,55 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// 
         /// <param name="caption">
         /// The text to show the user in the menu.  Prefix a character with <c>&amp;</c> to underline it.  Specify
-        /// <c>---</c> to show a separator.
+        /// <see cref="Separator"/> to show a separator.
         /// </param>
         /// 
-        /// <param name="isEnabled">
+        /// <param name="enabled">
         /// <see langword="true"/> if the menu item should be invokable; <see langword="false" /> otherwise.
         /// </param>
         /// 
         /// <param name="action">
         /// The action to perform if the menu item is invoked.
         /// </param>
-        public TaskAction(string name, string caption, bool isEnabled, Action action)
+        public TaskAction(string name, string caption, bool enabled, Action action)
         {
             _name = name;
             _caption = caption;
-            _isEnabled = isEnabled;
+            _enabled = enabled;
             _action = action;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaskAction"/> class.
+        /// </summary>
+        /// 
+        /// <param name="name">
+        /// The system name of the action.  Should be simple, such as <c>open</c>.
+        /// </param>
+        /// 
+        /// <param name="caption">
+        /// The text to show the user in the menu.  Prefix a character with <c>&amp;</c> to underline it.  Specify
+        /// <see cref="Separator"/> to show a separator.
+        /// </param>
+        /// 
+        /// <param name="enabled">
+        /// <see langword="true"/> if the menu item should be invokable; <see langword="false" /> otherwise.
+        /// </param>
+        /// 
+        /// <param name="action">
+        /// The action to perform if the menu item is invoked.
+        /// </param>
+        /// 
+        /// <param name="image">
+        /// The icon to display in the menu.
+        /// </param>
+        public TaskAction(string name, string caption, bool enabled, Action action, Image image)
+        {
+            _name = name;
+            _caption = caption;
+            _enabled = enabled;
+            _action = action;
+            _image = image;
         }
 
         /// <summary>
@@ -58,12 +98,18 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// <summary>
         /// Specifies whether the action is enabled or not, to provide more predictable menus.
         /// </summary>
-        public bool IsEnabled
+        public bool Enabled
         {
-            get { return _isEnabled; }
+            get { return _enabled; }
         }
 
-        // TODO: add an Icon property
+        /// <summary>
+        /// The icon to display next to the text. Optional.
+        /// </summary>
+        public Image Image
+        {
+            get { return _image; }
+        }
 
         /// <summary>
         /// Performs the action.

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -11,7 +13,43 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         public SearchableDataGridView()
         {
             this.DataBindingComplete += SearchableDataGridView_DataBindingComplete;
+            this.PreviewKeyDown += SearchableDataGridView_PreviewKeyDown;
         }
+
+        #region http://social.msdn.microsoft.com/Forums/en/winforms/thread/ef369cf3-58e9-4997-acc3-87a51d83011c
+        void SearchableDataGridView_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (( e.Shift && e.KeyCode == Keys.F10 ) || e.KeyCode == Keys.Apps)
+            {
+                // pop context menu on Shift+F10 or context key (i.e. "Apps")
+                var selectedCells = SelectedCells.Cast<DataGridViewCell>();
+                var cell = selectedCells.FirstOrDefault(dataGridViewCell => dataGridViewCell.Displayed);
+                if (cell != null)
+                {
+                    var strip = cell.ContextMenuStrip
+                        ?? cell.OwningRow.ContextMenuStrip
+                        ?? cell.OwningColumn.ContextMenuStrip;
+                    if (strip != null)
+                    {
+                        var rect = GetCellDisplayRectangle(cell.ColumnIndex, cell.RowIndex, true);
+                        var bottomLeft = new Point(rect.Left, rect.Bottom);
+                        var screenCoordinates = PointToScreen(bottomLeft);
+                        strip.Show(screenCoordinates);
+                    }
+                }
+            }
+        }
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                // Cause right-click to select cell
+                e = new MouseEventArgs(MouseButtons.Left, e.Clicks, e.X, e.Y, e.Delta);
+            }
+            base.OnMouseDown(e);
+        }
+        #endregion
 
         void SearchableDataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {

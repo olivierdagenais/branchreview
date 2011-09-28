@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
@@ -59,6 +60,33 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             {
                 grid.Filter = searchTextBox.Text;
             }
+        }
+
+        private void taskGrid_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
+        {
+            var row = taskGrid.Rows[e.RowIndex];
+            var taskId = row.Cells["ID"].Value;
+            var actions = _taskRepository.GetActionsForTask(taskId);
+            var menu = new ContextMenuStrip();
+            foreach (var taskAction in actions)
+            {
+                // to avoid "access to modified closure" warning
+                var action = taskAction;
+
+                ToolStripItem item;
+                if (action.Caption == TaskAction.Separator)
+                {
+                    item = new ToolStripSeparator();
+                }
+                else
+                {
+                    item = new ToolStripButton(action.Caption, action.Image, (clickSender, eventArgs) => action.Execute(), action.Name);
+                }
+                item.Enabled = action.Enabled;
+                menu.Items.Add(item);
+            }
+            e.ContextMenuStrip = menu;
+
         }
     }
 }

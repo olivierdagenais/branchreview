@@ -35,7 +35,6 @@
             this.toolStripContainer = new System.Windows.Forms.ToolStripContainer();
             this.tabs = new System.Windows.Forms.TabControl();
             this.taskTab = new System.Windows.Forms.TabPage();
-            this.taskGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
             this.branchesTab = new System.Windows.Forms.TabPage();
             this.activityTab = new System.Windows.Forms.TabPage();
             this.commitTab = new System.Windows.Forms.TabPage();
@@ -45,15 +44,16 @@
             this.searchStrip = new System.Windows.Forms.ToolStrip();
             this.searchLabel = new System.Windows.Forms.ToolStripLabel();
             this.searchTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.taskGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
             this.statusBar.SuspendLayout();
             this.toolStripContainer.ContentPanel.SuspendLayout();
             this.toolStripContainer.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer.SuspendLayout();
             this.tabs.SuspendLayout();
             this.taskTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).BeginInit();
             this.menuStrip.SuspendLayout();
             this.searchStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // statusBar
@@ -86,7 +86,7 @@
             // toolStripContainer.ContentPanel
             // 
             this.toolStripContainer.ContentPanel.Controls.Add(this.tabs);
-            this.toolStripContainer.ContentPanel.Size = new System.Drawing.Size(792, 501);
+            this.toolStripContainer.ContentPanel.Size = new System.Drawing.Size(792, 526);
             this.toolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer.LeftToolStripPanelVisible = false;
             this.toolStripContainer.Location = new System.Drawing.Point(0, 0);
@@ -110,7 +110,7 @@
             this.tabs.Location = new System.Drawing.Point(0, 0);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(792, 501);
+            this.tabs.Size = new System.Drawing.Size(792, 526);
             this.tabs.TabIndex = 0;
             // 
             // taskTab
@@ -119,48 +119,17 @@
             this.taskTab.Location = new System.Drawing.Point(4, 22);
             this.taskTab.Name = "taskTab";
             this.taskTab.Padding = new System.Windows.Forms.Padding(3);
-            this.taskTab.Size = new System.Drawing.Size(784, 475);
+            this.taskTab.Size = new System.Drawing.Size(784, 500);
             this.taskTab.TabIndex = 1;
             this.taskTab.Text = "Tasks";
             this.taskTab.UseVisualStyleBackColor = true;
-            // 
-            // taskGrid
-            // 
-            this.taskGrid.AllowUserToAddRows = false;
-            this.taskGrid.AllowUserToDeleteRows = false;
-            this.taskGrid.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.taskGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.taskGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.taskGrid.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.taskGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.taskGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.taskGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.taskGrid.DataTable = null;
-            this.taskGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.taskGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.taskGrid.Filter = null;
-            this.taskGrid.Location = new System.Drawing.Point(3, 3);
-            this.taskGrid.MultiSelect = false;
-            this.taskGrid.Name = "taskGrid";
-            this.taskGrid.ReadOnly = true;
-            this.taskGrid.RowHeadersVisible = false;
-            this.taskGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.taskGrid.RowTemplate.Height = 23;
-            this.taskGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.taskGrid.ShowCellErrors = false;
-            this.taskGrid.ShowEditingIcon = false;
-            this.taskGrid.ShowRowErrors = false;
-            this.taskGrid.Size = new System.Drawing.Size(778, 469);
-            this.taskGrid.StandardTab = true;
-            this.taskGrid.TabIndex = 0;
             // 
             // branchesTab
             // 
             this.branchesTab.Location = new System.Drawing.Point(4, 22);
             this.branchesTab.Name = "branchesTab";
             this.branchesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.branchesTab.Size = new System.Drawing.Size(784, 475);
+            this.branchesTab.Size = new System.Drawing.Size(784, 500);
             this.branchesTab.TabIndex = 2;
             this.branchesTab.Text = "Branches";
             this.branchesTab.UseVisualStyleBackColor = true;
@@ -170,7 +139,7 @@
             this.activityTab.Location = new System.Drawing.Point(4, 22);
             this.activityTab.Name = "activityTab";
             this.activityTab.Padding = new System.Windows.Forms.Padding(3);
-            this.activityTab.Size = new System.Drawing.Size(784, 475);
+            this.activityTab.Size = new System.Drawing.Size(784, 500);
             this.activityTab.TabIndex = 3;
             this.activityTab.Text = "Activity/Log";
             this.activityTab.UseVisualStyleBackColor = true;
@@ -179,7 +148,7 @@
             // 
             this.commitTab.Location = new System.Drawing.Point(4, 22);
             this.commitTab.Name = "commitTab";
-            this.commitTab.Size = new System.Drawing.Size(784, 475);
+            this.commitTab.Size = new System.Drawing.Size(784, 500);
             this.commitTab.TabIndex = 4;
             this.commitTab.Text = "Commit";
             this.commitTab.UseVisualStyleBackColor = true;
@@ -221,7 +190,7 @@
             this.searchTextBox});
             this.searchStrip.Location = global::SoftwareNinjas.BranchAndReviewTools.Gui.Properties.Settings.Default.SearchLocation;
             this.searchStrip.Name = "searchStrip";
-            this.searchStrip.Size = new System.Drawing.Size(290, 25);
+            this.searchStrip.Size = new System.Drawing.Size(259, 25);
             this.searchStrip.TabIndex = 1;
             // 
             // searchLabel
@@ -236,6 +205,38 @@
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(200, 25);
             this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
+            // 
+            // taskGrid
+            // 
+            this.taskGrid.AllowUserToAddRows = false;
+            this.taskGrid.AllowUserToDeleteRows = false;
+            this.taskGrid.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.taskGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.taskGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.taskGrid.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.taskGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.taskGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.taskGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.taskGrid.DataTable = null;
+            this.taskGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.taskGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.taskGrid.Filter = null;
+            this.taskGrid.Location = new System.Drawing.Point(3, 3);
+            this.taskGrid.MultiSelect = false;
+            this.taskGrid.Name = "taskGrid";
+            this.taskGrid.ReadOnly = true;
+            this.taskGrid.RowHeadersVisible = false;
+            this.taskGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.taskGrid.RowTemplate.Height = 23;
+            this.taskGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.taskGrid.ShowCellErrors = false;
+            this.taskGrid.ShowEditingIcon = false;
+            this.taskGrid.ShowRowErrors = false;
+            this.taskGrid.Size = new System.Drawing.Size(778, 494);
+            this.taskGrid.StandardTab = true;
+            this.taskGrid.TabIndex = 0;
+            this.taskGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.taskGrid_RowContextMenuStripNeeded);
             // 
             // Main
             // 
@@ -257,11 +258,11 @@
             this.toolStripContainer.PerformLayout();
             this.tabs.ResumeLayout(false);
             this.taskTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.searchStrip.ResumeLayout(false);
             this.searchStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
