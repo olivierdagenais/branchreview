@@ -47,5 +47,59 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests
             var expected = new[] {1377, 80, 97, 110};
             EnumerableExtensions.EnumerateSame(expected, actual);
         }
+
+        [Test]
+        public void AdjustWidths_LastTwoColumnsWayTooWide()
+        {
+            var columns = new[] {10, 20, 15, 2000, 3000};
+            var actual = AccessibleDataGridView.AdjustWidths(columns, 1045);
+            var expected = new[] {10, 20, 15, 400, 600};
+            EnumerableExtensions.EnumerateSame(expected, actual);
+        }
+
+        [Test]
+        public void AdjustWidths_FirstTwoColumnsWayTooWide()
+        {
+            var columns = new[] {2000, 3000, 10, 20, 15};
+            var actual = AccessibleDataGridView.AdjustWidths(columns, 1045);
+            var expected = new[] {400, 600, 10, 20, 15};
+            EnumerableExtensions.EnumerateSame(expected, actual);
+        }
+
+        [Test]
+        public void AdjustWidths_MiddleTwoColumnsWayTooWide()
+        {
+            var columns = new[] {10, 20, 2000, 3000, 15};
+            var actual = AccessibleDataGridView.AdjustWidths(columns, 1045);
+            var expected = new[] {10, 20, 400, 600, 15};
+            EnumerableExtensions.EnumerateSame(expected, actual);
+        }
+
+        [Test]
+        public void AdjustWidths_TwoInterleavedColumnsWayTooWide()
+        {
+            var columns = new[] {10, 2000, 20, 3000, 15};
+            var actual = AccessibleDataGridView.AdjustWidths(columns, 1045);
+            var expected = new[] {10, 400, 20, 600, 15};
+            EnumerableExtensions.EnumerateSame(expected, actual);
+        }
+
+        [Test]
+        public void AdjustWidths_OneColumnWayTooWide()
+        {
+            var columns = new[] {2000};
+            var actual = AccessibleDataGridView.AdjustWidths(columns, 1000);
+            var expected = new[] {1000};
+            EnumerableExtensions.EnumerateSame(expected, actual);
+        }
+
+        [Test]
+        public void AdjustWidths_TwoColumnsWayTooWide()
+        {
+            var columns = new[] {2000, 3000};
+            var actual = AccessibleDataGridView.AdjustWidths(columns, 1000);
+            var expected = new[] {400, 600};
+            EnumerableExtensions.EnumerateSame(expected, actual);
+        }
     }
 }
