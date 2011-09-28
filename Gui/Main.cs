@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.ObjectModel;
+using System.Drawing;
+using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Properties;
 
@@ -7,10 +9,19 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
     public partial class Main : Form
     {
         private readonly ITaskRepository _taskRepository;
+        private readonly ReadOnlyCollection<SearchableDataGridView> _searchableGrids;
 
         public Main()
         {
             InitializeComponent();
+            // one per tab
+            _searchableGrids = new ReadOnlyCollection<SearchableDataGridView>(new[]
+            {
+                taskGrid,
+                null, // TODO: branches
+                null, // TODO: activity
+                null,
+            });
             Load += Main_Load;
             FormClosing += Main_Closing;
             _taskRepository = new Mock.TaskRepository();
@@ -29,7 +40,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         void Main_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             var settings = Settings.Default;
-            settings.MenuLocation = menuStrip.Location;
+            settings.MenuLocation = new Point(menuStrip.Location.X - 3, menuStrip.Location.Y);
             settings.SearchLocation = searchStrip.Location;
             settings.WindowSize = ClientSize;
             settings.WindowState = WindowState;
@@ -39,6 +50,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private void exitMenuItem_Click(object sender, System.EventArgs e)
         {
             Close();
+        }
+
+        private void searchTextBox_TextChanged(object sender, System.EventArgs e)
+        {
+            var grid = _searchableGrids[tabs.SelectedIndex];
+            if (grid != null)
+            {
+                grid.Filter = searchTextBox.Text;
+            }
         }
     }
 }

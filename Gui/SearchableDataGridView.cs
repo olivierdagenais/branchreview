@@ -117,8 +117,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     }
                     else
                     {
-                        var v = (string) cellValue;
-                        chunkMatchesColumn = ContainsInvariantIgnoreCase(v, chunk.Text);
+                        if (cellValue != null)
+                        {
+                            var v = cellValue.ToString();
+                            chunkMatchesColumn = ContainsInvariantIgnoreCase(v, chunk.Text);
+                        }
                     }
 
                     if (chunkMatchesColumn)
