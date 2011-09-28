@@ -66,8 +66,16 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             if (e.Button == MouseButtons.Right)
             {
-                // Cause right-click to select cell
-                e = new MouseEventArgs(MouseButtons.Left, e.Clicks, e.X, e.Y, e.Delta);
+                var info = this.HitTest(e.X, e.Y);
+                if (info.Type == DataGridViewHitTestType.Cell)
+                {
+                    var row = Rows[info.RowIndex];
+                    if (!row.Selected)
+                    {
+                        // Cause right-click to select cell
+                        e = new MouseEventArgs(MouseButtons.Left, e.Clicks, e.X, e.Y, e.Delta);
+                    }
+                }
             }
             base.OnMouseDown(e);
         }
