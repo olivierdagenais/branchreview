@@ -160,6 +160,26 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             SwitchCurrentTab(false);
         }
 
+        private void tasksMenuItem_Click(object sender, EventArgs e)
+        {
+            tabs.SelectedTab = taskTab;
+        }
+
+        private void branchesMenuItem_Click(object sender, EventArgs e)
+        {
+            tabs.SelectedTab = branchesTab;
+        }
+
+        private void logMenuItem_Click(object sender, EventArgs e)
+        {
+            tabs.SelectedTab = activityTab;
+        }
+
+        private void commitMenuItem_Click(object sender, EventArgs e)
+        {
+            tabs.SelectedTab = commitTab;
+        }
+
         private void SwitchCurrentTab(bool refresh)
         {
             Control controlToFocus = null;
