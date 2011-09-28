@@ -290,7 +290,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             var taskId = row.Cells["TaskID"].Value;
             var builtInActions = new[]
             {
-                new MenuAction("defaultOpen", "Open", row.Cells["BasePath"].Value != DBNull.Value,
+                new MenuAction("defaultOpen", "&Open", row.Cells["BasePath"].Value != DBNull.Value,
                             () => SetCurrentBranch(branchId, taskId) ),
                 new MenuAction(null, MenuAction.Separator, false, null),
             };
