@@ -270,7 +270,10 @@
             this.changedFiles.Name = "changedFiles";
             this.changedFiles.Size = new System.Drawing.Size(276, 391);
             this.changedFiles.TabIndex = 0;
+            this.changedFiles.DoubleClick += new System.EventHandler(changedFiles_DoubleClick);
+            this.changedFiles.KeyDown += new System.Windows.Forms.KeyEventHandler(changedFiles_KeyDown);
             this.changedFiles.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Grid_PreviewKeyDown);
+            this.changedFiles.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(changedFiles_RowContextMenuStripNeeded);
             // 
             // patchText
             // 

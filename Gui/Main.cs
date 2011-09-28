@@ -316,6 +316,27 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         #region Commit
 
+        void changedFiles_DoubleClick(object sender, EventArgs e)
+        {
+            InvokeDefaultChangedFilesAction();
+        }
+
+        void changedFiles_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                InvokeDefaultChangedFilesAction();
+            }
+        }
+
+        void changedFiles_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
+        {
+            var menu = BuildChangedFilesActionMenuForRows();
+            e.ContextMenuStrip = menu;
+        }
+
         void changedFiles_SelectionChanged(object sender, EventArgs e)
         {
             var rows = changedFiles.Rows.Cast<DataGridViewRow>();
@@ -323,6 +344,21 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             var selectedRowIds = selectedRows.Map(row => row.Cells["ID"].Value);
             var patch = _sourceRepository.ComputeDifferences(selectedRowIds);
             patchText.SetReadOnlyText(patch);
+        }
+
+        private ContextMenuStrip BuildChangedFilesActionMenuForRows()
+        {
+            var selectedRows = changedFiles.SelectedRows.Cast<DataGridViewRow>();
+            var selectedIds = selectedRows.Map(row => row.Cells["ID"].Value);
+            var actions = _sourceRepository.GetActionsForPendingChanges(selectedIds);
+            var menu = BuildActionMenu(actions);
+            return menu;
+        }
+
+        private void InvokeDefaultChangedFilesAction()
+        {
+            var menu = BuildChangedFilesActionMenuForRows();
+            menu.Items[0].PerformClick();
         }
 
         private void RefreshChangedFiles()
