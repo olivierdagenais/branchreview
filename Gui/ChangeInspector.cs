@@ -76,7 +76,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
-
         #region FileGrid
         public void RefreshFileGrid()
         {
