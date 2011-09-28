@@ -6,6 +6,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
 {
     internal static class ScintillaExtensions
     {
+        private static readonly Font BestScintillaFont =
+            new Font ("Courier New", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+
         internal static void InitializeDefaults (this Scintilla scintilla)
         {
             var ni = scintilla.NativeInterface;
@@ -13,7 +16,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
             scintilla.CallTip.BackColor = Color.Empty;
             ni.SetCaretLineBack (Colour (0xdc, 0xff, 0xff));
             ni.SetCaretLineVisible (true);
-            scintilla.Font = new Font ("Courier New", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            scintilla.Font = BestScintillaFont;
             scintilla.LongLines.EdgeColor = Color.FromArgb (192, 220, 192);
             scintilla.LongLines.EdgeColumn = 80 * 2;
             scintilla.LongLines.EdgeMode = EdgeMode.Line;
@@ -22,7 +25,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
             scintilla.Selection.ForeColorUnfocused = Color.Transparent;
             scintilla.Selection.BackColor = Color.FromArgb (224, 224, 224);
             scintilla.Selection.BackColorUnfocused = Color.FromArgb (240, 240, 240);
-            scintilla.UseFont = true;
             scintilla.Whitespace.ForeColor = Color.Black;
             ni.SetWrapMode ((int) WrapMode.Word);
         }
@@ -35,19 +37,25 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
 
             ni.SetLexer ((int) Lexer.Diff);
             // Default
-            ni.StyleSetFore (0, Colour (0x00, 0x00, 0x00));
+            scintilla.SetStyle(0, Color.FromArgb(0x00, 0x00, 0x00), BestScintillaFont);
             // Comment (part before "diff ..." or "--- ..." and , Only in ..., Binary file...)
-            ni.StyleSetFore (1, Colour (0x7f, 0x7f, 0x00));
+            scintilla.SetStyle(1, Color.FromArgb(0x7f, 0x7f, 0x00), BestScintillaFont);
             // Command (diff ...)
-            ni.StyleSetFore (2, Colour (0x00, 0x7f, 0x00));
+            scintilla.SetStyle(2, Color.FromArgb(0x00, 0x7f, 0x00), BestScintillaFont);
             // Source file (--- ...) and Destination file (+++ ...)
-            ni.StyleSetFore (3, Colour (0x7f, 0x00, 0x00));
+            scintilla.SetStyle(3, Color.FromArgb(0x7f, 0x00, 0x00), BestScintillaFont);
             // Position setting (@@ ...)
-            ni.StyleSetFore (4, Colour (0x7f, 0x00, 0x7f));
+            scintilla.SetStyle(4, Color.FromArgb(0x7f, 0x00, 0x7f), BestScintillaFont);
             // Line removal (-...)
-            ni.StyleSetFore (5, Colour (0x00, 0x7f, 0x7f));
+            scintilla.SetStyle(5, Color.FromArgb(0x00, 0x7f, 0x7f), BestScintillaFont);
             // Line addition (+...)
-            ni.StyleSetFore (6, Colour (0x00, 0x00, 0x7f));
+            scintilla.SetStyle(6, Color.FromArgb(0x00, 0x00, 0x7f), BestScintillaFont);
+        }
+
+        internal static void SetStyle(this Scintilla scintilla, int index, Color foreColor, Font font)
+        {
+            scintilla.Styles[index].ForeColor = foreColor;
+            scintilla.Styles[index].Font = font;
         }
 
         internal static void SetReadOnlyText(this Scintilla scintilla, string text)

@@ -126,6 +126,9 @@
     <Content Include="SciLexer.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="SciLexerx64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="ScintillaNet.dll">
     </Content>
     <Content Include="ScintillaNet.xml" />

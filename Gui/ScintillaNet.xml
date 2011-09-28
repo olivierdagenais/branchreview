@@ -4,23 +4,6 @@
         <name>ScintillaNet</name>
     </assembly>
     <members>
-        <member name="F:ScintillaNet.SnippetChooser.components">
-            <summary> 
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.SnippetChooser.Dispose(System.Boolean)">
-            <summary> 
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:ScintillaNet.SnippetChooser.InitializeComponent">
-            <summary> 
-            Required method for Designer support - do not modify 
-            the contents of this method with the code editor.
-            </summary>
-        </member>
         <member name="T:ScintillaNet.TopLevelHelper">
             <summary>
             Top level ScintillaHelpers Like Style and Folding inherit from this class so they don't have
@@ -44,198 +27,553 @@
             <param name="obj"></param>
             <returns></returns>
         </member>
-        <member name="T:ScintillaNet.Commands">
+        <member name="F:ScintillaNet.Indentation._smartIndentType">
             <summary>
-            Manages commands, which are actions in ScintillaNET that can be bound to key combinations.
+            Enables the Smart Indenter so that On enter, it indents the next line.
             </summary>
         </member>
-        <member name="M:ScintillaNet.Commands.AddBinding(System.Windows.Forms.Keys,System.Windows.Forms.Keys,ScintillaNet.BindableCommand)">
+        <member name="M:ScintillaNet.Indentation.CheckSmartIndent(System.Char)">
             <summary>
-            Adds a key combination to a Command
+            If Smart Indenting is enabled, this delegate will be added to the CharAdded multicast event.
             </summary>
-            <param name="shortcut">Key to trigger command</param>
-            <param name="modifiers">Shift, alt, ctrl</param>
-            <param name="command">Command to execute</param>
+            <param name="sender"></param>
+            <param name="e"></param>
         </member>
-        <member name="M:ScintillaNet.Commands.AddBinding(System.Windows.Forms.Keys,ScintillaNet.BindableCommand)">
+        <member name="F:ScintillaNet.Indentation.SmartIndentCustomAction">
             <summary>
-            Adds a key combination to a Command
+            For Custom Smart Indenting, assign a handler to this delegate property.
             </summary>
-            <param name="shortcut">Key to trigger command</param>
-            <param name="command">Command to execute</param>
         </member>
-        <member name="M:ScintillaNet.Commands.AddBinding(System.Char,ScintillaNet.BindableCommand)">
+        <member name="M:ScintillaNet.Indentation.IndentLine(System.Int32,System.Int32)">
             <summary>
-            Adds a key combination to a Command
+            Smart Indenting helper method
             </summary>
-            <param name="shortcut">Character corresponding to a (keyboard) key to trigger command</param>
-            <param name="command">Command to execute</param>
+            <param name="line"></param>
+            <param name="indent"></param>
         </member>
-        <member name="M:ScintillaNet.Commands.AddBinding(System.Char,System.Windows.Forms.Keys,ScintillaNet.BindableCommand)">
+        <member name="F:ScintillaNet.GoToDialog.components">
             <summary>
-            Adds a key combination to a Command
+            Required designer variable.
             </summary>
-            <param name="shortcut">Character corresponding to a (keyboard) key to trigger command</param>
-            <param name="modifiers">Shift, alt, ctrl</param>
-            <param name="command">Command to execute</param>
         </member>
-        <member name="M:ScintillaNet.Commands.RemoveBinding(System.Windows.Forms.Keys,System.Windows.Forms.Keys,ScintillaNet.BindableCommand)">
+        <member name="M:ScintillaNet.GoToDialog.Dispose(System.Boolean)">
             <summary>
-            Removes a keyboard shortcut / command combination
+            Clean up any resources being used.
             </summary>
-            <param name="shortcut">Key to trigger command</param>
-            <param name="modifiers">Shift, alt, ctrl</param>
-            <param name="command">Command to execute</param>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:ScintillaNet.Commands.RemoveBinding(System.Windows.Forms.Keys,ScintillaNet.BindableCommand)">
+        <member name="M:ScintillaNet.GoToDialog.InitializeComponent">
             <summary>
-            Removes a keyboard shortcut / command combination
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
             </summary>
-            <param name="shortcut">Key to trigger command</param>
-            <param name="command">Command to execute</param>
         </member>
-        <member name="M:ScintillaNet.Commands.RemoveBinding(System.Char,ScintillaNet.BindableCommand)">
+        <member name="T:ScintillaNet.Configuration.Legacy.SciTE.SciTEProperties">
             <summary>
-            Removes a keyboard shortcut / command combination
+            A class that encapsulates the properties
+            Justin Greenwood - justin.greenwood@gmail.com
             </summary>
-            <param name="shortcut">Character corresponding to a (keyboard) key to trigger command</param>
-            <param name="command">Command to execute</param>
         </member>
-        <member name="M:ScintillaNet.Commands.RemoveBinding(System.Char,System.Windows.Forms.Keys,ScintillaNet.BindableCommand)">
+        <member name="M:ScintillaNet.Configuration.Legacy.SciTE.SciTEProperties.#ctor">
             <summary>
-            Removes a keyboard shortcut / command combination
+            
             </summary>
-            <param name="shortcut">Character corresponding to a (keyboard) key to trigger command</param>
-            <param name="modifiers">Shift, alt, ctrl</param>
-            <param name="command">Command to execute</param>
         </member>
-        <member name="M:ScintillaNet.Commands.RemoveBinding(System.Windows.Forms.Keys,System.Windows.Forms.Keys)">
+        <member name="M:ScintillaNet.Configuration.Legacy.SciTE.SciTEProperties.AddFileExtentionMapping(System.String,System.String)">
             <summary>
-            Removes all commands bound to a  keyboard shortcut
+            
             </summary>
-            <param name="shortcut">Key to trigger command</param>
-            <param name="modifiers">Shift, alt, ctrl</param>
+            <param name="ext"></param>
+            <param name="f"></param>
         </member>
-        <member name="M:ScintillaNet.Commands.RemoveBinding(System.Windows.Forms.Keys)">
+        <member name="M:ScintillaNet.Configuration.Legacy.SciTE.SciTEProperties.GetLanguageFromExtension(System.String)">
             <summary>
-            Removes all commands bound to a  keyboard shortcut
+            
             </summary>
-            <param name="shortcut">Key to trigger command</param>
+            <param name="ext"></param>
+            <returns></returns>
         </member>
-        <member name="M:ScintillaNet.Commands.RemoveBinding(System.Char)">
+        <member name="M:ScintillaNet.Configuration.Legacy.SciTE.SciTEProperties.GetExtensionListFromLanguage(System.String)">
             <summary>
-            Removes all commands bound to a  keyboard shortcut
+            
             </summary>
-            <param name="shortcut">Character corresponding to a (keyboard) key to trigger command</param>
+            <param name="language"></param>
+            <returns></returns>
         </member>
-        <member name="M:ScintillaNet.Commands.RemoveBinding(System.Char,System.Windows.Forms.Keys)">
+        <member name="M:ScintillaNet.Configuration.Legacy.SciTE.SciTEProperties.ContainsKey(System.String)">
             <summary>
-            Removes all commands bound to a  keyboard shortcut
+            
             </summary>
-            <param name="shortcut">Character corresponding to a (keyboard) key to trigger command</param>
-            <param name="modifiers">Shift, alt, ctrl</param>
+            <param name="key"></param>
+            <returns></returns>
         </member>
-        <member name="M:ScintillaNet.Commands.RemoveAllBindings">
+        <member name="M:ScintillaNet.Configuration.Legacy.SciTE.SciTEProperties.PopulateScintillaConfig(ScintillaNet.Configuration.Legacy.IScintillaConfig)">
             <summary>
-            Removes all key command bindings
+            Apply the lexer style according to the scite config files
             </summary>
-            <remarks>
-            Performing this action will make ScintillaNET virtually unusable until you assign new command bindings.
-            This removes even basic functionality like arrow keys, common clipboard commands, home/end, etc.
-            </remarks>
+            <param name="config"></param>
         </member>
-        <member name="M:ScintillaNet.Commands.GetCommands(System.Windows.Forms.Keys,System.Windows.Forms.Keys)">
+        <member name="M:ScintillaNet.Configuration.Legacy.SciTE.SciTEProperties.PopulateLexerConfig(ScintillaNet.Configuration.Legacy.ILexerConfig)">
             <summary>
-            Returns a list of Commands bound to a keyboard shortcut
+            
             </summary>
-            <param name="shortcut">Key to trigger command</param>
-            <param name="modifiers">Shift, alt, ctrl</param>
-            <returns>List of Commands bound to a keyboard shortcut</returns>
+            <param name="config"></param>
         </member>
-        <member name="M:ScintillaNet.Commands.GetCommands(System.Windows.Forms.Keys)">
+        <member name="M:ScintillaNet.Configuration.Legacy.SciTE.SciTEProperties.PopulateLanguageConfig(ScintillaNet.Configuration.Legacy.ILanguageConfig,ScintillaNet.Configuration.Legacy.ILexerConfigCollection)">
             <summary>
-            Returns a list of Commands bound to a keyboard shortcut
+            
             </summary>
-            <param name="shortcut">Key to trigger command</param>
-            <returns>List of Commands bound to a keyboard shortcut</returns>
+            <param name="config"></param>
         </member>
-        <member name="M:ScintillaNet.Commands.GetCommands(System.Char)">
+        <member name="M:ScintillaNet.Configuration.Legacy.SciTE.SciTEProperties.Evaluate(System.String)">
             <summary>
-            Returns a list of Commands bound to a keyboard shortcut
+            
             </summary>
-            <param name="shortcut">Character corresponding to a (keyboard) key to trigger command</param>
-            <returns>List of Commands bound to a keyboard shortcut</returns>
+            <param name="str"></param>
+            <returns></returns>
         </member>
-        <member name="M:ScintillaNet.Commands.GetCommands(System.Char,System.Windows.Forms.Keys)">
+        <member name="M:ScintillaNet.Configuration.Legacy.SciTE.SciTEProperties.PropertyRead(ScintillaNet.Configuration.Legacy.ConfigResource,ScintillaNet.Configuration.Legacy.PropertyType,System.Collections.Generic.Queue{System.String},System.String,System.String)">
             <summary>
-            Returns a list of Commands bound to a keyboard shortcut
+            
             </summary>
-            <param name="shortcut">Character corresponding to a (keyboard) key to trigger command</param>
-            <param name="modifiers">Shift, alt, ctrl</param>
-            <returns>List of Commands bound to a keyboard shortcut</returns>
+            <param name="file"></param>
+            <param name="propertyType"></param>
+            <param name="keyQueue"></param>
+            <param name="key"></param>
+            <param name="data"></param>
+            <returns></returns>
         </member>
-        <member name="M:ScintillaNet.Commands.GetKeyBindings(ScintillaNet.BindableCommand)">
+        <member name="P:ScintillaNet.Configuration.Legacy.SciTE.SciTEProperties.Keys">
             <summary>
-            Returns a list of KeyBindings bound to a given command
+            
             </summary>
-            <param name="command">Command to execute</param>
-            <returns>List of KeyBindings bound to the given command</returns>
         </member>
-        <member name="M:ScintillaNet.Commands.Execute(ScintillaNet.BindableCommand)">
+        <member name="P:ScintillaNet.Configuration.Legacy.SciTE.SciTEProperties.Item(System.String)">
             <summary>
-            Executes a Command
+            
             </summary>
-            <param name="command">Any <see cref="T:ScintillaNet.BindableCommand"/></param>
-            <returns>Value to indicate whether other bound commands should continue to execute</returns>
+            <param name="key"></param>
+            <returns></returns>
         </member>
-        <member name="P:ScintillaNet.Commands.AllowDuplicateBindings">
+        <member name="T:ScintillaNet.AutoComplete">
             <summary>
-            Gets/Sets if a key combination can be bound to more than one command. (default is true)
+            Used to invoke AutoComplete and UserList windows. Also manages AutoComplete
+            settings.
             </summary>
             <remarks>
-            When set to false only the first command bound to a key combination is kept.
-            Subsequent requests are ignored. 
+            Autocomplete is typically used in IDEs to automatically complete some kind
+            of identifier or keyword based on a partial name. 
             </remarks>
         </member>
-        <member name="T:ScintillaNet.KeyBinding">
+        <member name="F:ScintillaNet.AutoComplete.DefaultImagesClassLocation">
             <summary>
-            Represents the Binding Combination of a Keyboard Key + Modifiers
+            If the location of the DefaultImages class gets changed, 
+            this needs to be changed as well, to point to the new location. (FQN)
             </summary>
         </member>
-        <member name="M:ScintillaNet.KeyBinding.#ctor(System.Windows.Forms.Keys,System.Windows.Forms.Keys)">
+        <member name="F:ScintillaNet.AutoComplete.SnippetImageIndex">
             <summary>
-            Initializes a new instance of the KeyBinding structure.
-            </summary>
-            <param name="keycode">Key to trigger command</param>
-            <param name="modifiers"> key modifiers to the Keyboard shortcut</param>
-        </member>
-        <member name="M:ScintillaNet.KeyBinding.ToString">
-            <summary>
-            Overriden. Returns string representation of the Keyboard shortcut
-            </summary>
-            <returns>Returns string representation of the Keyboard shortcut</returns>
-        </member>
-        <member name="M:ScintillaNet.KeyBinding.GetHashCode">
-            <summary>
-            Overriden
-            </summary>
-            <returns>Hashcode of ToString()</returns>
-        </member>
-        <member name="M:ScintillaNet.KeyBinding.Equals(System.Object)">
-            <summary>
-            Overriden.
-            </summary>
-            <param name="obj">Another KeyBinding struct</param>
-            <returns>True if the Keycode and Modifiers are equal</returns>
-        </member>
-        <member name="P:ScintillaNet.KeyBinding.KeyCode">
-            <summary>
-            Gets/Sets Key to trigger command
+            If the index for the snippet image is changed,
+            please change this as well, otherwise the wrong
+            image will display for a snippet.
             </summary>
         </member>
-        <member name="P:ScintillaNet.KeyBinding.Modifiers">
+        <member name="M:ScintillaNet.AutoComplete.scintilla_AutoCompleteAccepted(System.Object,ScintillaNet.AutoCompleteAcceptedEventArgs)">
             <summary>
-            Gets sets key modifiers to the Keyboard shortcut
+            This method is used to deal with what occurs when a user 
+            selects a snippet in the auto-complete box.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.ShouldTrigger(System.Char)">
+            <summary>
+            This is the function that is used to determine if the 
+            AutoComplete box should be automatically shown.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.Show(System.Int32,System.String)">
+            <summary>
+            Shows the autocomplete window.
+            </summary>
+            <param name="lengthEntered">Number of characters of the current word already entered in the editor </param>
+            <param name="list">Sets the <see cref="P:ScintillaNet.AutoComplete.ListString"/> property. </param>
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.Show">
+            <summary>
+            Shows the autocomplete window.
+            </summary>
+            <remarks>
+            This overload assumes that the <see cref="P:ScintillaNet.AutoComplete.List"/> property has been
+            set. The lengthEntered is automatically detected by the editor.
+            </remarks>
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.Show(System.String)">
+            <summary>
+            Shows the autocomplete window.
+            </summary>
+            <param name="list">Sets the <see cref="P:ScintillaNet.AutoComplete.ListString"/> property. </param>
+            <remarks>
+            In this overload the lengthEntered is automatically detected by the editor.
+            </remarks>
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.Show(System.Int32,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Shows the autocomplete window
+            </summary>
+            <param name="lengthEntered">Number of characters of the current word already entered in the editor </param>
+            <param name="list">Sets the <see cref="P:ScintillaNet.AutoComplete.List"/> property. </param>
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.Show(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Shows the autocomplete window
+            </summary>
+            <param name="list">Sets the <see cref="P:ScintillaNet.AutoComplete.List"/> property. </param>
+            In this overload the lengthEntered is automatically detected by the editor.
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.Show(System.Int32)">
+            <summary>
+            Shows the autocomplete window
+            </summary>
+            <param name="lengthEntered">Number of characters of the current word already entered in the editor </param>
+            <remarks>
+            This overload assumes that the <see cref="P:ScintillaNet.AutoComplete.List"/> property has been set.
+            </remarks>
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.ShowUserList(System.Int32,System.String)">
+            <summary>
+            Shows a UserList window
+            </summary>
+            <param name="listType">Index of the userlist to show. Can be any integer</param>
+            <param name="list">List of words to show separated by " "</param>
+            <remarks>
+            UserLists are not as powerful as autocomplete but can be assigned to a user defined index.
+            </remarks>
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.ShowUserList(System.Int32,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Shows a UserList window
+            </summary>
+            <param name="listType">Index of the userlist to show. Can be any integer</param>
+            <param name="list">List of words to show.</param>
+            <remarks>
+            UserLists are not as powerful as autocomplete but can be assigned to a user defined index.
+            </remarks>
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.Cancel">
+            <summary>
+            Cancels the autocomplete window
+            </summary>
+            <remarks>
+            If the AutoComplete window is displayed calling Cancel() will close the window. 
+            </remarks>
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.Accept">
+            <summary>
+            Accepts the current AutoComplete window entry
+            </summary>
+            <remarks>
+            If the AutoComplete window is open Accept() will close it. This also causes the
+            <see cref="E:ScintillaNet.Scintilla.AutoCompleteAccepted"/> event to fire
+            </remarks>
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.RegisterImage(System.Int32,System.String)">
+            <summary>
+            Registers an image with index to be displayed in the AutoComplete window.
+            </summary>
+            <param name="type">Index of the image to register to</param>
+            <param name="xpmImage">Image in the XPM image format</param>
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.RegisterImage(System.Int32,System.Drawing.Bitmap,System.Drawing.Color)">
+            <summary>
+            Registers an image with index to be displayed in the AutoComplete window.
+            </summary>
+            <param name="type">Index of the image to register to</param>
+            <param name="xpmImage">Image to display in the XPM image format</param>
+            <param name="transparentColor">Color to mask the image as transparent</param>
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.RegisterImage(System.Int32,System.Drawing.Bitmap)">
+            <summary>
+            Registers an image with index to be displayed in the AutoComplete window.
+            </summary>
+            <param name="type">Index of the image to register to</param>
+            <param name="image">Image to display in Bitmap format</param>
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.RegisterImages(System.Collections.Generic.IList{System.String})">
+            <summary>
+            Registers a list of images to be displayed in the AutoComplete window.
+            </summary>
+            <param name="xpmImages">List of images in the XPM image format</param>
+            <remarks>Indecis are assigned sequentially starting at 0</remarks>
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.RegisterImages(System.Collections.Generic.IList{System.Drawing.Bitmap})">
+            <summary>
+            Registers a list of images to be displayed in the AutoComplete window.
+            </summary>
+            <param name="images">List of images in the Bitmap image format</param>
+            <remarks>Indecis are assigned sequentially starting at 0</remarks>
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.RegisterImages(System.Collections.Generic.IList{System.Drawing.Bitmap},System.Drawing.Color)">
+            <summary>
+            Registers a list of images to be displayed in the AutoComplete window.
+            </summary>
+            <param name="images">List of images in the Bitmap image format</param>
+            <param name="transparentColor">Color to mask the image as transparent</param>
+            <remarks>Indecis are assigned sequentially starting at 0</remarks>
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.RegisterImages(System.Windows.Forms.ImageList)">
+            <summary>
+            Registers a list of images to be displayed in the AutoComplete window.
+            </summary>
+            <param name="images">List of images contained in an ImageList</param>
+            <remarks>Indecis are assigned sequentially starting at 0</remarks>
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.RegisterImages(System.Windows.Forms.ImageList,System.Drawing.Color)">
+            <summary>
+            Registers a list of images to be displayed in the AutoComplete window.
+            </summary>
+            <param name="images">List of images contained in an ImageList</param>
+            <param name="transparentColor">Color to mask the image as transparent</param>
+            <remarks>Indecis are assigned sequentially starting at 0</remarks>
+        </member>
+        <member name="M:ScintillaNet.AutoComplete.ClearRegisteredImages">
+            <summary>
+            Deletes all registered images.
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.AutoComplete.TriggerChars">
+            <summary>
+            A list of the strings that will cause the AutoComplete window to show.
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.AutoComplete.List">
+            <summary>
+            List of words to display in the AutoComplete window when invoked.
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.AutoComplete.ListString">
+            <summary>
+            List of words to display in the AutoComplete window.
+            </summary>
+            <remarks>
+             The list of words separated by <see cref="P:ScintillaNet.AutoComplete.ListSeparator"/> which
+            is " " by default.
+            </remarks>
+        </member>
+        <member name="P:ScintillaNet.AutoComplete.IsActive">
+            <summary>
+            Returns wether or not the AutoComplete window is currently displayed
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.AutoComplete.LastStartPosition">
+            <summary>
+            Gets the document position when the AutoComplete window was last invoked
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.AutoComplete.StopCharacters">
+            <summary>
+            List of characters (no separator) that causes the AutoComplete window to cancel.
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.AutoComplete.ListSeparator">
+            <summary>
+            Character used to split <see cref="P:ScintillaNet.AutoComplete.ListString"/> to convert to a List.
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.AutoComplete.SelectedText">
+            <summary>
+            Gets or Sets the Text of the currently selected AutoComplete item.
+            </summary>
+            <remarks>
+            When setting this property it does not change the text of the currently
+            selected item. Instead it searches the list for the given value and selects
+            that item if it matches.
+            </remarks>
+        </member>
+        <member name="P:ScintillaNet.AutoComplete.SelectedIndex">
+            <summary>
+            Gets or Sets the index of the currently selected item in the AutoComplete <see cref="P:ScintillaNet.AutoComplete.List"/>
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.AutoComplete.CancelAtShowPoint">
+            <summary>
+            The default behavior is for the list to be cancelled if the caret moves before the location it was at when the list was displayed. 
+            By setting this property to false, the list is not cancelled until the caret moves before the first character of the word being completed.
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.AutoComplete.FillUpCharacters">
+            <summary>
+            List of characters (no separated) that causes the AutoComplete window to accept the current
+            selection.
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.AutoComplete.SingleLineAccept">
+            <summary>
+            If you set this value to true and a list has only one item, it is automatically added and no list is displayed. The default is to display the list even if there is only a single item.
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.AutoComplete.IsCaseSensitive">
+            <summary>
+            Gets or Sets if the comparison of words to the AutoComplete <see cref="P:ScintillaNet.AutoComplete.List"/> are case sensitive.
+            </summary>
+            <remarks>Defaults to true</remarks>
+        </member>
+        <member name="P:ScintillaNet.AutoComplete.AutoHide">
+            <summary>
+            By default, the list is cancelled if there are no viable matches (the user has typed characters that no longer match a list entry). 
+            If you want to keep displaying the original list, set AutoHide to false. 
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.AutoComplete.DropRestOfWord">
+            <summary>
+            When an item is selected, any word characters following the caret are first erased if dropRestOfWord is set to true.
+            </summary>
+            <remarks>Defaults to false</remarks>
+        </member>
+        <member name="P:ScintillaNet.AutoComplete.ImageSeparator">
+            <summary>
+            Autocompletion list items may display an image as well as text. Each image is first registered with an integer type. 
+            Then this integer is included in the text of the list separated by a '?' from the text. For example, "fclose?2 fopen" 
+            displays image 2 before the string "fclose" and no image before "fopen". 
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.AutoComplete.MaxHeight">
+            <summary>
+            Get or set the maximum number of rows that will be visible in an autocompletion list. If there are more rows in the list, then a vertical scrollbar is shown
+            </summary>
+            <remarks>Defaults to 5</remarks>
+        </member>
+        <member name="P:ScintillaNet.AutoComplete.MaxWidth">
+            <summary>
+            Get or set the maximum width of an autocompletion list expressed as the number of characters in the longest item that will be totally visible. 
+            </summary>
+            <remarks>
+            If zero (the default) then the list's width is calculated to fit the item with the most characters. Any items that cannot be fully displayed 
+            within the available width are indicated by the presence of ellipsis.
+            </remarks>
+        </member>
+        <member name="P:ScintillaNet.AutoComplete.AutomaticLengthEntered">
+            <summary>
+            Gets or Sets the last automatically calculated LengthEntered used whith <see cref="M:ScintillaNet.AutoComplete.Show(System.Int32,System.String)"/>.
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.IncrementalSearcher.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.IncrementalSearcher.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ScintillaNet.IncrementalSearcher.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.Configuration.CommandBindingConfig.#ctor(ScintillaNet.KeyBinding,System.Nullable{System.Boolean},ScintillaNet.BindableCommand)">
+            <summary>
+            Initializes a new instance of the CommandBindingConfig structure.
+            </summary>
+            <param name="keyBinding"></param>
+            <param name="replaceCurrent"></param>
+            <param name="bindableCommand"></param>
+        </member>
+        <member name="T:ScintillaNet.Clipboard">
+            <summary>
+            Performs OS Clipboard acess.
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.Clipboard.Copy">
+            <summary>
+            Copies the currently selected text to the clipboard.
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.Clipboard.Copy(System.String)">
+            <summary>
+            Copies the given text to the clipboard
+            </summary>
+            <param name="text">Text to be copied</param>
+        </member>
+        <member name="M:ScintillaNet.Clipboard.Copy(ScintillaNet.Range)">
+            <summary>
+            Copies the contents of a given range to the clipboard.
+            </summary>
+            <param name="rangeToCopy">Range of text to copy</param>
+        </member>
+        <member name="M:ScintillaNet.Clipboard.Copy(System.Int32,System.Int32)">
+            <summary>
+            Copies text bounded by the given position
+            </summary>
+            <param name="positionStart">Start position in the document of text to copy</param>
+            <param name="positionEnd">End position in the document of text to copy</param>
+        </member>
+        <member name="M:ScintillaNet.Clipboard.Cut">
+            <summary>
+            Cuts the currently selected text to the clipboard
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.Clipboard.Paste">
+            <summary>
+            Pastes the current content of the clipboard into the current document position
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.Clipboard.CanPaste">
+            <summary>
+            Returns true if a paste operation can occur.
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.Clipboard.ConvertEndOfLineOnPaste">
+            <summary>
+            Gets/Sets wether pasted text's end of line characters are automatically converted
+            to match the document's.
+            </summary>
+            <remarks>This is the same as EndOfLine.ConvertOnPaste</remarks>
+        </member>
+        <member name="F:ScintillaNet.Forms.Configuration.FontBrowser.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.Forms.Configuration.FontBrowser.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ScintillaNet.Forms.Configuration.FontBrowser.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.Configuration.KeyWordConfig.#ctor(System.Int32,System.String,System.Nullable{System.Boolean})">
+            <summary>
+            Initializes a new instance of the KeyWordConfig class.
+            </summary>
+            <param name="list"></param>
+            <param name="value"></param>
+            <param name="inherit"></param>
+        </member>
+        <member name="F:ScintillaNet.SnippetChooser.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.SnippetChooser.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ScintillaNet.SnippetChooser.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
             </summary>
         </member>
         <member name="T:XpmConverter">
@@ -286,55 +624,6 @@
             <param name="bmp">The image to transform.</param>
             <param name="transparentColor">The overriding transparent Color</param>
             <returns></returns>
-        </member>
-        <member name="M:ScintillaNet.Utilities.ColorToHtml(System.Drawing.Color)">
-            <summary>
-            Returns an HTML #XXXXXX format for a color. Unlike the ColorTranslator class it
-            never returns named colors.
-            </summary>
-            <param name="c"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ScintillaNet.Utilities.IntPtrToString(System.Text.Encoding,System.IntPtr,System.Int32)">
-            <summary>
-            Marshals an IntPtr pointing to un unmanaged byte[] to a .NET String using the given Encoding.
-            </summary>
-            <remarks>
-            I'd love to have this as en extension method but ScintillaNet's probably going to be 2.0 for a long
-            time to come. There's nothing really compelling in later versions that applies to ScintillaNet that
-            can't be done with a 2.0 construct (extension methods, linq, etc)
-            </remarks>
-            <param name="encoding"></param>
-            <param name="ptr"></param>
-            <param name="length"></param>
-            <returns></returns>
-        </member>
-        <member name="T:ScintillaNet.EndOfLine">
-            <summary>
-            Manages End of line settings for the Scintilla Control
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.EndOfLine.ConvertAllLines(ScintillaNet.EndOfLineMode)">
-            <summary>
-            Converts all lines in the document to the given mode.
-            </summary>
-            <param name="toMode">The EndOfLineMode to convert all lines to </param>
-        </member>
-        <member name="P:ScintillaNet.EndOfLine.ConvertOnPaste">
-            <summary>
-            Gets/Sets whether pasted content's line endings should be changed to match
-            the current document's settings.
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.EndOfLine.Mode">
-            <summary>
-            Gets/Sets the <see cref="T:ScintillaNet.EndOfLineMode"/> for the document. Default is CrLf.
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.EndOfLine.IsVisible">
-            <summary>
-            Gets/Sets if End of line markers are visible in the Scintilla control.
-            </summary>
         </member>
         <member name="T:ScintillaNet.Range">
             <summary>
@@ -390,6 +679,11 @@
             Overriden. See <see cref="M:System.Windows.Forms.Control.WndProc(System.Windows.Forms.Message@)"/>.
             </summary>
         </member>
+        <member name="M:ScintillaNet.Scintilla.LoadSciLexer(System.String)">
+            <summary>
+            Loads the unmanaged SciLexer module so that it's available for PInvoke
+            </summary>
+        </member>
         <member name="M:ScintillaNet.Scintilla.IsInputKey(System.Windows.Forms.Keys)">
             <summary>
             Overriden. See <see cref="M:System.Windows.Forms.Control.IsInputKey(System.Windows.Forms.Keys)"/>.
@@ -434,6 +728,24 @@
             <summary>
             Overriden. See <see cref="M:System.Windows.Forms.Control.OnPaint(System.Windows.Forms.PaintEventArgs)"/>.
             </summary>
+        </member>
+        <member name="M:ScintillaNet.Scintilla.OnBackColorChanged(System.EventArgs)">
+            <summary>
+            Raises the <see cref="!:BackColorChanged"/> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data. </param>
+        </member>
+        <member name="M:ScintillaNet.Scintilla.OnFontChanged(System.EventArgs)">
+            <summary>
+            Raises the <see cref="!:FontChanged"/> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:ScintillaNet.Scintilla.OnForeColorChanged(System.EventArgs)">
+            <summary>
+            Raises the <see cref="!:ForeColorChanged"/> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data. </param>
         </member>
         <member name="F:ScintillaNet.Scintilla._isBraceMatching">
             <summary>
@@ -657,6 +969,23 @@
             <summary>
             Gets a word from the specified position
             </summary>
+        </member>
+        <member name="M:ScintillaNet.Scintilla.ExportHtml">
+            <summary>
+            Exports a HTML representation of the current document.
+            </summary>
+            <returns>A <see cref="T:System.String"/> containing the contents of the document formatted as HTML.</returns>
+            <remarks>Only ASCII documents are supported. Other encoding types have undefined behavior.</remarks>
+        </member>
+        <member name="M:ScintillaNet.Scintilla.ExportHtml(System.IO.TextWriter,System.String,System.Boolean)">
+            <summary>
+            Exports a HTML representation of the current document.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter"/>with which to write. </param>
+            <param name="title">The title of the HTML document.</param>
+            <param name="allStyles"><c>true</c> to output all styles including those not
+            used in the document; otherwise, <c>false</c>.</param>
+            <remarks>Only ASCII documents are supported. Other encoding types have undefined behavior.</remarks>
         </member>
         <member name="M:ScintillaNet.Scintilla.ScintillaNet#INativeScintilla#SendMessageDirect(System.UInt32,System.IntPtr,System.IntPtr)">
             <summary>
@@ -910,8 +1239,13 @@
         </member>
         <member name="P:ScintillaNet.Scintilla.BackColor">
             <summary>
-            Overriden. See <see cref="P:System.Windows.Forms.Control.BackColor"/>.
+            Gets or sets the background color for the control.
             </summary>
+            <value>
+            A <see cref="T:System.Drawing.Color"/> that represents the background color of the control.
+            The default is <see cref="P:System.Drawing.SystemColors.Window"/>.
+            </value>
+            <remarks>Settings this property resets any current document styling.</remarks>
         </member>
         <member name="P:ScintillaNet.Scintilla.BackgroundImage">
             <summary>
@@ -984,10 +1318,23 @@
             Controls Encoding behavior
             </summary>
         </member>
+        <member name="P:ScintillaNet.Scintilla.Font">
+            <summary>
+            Gets or sets the font of the text displayed by the control.
+            </summary>
+            <value>The <see cref="P:ScintillaNet.Scintilla.Font"/> to apply to the text displayed by the control.
+            The default is the value of the <see cref="!:DefaultFont"/> property.</value>
+            <remarks>Settings this property resets any current document styling.</remarks>
+        </member>
         <member name="P:ScintillaNet.Scintilla.ForeColor">
             <summary>
-            Overriden. See <see cref="P:System.Windows.Forms.Control.ForeColor"/>.
+            Gets or sets the foreground color of the control.
             </summary>
+            <value>
+            The foreground <see cref="T:System.Drawing.Color"/> of the control.
+            The default is <see cref="P:System.Drawing.SystemColors.WindowText"/>.
+            </value>
+            <remarks>Settings this property resets any current document styling.</remarks>
         </member>
         <member name="P:ScintillaNet.Scintilla.Modified">
             <summary>
@@ -1170,6 +1517,245 @@
             Holds the last previous selection's properties, to let us know when we should fire SelectionChanged
             </summary>
         </member>
+        <member name="T:ScintillaNet.EndOfLine">
+            <summary>
+            Manages End of line settings for the Scintilla Control
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.EndOfLine.ConvertAllLines(ScintillaNet.EndOfLineMode)">
+            <summary>
+            Converts all lines in the document to the given mode.
+            </summary>
+            <param name="toMode">The EndOfLineMode to convert all lines to </param>
+        </member>
+        <member name="P:ScintillaNet.EndOfLine.ConvertOnPaste">
+            <summary>
+            Gets/Sets whether pasted content's line endings should be changed to match
+            the current document's settings.
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.EndOfLine.Mode">
+            <summary>
+            Gets/Sets the <see cref="T:ScintillaNet.EndOfLineMode"/> for the document. Default is CrLf.
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.EndOfLine.IsVisible">
+            <summary>
+            Gets/Sets if End of line markers are visible in the Scintilla control.
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.Forms.Configuration.StyleConfigControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.Forms.Configuration.StyleConfigControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ScintillaNet.Forms.Configuration.StyleConfigControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:ScintillaNet.CaretInfo">
+            <summary>
+            Manages Caret Settings
+            </summary>
+            <remarks>
+            The caret is the blinking line that indicates the current document position. This
+            is sometimes referred to as cursor.
+            </remarks>
+        </member>
+        <member name="M:ScintillaNet.CaretInfo.EnsureVisible">
+            <summary>
+            Scrolls the Scintilla window so that the Caret is visible.
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.CaretInfo.ChooseCaretX">
+            <summary>
+            Scintilla remembers the x value of the last position horizontally moved to explicitly by the user and this value is then 
+            used when moving vertically such as by using the up and down keys. This method sets the current x position of the caret as 
+            the remembered value.
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.CaretInfo.Goto(System.Int32)">
+            <summary>
+            Places the caret at the specified document position
+            </summary>
+            <param name="position">Position in the document to place the caret</param>
+        </member>
+        <member name="M:ScintillaNet.CaretInfo.BringIntoView">
+            <summary>
+            Places the caret somewhere within the document that is displayed in the
+            Scintilla Window
+            </summary>
+            <remarks>
+            If the caret is already visible in the current scrolled view this method does
+            nothing.
+            </remarks>
+        </member>
+        <member name="P:ScintillaNet.CaretInfo.Width">
+            <summary>
+            Gets/Sets the width in pixels of the Caret
+            </summary>
+            <remarks>
+            This defaults to the system default.
+            </remarks>
+        </member>
+        <member name="P:ScintillaNet.CaretInfo.Style">
+            <summary>
+            Gets/Sets the <see cref="T:ScintillaNet.CaretStyle"/> displayed.
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.CaretInfo.Color">
+            <summary>
+            Gets/Sets the color of the Caret.
+            </summary>
+            <remarks>Defaults to black</remarks>
+        </member>
+        <member name="P:ScintillaNet.CaretInfo.CurrentLineBackgroundColor">
+            <summary>
+            Gets/Sets the color of the document line where the caret currently resides
+            </summary>
+            <remarks>
+            The <see cref="!:HighlightCurrentList"/> property must be set to true in order
+            for this to to take effect.
+            </remarks>
+        </member>
+        <member name="P:ScintillaNet.CaretInfo.HighlightCurrentLine">
+            <summary>
+            Gets/Sets if the current document line where the caret resides is highlighted.
+            </summary>
+            <remarks>
+            <see cref="P:ScintillaNet.CaretInfo.CurrentLineBackgroundColor"/> determines the color. 
+            </remarks>
+        </member>
+        <member name="P:ScintillaNet.CaretInfo.CurrentLineBackgroundAlpha">
+            <summary>
+            Gets/Sets the transparency alpha of the CurrentLine Background highlight
+            </summary>
+            <remarks>
+            Values range from 0 to 256. Default is 256.
+            </remarks>
+        </member>
+        <member name="P:ScintillaNet.CaretInfo.BlinkRate">
+            <summary>
+            Gets/Sets the time interval in milliseconds that the caret should blink.
+            </summary>
+            <remarks>
+            This defaults to the system default value.
+            </remarks>
+        </member>
+        <member name="P:ScintillaNet.CaretInfo.Position">
+            <summary>
+            Gets/Sets the current document position where the caret resides
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.CaretInfo.Anchor">
+            <summary>
+            Gets/Sets the current anchor position
+            </summary>
+            <remarks>
+            If the anchor position is less than the Caret Position it acts as the start of
+            the selection.
+            </remarks>
+        </member>
+        <member name="P:ScintillaNet.CaretInfo.IsSticky">
+            <summary>
+            Controls when the last position of the caret on the line is saved. When set to true, the position is not saved when you type a character, a tab, paste the clipboard content or press backspace
+            </summary>
+            <remarks>
+            Defaults to false
+            </remarks>
+        </member>
+        <member name="P:ScintillaNet.CaretInfo.LineNumber">
+            <summary>
+            Gets/Sets the current Line Number that the caret resides.
+            </summary>
+        </member>
+        <member name="T:ScintillaNet.Configuration.Legacy.PropertyType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.Configuration.Legacy.PropertyType.Property">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.Configuration.Legacy.PropertyType.Comment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.Configuration.Legacy.PropertyType.Import">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.Configuration.Legacy.PropertyType.If">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.Configuration.Legacy.PropertyType.IgnoredLine">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.Configuration.Legacy.PropertyType.EmptyLine">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ScintillaNet.Configuration.Legacy.PropertyReadDelegate">
+            <summary>
+            
+            </summary>
+            <param name="file"></param>
+            <param name="propertyType"></param>
+            <param name="key"></param>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ScintillaNet.Configuration.Legacy.PropertiesReader">
+            <summary>
+            A class that reads in ths properties from the 
+            Justin Greenwood - justin.greenwood@gmail.com
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.Configuration.Legacy.PropertiesReader.Read(ScintillaNet.Configuration.Legacy.ConfigResource,ScintillaNet.Configuration.Legacy.PropertyReadDelegate)">
+            <summary>
+            
+            </summary>
+            <param name="propsFileInfo"></param>
+            <param name="propertyRead"></param>
+        </member>
+        <member name="M:ScintillaNet.Configuration.Legacy.PropertiesReader.Evaluate(System.String,ScintillaNet.Configuration.Legacy.PropertyGetValueDelegate,ScintillaNet.Configuration.Legacy.PropertyContainsKeyDelegate)">
+            <summary>
+            
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ScintillaNet.Configuration.Legacy.PropertiesReader.ReplaceVariableMatch(System.Text.RegularExpressions.Match)">
+            <summary>
+            
+            </summary>
+            <param name="m"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ScintillaNet.Configuration.Legacy.PropertiesReader.GetKeyValuePairs(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
         <member name="T:ScintillaNet.PageSettings">
             <summary>
             ScintillaNET derived class for handling printed page settings.  It holds information 
@@ -1209,6 +1795,309 @@
         <member name="P:ScintillaNet.PageSettings.ColorMode">
             <summary>
             Method used to render colored text on a printer
+            </summary>
+        </member>
+        <member name="T:ScintillaNet.Whitespace">
+            <summary>
+            Determines how whitespace should be displayed in a <see cref="T:ScintillaNet.Scintilla"/> control.
+            </summary>
+            <remarks>
+            By default, whitespace is determined by the lexer in use. Setting the <see cref="P:ScintillaNet.Whitespace.ForeColor"/>
+            or <see cref="P:ScintillaNet.Whitespace.BackColor"/> properties overrides the lexer behavior.</remarks>
+        </member>
+        <member name="P:ScintillaNet.Whitespace.BackColor">
+            <summary>
+            Gets or sets the whitespace background color.
+            </summary>
+            <remarks>
+            By default, the whitespace background color is determined by the lexer in use.
+            Setting the <c>BackColor</c> to anything other than <see cref="F:System.Drawing.Color.Empty"/> overrides the lexer behavior.
+            Transparent colors are not supported.
+            </remarks>
+            <returns>
+            A <see cref="T:System.Drawing.Color"/> that represents the background color of whitespace characters.
+            The default is <see cref="F:System.Drawing.Color.Empty"/>.
+            </returns>
+            <exception cref="!:ArgumentOutOfRange">
+            The specified <paramref name="value"/> has an alpha value that is less that <see cref="F:System.Byte.MaxValue"/>.
+            </exception>
+        </member>
+        <member name="P:ScintillaNet.Whitespace.ForeColor">
+            <summary>
+            Gets or sets the whitespace foreground color.
+            </summary>
+            <remarks>
+            By default, the whitespace foreground color is determined by the lexer in use.
+            Setting the <c>ForeColor</c> to anything other than <see cref="F:System.Drawing.Color.Empty"/> overrides the lexer behavior.
+            Transparent colors are not supported.
+            </remarks>
+            <returns>
+            A <see cref="T:System.Drawing.Color"/> that represents the foreground color of whitespace characters.
+            The default is <see cref="F:System.Drawing.Color.Empty"/>.
+            </returns>
+            <exception cref="!:ArgumentOutOfRange">
+            The specified <paramref name="value"/> has an alpha value that is less that <see cref="F:System.Byte.MaxValue"/>.
+            </exception>
+        </member>
+        <member name="P:ScintillaNet.Whitespace.Mode">
+            <summary>
+            Gets or sets the whitespace display mode.
+            </summary>
+            <returns>One of the <see cref="T:ScintillaNet.WhitespaceMode"/> values. The default is <see cref="F:ScintillaNet.WhitespaceMode.Invisible"/></returns>
+            <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">
+            The specified value is not a valid <see cref="T:ScintillaNet.WhitespaceMode"/> value.
+            </exception>
+        </member>
+        <member name="M:ScintillaNet.Utilities.ColorToHtml(System.Drawing.Color)">
+            <summary>
+            Returns an HTML #XXXXXX format for a color. Unlike the ColorTranslator class it
+            never returns named colors.
+            </summary>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ScintillaNet.Utilities.IntPtrToString(System.Text.Encoding,System.IntPtr,System.Int32)">
+            <summary>
+            Marshals an IntPtr pointing to un unmanaged byte[] to a .NET String using the given Encoding.
+            </summary>
+            <remarks>
+            I'd love to have this as en extension method but ScintillaNet's probably going to be 2.0 for a long
+            time to come. There's nothing really compelling in later versions that applies to ScintillaNet that
+            can't be done with a 2.0 construct (extension methods, linq, etc)
+            </remarks>
+            <param name="encoding"></param>
+            <param name="ptr"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ScintillaNet.Utilities.LexerLookupByID(System.Int32)">
+            <summary>
+            A reverse Lexer list, this allows us to look up lexers by id
+            </summary>
+        </member>
+        <member name="T:ScintillaNet.PageInformationBorder">
+            <summary>
+            Type of border to print for a Page Information section
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.PageInformationBorder.None">
+            <summary>
+            No border
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.PageInformationBorder.Top">
+            <summary>
+            Border along the top
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.PageInformationBorder.Bottom">
+            <summary>
+            Border along the bottom
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.PageInformationBorder.Box">
+            <summary>
+            A full border around the page information section
+            </summary>
+        </member>
+        <member name="T:ScintillaNet.InformationType">
+            <summary>
+            Type of data to display at one of the positions in a Page Information section
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.InformationType.Nothing">
+            <summary>
+            Nothing is displayed at the position
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.InformationType.PageNumber">
+            <summary>
+            The page number is displayed in the format "Page #"
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.InformationType.DocumentName">
+            <summary>
+            The document name is displayed
+            </summary>
+        </member>
+        <member name="T:ScintillaNet.PageInformation">
+            <summary>
+            Class for determining how and what to print for a header or footer.
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.PageInformation.DefaultFont">
+            <summary>
+            Default font used for Page Information sections
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.PageInformation.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.PageInformation.#ctor(ScintillaNet.PageInformationBorder,ScintillaNet.InformationType,ScintillaNet.InformationType,ScintillaNet.InformationType)">
+            <summary>
+            Normal Use Constructor
+            </summary>
+            <param name="eBorder">Border style</param>
+            <param name="eLeft">What to print on the left side of the page</param>
+            <param name="eCenter">What to print in the center of the page</param>
+            <param name="eRight">What to print on the right side of the page</param>
+        </member>
+        <member name="M:ScintillaNet.PageInformation.#ctor(System.Int32,System.Drawing.Font,ScintillaNet.PageInformationBorder,ScintillaNet.InformationType,ScintillaNet.InformationType,ScintillaNet.InformationType)">
+            <summary>
+            Full Constructor
+            </summary>
+            <param name="iMargin">Margin to use</param>
+            <param name="oFont">Font to use </param>
+            <param name="eBorder">Border style</param>
+            <param name="eLeft">What to print on the left side of the page</param>
+            <param name="eCenter">What to print in the center of the page</param>
+            <param name="eRight">What to print on the right side of the page</param>
+        </member>
+        <member name="M:ScintillaNet.PageInformation.Draw(System.Drawing.Graphics,System.Drawing.Rectangle,System.String,System.Int32)">
+            <summary>
+            Draws the page information section in the specified rectangle
+            </summary>
+            <param name="oGraphics"></param>
+            <param name="oBounds"></param>
+            <param name="strDocumentName"></param>
+            <param name="iPageNumber"></param>
+        </member>
+        <member name="P:ScintillaNet.PageInformation.Margin">
+            <summary>
+            Space between the Page Information section and the rest of the page
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.PageInformation.Font">
+            <summary>
+            Font used in printing the Page Information section
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.PageInformation.Border">
+            <summary>
+            Border style used for the Page Information section
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.PageInformation.Left">
+            <summary>
+            Information printed on the left side of the Page Information section
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.PageInformation.Center">
+            <summary>
+            Information printed in the center of the Page Information section
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.PageInformation.Right">
+            <summary>
+            Information printed on the right side of the Page Information section
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.PageInformation.Display">
+            <summary>
+            Whether there is a need to display this item, true if left, center, or right are not nothing.
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.PageInformation.Height">
+            <summary>
+            Height required to draw the Page Information section based on the options selected.
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.HeaderInformation.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.HeaderInformation.#ctor(ScintillaNet.PageInformationBorder,ScintillaNet.InformationType,ScintillaNet.InformationType,ScintillaNet.InformationType)">
+            <summary>
+            Normal Use Constructor
+            </summary>
+            <param name="eBorder">Border style</param>
+            <param name="eLeft">What to print on the left side of the page</param>
+            <param name="eCenter">What to print in the center of the page</param>
+            <param name="eRight">What to print on the right side of the page</param>
+        </member>
+        <member name="M:ScintillaNet.HeaderInformation.#ctor(System.Int32,System.Drawing.Font,ScintillaNet.PageInformationBorder,ScintillaNet.InformationType,ScintillaNet.InformationType,ScintillaNet.InformationType)">
+            <summary>
+            Full Constructor
+            </summary>
+            <param name="iMargin">Margin to use</param>
+            <param name="oFont">Font to use </param>
+            <param name="eBorder">Border style</param>
+            <param name="eLeft">What to print on the left side of the page</param>
+            <param name="eCenter">What to print in the center of the page</param>
+            <param name="eRight">What to print on the right side of the page</param>
+        </member>
+        <member name="M:ScintillaNet.FooterInformation.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.FooterInformation.#ctor(ScintillaNet.PageInformationBorder,ScintillaNet.InformationType,ScintillaNet.InformationType,ScintillaNet.InformationType)">
+            <summary>
+            Normal Use Constructor
+            </summary>
+            <param name="eBorder">Border style</param>
+            <param name="eLeft">What to print on the left side of the page</param>
+            <param name="eCenter">What to print in the center of the page</param>
+            <param name="eRight">What to print on the right side of the page</param>
+        </member>
+        <member name="M:ScintillaNet.FooterInformation.#ctor(System.Int32,System.Drawing.Font,ScintillaNet.PageInformationBorder,ScintillaNet.InformationType,ScintillaNet.InformationType,ScintillaNet.InformationType)">
+            <summary>
+            Full Constructor
+            </summary>
+            <param name="iMargin">Margin to use</param>
+            <param name="oFont">Font to use </param>
+            <param name="eBorder">Border style</param>
+            <param name="eLeft">What to print on the left side of the page</param>
+            <param name="eCenter">What to print in the center of the page</param>
+            <param name="eRight">What to print on the right side of the page</param>
+        </member>
+        <member name="T:ScintillaNet.PrintDocument">
+            <summary>
+            ScintillaNET derived class for handling printing of source code from a Scintilla control.
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.PrintDocument.#ctor(ScintillaNet.Scintilla)">
+            <summary>
+            Default Constructor
+            </summary>
+            <param name="oScintillaControl">Scintilla control being printed</param>
+        </member>
+        <member name="M:ScintillaNet.PrintDocument.OnBeginPrint(System.Drawing.Printing.PrintEventArgs)">
+            <summary>
+            Method called after the Print method is called and before the first page of the document prints
+            </summary>
+            <param name="e">A PrintPageEventArgs that contains the event data</param>
+        </member>
+        <member name="M:ScintillaNet.PrintDocument.OnEndPrint(System.Drawing.Printing.PrintEventArgs)">
+            <summary>
+            Method called when the last page of the document has printed
+            </summary>
+            <param name="e">A PrintPageEventArgs that contains the event data</param>
+        </member>
+        <member name="M:ScintillaNet.PrintDocument.OnPrintPage(System.Drawing.Printing.PrintPageEventArgs)">
+            <summary>
+            Method called when printing a page
+            </summary>
+            <param name="e">A PrintPageEventArgs that contains the event data</param>
+        </member>
+        <member name="F:ScintillaNet.FindReplaceDialog.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.FindReplaceDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ScintillaNet.FindReplaceDialog.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
             </summary>
         </member>
         <member name="T:ScintillaNet.CallTip">
@@ -1583,154 +2472,366 @@
             Text of the overload to be displayed in the CallTip
             </summary>
         </member>
-        <member name="T:ScintillaNet.DocumentHandler">
+        <member name="T:ScintillaNet.DropMarkers">
             <summary>
-            Manages the Native Scintilla's Document features.
+            Manages DropMarkers, a Stack Based document bookmarking system.
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.DropMarkers.Drop">
+            <summary>
+            Drops a DropMarker at the current document position
             </summary>
             <remarks>
-            See Scintilla's documentation on multiple views for an understanding of Documents.
-            Note that all ScintillaNET specific features are considered to be part of the View, not document.
+            Dropping a DropMarker creates a visual marker (red triangle)
+            indicating the DropMarker point.
+            </remarks>
+            <returns>The newly created DropMarker</returns>
+        </member>
+        <member name="M:ScintillaNet.DropMarkers.Drop(System.Int32)">
+            <summary>
+            Drops a DropMarker at the specified document position
+            </summary>
+            <param name="position"></param>
+            <returns>The newly created DropMarker</returns>
+            <remarks>
+            Dropping a DropMarker creates a visual marker (red triangle)
+            indicating the DropMarker point.
             </remarks>
         </member>
-        <member name="M:ScintillaNet.DocumentHandler.Create">
+        <member name="M:ScintillaNet.DropMarkers.Collect">
             <summary>
-            Creates a new Document
+            Collects the last dropped DropMarker
+            </summary>
+            <remarks>
+            When a DropMarker is collected the current document posision is moved
+            to the DropMarker posision, the DropMarker is removed from the stack
+            and the visual indicator is removed.
+            </remarks>
+        </member>
+        <member name="P:ScintillaNet.DropMarkers.SharedStackName">
+            <summary>
+            Gets/Sets a shared name associated with other Scintilla controls. 
+            </summary>
+            <remarks>
+            All Scintilla controls with the same SharedStackName share a common
+            DropMarker stack. This is useful in MDI applications where you want
+            the DropMarker stack not to be specific to one document.
+            </remarks>
+        </member>
+        <member name="P:ScintillaNet.DropMarkers.MarkerStack">
+            <summary>
+            Gets/Sets the Stack of DropMarkers 
+            </summary>
+            <remarks>
+            You can manually set this to implement your own shared DropMarker stack
+            between Scintilla Controls. 
+            </remarks>
+            <seealso cref="P:ScintillaNet.DropMarkers.SharedStackName"/>
+        </member>
+        <member name="P:ScintillaNet.DropMarkers.AllDocumentDropMarkers">
+            <summary>
+            Gets/Sets a list of All DropMarkers specific to this Scintilla control
+            </summary>
+        </member>
+        <member name="T:ScintillaNet.DropMarkerList">
+            <summary>
+            Data structure used to store DropMarkers in the AllDocumentDropMarkers property.
+            </summary>
+        </member>
+        <member name="T:ScintillaNet.DropMarker">
+            <summary>
+            Represents a DropMarker, currently a single document point.
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.DropMarker.Change(System.Int32,System.Int32)">
+            <summary>
+            Overriden, changes the document position. Start and End should
+            match.
+            </summary>
+            <param name="newStart">Document start position</param>
+            <param name="newEnd">Document end position</param>
+        </member>
+        <member name="M:ScintillaNet.DropMarker.Invalidate">
+            <summary>
+            Forces a repaint of the DropMarker
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.DropMarker.Collect">
+            <summary>
+            Collects the DropMarker and causes it to be removed from all
+            lists it belongs ti.
             </summary>
             <returns></returns>
         </member>
-        <member name="P:ScintillaNet.DocumentHandler.Current">
+        <member name="M:ScintillaNet.DropMarker.Dispose">
             <summary>
-            Gets/Sets the currently loaded Document
+            Overriden.
             </summary>
         </member>
-        <member name="T:ScintillaNet.Document">
+        <member name="M:ScintillaNet.DropMarker.GetClientRectangle">
             <summary>
-            Provides an abstraction over Scintilla's Document Pointer
+            Gets the Client Rectangle in pixels of the DropMarker's visual indicator.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:ScintillaNet.DropMarker.TopOffset">
+            <summary>
+            Not currently used, the offset in pixels from the document view's
+            top.
             </summary>
         </member>
-        <member name="M:ScintillaNet.Document.AddRef">
+        <member name="P:ScintillaNet.DropMarker.Key">
             <summary>
-            Increases the document's reference count
+            Uniquely identifies the DropMarker
             </summary>
-            <remarks>No, you aren't looking at COM, move along.</remarks>
         </member>
-        <member name="M:ScintillaNet.Document.Release">
+        <member name="P:ScintillaNet.DropMarker.IsPoint">
             <summary>
-            Decreases the document's reference count
+            Overriden. Drop Markers are points, not a spanned range. Though this could change in the future.
+            </summary>
+        </member>
+        <member name="T:ScintillaNet.Configuration.Legacy.SciTE.SciTEPropertiesReader">
+            <summary>
+            A class that reads in ths properties from the 
+            Justin Greenwood - justin.greenwood@gmail.com
+            </summary>
+        </member>
+        <member name="T:ScintillaNet.Commands">
+            <summary>
+            Manages commands, which are actions in ScintillaNET that can be bound to key combinations.
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.Commands.AddBinding(System.Windows.Forms.Keys,System.Windows.Forms.Keys,ScintillaNet.BindableCommand)">
+            <summary>
+            Adds a key combination to a Command
+            </summary>
+            <param name="shortcut">Key to trigger command</param>
+            <param name="modifiers">Shift, alt, ctrl</param>
+            <param name="command">Command to execute</param>
+        </member>
+        <member name="M:ScintillaNet.Commands.AddBinding(System.Windows.Forms.Keys,ScintillaNet.BindableCommand)">
+            <summary>
+            Adds a key combination to a Command
+            </summary>
+            <param name="shortcut">Key to trigger command</param>
+            <param name="command">Command to execute</param>
+        </member>
+        <member name="M:ScintillaNet.Commands.AddBinding(System.Char,ScintillaNet.BindableCommand)">
+            <summary>
+            Adds a key combination to a Command
+            </summary>
+            <param name="shortcut">Character corresponding to a (keyboard) key to trigger command</param>
+            <param name="command">Command to execute</param>
+        </member>
+        <member name="M:ScintillaNet.Commands.AddBinding(System.Char,System.Windows.Forms.Keys,ScintillaNet.BindableCommand)">
+            <summary>
+            Adds a key combination to a Command
+            </summary>
+            <param name="shortcut">Character corresponding to a (keyboard) key to trigger command</param>
+            <param name="modifiers">Shift, alt, ctrl</param>
+            <param name="command">Command to execute</param>
+        </member>
+        <member name="M:ScintillaNet.Commands.RemoveBinding(System.Windows.Forms.Keys,System.Windows.Forms.Keys,ScintillaNet.BindableCommand)">
+            <summary>
+            Removes a keyboard shortcut / command combination
+            </summary>
+            <param name="shortcut">Key to trigger command</param>
+            <param name="modifiers">Shift, alt, ctrl</param>
+            <param name="command">Command to execute</param>
+        </member>
+        <member name="M:ScintillaNet.Commands.RemoveBinding(System.Windows.Forms.Keys,ScintillaNet.BindableCommand)">
+            <summary>
+            Removes a keyboard shortcut / command combination
+            </summary>
+            <param name="shortcut">Key to trigger command</param>
+            <param name="command">Command to execute</param>
+        </member>
+        <member name="M:ScintillaNet.Commands.RemoveBinding(System.Char,ScintillaNet.BindableCommand)">
+            <summary>
+            Removes a keyboard shortcut / command combination
+            </summary>
+            <param name="shortcut">Character corresponding to a (keyboard) key to trigger command</param>
+            <param name="command">Command to execute</param>
+        </member>
+        <member name="M:ScintillaNet.Commands.RemoveBinding(System.Char,System.Windows.Forms.Keys,ScintillaNet.BindableCommand)">
+            <summary>
+            Removes a keyboard shortcut / command combination
+            </summary>
+            <param name="shortcut">Character corresponding to a (keyboard) key to trigger command</param>
+            <param name="modifiers">Shift, alt, ctrl</param>
+            <param name="command">Command to execute</param>
+        </member>
+        <member name="M:ScintillaNet.Commands.RemoveBinding(System.Windows.Forms.Keys,System.Windows.Forms.Keys)">
+            <summary>
+            Removes all commands bound to a  keyboard shortcut
+            </summary>
+            <param name="shortcut">Key to trigger command</param>
+            <param name="modifiers">Shift, alt, ctrl</param>
+        </member>
+        <member name="M:ScintillaNet.Commands.RemoveBinding(System.Windows.Forms.Keys)">
+            <summary>
+            Removes all commands bound to a  keyboard shortcut
+            </summary>
+            <param name="shortcut">Key to trigger command</param>
+        </member>
+        <member name="M:ScintillaNet.Commands.RemoveBinding(System.Char)">
+            <summary>
+            Removes all commands bound to a  keyboard shortcut
+            </summary>
+            <param name="shortcut">Character corresponding to a (keyboard) key to trigger command</param>
+        </member>
+        <member name="M:ScintillaNet.Commands.RemoveBinding(System.Char,System.Windows.Forms.Keys)">
+            <summary>
+            Removes all commands bound to a  keyboard shortcut
+            </summary>
+            <param name="shortcut">Character corresponding to a (keyboard) key to trigger command</param>
+            <param name="modifiers">Shift, alt, ctrl</param>
+        </member>
+        <member name="M:ScintillaNet.Commands.RemoveAllBindings">
+            <summary>
+            Removes all key command bindings
             </summary>
             <remarks>
-            When the document's reference count reaches 0 Scintilla will destroy the document
+            Performing this action will make ScintillaNET virtually unusable until you assign new command bindings.
+            This removes even basic functionality like arrow keys, common clipboard commands, home/end, etc.
             </remarks>
         </member>
-        <member name="M:ScintillaNet.Document.Equals(System.Object)">
+        <member name="M:ScintillaNet.Commands.GetCommands(System.Windows.Forms.Keys,System.Windows.Forms.Keys)">
             <summary>
-            Overriden. 
+            Returns a list of Commands bound to a keyboard shortcut
             </summary>
-            <param name="obj">Another Document Object</param>
-            <returns>True if both Documents have the same Handle</returns>
+            <param name="shortcut">Key to trigger command</param>
+            <param name="modifiers">Shift, alt, ctrl</param>
+            <returns>List of Commands bound to a keyboard shortcut</returns>
         </member>
-        <member name="M:ScintillaNet.Document.GetHashCode">
+        <member name="M:ScintillaNet.Commands.GetCommands(System.Windows.Forms.Keys)">
+            <summary>
+            Returns a list of Commands bound to a keyboard shortcut
+            </summary>
+            <param name="shortcut">Key to trigger command</param>
+            <returns>List of Commands bound to a keyboard shortcut</returns>
+        </member>
+        <member name="M:ScintillaNet.Commands.GetCommands(System.Char)">
+            <summary>
+            Returns a list of Commands bound to a keyboard shortcut
+            </summary>
+            <param name="shortcut">Character corresponding to a (keyboard) key to trigger command</param>
+            <returns>List of Commands bound to a keyboard shortcut</returns>
+        </member>
+        <member name="M:ScintillaNet.Commands.GetCommands(System.Char,System.Windows.Forms.Keys)">
+            <summary>
+            Returns a list of Commands bound to a keyboard shortcut
+            </summary>
+            <param name="shortcut">Character corresponding to a (keyboard) key to trigger command</param>
+            <param name="modifiers">Shift, alt, ctrl</param>
+            <returns>List of Commands bound to a keyboard shortcut</returns>
+        </member>
+        <member name="M:ScintillaNet.Commands.GetKeyBindings(ScintillaNet.BindableCommand)">
+            <summary>
+            Returns a list of KeyBindings bound to a given command
+            </summary>
+            <param name="command">Command to execute</param>
+            <returns>List of KeyBindings bound to the given command</returns>
+        </member>
+        <member name="M:ScintillaNet.Commands.Execute(ScintillaNet.BindableCommand)">
+            <summary>
+            Executes a Command
+            </summary>
+            <param name="command">Any <see cref="T:ScintillaNet.BindableCommand"/></param>
+            <returns>Value to indicate whether other bound commands should continue to execute</returns>
+        </member>
+        <member name="P:ScintillaNet.Commands.AllowDuplicateBindings">
+            <summary>
+            Gets/Sets if a key combination can be bound to more than one command. (default is true)
+            </summary>
+            <remarks>
+            When set to false only the first command bound to a key combination is kept.
+            Subsequent requests are ignored. 
+            </remarks>
+        </member>
+        <member name="T:ScintillaNet.KeyBinding">
+            <summary>
+            Represents the Binding Combination of a Keyboard Key + Modifiers
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.KeyBinding.#ctor(System.Windows.Forms.Keys,System.Windows.Forms.Keys)">
+            <summary>
+            Initializes a new instance of the KeyBinding structure.
+            </summary>
+            <param name="keycode">Key to trigger command</param>
+            <param name="modifiers"> key modifiers to the Keyboard shortcut</param>
+        </member>
+        <member name="M:ScintillaNet.KeyBinding.ToString">
+            <summary>
+            Overriden. Returns string representation of the Keyboard shortcut
+            </summary>
+            <returns>Returns string representation of the Keyboard shortcut</returns>
+        </member>
+        <member name="M:ScintillaNet.KeyBinding.GetHashCode">
             <summary>
             Overriden
             </summary>
-            <returns>Document Pointer's hashcode</returns>
+            <returns>Hashcode of ToString()</returns>
         </member>
-        <member name="P:ScintillaNet.Document.Handle">
+        <member name="M:ScintillaNet.KeyBinding.Equals(System.Object)">
             <summary>
-            Scintilla's internal document pointer.
+            Overriden.
+            </summary>
+            <param name="obj">Another KeyBinding struct</param>
+            <returns>True if the Keycode and Modifiers are equal</returns>
+        </member>
+        <member name="P:ScintillaNet.KeyBinding.KeyCode">
+            <summary>
+            Gets/Sets Key to trigger command
             </summary>
         </member>
-        <member name="F:ScintillaNet.Indentation._smartIndentType">
+        <member name="P:ScintillaNet.KeyBinding.Modifiers">
             <summary>
-            Enables the Smart Indenter so that On enter, it indents the next line.
+            Gets sets key modifiers to the Keyboard shortcut
             </summary>
         </member>
-        <member name="M:ScintillaNet.Indentation.CheckSmartIndent(System.Char)">
+        <member name="M:Searching.SkipList.Add(System.String)">
             <summary>
-            If Smart Indenting is enabled, this delegate will be added to the CharAdded multicast event.
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="F:ScintillaNet.Indentation.SmartIndentCustomAction">
-            <summary>
-            For Custom Smart Indenting, assign a handler to this delegate property.
+            Adds a value to the skip list.
             </summary>
         </member>
-        <member name="M:ScintillaNet.Indentation.IndentLine(System.Int32,System.Int32)">
+        <member name="M:Searching.SkipList.AddRange(System.Collections.Generic.IEnumerable{System.String})">
             <summary>
-            Smart Indenting helper method
+            Adds a range of values to the skip list
             </summary>
-            <param name="line"></param>
-            <param name="indent"></param>
+            <param name="collection">The collection of values to add</param>
         </member>
-        <member name="F:ScintillaNet.GoToDialog.components">
+        <member name="M:Searching.SkipList.Insert(System.String)">
             <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.GoToDialog.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:ScintillaNet.GoToDialog.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
+            Inserts a value into the skip list.
             </summary>
         </member>
-        <member name="T:ScintillaNet.Whitespace">
+        <member name="M:Searching.SkipList.Contains(System.String)">
             <summary>
-            Determines how whitespace should be displayed in a <see cref="T:ScintillaNet.Scintilla"/> control.
+            Returns whether a particular value already exists in the skip list
             </summary>
-            <remarks>
-            By default, whitespace is determined by the lexer in use. Setting the <see cref="P:ScintillaNet.Whitespace.ForeColor"/>
-            or <see cref="P:ScintillaNet.Whitespace.BackColor"/> properties overrides the lexer behavior.</remarks>
         </member>
-        <member name="P:ScintillaNet.Whitespace.BackColor">
+        <member name="M:Searching.SkipList.RemoveNonMatchingStartString(System.String)">
             <summary>
-            Gets or sets the whitespace background color.
+            Removes all strings not starting with the specified string.
             </summary>
-            <remarks>
-            By default, the whitespace background color is determined by the lexer in use.
-            Setting the <c>BackColor</c> to anything other than <see cref="F:System.Drawing.Color.Empty"/> overrides the lexer behavior.
-            Transparent colors are not supported.
-            </remarks>
-            <returns>
-            A <see cref="T:System.Drawing.Color"/> that represents the background color of whitespace characters.
-            The default is <see cref="F:System.Drawing.Color.Empty"/>.
-            </returns>
-            <exception cref="!:ArgumentOutOfRange">
-            The specified <paramref name="value"/> has an alpha value that is less that <see cref="F:System.Byte.MaxValue"/>.
-            </exception>
         </member>
-        <member name="P:ScintillaNet.Whitespace.ForeColor">
+        <!-- Badly formed XML comment ignored for member "M:Searching.SkipList.TruncateLargerThan(System.Int32)" -->
+        <member name="M:Searching.SkipList.Remove(System.String)">
             <summary>
-            Gets or sets the whitespace foreground color.
+            Attempts to remove one occurence of a particular value from the skip list. Returns
+            whether the value was found in the skip list.
             </summary>
-            <remarks>
-            By default, the whitespace foreground color is determined by the lexer in use.
-            Setting the <c>ForeColor</c> to anything other than <see cref="F:System.Drawing.Color.Empty"/> overrides the lexer behavior.
-            Transparent colors are not supported.
-            </remarks>
-            <returns>
-            A <see cref="T:System.Drawing.Color"/> that represents the foreground color of whitespace characters.
-            The default is <see cref="F:System.Drawing.Color.Empty"/>.
-            </returns>
-            <exception cref="!:ArgumentOutOfRange">
-            The specified <paramref name="value"/> has an alpha value that is less that <see cref="F:System.Byte.MaxValue"/>.
-            </exception>
         </member>
-        <member name="P:ScintillaNet.Whitespace.Mode">
+        <member name="P:Searching.SkipList.Head">
             <summary>
-            Gets or sets the whitespace display mode.
+            The main node that the rest of the list is based on.
             </summary>
-            <returns>One of the <see cref="T:ScintillaNet.WhitespaceMode"/> values. The default is <see cref="F:ScintillaNet.WhitespaceMode.Invisible"/></returns>
-            <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">
-            The specified value is not a valid <see cref="T:ScintillaNet.WhitespaceMode"/> value.
-            </exception>
+        </member>
+        <member name="P:Searching.SkipList.Levels">
+            <summary>
+            An Int32 representing how deep the list is.
+            </summary>
         </member>
         <member name="T:ScintillaNet.VOID">
             <summary>
@@ -1770,7 +2871,7 @@
         </member>
         <member name="F:ScintillaNet.Lexer.Null">
             <summary>
-            No lexing is performed
+            No lexing is performed, the Containing application does not need to respond to StyleNeeded events
             </summary>
         </member>
         <member name="T:ScintillaNet.WhitespaceMode">
@@ -2065,417 +3166,6 @@
             Block indenting, the last indentation is retained in new lines
             </summary>
         </member>
-        <member name="T:ScintillaNet.DropMarkers">
-            <summary>
-            Manages DropMarkers, a Stack Based document bookmarking system.
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.DropMarkers.Drop">
-            <summary>
-            Drops a DropMarker at the current document position
-            </summary>
-            <remarks>
-            Dropping a DropMarker creates a visual marker (red triangle)
-            indicating the DropMarker point.
-            </remarks>
-            <returns>The newly created DropMarker</returns>
-        </member>
-        <member name="M:ScintillaNet.DropMarkers.Drop(System.Int32)">
-            <summary>
-            Drops a DropMarker at the specified document position
-            </summary>
-            <param name="position"></param>
-            <returns>The newly created DropMarker</returns>
-            <remarks>
-            Dropping a DropMarker creates a visual marker (red triangle)
-            indicating the DropMarker point.
-            </remarks>
-        </member>
-        <member name="M:ScintillaNet.DropMarkers.Collect">
-            <summary>
-            Collects the last dropped DropMarker
-            </summary>
-            <remarks>
-            When a DropMarker is collected the current document posision is moved
-            to the DropMarker posision, the DropMarker is removed from the stack
-            and the visual indicator is removed.
-            </remarks>
-        </member>
-        <member name="P:ScintillaNet.DropMarkers.SharedStackName">
-            <summary>
-            Gets/Sets a shared name associated with other Scintilla controls. 
-            </summary>
-            <remarks>
-            All Scintilla controls with the same SharedStackName share a common
-            DropMarker stack. This is useful in MDI applications where you want
-            the DropMarker stack not to be specific to one document.
-            </remarks>
-        </member>
-        <member name="P:ScintillaNet.DropMarkers.MarkerStack">
-            <summary>
-            Gets/Sets the Stack of DropMarkers 
-            </summary>
-            <remarks>
-            You can manually set this to implement your own shared DropMarker stack
-            between Scintilla Controls. 
-            </remarks>
-            <seealso cref="P:ScintillaNet.DropMarkers.SharedStackName"/>
-        </member>
-        <member name="P:ScintillaNet.DropMarkers.AllDocumentDropMarkers">
-            <summary>
-            Gets/Sets a list of All DropMarkers specific to this Scintilla control
-            </summary>
-        </member>
-        <member name="T:ScintillaNet.DropMarkerList">
-            <summary>
-            Data structure used to store DropMarkers in the AllDocumentDropMarkers property.
-            </summary>
-        </member>
-        <member name="T:ScintillaNet.DropMarker">
-            <summary>
-            Represents a DropMarker, currently a single document point.
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.DropMarker.Change(System.Int32,System.Int32)">
-            <summary>
-            Overriden, changes the document position. Start and End should
-            match.
-            </summary>
-            <param name="newStart">Document start position</param>
-            <param name="newEnd">Document end position</param>
-        </member>
-        <member name="M:ScintillaNet.DropMarker.Invalidate">
-            <summary>
-            Forces a repaint of the DropMarker
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.DropMarker.Collect">
-            <summary>
-            Collects the DropMarker and causes it to be removed from all
-            lists it belongs ti.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:ScintillaNet.DropMarker.Dispose">
-            <summary>
-            Overriden.
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.DropMarker.GetClientRectangle">
-            <summary>
-            Gets the Client Rectangle in pixels of the DropMarker's visual indicator.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:ScintillaNet.DropMarker.TopOffset">
-            <summary>
-            Not currently used, the offset in pixels from the document view's
-            top.
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.DropMarker.Key">
-            <summary>
-            Uniquely identifies the DropMarker
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.DropMarker.IsPoint">
-            <summary>
-            Overriden. Drop Markers are points, not a spanned range. Though this could change in the future.
-            </summary>
-        </member>
-        <member name="T:ScintillaNet.PageInformationBorder">
-            <summary>
-            Type of border to print for a Page Information section
-            </summary>
-        </member>
-        <member name="F:ScintillaNet.PageInformationBorder.None">
-            <summary>
-            No border
-            </summary>
-        </member>
-        <member name="F:ScintillaNet.PageInformationBorder.Top">
-            <summary>
-            Border along the top
-            </summary>
-        </member>
-        <member name="F:ScintillaNet.PageInformationBorder.Bottom">
-            <summary>
-            Border along the bottom
-            </summary>
-        </member>
-        <member name="F:ScintillaNet.PageInformationBorder.Box">
-            <summary>
-            A full border around the page information section
-            </summary>
-        </member>
-        <member name="T:ScintillaNet.InformationType">
-            <summary>
-            Type of data to display at one of the positions in a Page Information section
-            </summary>
-        </member>
-        <member name="F:ScintillaNet.InformationType.Nothing">
-            <summary>
-            Nothing is displayed at the position
-            </summary>
-        </member>
-        <member name="F:ScintillaNet.InformationType.PageNumber">
-            <summary>
-            The page number is displayed in the format "Page #"
-            </summary>
-        </member>
-        <member name="F:ScintillaNet.InformationType.DocumentName">
-            <summary>
-            The document name is displayed
-            </summary>
-        </member>
-        <member name="T:ScintillaNet.PageInformation">
-            <summary>
-            Class for determining how and what to print for a header or footer.
-            </summary>
-        </member>
-        <member name="F:ScintillaNet.PageInformation.DefaultFont">
-            <summary>
-            Default font used for Page Information sections
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.PageInformation.#ctor">
-            <summary>
-            Default Constructor
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.PageInformation.#ctor(ScintillaNet.PageInformationBorder,ScintillaNet.InformationType,ScintillaNet.InformationType,ScintillaNet.InformationType)">
-            <summary>
-            Normal Use Constructor
-            </summary>
-            <param name="eBorder">Border style</param>
-            <param name="eLeft">What to print on the left side of the page</param>
-            <param name="eCenter">What to print in the center of the page</param>
-            <param name="eRight">What to print on the right side of the page</param>
-        </member>
-        <member name="M:ScintillaNet.PageInformation.#ctor(System.Int32,System.Drawing.Font,ScintillaNet.PageInformationBorder,ScintillaNet.InformationType,ScintillaNet.InformationType,ScintillaNet.InformationType)">
-            <summary>
-            Full Constructor
-            </summary>
-            <param name="iMargin">Margin to use</param>
-            <param name="oFont">Font to use </param>
-            <param name="eBorder">Border style</param>
-            <param name="eLeft">What to print on the left side of the page</param>
-            <param name="eCenter">What to print in the center of the page</param>
-            <param name="eRight">What to print on the right side of the page</param>
-        </member>
-        <member name="M:ScintillaNet.PageInformation.Draw(System.Drawing.Graphics,System.Drawing.Rectangle,System.String,System.Int32)">
-            <summary>
-            Draws the page information section in the specified rectangle
-            </summary>
-            <param name="oGraphics"></param>
-            <param name="oBounds"></param>
-            <param name="strDocumentName"></param>
-            <param name="iPageNumber"></param>
-        </member>
-        <member name="P:ScintillaNet.PageInformation.Margin">
-            <summary>
-            Space between the Page Information section and the rest of the page
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.PageInformation.Font">
-            <summary>
-            Font used in printing the Page Information section
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.PageInformation.Border">
-            <summary>
-            Border style used for the Page Information section
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.PageInformation.Left">
-            <summary>
-            Information printed on the left side of the Page Information section
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.PageInformation.Center">
-            <summary>
-            Information printed in the center of the Page Information section
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.PageInformation.Right">
-            <summary>
-            Information printed on the right side of the Page Information section
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.PageInformation.Display">
-            <summary>
-            Whether there is a need to display this item, true if left, center, or right are not nothing.
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.PageInformation.Height">
-            <summary>
-            Height required to draw the Page Information section based on the options selected.
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.HeaderInformation.#ctor">
-            <summary>
-            Default Constructor
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.HeaderInformation.#ctor(ScintillaNet.PageInformationBorder,ScintillaNet.InformationType,ScintillaNet.InformationType,ScintillaNet.InformationType)">
-            <summary>
-            Normal Use Constructor
-            </summary>
-            <param name="eBorder">Border style</param>
-            <param name="eLeft">What to print on the left side of the page</param>
-            <param name="eCenter">What to print in the center of the page</param>
-            <param name="eRight">What to print on the right side of the page</param>
-        </member>
-        <member name="M:ScintillaNet.HeaderInformation.#ctor(System.Int32,System.Drawing.Font,ScintillaNet.PageInformationBorder,ScintillaNet.InformationType,ScintillaNet.InformationType,ScintillaNet.InformationType)">
-            <summary>
-            Full Constructor
-            </summary>
-            <param name="iMargin">Margin to use</param>
-            <param name="oFont">Font to use </param>
-            <param name="eBorder">Border style</param>
-            <param name="eLeft">What to print on the left side of the page</param>
-            <param name="eCenter">What to print in the center of the page</param>
-            <param name="eRight">What to print on the right side of the page</param>
-        </member>
-        <member name="M:ScintillaNet.FooterInformation.#ctor">
-            <summary>
-            Default Constructor
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.FooterInformation.#ctor(ScintillaNet.PageInformationBorder,ScintillaNet.InformationType,ScintillaNet.InformationType,ScintillaNet.InformationType)">
-            <summary>
-            Normal Use Constructor
-            </summary>
-            <param name="eBorder">Border style</param>
-            <param name="eLeft">What to print on the left side of the page</param>
-            <param name="eCenter">What to print in the center of the page</param>
-            <param name="eRight">What to print on the right side of the page</param>
-        </member>
-        <member name="M:ScintillaNet.FooterInformation.#ctor(System.Int32,System.Drawing.Font,ScintillaNet.PageInformationBorder,ScintillaNet.InformationType,ScintillaNet.InformationType,ScintillaNet.InformationType)">
-            <summary>
-            Full Constructor
-            </summary>
-            <param name="iMargin">Margin to use</param>
-            <param name="oFont">Font to use </param>
-            <param name="eBorder">Border style</param>
-            <param name="eLeft">What to print on the left side of the page</param>
-            <param name="eCenter">What to print in the center of the page</param>
-            <param name="eRight">What to print on the right side of the page</param>
-        </member>
-        <member name="F:ScintillaNet.FindReplaceDialog.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.FindReplaceDialog.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:ScintillaNet.FindReplaceDialog.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="T:ScintillaNet.PrintDocument">
-            <summary>
-            ScintillaNET derived class for handling printing of source code from a Scintilla control.
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.PrintDocument.#ctor(ScintillaNet.Scintilla)">
-            <summary>
-            Default Constructor
-            </summary>
-            <param name="oScintillaControl">Scintilla control being printed</param>
-        </member>
-        <member name="M:ScintillaNet.PrintDocument.OnBeginPrint(System.Drawing.Printing.PrintEventArgs)">
-            <summary>
-            Method called after the Print method is called and before the first page of the document prints
-            </summary>
-            <param name="e">A PrintPageEventArgs that contains the event data</param>
-        </member>
-        <member name="M:ScintillaNet.PrintDocument.OnEndPrint(System.Drawing.Printing.PrintEventArgs)">
-            <summary>
-            Method called when the last page of the document has printed
-            </summary>
-            <param name="e">A PrintPageEventArgs that contains the event data</param>
-        </member>
-        <member name="M:ScintillaNet.PrintDocument.OnPrintPage(System.Drawing.Printing.PrintPageEventArgs)">
-            <summary>
-            Method called when printing a page
-            </summary>
-            <param name="e">A PrintPageEventArgs that contains the event data</param>
-        </member>
-        <member name="T:ScintillaNet.RangeToFormat">
-            <summary>
-            Struct used for passing parameters to FormatRange()
-            </summary>
-        </member>
-        <member name="F:ScintillaNet.RangeToFormat.hdc">
-            <summary>
-            The HDC (device context) we print to
-            </summary>
-        </member>
-        <member name="F:ScintillaNet.RangeToFormat.hdcTarget">
-            <summary>
-            The HDC we use for measuring (may be same as hdc)
-            </summary>
-        </member>
-        <member name="F:ScintillaNet.RangeToFormat.rc">
-            <summary>
-            Rectangle in which to print
-            </summary>
-        </member>
-        <member name="F:ScintillaNet.RangeToFormat.rcPage">
-            <summary>
-            Physically printable page size
-            </summary>
-        </member>
-        <member name="F:ScintillaNet.RangeToFormat.chrg">
-            <summary>
-            Range of characters to print
-            </summary>
-        </member>
-        <member name="T:ScintillaNet.PrintRectangle">
-            <summary>
-            Struct used for specifying the printing bounds
-            </summary>
-        </member>
-        <member name="F:ScintillaNet.PrintRectangle.Left">
-            <summary>
-            Left X Bounds Coordinate
-            </summary>
-        </member>
-        <member name="F:ScintillaNet.PrintRectangle.Top">
-            <summary>
-            Top Y Bounds Coordinate
-            </summary>
-        </member>
-        <member name="F:ScintillaNet.PrintRectangle.Right">
-            <summary>
-            Right X Bounds Coordinate
-            </summary>
-        </member>
-        <member name="F:ScintillaNet.PrintRectangle.Bottom">
-            <summary>
-            Bottom Y Bounds Coordinate
-            </summary>
-        </member>
-        <member name="T:ScintillaNet.NotifyHeader">
-            <summary>
-            This matches the Win32 NMHDR structure
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.Configuration.CommandBindingConfig.#ctor(ScintillaNet.KeyBinding,System.Nullable{System.Boolean},ScintillaNet.BindableCommand)">
-            <summary>
-            Initializes a new instance of the CommandBindingConfig structure.
-            </summary>
-            <param name="keyBinding"></param>
-            <param name="replaceCurrent"></param>
-            <param name="bindableCommand"></param>
-        </member>
         <member name="T:ScintillaNet.Properties.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -2491,126 +3181,6 @@
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
             </summary>
-        </member>
-        <member name="F:ScintillaNet.IncrementalSearcher.components">
-            <summary> 
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.IncrementalSearcher.Dispose(System.Boolean)">
-            <summary> 
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:ScintillaNet.IncrementalSearcher.InitializeComponent">
-            <summary> 
-            Required method for Designer support - do not modify 
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="T:ScintillaNet.DocumentNavigation">
-            <summary>
-            Manages Document Navigation, which is a snapshot history of movements within
-            a document.
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.DocumentNavigation.NavigateBackward">
-            <summary>
-            Causes the current position to navigate to the last snapshotted document position.
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.DocumentNavigation.NavigateForward">
-            <summary>
-            After 1 or more backwards navigations this command navigates to the previous
-            backwards navigation point.
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.DocumentNavigation.IsEnabled">
-            <summary>
-            Gets/Sets whether Document Navigation is tracked. Defaults to true.
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.DocumentNavigation.MaxHistorySize">
-            <summary>
-            Maximum number of places the document navigation remembers. Defaults to 50.
-            </summary>
-            <remarks>
-            When the max value is reached the oldest entries are removed.
-            </remarks>
-        </member>
-        <member name="P:ScintillaNet.DocumentNavigation.BackwardStack">
-            <summary>
-            List of entries that allow you to navigate backwards.
-            </summary>
-            <remarks>
-            The ForwardStack and BackwardStack can be shared between multiple
-            ScintillaNET objects. This is useful in MDI applications when you wish
-            to have a shared document navigation that remembers positions in each
-            document.
-            </remarks>
-        </member>
-        <member name="P:ScintillaNet.DocumentNavigation.ForewardStack">
-            <summary>
-            List of entries that allow you to navigate forwards.
-            </summary>
-            <remarks>
-            The ForwardStack and BackwardStack can be shared between multiple
-            ScintillaNET objects. This is useful in MDI applications when you wish
-            to have a shared document navigation that remembers positions in each
-            document.
-            </remarks>
-        </member>
-        <member name="P:ScintillaNet.DocumentNavigation.NavigationPointTimeout">
-            <summary>
-            Time in milliseconds to wait before a Navigation Point is set. Default is 200
-            </summary>
-            <remarks>
-            In text editing, the current caret position is constantly changing. Rather than capture every
-            change in position, ScintillaNET captures the current position [NavigationPointTimeout]ms after a 
-            position changes, only then is it eligable for another snapshot
-            </remarks>
-        </member>
-        <member name="P:ScintillaNet.DocumentNavigation.CanNavigateBackward">
-            <summary>
-            Returns true if ScintillaNET can perform a successful backward navigation.
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.DocumentNavigation.CanNavigateForward">
-            <summary>
-            Returns true if ScintillaNET can perform a successful forward navigation.
-            </summary>
-        </member>
-        <member name="T:ScintillaNet.DocumentNavigation.FakeStack">
-            <summary>
-            Mostly behaves like a stack but internally maintains a List for more flexability
-            </summary>
-            <remarks>
-            FakeStack is not a general purpose datastructure and can only hold NavigationPoint objects
-            </remarks>
-        </member>
-        <member name="T:ScintillaNet.DocumentNavigation.NavigationPont">
-            <summary>
-            Represents a point in the document used for navigation.
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.DocumentNavigation.NavigationPont.#ctor(System.Int32,ScintillaNet.Scintilla)">
-            <summary>
-            Initializes a new instance of the NavigationPont class.
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.DocumentNavigation.NavigationPont.Dispose">
-            <summary>
-            Overriden.
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.Configuration.KeyWordConfig.#ctor(System.Int32,System.String,System.Nullable{System.Boolean})">
-            <summary>
-            Initializes a new instance of the KeyWordConfig class.
-            </summary>
-            <param name="list"></param>
-            <param name="value"></param>
-            <param name="inherit"></param>
         </member>
         <member name="T:ScintillaNet.DropMarkerCollectEventArgs">
             <summary>
@@ -3094,441 +3664,216 @@
             </summary>
             <param name="fileNames"></param>
         </member>
-        <member name="T:ScintillaNet.AutoComplete">
+        <member name="T:ScintillaNet.RangeToFormat">
             <summary>
-            Used to invoke AutoComplete and UserList windows. Also manages AutoComplete
-            settings.
+            Struct used for passing parameters to FormatRange()
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.RangeToFormat.hdc">
+            <summary>
+            The HDC (device context) we print to
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.RangeToFormat.hdcTarget">
+            <summary>
+            The HDC we use for measuring (may be same as hdc)
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.RangeToFormat.rc">
+            <summary>
+            Rectangle in which to print
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.RangeToFormat.rcPage">
+            <summary>
+            Physically printable page size
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.RangeToFormat.chrg">
+            <summary>
+            Range of characters to print
+            </summary>
+        </member>
+        <member name="T:ScintillaNet.PrintRectangle">
+            <summary>
+            Struct used for specifying the printing bounds
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.PrintRectangle.Left">
+            <summary>
+            Left X Bounds Coordinate
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.PrintRectangle.Top">
+            <summary>
+            Top Y Bounds Coordinate
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.PrintRectangle.Right">
+            <summary>
+            Right X Bounds Coordinate
+            </summary>
+        </member>
+        <member name="F:ScintillaNet.PrintRectangle.Bottom">
+            <summary>
+            Bottom Y Bounds Coordinate
+            </summary>
+        </member>
+        <member name="T:ScintillaNet.NotifyHeader">
+            <summary>
+            This matches the Win32 NMHDR structure
+            </summary>
+        </member>
+        <member name="T:ScintillaNet.DocumentNavigation">
+            <summary>
+            Manages Document Navigation, which is a snapshot history of movements within
+            a document.
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.DocumentNavigation.NavigateBackward">
+            <summary>
+            Causes the current position to navigate to the last snapshotted document position.
+            </summary>
+        </member>
+        <member name="M:ScintillaNet.DocumentNavigation.NavigateForward">
+            <summary>
+            After 1 or more backwards navigations this command navigates to the previous
+            backwards navigation point.
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.DocumentNavigation.IsEnabled">
+            <summary>
+            Gets/Sets whether Document Navigation is tracked. Defaults to true.
+            </summary>
+        </member>
+        <member name="P:ScintillaNet.DocumentNavigation.MaxHistorySize">
+            <summary>
+            Maximum number of places the document navigation remembers. Defaults to 50.
             </summary>
             <remarks>
-            Autocomplete is typically used in IDEs to automatically complete some kind
-            of identifier or keyword based on a partial name. 
+            When the max value is reached the oldest entries are removed.
             </remarks>
         </member>
-        <member name="M:ScintillaNet.AutoComplete.Show(System.Int32,System.String)">
+        <member name="P:ScintillaNet.DocumentNavigation.BackwardStack">
             <summary>
-            Shows the autocomplete window.
-            </summary>
-            <param name="lengthEntered">Number of characters of the current word already entered in the editor </param>
-            <param name="list">Sets the <see cref="P:ScintillaNet.AutoComplete.ListString"/> property. </param>
-        </member>
-        <member name="M:ScintillaNet.AutoComplete.Show">
-            <summary>
-            Shows the autocomplete window.
+            List of entries that allow you to navigate backwards.
             </summary>
             <remarks>
-            This overload assumes that the <see cref="P:ScintillaNet.AutoComplete.List"/> property has been
-            set. The lengthEntered is automatically detected by the editor.
+            The ForwardStack and BackwardStack can be shared between multiple
+            ScintillaNET objects. This is useful in MDI applications when you wish
+            to have a shared document navigation that remembers positions in each
+            document.
             </remarks>
         </member>
-        <member name="M:ScintillaNet.AutoComplete.Show(System.String)">
+        <member name="P:ScintillaNet.DocumentNavigation.ForewardStack">
             <summary>
-            Shows the autocomplete window.
-            </summary>
-            <param name="list">Sets the <see cref="P:ScintillaNet.AutoComplete.ListString"/> property. </param>
-            <remarks>
-            In this overload the lengthEntered is automatically detected by the editor.
-            </remarks>
-        </member>
-        <member name="M:ScintillaNet.AutoComplete.Show(System.Int32,System.Collections.Generic.IEnumerable{System.String})">
-            <summary>
-            Shows the autocomplete window
-            </summary>
-            <param name="lengthEntered">Number of characters of the current word already entered in the editor </param>
-            <param name="list">Sets the <see cref="P:ScintillaNet.AutoComplete.List"/> property. </param>
-        </member>
-        <member name="M:ScintillaNet.AutoComplete.Show(System.Collections.Generic.IEnumerable{System.String})">
-            <summary>
-            Shows the autocomplete window
-            </summary>
-            <param name="list">Sets the <see cref="P:ScintillaNet.AutoComplete.List"/> property. </param>
-            In this overload the lengthEntered is automatically detected by the editor.
-        </member>
-        <member name="M:ScintillaNet.AutoComplete.Show(System.Int32)">
-            <summary>
-            Shows the autocomplete window
-            </summary>
-            <param name="lengthEntered">Number of characters of the current word already entered in the editor </param>
-            <remarks>
-            This overload assumes that the <see cref="P:ScintillaNet.AutoComplete.List"/> property has been set.
-            </remarks>
-        </member>
-        <member name="M:ScintillaNet.AutoComplete.ShowUserList(System.Int32,System.String)">
-            <summary>
-            Shows a UserList window
-            </summary>
-            <param name="listType">Index of the userlist to show. Can be any integer</param>
-            <param name="list">List of words to show separated by " "</param>
-            <remarks>
-            UserLists are not as powerful as autocomplete but can be assigned to a user defined index.
-            </remarks>
-        </member>
-        <member name="M:ScintillaNet.AutoComplete.ShowUserList(System.Int32,System.Collections.Generic.IEnumerable{System.String})">
-            <summary>
-            Shows a UserList window
-            </summary>
-            <param name="listType">Index of the userlist to show. Can be any integer</param>
-            <param name="list">List of words to show.</param>
-            <remarks>
-            UserLists are not as powerful as autocomplete but can be assigned to a user defined index.
-            </remarks>
-        </member>
-        <member name="M:ScintillaNet.AutoComplete.Cancel">
-            <summary>
-            Cancels the autocomplete window
+            List of entries that allow you to navigate forwards.
             </summary>
             <remarks>
-            If the AutoComplete window is displayed calling Cancel() will close the window. 
+            The ForwardStack and BackwardStack can be shared between multiple
+            ScintillaNET objects. This is useful in MDI applications when you wish
+            to have a shared document navigation that remembers positions in each
+            document.
             </remarks>
         </member>
-        <member name="M:ScintillaNet.AutoComplete.Accept">
+        <member name="P:ScintillaNet.DocumentNavigation.NavigationPointTimeout">
             <summary>
-            Accepts the current AutoComplete window entry
+            Time in milliseconds to wait before a Navigation Point is set. Default is 200
             </summary>
             <remarks>
-            If the AutoComplete window is open Accept() will close it. This also causes the
-            <see cref="E:ScintillaNet.Scintilla.AutoCompleteAccepted"/> event to fire
+            In text editing, the current caret position is constantly changing. Rather than capture every
+            change in position, ScintillaNET captures the current position [NavigationPointTimeout]ms after a 
+            position changes, only then is it eligable for another snapshot
             </remarks>
         </member>
-        <member name="M:ScintillaNet.AutoComplete.RegisterImage(System.Int32,System.String)">
+        <member name="P:ScintillaNet.DocumentNavigation.CanNavigateBackward">
             <summary>
-            Registers an image with index to be displayed in the AutoComplete window.
-            </summary>
-            <param name="type">Index of the image to register to</param>
-            <param name="xpmImage">Image in the XPM image format</param>
-        </member>
-        <member name="M:ScintillaNet.AutoComplete.RegisterImage(System.Int32,System.Drawing.Bitmap,System.Drawing.Color)">
-            <summary>
-            Registers an image with index to be displayed in the AutoComplete window.
-            </summary>
-            <param name="type">Index of the image to register to</param>
-            <param name="xpmImage">Image to display in the XPM image format</param>
-            <param name="transparentColor">Color to mask the image as transparent</param>
-        </member>
-        <member name="M:ScintillaNet.AutoComplete.RegisterImage(System.Int32,System.Drawing.Bitmap)">
-            <summary>
-            Registers an image with index to be displayed in the AutoComplete window.
-            </summary>
-            <param name="type">Index of the image to register to</param>
-            <param name="image">Image to display in Bitmap format</param>
-        </member>
-        <member name="M:ScintillaNet.AutoComplete.RegisterImages(System.Collections.Generic.IList{System.String})">
-            <summary>
-            Registers a list of images to be displayed in the AutoComplete window.
-            </summary>
-            <param name="xpmImages">List of images in the XPM image format</param>
-            <remarks>Indecis are assigned sequentially starting at 0</remarks>
-        </member>
-        <member name="M:ScintillaNet.AutoComplete.RegisterImages(System.Collections.Generic.IList{System.Drawing.Bitmap})">
-            <summary>
-            Registers a list of images to be displayed in the AutoComplete window.
-            </summary>
-            <param name="images">List of images in the Bitmap image format</param>
-            <remarks>Indecis are assigned sequentially starting at 0</remarks>
-        </member>
-        <member name="M:ScintillaNet.AutoComplete.RegisterImages(System.Collections.Generic.IList{System.Drawing.Bitmap},System.Drawing.Color)">
-            <summary>
-            Registers a list of images to be displayed in the AutoComplete window.
-            </summary>
-            <param name="images">List of images in the Bitmap image format</param>
-            <param name="transparentColor">Color to mask the image as transparent</param>
-            <remarks>Indecis are assigned sequentially starting at 0</remarks>
-        </member>
-        <member name="M:ScintillaNet.AutoComplete.RegisterImages(System.Windows.Forms.ImageList)">
-            <summary>
-            Registers a list of images to be displayed in the AutoComplete window.
-            </summary>
-            <param name="images">List of images contained in an ImageList</param>
-            <remarks>Indecis are assigned sequentially starting at 0</remarks>
-        </member>
-        <member name="M:ScintillaNet.AutoComplete.RegisterImages(System.Windows.Forms.ImageList,System.Drawing.Color)">
-            <summary>
-            Registers a list of images to be displayed in the AutoComplete window.
-            </summary>
-            <param name="images">List of images contained in an ImageList</param>
-            <param name="transparentColor">Color to mask the image as transparent</param>
-            <remarks>Indecis are assigned sequentially starting at 0</remarks>
-        </member>
-        <member name="M:ScintillaNet.AutoComplete.ClearRegisteredImages">
-            <summary>
-            Deletes all registered images.
+            Returns true if ScintillaNET can perform a successful backward navigation.
             </summary>
         </member>
-        <member name="P:ScintillaNet.AutoComplete.List">
+        <member name="P:ScintillaNet.DocumentNavigation.CanNavigateForward">
             <summary>
-            List if words to display in the AutoComplete window when invoked.
+            Returns true if ScintillaNET can perform a successful forward navigation.
             </summary>
         </member>
-        <member name="P:ScintillaNet.AutoComplete.ListString">
+        <member name="T:ScintillaNet.DocumentNavigation.FakeStack">
             <summary>
-            List if words to display in the AutoComplete window.
+            Mostly behaves like a stack but internally maintains a List for more flexability
             </summary>
             <remarks>
-             The list of words separated by <see cref="P:ScintillaNet.AutoComplete.ListSeparator"/> which
-            is " " by default.
+            FakeStack is not a general purpose datastructure and can only hold NavigationPoint objects
             </remarks>
         </member>
-        <member name="P:ScintillaNet.AutoComplete.IsActive">
+        <member name="T:ScintillaNet.DocumentNavigation.NavigationPont">
             <summary>
-            Returns wether or not the AutoComplete window is currently displayed
+            Represents a point in the document used for navigation.
             </summary>
         </member>
-        <member name="P:ScintillaNet.AutoComplete.LastStartPosition">
+        <member name="M:ScintillaNet.DocumentNavigation.NavigationPont.#ctor(System.Int32,ScintillaNet.Scintilla)">
             <summary>
-            Gets the document posision when the AutoComplete window was last invoked
+            Initializes a new instance of the NavigationPont class.
             </summary>
         </member>
-        <member name="P:ScintillaNet.AutoComplete.StopCharacters">
+        <member name="M:ScintillaNet.DocumentNavigation.NavigationPont.Dispose">
             <summary>
-            List of characters (no separator) that causes the AutoComplete window to cancel.
+            Overriden.
             </summary>
         </member>
-        <member name="P:ScintillaNet.AutoComplete.ListSeparator">
+        <member name="T:ScintillaNet.DocumentHandler">
             <summary>
-            Character used to split <see cref="P:ScintillaNet.AutoComplete.ListString"/> to convert to a List.
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.AutoComplete.SelectedText">
-            <summary>
-            Gets or Sets the Text of the currently selected AutoComplete item.
+            Manages the Native Scintilla's Document features.
             </summary>
             <remarks>
-            When setting this property it does not change the text of the currently
-            selected item. Instead it searches the list for the given value and selects
-            that item if it matches.
+            See Scintilla's documentation on multiple views for an understanding of Documents.
+            Note that all ScintillaNET specific features are considered to be part of the View, not document.
             </remarks>
         </member>
-        <member name="P:ScintillaNet.AutoComplete.SelectedIndex">
+        <member name="M:ScintillaNet.DocumentHandler.Create">
             <summary>
-            Gets or Sets the index of the currently selected item in the AutoComplete <see cref="P:ScintillaNet.AutoComplete.List"/>
+            Creates a new Document
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:ScintillaNet.DocumentHandler.Current">
+            <summary>
+            Gets/Sets the currently loaded Document
             </summary>
         </member>
-        <member name="P:ScintillaNet.AutoComplete.CancelAtStart">
+        <member name="T:ScintillaNet.Document">
             <summary>
-            The default behavior is for the list to be cancelled if the caret moves before the location it was at when the list was displayed. 
-            By setting this property to false, the list is not cancelled until the caret moves before the first character of the word being completed.
+            Provides an abstraction over Scintilla's Document Pointer
             </summary>
         </member>
-        <member name="P:ScintillaNet.AutoComplete.FillUpCharacters">
+        <member name="M:ScintillaNet.Document.AddRef">
             <summary>
-            List of characters (no separated) that causes the AutoComplete window to accept the current
-            selection.
+            Increases the document's reference count
             </summary>
+            <remarks>No, you aren't looking at COM, move along.</remarks>
         </member>
-        <member name="P:ScintillaNet.AutoComplete.SingleLineAccept">
+        <member name="M:ScintillaNet.Document.Release">
             <summary>
-            If you set this value to true and a list has only one item, it is automatically added and no list is displayed. The default is to display the list even if there is only a single item.
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.AutoComplete.IsCaseSensitive">
-            <summary>
-            Gets or Sets if the comparison of words to the AutoComplete <see cref="P:ScintillaNet.AutoComplete.List"/> are case sensitive.
-            </summary>
-            <remarks>Defaults to true</remarks>
-        </member>
-        <member name="P:ScintillaNet.AutoComplete.AutoHide">
-            <summary>
-            By default, the list is cancelled if there are no viable matches (the user has typed characters that no longer match a list entry). 
-            If you want to keep displaying the original list, set AutoHide to false. 
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.AutoComplete.DropRestOfWord">
-            <summary>
-            When an item is selected, any word characters following the caret are first erased if dropRestOfWord is set to true.
-            </summary>
-            <remarks>Defaults to false</remarks>
-        </member>
-        <member name="P:ScintillaNet.AutoComplete.ImageSeparator">
-            <summary>
-            Autocompletion list items may display an image as well as text. Each image is first registered with an integer type. 
-            Then this integer is included in the text of the list separated by a '?' from the text. For example, "fclose?2 fopen" 
-            displays image 2 before the string "fclose" and no image before "fopen". 
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.AutoComplete.MaxHeight">
-            <summary>
-            Get or set the maximum number of rows that will be visible in an autocompletion list. If there are more rows in the list, then a vertical scrollbar is shown
-            </summary>
-            <remarks>Defaults to 5</remarks>
-        </member>
-        <member name="P:ScintillaNet.AutoComplete.MaxWidth">
-            <summary>
-            Get or set the maximum width of an autocompletion list expressed as the number of characters in the longest item that will be totally visible. 
+            Decreases the document's reference count
             </summary>
             <remarks>
-            If zero (the default) then the list's width is calculated to fit the item with the most characters. Any items that cannot be fully displayed 
-            within the available width are indicated by the presence of ellipsis.
+            When the document's reference count reaches 0 Scintilla will destroy the document
             </remarks>
         </member>
-        <member name="P:ScintillaNet.AutoComplete.AutomaticLengthEntered">
+        <member name="M:ScintillaNet.Document.Equals(System.Object)">
             <summary>
-            Gets or Sets the last automatically calculated LengthEntered used whith <see cref="M:ScintillaNet.AutoComplete.Show(System.Int32,System.String)"/>.
+            Overriden. 
             </summary>
+            <param name="obj">Another Document Object</param>
+            <returns>True if both Documents have the same Handle</returns>
         </member>
-        <member name="T:ScintillaNet.Clipboard">
+        <member name="M:ScintillaNet.Document.GetHashCode">
             <summary>
-            Performs OS Clipboard acess.
+            Overriden
             </summary>
+            <returns>Document Pointer's hashcode</returns>
         </member>
-        <member name="M:ScintillaNet.Clipboard.Copy">
+        <member name="P:ScintillaNet.Document.Handle">
             <summary>
-            Copies the currently selected text to the clipboard.
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.Clipboard.Copy(System.String)">
-            <summary>
-            Copies the given text to the clipboard
-            </summary>
-            <param name="text">Text to be copied</param>
-        </member>
-        <member name="M:ScintillaNet.Clipboard.Copy(ScintillaNet.Range)">
-            <summary>
-            Copies the contents of a given range to the clipboard.
-            </summary>
-            <param name="rangeToCopy">Range of text to copy</param>
-        </member>
-        <member name="M:ScintillaNet.Clipboard.Copy(System.Int32,System.Int32)">
-            <summary>
-            Copies text bounded by the given position
-            </summary>
-            <param name="positionStart">Start position in the document of text to copy</param>
-            <param name="positionEnd">End position in the document of text to copy</param>
-        </member>
-        <member name="M:ScintillaNet.Clipboard.Cut">
-            <summary>
-            Cuts the currently selected text to the clipboard
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.Clipboard.Paste">
-            <summary>
-            Pastes the current content of the clipboard into the current document position
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.Clipboard.CanPaste">
-            <summary>
-            Returns true if a paste operation can occur.
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.Clipboard.ConvertEndOfLineOnPaste">
-            <summary>
-            Gets/Sets wether pasted text's end of line characters are automatically converted
-            to match the document's.
-            </summary>
-            <remarks>This is the same as EndOfLine.ConvertOnPaste</remarks>
-        </member>
-        <member name="T:ScintillaNet.CaretInfo">
-            <summary>
-            Manages Caret Settings
-            </summary>
-            <remarks>
-            The caret is the blinking line that indicates the current document position. This
-            is sometimes referred to as cursor.
-            </remarks>
-        </member>
-        <member name="M:ScintillaNet.CaretInfo.EnsureVisible">
-            <summary>
-            Scrolls the Scintilla window so that the Caret is visible.
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.CaretInfo.ChooseCaretX">
-            <summary>
-            Scintilla remembers the x value of the last position horizontally moved to explicitly by the user and this value is then 
-            used when moving vertically such as by using the up and down keys. This method sets the current x position of the caret as 
-            the remembered value.
-            </summary>
-        </member>
-        <member name="M:ScintillaNet.CaretInfo.Goto(System.Int32)">
-            <summary>
-            Places the caret at the specified document position
-            </summary>
-            <param name="position">Position in the document to place the caret</param>
-        </member>
-        <member name="M:ScintillaNet.CaretInfo.BringIntoView">
-            <summary>
-            Places the caret somewhere within the document that is displayed in the
-            Scintilla Window
-            </summary>
-            <remarks>
-            If the caret is already visible in the current scrolled view this method does
-            nothing.
-            </remarks>
-        </member>
-        <member name="P:ScintillaNet.CaretInfo.Width">
-            <summary>
-            Gets/Sets the width in pixels of the Caret
-            </summary>
-            <remarks>
-            This defaults to the system default.
-            </remarks>
-        </member>
-        <member name="P:ScintillaNet.CaretInfo.Style">
-            <summary>
-            Gets/Sets the <see cref="T:ScintillaNet.CaretStyle"/> displayed.
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.CaretInfo.Color">
-            <summary>
-            Gets/Sets the color of the Caret.
-            </summary>
-            <remarks>Defaults to black</remarks>
-        </member>
-        <member name="P:ScintillaNet.CaretInfo.CurrentLineBackgroundColor">
-            <summary>
-            Gets/Sets the color of the document line where the caret currently resides
-            </summary>
-            <remarks>
-            The <see cref="!:HighlightCurrentList"/> property must be set to true in order
-            for this to to take effect.
-            </remarks>
-        </member>
-        <member name="P:ScintillaNet.CaretInfo.HighlightCurrentLine">
-            <summary>
-            Gets/Sets if the current document line where the caret resides is highlighted.
-            </summary>
-            <remarks>
-            <see cref="P:ScintillaNet.CaretInfo.CurrentLineBackgroundColor"/> determines the color. 
-            </remarks>
-        </member>
-        <member name="P:ScintillaNet.CaretInfo.CurrentLineBackgroundAlpha">
-            <summary>
-            Gets/Sets the transparency alpha of the CurrentLine Background highlight
-            </summary>
-            <remarks>
-            Values range from 0 to 256. Default is 256.
-            </remarks>
-        </member>
-        <member name="P:ScintillaNet.CaretInfo.BlinkRate">
-            <summary>
-            Gets/Sets the time interval in milliseconds that the caret should blink.
-            </summary>
-            <remarks>
-            This defaults to the system default value.
-            </remarks>
-        </member>
-        <member name="P:ScintillaNet.CaretInfo.Position">
-            <summary>
-            Gets/Sets the current document position where the caret resides
-            </summary>
-        </member>
-        <member name="P:ScintillaNet.CaretInfo.Anchor">
-            <summary>
-            Gets/Sets the current anchor position
-            </summary>
-            <remarks>
-            If the anchor position is less than the Caret Position it acts as the start of
-            the selection.
-            </remarks>
-        </member>
-        <member name="P:ScintillaNet.CaretInfo.IsSticky">
-            <summary>
-            Controls when the last position of the caret on the line is saved. When set to true, the position is not saved when you type a character, a tab, paste the clipboard content or press backspace
-            </summary>
-            <remarks>
-            Defaults to false
-            </remarks>
-        </member>
-        <member name="P:ScintillaNet.CaretInfo.LineNumber">
-            <summary>
-            Gets/Sets the current Line Number that the caret resides.
+            Scintilla's internal document pointer.
             </summary>
         </member>
     </members>
