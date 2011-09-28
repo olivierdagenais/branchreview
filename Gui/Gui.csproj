@@ -47,6 +47,12 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangeInspector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChangeInspector.Designer.cs">
+      <DependentUpon>ChangeInspector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +66,9 @@
     <Compile Include="SearchableDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <EmbeddedResource Include="ChangeInspector.resx">
+      <DependentUpon>ChangeInspector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
