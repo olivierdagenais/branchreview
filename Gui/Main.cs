@@ -445,6 +445,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         #region Implementation of ILog
 
+        // TODO: light-up on Windows 7 by displaying progress in the task bar and changing the back colour
+        // depending on the log type
         public void Info(string message)
         {
             statusBarText.Image = Resources.dialog_information;
