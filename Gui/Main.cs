@@ -36,7 +36,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             {
                 taskGrid,
                 branchGrid,
-                null, // TODO: activity
+                activityRevisions,
                 null,
             });
             Load += Main_Load;
