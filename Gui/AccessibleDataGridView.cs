@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -82,6 +83,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         void Grid_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             AutoSizeColumns();
+        }
+
+        internal static IList<int> AdjustWidths(IList<int> widths, int maxWidth)
+        {
+            var result = new List<int>(widths.Count);
+            return result;
         }
 
         private void AutoSizeColumns()
