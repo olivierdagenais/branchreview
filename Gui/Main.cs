@@ -24,6 +24,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             InitializeComponent();
             ConfigureDataGridView(taskGrid);
             ConfigureDataGridView(branchGrid);
+            changeLog.InitializeDefaults();
+            patchText.InitializeDefaults();
+            patchText.InitializeDiff();
             // one per tab
             _searchableGrids = new ReadOnlyCollection<SearchableDataGridView>(new[]
             {
@@ -160,7 +163,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             tabs.SelectedTab = activityTab;
         }
 
-        private static void Grid_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        // method can not be made static because the Form Designer re-writes the event wire-up with "this."
+        private void Grid_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Return)
             {

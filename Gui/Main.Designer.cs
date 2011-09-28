@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusBarText = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBarProgress = new System.Windows.Forms.ToolStripProgressBar();
@@ -39,12 +40,19 @@
             this.branchGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
             this.activityTab = new System.Windows.Forms.TabPage();
             this.commitTab = new System.Windows.Forms.TabPage();
+            this.commitHorizontalDivider = new System.Windows.Forms.SplitContainer();
+            this.changeLog = new ScintillaNet.Scintilla();
+            this.commitVerticalDivider = new System.Windows.Forms.SplitContainer();
+            this.patchText = new ScintillaNet.Scintilla();
             this.menuStrip = new System.Windows.Forms.ToolStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchStrip = new System.Windows.Forms.ToolStrip();
             this.searchLabel = new System.Windows.Forms.ToolStripLabel();
             this.searchTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.changedFiles = new System.Windows.Forms.ListView();
+            this.changedFilesPathColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.changedFilesTypeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusBar.SuspendLayout();
             this.toolStripContainer.ContentPanel.SuspendLayout();
             this.toolStripContainer.TopToolStripPanel.SuspendLayout();
@@ -54,6 +62,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).BeginInit();
             this.branchesTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).BeginInit();
+            this.commitTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.commitHorizontalDivider)).BeginInit();
+            this.commitHorizontalDivider.Panel1.SuspendLayout();
+            this.commitHorizontalDivider.Panel2.SuspendLayout();
+            this.commitHorizontalDivider.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.changeLog)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commitVerticalDivider)).BeginInit();
+            this.commitVerticalDivider.Panel1.SuspendLayout();
+            this.commitVerticalDivider.Panel2.SuspendLayout();
+            this.commitVerticalDivider.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.patchText)).BeginInit();
             this.menuStrip.SuspendLayout();
             this.searchStrip.SuspendLayout();
             this.SuspendLayout();
@@ -162,7 +181,7 @@
             this.branchGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.branchGrid_RowContextMenuStripNeeded);
             this.branchGrid.DoubleClick += new System.EventHandler(this.branchGrid_DoubleClick);
             this.branchGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.branchGrid_KeyDown);
-            this.branchGrid.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(Grid_PreviewKeyDown);
+            this.branchGrid.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Grid_PreviewKeyDown);
             // 
             // activityTab
             // 
@@ -176,12 +195,68 @@
             // 
             // commitTab
             // 
+            this.commitTab.Controls.Add(this.commitHorizontalDivider);
             this.commitTab.Location = new System.Drawing.Point(4, 22);
             this.commitTab.Name = "commitTab";
             this.commitTab.Size = new System.Drawing.Size(671, 475);
             this.commitTab.TabIndex = 4;
             this.commitTab.Text = "Commit";
             this.commitTab.UseVisualStyleBackColor = true;
+            // 
+            // commitHorizontalDivider
+            // 
+            this.commitHorizontalDivider.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.commitHorizontalDivider.Location = new System.Drawing.Point(0, 0);
+            this.commitHorizontalDivider.Name = "commitHorizontalDivider";
+            this.commitHorizontalDivider.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // commitHorizontalDivider.Panel1
+            // 
+            this.commitHorizontalDivider.Panel1.Controls.Add(this.changeLog);
+            // 
+            // commitHorizontalDivider.Panel2
+            // 
+            this.commitHorizontalDivider.Panel2.Controls.Add(this.commitVerticalDivider);
+            this.commitHorizontalDivider.Size = new System.Drawing.Size(784, 475);
+            this.commitHorizontalDivider.SplitterDistance = 80;
+            this.commitHorizontalDivider.TabIndex = 0;
+            // 
+            // changeLog
+            // 
+            this.changeLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.changeLog.Location = new System.Drawing.Point(0, 0);
+            this.changeLog.Name = "changeLog";
+            this.changeLog.Size = new System.Drawing.Size(784, 80);
+            this.changeLog.TabIndex = 0;
+            this.changeLog.Text = "Initial creation of a Gui project with a skeleton for the Commit window.";
+            // 
+            // commitVerticalDivider
+            // 
+            this.commitVerticalDivider.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.commitVerticalDivider.Location = new System.Drawing.Point(0, 0);
+            this.commitVerticalDivider.Name = "commitVerticalDivider";
+            // 
+            // commitVerticalDivider.Panel1
+            // 
+            this.commitVerticalDivider.Panel1.Controls.Add(this.changedFiles);
+            // 
+            // commitVerticalDivider.Panel2
+            // 
+            this.commitVerticalDivider.Panel2.Controls.Add(this.patchText);
+            this.commitVerticalDivider.Size = new System.Drawing.Size(784, 391);
+            this.commitVerticalDivider.SplitterDistance = 323;
+            this.commitVerticalDivider.SplitterWidth = 5;
+            this.commitVerticalDivider.TabIndex = 0;
+            // 
+            // patchText
+            // 
+            this.patchText.BackColor = System.Drawing.SystemColors.Window;
+            this.patchText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.patchText.Location = new System.Drawing.Point(0, 0);
+            this.patchText.Name = "patchText";
+            this.patchText.Size = new System.Drawing.Size(456, 391);
+            this.patchText.TabIndex = 0;
+            this.patchText.Text = resources.GetString("patchText.Text");
             // 
             // menuStrip
             // 
@@ -236,6 +311,32 @@
             this.searchTextBox.Size = new System.Drawing.Size(200, 25);
             this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             // 
+            // changedFiles
+            // 
+            this.changedFiles.AllowColumnReorder = true;
+            this.changedFiles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.changedFilesPathColumn,
+            this.changedFilesTypeColumn});
+            this.changedFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.changedFiles.FullRowSelect = true;
+            this.changedFiles.HideSelection = false;
+            this.changedFiles.Location = new System.Drawing.Point(0, 0);
+            this.changedFiles.Name = "changedFiles";
+            this.changedFiles.Size = new System.Drawing.Size(323, 391);
+            this.changedFiles.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.changedFiles.TabIndex = 0;
+            this.changedFiles.UseCompatibleStateImageBehavior = false;
+            this.changedFiles.View = System.Windows.Forms.View.Details;
+            // 
+            // changedFilesPathColumn
+            // 
+            this.changedFilesPathColumn.Text = "Path";
+            this.changedFilesPathColumn.Width = 250;
+            // 
+            // changedFilesTypeColumn
+            // 
+            this.changedFilesTypeColumn.Text = "Status";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,6 +360,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).EndInit();
             this.branchesTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).EndInit();
+            this.commitTab.ResumeLayout(false);
+            this.commitHorizontalDivider.Panel1.ResumeLayout(false);
+            this.commitHorizontalDivider.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.commitHorizontalDivider)).EndInit();
+            this.commitHorizontalDivider.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.changeLog)).EndInit();
+            this.commitVerticalDivider.Panel1.ResumeLayout(false);
+            this.commitVerticalDivider.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.commitVerticalDivider)).EndInit();
+            this.commitVerticalDivider.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.patchText)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.searchStrip.ResumeLayout(false);
@@ -287,5 +399,12 @@
         private System.Windows.Forms.ToolStripTextBox searchTextBox;
         private SearchableDataGridView taskGrid;
         private SearchableDataGridView branchGrid;
+        private System.Windows.Forms.SplitContainer commitHorizontalDivider;
+        private System.Windows.Forms.SplitContainer commitVerticalDivider;
+        private ScintillaNet.Scintilla changeLog;
+        private ScintillaNet.Scintilla patchText;
+        private System.Windows.Forms.ListView changedFiles;
+        private System.Windows.Forms.ColumnHeader changedFilesPathColumn;
+        private System.Windows.Forms.ColumnHeader changedFilesTypeColumn;
     }
 }
