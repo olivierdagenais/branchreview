@@ -79,9 +79,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             _currentBranchId = branchId;
             _currentTaskId = taskId;
-            activityTab.Text = "Log for {0}".FormatInvariant(branchId);
-            commitTab.Text = "Changes in {0}".FormatInvariant(branchId);
-            tabs.SelectedTab = activityTab;
+            // TODO: update branch revisions, etc.
         }
 
         // method can not be made static because the Form Designer re-writes the event wire-up with "this."
@@ -106,11 +104,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private void branchesMenuItem_Click(object sender, EventArgs e)
         {
             tabs.SelectedTab = branchesTab;
-        }
-
-        private void logMenuItem_Click(object sender, EventArgs e)
-        {
-            tabs.SelectedTab = activityTab;
         }
 
         private void commitMenuItem_Click(object sender, EventArgs e)
@@ -138,10 +131,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     branchGrid.DataTable = _sourceRepository.LoadBranches();
                 }
                 controlToFocus = branchGrid;
-            }
-            else if (tabs.SelectedTab == activityTab)
-            {
-                // TODO: set focus to the first thing
             }
             else if (tabs.SelectedTab == commitTab)
             {

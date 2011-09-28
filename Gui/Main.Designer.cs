@@ -43,19 +43,17 @@
             this.viewMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.tasksMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.branchesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tasksMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.branchesMenu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.activityMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.commitMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.tabs = new System.Windows.Forms.TabControl();
             this.taskTab = new System.Windows.Forms.TabPage();
             this.taskGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.AwesomeGrid();
             this.branchesTab = new System.Windows.Forms.TabPage();
+            this.branchGridAndRestDivider = new System.Windows.Forms.SplitContainer();
             this.branchGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.AwesomeGrid();
-            this.activityTab = new System.Windows.Forms.TabPage();
             this.activityTopBottomPanel = new System.Windows.Forms.SplitContainer();
             this.activityRevisions = new SoftwareNinjas.BranchAndReviewTools.Gui.AwesomeGrid();
             this.activityChangeInspector = new SoftwareNinjas.BranchAndReviewTools.Gui.ChangeInspector();
@@ -75,8 +73,11 @@
             this.taskTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).BeginInit();
             this.branchesTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.branchGridAndRestDivider)).BeginInit();
+            this.branchGridAndRestDivider.Panel1.SuspendLayout();
+            this.branchGridAndRestDivider.Panel2.SuspendLayout();
+            this.branchGridAndRestDivider.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).BeginInit();
-            this.activityTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.activityTopBottomPanel)).BeginInit();
             this.activityTopBottomPanel.Panel1.SuspendLayout();
             this.activityTopBottomPanel.Panel2.SuspendLayout();
@@ -109,7 +110,7 @@
             // branchesDummyMenuItem
             // 
             branchesDummyMenuItem.Name = "branchesDummyMenuItem";
-            branchesDummyMenuItem.Size = new System.Drawing.Size(149, 6);
+            branchesDummyMenuItem.Size = new System.Drawing.Size(57, 6);
             // 
             // statusBar
             // 
@@ -162,7 +163,6 @@
             this.viewMenu,
             this.tasksMenu,
             this.branchesMenu,
-            this.activityMenu,
             this.commitMenu});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
@@ -183,7 +183,7 @@
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(100, 22);
             this.exitMenuItem.Text = "E&xit";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
@@ -212,7 +212,6 @@
             this.viewMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tasksMenuItem,
             this.branchesMenuItem,
-            this.logMenuItem,
             this.commitMenuItem,
             viewMenuRefreshSeparator,
             this.refreshMenuItem});
@@ -238,18 +237,10 @@
             this.branchesMenuItem.Text = "&Branches";
             this.branchesMenuItem.Click += new System.EventHandler(this.branchesMenuItem_Click);
             // 
-            // logMenuItem
-            // 
-            this.logMenuItem.Name = "logMenuItem";
-            this.logMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D3)));
-            this.logMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.logMenuItem.Text = "&Log";
-            this.logMenuItem.Click += new System.EventHandler(this.logMenuItem_Click);
-            // 
             // commitMenuItem
             // 
             this.commitMenuItem.Name = "commitMenuItem";
-            this.commitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D4)));
+            this.commitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D3)));
             this.commitMenuItem.Size = new System.Drawing.Size(184, 22);
             this.commitMenuItem.Text = "&Changes";
             this.commitMenuItem.Click += new System.EventHandler(this.commitMenuItem_Click);
@@ -286,15 +277,6 @@
             this.branchesMenu.Text = "&Branches";
             this.branchesMenu.DropDownOpening += new System.EventHandler(this.branchesMenu_DropDownOpening);
             // 
-            // activityMenu
-            // 
-            this.activityMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.activityMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.activityMenu.Name = "activityMenu";
-            this.activityMenu.ShowDropDownArrow = false;
-            this.activityMenu.Size = new System.Drawing.Size(35, 20);
-            this.activityMenu.Text = "&Log";
-            // 
             // commitMenu
             // 
             this.commitMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -308,7 +290,6 @@
             // 
             this.tabs.Controls.Add(this.taskTab);
             this.tabs.Controls.Add(this.branchesTab);
-            this.tabs.Controls.Add(this.activityTab);
             this.tabs.Controls.Add(this.commitTab);
             this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabs.Location = new System.Drawing.Point(0, 27);
@@ -347,7 +328,7 @@
             // 
             // branchesTab
             // 
-            this.branchesTab.Controls.Add(this.branchGrid);
+            this.branchesTab.Controls.Add(this.branchGridAndRestDivider);
             this.branchesTab.Location = new System.Drawing.Point(4, 22);
             this.branchesTab.Name = "branchesTab";
             this.branchesTab.Padding = new System.Windows.Forms.Padding(3);
@@ -356,36 +337,45 @@
             this.branchesTab.Text = "Branches";
             this.branchesTab.UseVisualStyleBackColor = true;
             // 
+            // branchGridAndRestDivider
+            // 
+            this.branchGridAndRestDivider.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.branchGridAndRestDivider.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.branchGridAndRestDivider.Location = new System.Drawing.Point(3, 3);
+            this.branchGridAndRestDivider.Name = "branchGridAndRestDivider";
+            this.branchGridAndRestDivider.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // branchGridAndRestDivider.Panel1
+            // 
+            this.branchGridAndRestDivider.Panel1.Controls.Add(this.branchGrid);
+            // 
+            // branchGridAndRestDivider.Panel2
+            // 
+            this.branchGridAndRestDivider.Panel2.Controls.Add(this.activityTopBottomPanel);
+            this.branchGridAndRestDivider.Size = new System.Drawing.Size(778, 492);
+            this.branchGridAndRestDivider.SplitterDistance = 122;
+            this.branchGridAndRestDivider.TabIndex = 1;
+            this.branchGridAndRestDivider.TabStop = false;
+            // 
             // branchGrid
             // 
             this.branchGrid.DataTable = null;
             this.branchGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.branchGrid.Filter = null;
-            this.branchGrid.Location = new System.Drawing.Point(3, 3);
+            this.branchGrid.Location = new System.Drawing.Point(0, 0);
             this.branchGrid.Name = "branchGrid";
-            this.branchGrid.Size = new System.Drawing.Size(778, 492);
+            this.branchGrid.Size = new System.Drawing.Size(776, 120);
             this.branchGrid.TabIndex = 0;
             this.branchGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.branchGrid_RowContextMenuStripNeeded);
             this.branchGrid.DoubleClick += new System.EventHandler(this.branchGrid_DoubleClick);
             this.branchGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.branchGrid_KeyDown);
             this.branchGrid.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Grid_PreviewKeyDown);
             // 
-            // activityTab
-            // 
-            this.activityTab.Controls.Add(this.activityTopBottomPanel);
-            this.activityTab.Location = new System.Drawing.Point(4, 22);
-            this.activityTab.Name = "activityTab";
-            this.activityTab.Padding = new System.Windows.Forms.Padding(3);
-            this.activityTab.Size = new System.Drawing.Size(784, 498);
-            this.activityTab.TabIndex = 3;
-            this.activityTab.Text = "Log";
-            this.activityTab.UseVisualStyleBackColor = true;
-            // 
             // activityTopBottomPanel
             // 
             this.activityTopBottomPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.activityTopBottomPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.activityTopBottomPanel.Location = new System.Drawing.Point(3, 3);
+            this.activityTopBottomPanel.Location = new System.Drawing.Point(0, 0);
             this.activityTopBottomPanel.Name = "activityTopBottomPanel";
             this.activityTopBottomPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -396,9 +386,9 @@
             // activityTopBottomPanel.Panel2
             // 
             this.activityTopBottomPanel.Panel2.Controls.Add(this.activityChangeInspector);
-            this.activityTopBottomPanel.Size = new System.Drawing.Size(778, 492);
-            this.activityTopBottomPanel.SplitterDistance = 106;
-            this.activityTopBottomPanel.TabIndex = 0;
+            this.activityTopBottomPanel.Size = new System.Drawing.Size(778, 366);
+            this.activityTopBottomPanel.SplitterDistance = 78;
+            this.activityTopBottomPanel.TabIndex = 1;
             this.activityTopBottomPanel.TabStop = false;
             // 
             // activityRevisions
@@ -408,7 +398,7 @@
             this.activityRevisions.Filter = null;
             this.activityRevisions.Location = new System.Drawing.Point(0, 0);
             this.activityRevisions.Name = "activityRevisions";
-            this.activityRevisions.Size = new System.Drawing.Size(776, 104);
+            this.activityRevisions.Size = new System.Drawing.Size(776, 76);
             this.activityRevisions.TabIndex = 0;
             // 
             // activityChangeInspector
@@ -421,7 +411,7 @@
             this.activityChangeInspector.Location = new System.Drawing.Point(0, 0);
             this.activityChangeInspector.Name = "activityChangeInspector";
             this.activityChangeInspector.PatchText = "";
-            this.activityChangeInspector.Size = new System.Drawing.Size(776, 380);
+            this.activityChangeInspector.Size = new System.Drawing.Size(776, 282);
             this.activityChangeInspector.TabIndex = 0;
             // 
             // commitTab
@@ -540,8 +530,11 @@
             this.taskTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).EndInit();
             this.branchesTab.ResumeLayout(false);
+            this.branchGridAndRestDivider.Panel1.ResumeLayout(false);
+            this.branchGridAndRestDivider.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.branchGridAndRestDivider)).EndInit();
+            this.branchGridAndRestDivider.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).EndInit();
-            this.activityTab.ResumeLayout(false);
             this.activityTopBottomPanel.Panel1.ResumeLayout(false);
             this.activityTopBottomPanel.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.activityTopBottomPanel)).EndInit();
@@ -575,7 +568,6 @@
         private System.Windows.Forms.TabControl tabs;
         private System.Windows.Forms.TabPage taskTab;
         private System.Windows.Forms.TabPage branchesTab;
-        private System.Windows.Forms.TabPage activityTab;
         private System.Windows.Forms.TabPage commitTab;
         private AwesomeGrid taskGrid;
         private AwesomeGrid branchGrid;
@@ -588,14 +580,13 @@
         private System.Windows.Forms.ToolStripMenuItem refreshMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tasksMenuItem;
         private System.Windows.Forms.ToolStripMenuItem branchesMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem logMenuItem;
         private System.Windows.Forms.ToolStripMenuItem commitMenuItem;
         private System.Windows.Forms.ToolStripDropDownButton tasksMenu;
         private System.Windows.Forms.ToolStripDropDownButton branchesMenu;
-        private System.Windows.Forms.ToolStripDropDownButton activityMenu;
         private System.Windows.Forms.ToolStripDropDownButton commitMenu;
         private System.Windows.Forms.ToolStripDropDownButton editMenu;
         private System.Windows.Forms.ToolStripMenuItem searchMenuItem;
+        private System.Windows.Forms.SplitContainer branchGridAndRestDivider;
         private System.Windows.Forms.SplitContainer activityTopBottomPanel;
         private AwesomeGrid activityRevisions;
         private ChangeInspector activityChangeInspector;
