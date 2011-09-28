@@ -273,13 +273,19 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             var generalActions = _taskRepository.GetTaskActions();
             BuildActionMenu(generalActions, items);
 
+            var needsLeadingSeparator = generalActions.Count > 0;
+            AddTaskSpecificActions(items, needsLeadingSeparator);
+        }
+
+        private void AddTaskSpecificActions(ToolStripItemCollection items, bool needsLeadingSeparator)
+        {
             var taskId = FindSelectedId(taskGrid);
             if (taskId != null)
             {
                 var specificActions = _taskRepository.GetTaskActions(taskId);
                 if (specificActions.Count > 0)
                 {
-                    if (generalActions.Count > 0)
+                    if (needsLeadingSeparator)
                     {
                         AddSeparator(items);
                     }
@@ -320,21 +326,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private ContextMenuStrip BuildTaskActionMenu()
         {
-            var taskId = FindSelectedId(taskGrid);
             var menu = new ContextMenuStrip();
-            if (taskId != null)
-            {
-                var specificActions = _taskRepository.GetTaskActions(taskId);
-                if (specificActions.Count > 0)
-                {
-                    BuildActionMenu(specificActions, menu.Items);
-                    AddSeparator(menu.Items);
-                }
-                var createBranchAction = new MenuAction("createBranch", "Create Branch for task", true, 
-                    () => CreateBranch(taskId));
-                BuildActionMenu(new[] { createBranchAction }, menu.Items);
-
-            }
+            AddTaskSpecificActions(menu.Items, false);
             return menu;
         }
 
