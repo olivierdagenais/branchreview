@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
 {
-    class TaskRepository : ITaskRepository
+    internal class TaskRepository : ITaskRepository
     {
         private readonly DataTable _tasks = new DataTable
         {
@@ -33,6 +35,32 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
         public DataTable LoadTasks()
         {
             return _tasks;
+        }
+
+        public IList<TaskAction> GetActionsForTask(object taskId)
+        {
+            IList<TaskAction> actionsForTask;
+            if (null == taskId)
+            {
+                actionsForTask = new[]
+                {
+                    new TaskAction("create", "Create Bug", true, () => Debug.WriteLine("Creating bug")),
+                    new TaskAction("createFeature", "Create Feature", true, () => Debug.WriteLine("Creating feature")),
+                    new TaskAction("createTask", "Create Task", true, () => Debug.WriteLine("Creating task")),
+                };
+            }
+            else
+            {
+                var id = (int) taskId;
+                var row = _tasks.Rows[0];
+                actionsForTask = new[]
+                {
+                    new TaskAction("open", "Open && Launch", true, () => Debug.WriteLine("Opening task {0}", id)),
+                    new TaskAction("resolve", "&Resolve", (string) row["Status"] == "Accepted", () => Debug.WriteLine("Resolving task {0}", id)),
+                    new TaskAction("close", "&Close", (string) row["Status"] == "Fixed", () => Debug.WriteLine("Closing task {0}", id)),
+                };
+            }
+            return actionsForTask;
         }
     }
 }
