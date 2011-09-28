@@ -18,6 +18,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             ChangeLog.InitializeDefaults();
             PatchViewer.InitializeDefaults();
             PatchViewer.InitializeDiff();
+            FileGrid.Grid.MultiSelect = true;
         }
 
         public string PatchText

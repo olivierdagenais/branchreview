@@ -23,7 +23,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             taskGrid.Grid.MultiSelect = false;
             branchGrid.Grid.MultiSelect = false;
             activityRevisions.Grid.MultiSelect = false;
-            activityChangeInspector.FileGrid.Grid.MultiSelect = true;
             changedFiles.Grid.MultiSelect = true;
             changeLog.InitializeDefaults();
             patchText.InitializeDefaults();
