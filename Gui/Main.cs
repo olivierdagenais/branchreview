@@ -41,7 +41,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             Load += Main_Load;
             FormClosing += Main_Closing;
             _taskRepository = new Mock.TaskRepository();
-            taskGrid.DataTable = _taskRepository.LoadTasks();
             _sourceRepository = new Mock.SourceRepository();
         }
 
@@ -76,6 +75,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             WindowState = settings.WindowState;
             menuStrip.Location = settings.MenuLocation;
             searchStrip.Location = settings.SearchLocation;
+            tabs_Selected(this, null);
         }
 
         void Main_Closing(object sender, CancelEventArgs e)
@@ -198,13 +198,55 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void tabs_Selected(object sender, TabControlEventArgs e)
         {
-            if (tabs.SelectedTab == branchesTab && branchGrid.DataTable == null)
+            Control controlToFocus = null;
+            if (tabs.SelectedTab == taskTab)
             {
-                branchGrid.DataTable = _sourceRepository.LoadBranches();
+                if (taskGrid.DataTable == null)
+                {
+                    taskGrid.DataTable = _taskRepository.LoadTasks();
+                }
+                controlToFocus = taskGrid;
             }
-            if (tabs.SelectedTab == commitTab && _currentBranchId != null)
+            else if (tabs.SelectedTab == branchesTab)
             {
-                RefreshChangedFiles();
+                if (branchGrid.DataTable == null)
+                {
+                    branchGrid.DataTable = _sourceRepository.LoadBranches();
+                }
+                controlToFocus = branchGrid;
+            }
+            else if (tabs.SelectedTab == activityTab)
+            {
+                // TODO: set focus to the first thing
+            }
+            else if (tabs.SelectedTab == commitTab)
+            {
+                if (_currentBranchId != null)
+                {
+                    RefreshChangedFiles();
+                }
+                controlToFocus = changeLog;
+            }
+
+            if (controlToFocus != null)
+            {
+                var delayedWorker = new Timer();
+                delayedWorker.Tick += (s, ea) => delayedWorker_Tick(delayedWorker, () => controlToFocus.Focus());
+                delayedWorker.Interval = 10;
+                delayedWorker.Start();
+            }
+        }
+
+        void delayedWorker_Tick(Timer sender, Action action)
+        {
+            sender.Stop();
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(action));
+            }
+            else
+            {
+                action();
             }
         }
 
@@ -247,7 +289,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 changedFiles_SelectionChanged(this, null);
                 changedFiles.SelectionChanged += changedFiles_SelectionChanged;
             }
-            changeLog.Focus();
         }
 
         void changedFiles_SelectionChanged(object sender, EventArgs e)
