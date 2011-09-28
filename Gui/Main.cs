@@ -214,6 +214,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 oldSelection.Add(row.Cells["ID"].Value);
             }
 
+            changedFiles.DataTable = null;
             var pendingChanges = _sourceRepository.GetPendingChanges(_currentBranchId);
             changedFiles.DataTable = pendingChanges;
             if (0 == changedFiles.Rows.Count)
