@@ -125,5 +125,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
             return menu;
         }
+
+        private void branchGrid_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
+        {
+            var row = branchGrid.Rows[e.RowIndex];
+            var branchId = row.Cells["ID"].Value;
+            var actions = _sourceRepository.GetActionsForBranch(branchId);
+            var menu = BuildActionMenu(actions);
+            e.ContextMenuStrip = menu;
+        }
     }
 }

@@ -157,8 +157,9 @@
             this.branchGrid.Location = new System.Drawing.Point(3, 3);
             this.branchGrid.MultiSelect = false;
             this.branchGrid.Name = "branchGrid";
-            this.branchGrid.Size = new System.Drawing.Size(778, 469);
+            this.branchGrid.Size = new System.Drawing.Size(665, 469);
             this.branchGrid.TabIndex = 0;
+            this.branchGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.branchGrid_RowContextMenuStripNeeded);
             // 
             // activityTab
             // 
