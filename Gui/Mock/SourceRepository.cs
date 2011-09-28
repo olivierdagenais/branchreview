@@ -28,25 +28,20 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             }
         };
 
-        private static readonly IList<DataColumn> _pendingChangesColumns = new []
-        {
-            new DataColumn("ID", typeof(string)) { Caption = "Path" },
-            new DataColumn("Status", typeof(string)),
-        };
         private readonly DataTable _doSftpPendingChanges = new DataTable
         {
             Columns =
             {
-                _pendingChangesColumns[0],
-                _pendingChangesColumns[1],
+                new DataColumn("ID", typeof(string)) { Caption = "Path" },
+                new DataColumn("Status", typeof(string)),
             },
         };
         private readonly DataTable _refactorInternetPendingChanges = new DataTable
         {
             Columns =
             {
-                _pendingChangesColumns[0],
-                _pendingChangesColumns[1],
+                new DataColumn("ID", typeof(string)) { Caption = "Path" },
+                new DataColumn("Status", typeof(string)),
             },
             Rows =
             {
