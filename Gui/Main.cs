@@ -130,15 +130,20 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 ToolStripItem item;
                 if (action.IsSeparator)
                 {
-                    item = new ToolStripSeparator();
+                    AddSeparator(items);
                 }
                 else
                 {
-                    item = new ToolStripMenuItem(action.Caption, action.Image, 
-                        (clickSender, eventArgs) => action.Execute(), action.Name);
+                    item = new ToolStripMenuItem
+                    {
+                        Name = action.Name,
+                        Text = action.Caption,
+                        Enabled = action.Enabled,
+                        Image = action.Image,
+                    };
+                    item.Click += (clickSender, eventArgs) => action.Execute();
+                    items.Add(item);
                 }
-                item.Enabled = action.Enabled;
-                items.Add(item);
             }
         }
 
