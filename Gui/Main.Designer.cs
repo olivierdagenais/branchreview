@@ -35,15 +35,6 @@
             this.statusBarText = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBarProgress = new System.Windows.Forms.ToolStripProgressBar();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.tabs = new System.Windows.Forms.TabControl();
-            this.taskTab = new System.Windows.Forms.TabPage();
-            this.branchesTab = new System.Windows.Forms.TabPage();
-            this.activityTab = new System.Windows.Forms.TabPage();
-            this.commitTab = new System.Windows.Forms.TabPage();
-            this.commitHorizontalDivider = new System.Windows.Forms.SplitContainer();
-            this.changeLog = new ScintillaNet.Scintilla();
-            this.commitVerticalDivider = new System.Windows.Forms.SplitContainer();
-            this.patchText = new ScintillaNet.Scintilla();
             this.menuStrip = new System.Windows.Forms.ToolStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,17 +50,29 @@
             this.branchesMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.activityMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.commitMenu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.tabs = new System.Windows.Forms.TabControl();
+            this.taskTab = new System.Windows.Forms.TabPage();
             this.taskGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
+            this.branchesTab = new System.Windows.Forms.TabPage();
             this.branchGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
+            this.activityTab = new System.Windows.Forms.TabPage();
+            this.commitTab = new System.Windows.Forms.TabPage();
+            this.commitHorizontalDivider = new System.Windows.Forms.SplitContainer();
+            this.changeLog = new ScintillaNet.Scintilla();
+            this.commitVerticalDivider = new System.Windows.Forms.SplitContainer();
             this.changedFiles = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
+            this.patchText = new ScintillaNet.Scintilla();
             viewMenuRefreshSeparator = new System.Windows.Forms.ToolStripSeparator();
             tasksDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
             branchesDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
             this.statusBar.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
+            this.menuStrip.SuspendLayout();
             this.tabs.SuspendLayout();
             this.taskTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).BeginInit();
             this.branchesTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).BeginInit();
             this.commitTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commitHorizontalDivider)).BeginInit();
             this.commitHorizontalDivider.Panel1.SuspendLayout();
@@ -80,11 +83,8 @@
             this.commitVerticalDivider.Panel1.SuspendLayout();
             this.commitVerticalDivider.Panel2.SuspendLayout();
             this.commitVerticalDivider.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.patchText)).BeginInit();
-            this.menuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.changedFiles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patchText)).BeginInit();
             this.SuspendLayout();
             // 
             // viewMenuRefreshSeparator
@@ -131,7 +131,6 @@
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel.Controls.Add(this.menuStrip, 0, 0);
             this.tableLayoutPanel.Controls.Add(this.tabs, 0, 1);
-            this.tableLayoutPanel.Controls.Add(this.statusBar, 0, 2);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
@@ -139,136 +138,8 @@
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel.Size = new System.Drawing.Size(792, 551);
             this.tableLayoutPanel.TabIndex = 0;
-            // 
-            // tabs
-            // 
-            this.tabs.Controls.Add(this.taskTab);
-            this.tabs.Controls.Add(this.branchesTab);
-            this.tabs.Controls.Add(this.activityTab);
-            this.tabs.Controls.Add(this.commitTab);
-            this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabs.Location = new System.Drawing.Point(0, 0);
-            this.tabs.Name = "tabs";
-            this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(792, 526);
-            this.tabs.TabIndex = 0;
-            this.tabs.TabStop = false;
-            this.tabs.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabs_Selected);
-            // 
-            // taskTab
-            // 
-            this.taskTab.Controls.Add(this.taskGrid);
-            this.taskTab.Location = new System.Drawing.Point(4, 22);
-            this.taskTab.Name = "taskTab";
-            this.taskTab.Padding = new System.Windows.Forms.Padding(3);
-            this.taskTab.Size = new System.Drawing.Size(784, 500);
-            this.taskTab.TabIndex = 1;
-            this.taskTab.Text = "Tasks";
-            this.taskTab.UseVisualStyleBackColor = true;
-            // 
-            // branchesTab
-            // 
-            this.branchesTab.Controls.Add(this.branchGrid);
-            this.branchesTab.Location = new System.Drawing.Point(4, 22);
-            this.branchesTab.Name = "branchesTab";
-            this.branchesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.branchesTab.Size = new System.Drawing.Size(784, 500);
-            this.branchesTab.TabIndex = 2;
-            this.branchesTab.Text = "Branches";
-            this.branchesTab.UseVisualStyleBackColor = true;
-            // 
-            // activityTab
-            // 
-            this.activityTab.Location = new System.Drawing.Point(4, 22);
-            this.activityTab.Name = "activityTab";
-            this.activityTab.Padding = new System.Windows.Forms.Padding(3);
-            this.activityTab.Size = new System.Drawing.Size(784, 500);
-            this.activityTab.TabIndex = 3;
-            this.activityTab.Text = "Log";
-            this.activityTab.UseVisualStyleBackColor = true;
-            // 
-            // commitTab
-            // 
-            this.commitTab.Controls.Add(this.commitHorizontalDivider);
-            this.commitTab.Location = new System.Drawing.Point(4, 22);
-            this.commitTab.Name = "commitTab";
-            this.commitTab.Size = new System.Drawing.Size(784, 500);
-            this.commitTab.TabIndex = 4;
-            this.commitTab.Text = "Changes";
-            this.commitTab.UseVisualStyleBackColor = true;
-            // 
-            // commitHorizontalDivider
-            // 
-            this.commitHorizontalDivider.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.commitHorizontalDivider.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.commitHorizontalDivider.Location = new System.Drawing.Point(0, 0);
-            this.commitHorizontalDivider.Name = "commitHorizontalDivider";
-            this.commitHorizontalDivider.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // commitHorizontalDivider.Panel1
-            // 
-            this.commitHorizontalDivider.Panel1.Controls.Add(this.changeLog);
-            // 
-            // commitHorizontalDivider.Panel2
-            // 
-            this.commitHorizontalDivider.Panel2.Controls.Add(this.commitVerticalDivider);
-            this.commitHorizontalDivider.Size = new System.Drawing.Size(784, 500);
-            this.commitHorizontalDivider.SplitterDistance = 84;
-            this.commitHorizontalDivider.TabIndex = 0;
-            this.commitHorizontalDivider.TabStop = false;
-            // 
-            // changeLog
-            // 
-            this.changeLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.changeLog.Location = new System.Drawing.Point(0, 0);
-            this.changeLog.Name = "changeLog";
-            this.changeLog.Size = new System.Drawing.Size(782, 82);
-            this.changeLog.Styles.BraceBad.FontName = "Verdana";
-            this.changeLog.Styles.BraceLight.FontName = "Verdana";
-            this.changeLog.Styles.ControlChar.FontName = "Verdana";
-            this.changeLog.Styles.Default.FontName = "Verdana";
-            this.changeLog.Styles.IndentGuide.FontName = "Verdana";
-            this.changeLog.Styles.LastPredefined.FontName = "Verdana";
-            this.changeLog.Styles.LineNumber.FontName = "Verdana";
-            this.changeLog.Styles.Max.FontName = "Verdana";
-            this.changeLog.TabIndex = 0;
-            // 
-            // commitVerticalDivider
-            // 
-            this.commitVerticalDivider.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.commitVerticalDivider.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.commitVerticalDivider.Location = new System.Drawing.Point(0, 0);
-            this.commitVerticalDivider.Name = "commitVerticalDivider";
-            // 
-            // commitVerticalDivider.Panel1
-            // 
-            this.commitVerticalDivider.Panel1.Controls.Add(this.changedFiles);
-            // 
-            // commitVerticalDivider.Panel2
-            // 
-            this.commitVerticalDivider.Panel2.Controls.Add(this.patchText);
-            this.commitVerticalDivider.Size = new System.Drawing.Size(784, 412);
-            this.commitVerticalDivider.SplitterDistance = 276;
-            this.commitVerticalDivider.SplitterWidth = 6;
-            this.commitVerticalDivider.TabIndex = 0;
-            this.commitVerticalDivider.TabStop = false;
-            // 
-            // patchText
-            // 
-            this.patchText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.patchText.Location = new System.Drawing.Point(0, 0);
-            this.patchText.Name = "patchText";
-            this.patchText.Size = new System.Drawing.Size(500, 410);
-            this.patchText.Styles.BraceBad.FontName = "Verdana";
-            this.patchText.Styles.BraceLight.FontName = "Verdana";
-            this.patchText.Styles.ControlChar.FontName = "Verdana";
-            this.patchText.Styles.Default.FontName = "Verdana";
-            this.patchText.Styles.IndentGuide.FontName = "Verdana";
-            this.patchText.Styles.LastPredefined.FontName = "Verdana";
-            this.patchText.Styles.LineNumber.FontName = "Verdana";
-            this.patchText.Styles.Max.FontName = "Verdana";
-            this.patchText.TabIndex = 0;
             // 
             // menuStrip
             // 
@@ -283,9 +154,9 @@
             this.branchesMenu,
             this.activityMenu,
             this.commitMenu});
-            this.menuStrip.Location = new System.Drawing.Point(3, 0);
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(373, 25);
+            this.menuStrip.Size = new System.Drawing.Size(342, 25);
             this.menuStrip.TabIndex = 0;
             // 
             // fileMenu
@@ -423,6 +294,32 @@
             this.commitMenu.Size = new System.Drawing.Size(68, 22);
             this.commitMenu.Text = "&Changes";
             // 
+            // tabs
+            // 
+            this.tabs.Controls.Add(this.taskTab);
+            this.tabs.Controls.Add(this.branchesTab);
+            this.tabs.Controls.Add(this.activityTab);
+            this.tabs.Controls.Add(this.commitTab);
+            this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabs.Location = new System.Drawing.Point(3, 28);
+            this.tabs.Name = "tabs";
+            this.tabs.SelectedIndex = 0;
+            this.tabs.Size = new System.Drawing.Size(786, 520);
+            this.tabs.TabIndex = 0;
+            this.tabs.TabStop = false;
+            this.tabs.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabs_Selected);
+            // 
+            // taskTab
+            // 
+            this.taskTab.Controls.Add(this.taskGrid);
+            this.taskTab.Location = new System.Drawing.Point(4, 22);
+            this.taskTab.Name = "taskTab";
+            this.taskTab.Padding = new System.Windows.Forms.Padding(3);
+            this.taskTab.Size = new System.Drawing.Size(778, 494);
+            this.taskTab.TabIndex = 1;
+            this.taskTab.Text = "Tasks";
+            this.taskTab.UseVisualStyleBackColor = true;
+            // 
             // taskGrid
             // 
             this.taskGrid.DataTable = null;
@@ -431,12 +328,23 @@
             this.taskGrid.Location = new System.Drawing.Point(3, 3);
             this.taskGrid.Name = "taskGrid";
             this.taskGrid.RowTemplate.Height = 23;
-            this.taskGrid.Size = new System.Drawing.Size(778, 494);
+            this.taskGrid.Size = new System.Drawing.Size(772, 488);
             this.taskGrid.TabIndex = 0;
             this.taskGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.taskGrid_RowContextMenuStripNeeded);
             this.taskGrid.DoubleClick += new System.EventHandler(this.taskGrid_DoubleClick);
             this.taskGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.taskGrid_KeyDown);
             this.taskGrid.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Grid_PreviewKeyDown);
+            // 
+            // branchesTab
+            // 
+            this.branchesTab.Controls.Add(this.branchGrid);
+            this.branchesTab.Location = new System.Drawing.Point(4, 22);
+            this.branchesTab.Name = "branchesTab";
+            this.branchesTab.Padding = new System.Windows.Forms.Padding(3);
+            this.branchesTab.Size = new System.Drawing.Size(778, 494);
+            this.branchesTab.TabIndex = 2;
+            this.branchesTab.Text = "Branches";
+            this.branchesTab.UseVisualStyleBackColor = true;
             // 
             // branchGrid
             // 
@@ -447,12 +355,88 @@
             this.branchGrid.MultiSelect = false;
             this.branchGrid.Name = "branchGrid";
             this.branchGrid.RowTemplate.Height = 23;
-            this.branchGrid.Size = new System.Drawing.Size(778, 494);
+            this.branchGrid.Size = new System.Drawing.Size(772, 488);
             this.branchGrid.TabIndex = 0;
             this.branchGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.branchGrid_RowContextMenuStripNeeded);
             this.branchGrid.DoubleClick += new System.EventHandler(this.branchGrid_DoubleClick);
             this.branchGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.branchGrid_KeyDown);
             this.branchGrid.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Grid_PreviewKeyDown);
+            // 
+            // activityTab
+            // 
+            this.activityTab.Location = new System.Drawing.Point(4, 22);
+            this.activityTab.Name = "activityTab";
+            this.activityTab.Padding = new System.Windows.Forms.Padding(3);
+            this.activityTab.Size = new System.Drawing.Size(186, 21);
+            this.activityTab.TabIndex = 3;
+            this.activityTab.Text = "Log";
+            this.activityTab.UseVisualStyleBackColor = true;
+            // 
+            // commitTab
+            // 
+            this.commitTab.Controls.Add(this.commitHorizontalDivider);
+            this.commitTab.Location = new System.Drawing.Point(4, 22);
+            this.commitTab.Name = "commitTab";
+            this.commitTab.Size = new System.Drawing.Size(186, 21);
+            this.commitTab.TabIndex = 4;
+            this.commitTab.Text = "Changes";
+            this.commitTab.UseVisualStyleBackColor = true;
+            // 
+            // commitHorizontalDivider
+            // 
+            this.commitHorizontalDivider.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.commitHorizontalDivider.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.commitHorizontalDivider.Location = new System.Drawing.Point(0, 0);
+            this.commitHorizontalDivider.Name = "commitHorizontalDivider";
+            this.commitHorizontalDivider.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // commitHorizontalDivider.Panel1
+            // 
+            this.commitHorizontalDivider.Panel1.Controls.Add(this.changeLog);
+            // 
+            // commitHorizontalDivider.Panel2
+            // 
+            this.commitHorizontalDivider.Panel2.Controls.Add(this.commitVerticalDivider);
+            this.commitHorizontalDivider.Size = new System.Drawing.Size(186, 21);
+            this.commitHorizontalDivider.SplitterDistance = 84;
+            this.commitHorizontalDivider.TabIndex = 0;
+            this.commitHorizontalDivider.TabStop = false;
+            // 
+            // changeLog
+            // 
+            this.changeLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.changeLog.Location = new System.Drawing.Point(0, 0);
+            this.changeLog.Name = "changeLog";
+            this.changeLog.Size = new System.Drawing.Size(782, 82);
+            this.changeLog.Styles.BraceBad.FontName = "Verdana";
+            this.changeLog.Styles.BraceLight.FontName = "Verdana";
+            this.changeLog.Styles.ControlChar.FontName = "Verdana";
+            this.changeLog.Styles.Default.FontName = "Verdana";
+            this.changeLog.Styles.IndentGuide.FontName = "Verdana";
+            this.changeLog.Styles.LastPredefined.FontName = "Verdana";
+            this.changeLog.Styles.LineNumber.FontName = "Verdana";
+            this.changeLog.Styles.Max.FontName = "Verdana";
+            this.changeLog.TabIndex = 0;
+            // 
+            // commitVerticalDivider
+            // 
+            this.commitVerticalDivider.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.commitVerticalDivider.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.commitVerticalDivider.Location = new System.Drawing.Point(0, 0);
+            this.commitVerticalDivider.Name = "commitVerticalDivider";
+            // 
+            // commitVerticalDivider.Panel1
+            // 
+            this.commitVerticalDivider.Panel1.Controls.Add(this.changedFiles);
+            // 
+            // commitVerticalDivider.Panel2
+            // 
+            this.commitVerticalDivider.Panel2.Controls.Add(this.patchText);
+            this.commitVerticalDivider.Size = new System.Drawing.Size(784, 412);
+            this.commitVerticalDivider.SplitterDistance = 276;
+            this.commitVerticalDivider.SplitterWidth = 6;
+            this.commitVerticalDivider.TabIndex = 0;
+            this.commitVerticalDivider.TabStop = false;
             // 
             // changedFiles
             // 
@@ -469,6 +453,22 @@
             this.changedFiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.changedFiles_KeyDown);
             this.changedFiles.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Grid_PreviewKeyDown);
             // 
+            // patchText
+            // 
+            this.patchText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.patchText.Location = new System.Drawing.Point(0, 0);
+            this.patchText.Name = "patchText";
+            this.patchText.Size = new System.Drawing.Size(500, 410);
+            this.patchText.Styles.BraceBad.FontName = "Verdana";
+            this.patchText.Styles.BraceLight.FontName = "Verdana";
+            this.patchText.Styles.ControlChar.FontName = "Verdana";
+            this.patchText.Styles.Default.FontName = "Verdana";
+            this.patchText.Styles.IndentGuide.FontName = "Verdana";
+            this.patchText.Styles.LastPredefined.FontName = "Verdana";
+            this.patchText.Styles.LineNumber.FontName = "Verdana";
+            this.patchText.Styles.Max.FontName = "Verdana";
+            this.patchText.TabIndex = 0;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -484,9 +484,13 @@
             this.statusBar.PerformLayout();
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.tabs.ResumeLayout(false);
             this.taskTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).EndInit();
             this.branchesTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).EndInit();
             this.commitTab.ResumeLayout(false);
             this.commitHorizontalDivider.Panel1.ResumeLayout(false);
             this.commitHorizontalDivider.Panel2.ResumeLayout(false);
@@ -497,12 +501,8 @@
             this.commitVerticalDivider.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.commitVerticalDivider)).EndInit();
             this.commitVerticalDivider.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.patchText)).EndInit();
-            this.menuStrip.ResumeLayout(false);
-            this.menuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.changedFiles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patchText)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
