@@ -282,6 +282,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             searchTextBox.Focus();
         }
 
+        internal static void InvokeFirstMenuItem(ContextMenuStrip menu)
+        {
+            if (menu.Items.Count > 0)
+            {
+                menu.Items[0].PerformClick();
+            }
+        }
+
         #endregion
 
         #region Tasks
@@ -355,7 +363,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private void InvokeDefaultTaskGridAction()
         {
             var menu = BuildTaskActionMenu();
-            menu.Items[0].PerformClick();
+            InvokeFirstMenuItem(menu);
         }
 
         #endregion
@@ -432,7 +440,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private void InvokeDefaultBranchGridAction()
         {
             var menu = BuildBranchActionMenu();
-            menu.Items[0].PerformClick();
+            InvokeFirstMenuItem(menu);
         }
 
         #endregion
@@ -485,7 +493,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private void InvokeDefaultChangedFilesAction()
         {
             var menu = BuildChangedFilesActionMenu();
-            menu.Items[0].PerformClick();
+            InvokeFirstMenuItem(menu);
         }
 
         private void RefreshChangedFiles()
