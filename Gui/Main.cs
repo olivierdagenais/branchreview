@@ -113,9 +113,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             gridView.StandardTab = true;
         }
 
-        private static ContextMenuStrip BuildActionMenu(IEnumerable<MenuAction> actions)
+        private static void BuildActionMenu(IEnumerable<MenuAction> actions, ToolStripItemCollection items)
         {
-            var menu = new ContextMenuStrip();
             foreach (var menuAction in actions)
             {
                 // to avoid "access to modified closure" warning
@@ -132,9 +131,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                         (clickSender, eventArgs) => action.Execute(), action.Name);
                 }
                 item.Enabled = action.Enabled;
-                menu.Items.Add(item);
+                items.Add(item);
             }
-            return menu;
         }
 
         private void SetCurrentBranch(object branchId, object taskId)
@@ -269,7 +267,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             var row = taskGrid.SelectedRows[0];
             var taskId = row.Cells["ID"].Value;
             var actions = _taskRepository.GetTaskActions(taskId);
-            return BuildActionMenu(actions);
+            var menu = new ContextMenuStrip();
+            BuildActionMenu(actions, menu.Items);
+            return menu;
         }
 
         private void InvokeDefaultTaskGridAction()
@@ -315,7 +315,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 new MenuAction(null, MenuAction.Separator, false, null),
             };
             var actions = _sourceRepository.GetBranchActions(branchId);
-            return BuildActionMenu(builtInActions.Compose(actions));
+            var menu = new ContextMenuStrip();
+            BuildActionMenu(builtInActions.Compose(actions), menu.Items);
+            return menu;
         }
 
         private void InvokeDefaultBranchGridAction()
@@ -366,7 +368,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             var selectedRows = changedFiles.SelectedRows.Cast<DataGridViewRow>();
             var selectedIds = selectedRows.Map(row => row.Cells["ID"].Value);
             var actions = _sourceRepository.GetActionsForPendingChanges(selectedIds);
-            var menu = BuildActionMenu(actions);
+            var menu = new ContextMenuStrip();
+            BuildActionMenu(actions, menu.Items);
             return menu;
         }
 
