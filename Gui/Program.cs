@@ -13,8 +13,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var commit = new Commit(Environment.CurrentDirectory);
-            Application.Run(commit);
+            var main = new Main();
+            Application.Run(main);
         }
     }
 }
