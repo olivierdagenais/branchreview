@@ -6,7 +6,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
     /// <summary>
     /// Represents an action that can be performed on or around tasks.
     /// </summary>
-    public class TaskAction
+    public class MenuAction
     {
         /// <summary>
         /// Special caption to use for a separator menu item.
@@ -19,7 +19,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         private readonly Image _image;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TaskAction"/> class.
+        /// Initializes a new instance of the <see cref="MenuAction"/> class.
         /// </summary>
         /// 
         /// <param name="name">
@@ -38,7 +38,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// <param name="action">
         /// The action to perform if the menu item is invoked.
         /// </param>
-        public TaskAction(string name, string caption, bool enabled, Action action)
+        public MenuAction(string name, string caption, bool enabled, Action action)
         {
             _name = name;
             _caption = caption;
@@ -47,7 +47,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TaskAction"/> class.
+        /// Initializes a new instance of the <see cref="MenuAction"/> class.
         /// </summary>
         /// 
         /// <param name="name">
@@ -70,7 +70,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// <param name="image">
         /// The icon to display in the menu.
         /// </param>
-        public TaskAction(string name, string caption, bool enabled, Action action, Image image)
+        public MenuAction(string name, string caption, bool enabled, Action action, Image image)
         {
             _name = name;
             _caption = caption;

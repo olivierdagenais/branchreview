@@ -104,19 +104,20 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             var actions = _taskRepository.GetActionsForTask(taskId);
             var menu = new ContextMenuStrip();
-            foreach (var taskAction in actions)
+            foreach (var menuAction in actions)
             {
                 // to avoid "access to modified closure" warning
-                var action = taskAction;
+                var action = menuAction;
 
                 ToolStripItem item;
-                if (action.Caption == TaskAction.Separator)
+                if (action.Caption == MenuAction.Separator)
                 {
                     item = new ToolStripSeparator();
                 }
                 else
                 {
-                    item = new ToolStripButton(action.Caption, action.Image, (clickSender, eventArgs) => action.Execute(), action.Name);
+                    item = new ToolStripButton(action.Caption, action.Image, 
+                        (clickSender, eventArgs) => action.Execute(), action.Name);
                 }
                 item.Enabled = action.Enabled;
                 menu.Items.Add(item);
