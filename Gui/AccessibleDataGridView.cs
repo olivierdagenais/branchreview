@@ -88,6 +88,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         internal static IList<int> AdjustWidths(IList<int> widths, int maxWidth)
         {
             var result = new List<int>(widths.Count);
+            foreach (var width in widths)
+            {
+                result.Add(width);
+            }
             return result;
         }
 

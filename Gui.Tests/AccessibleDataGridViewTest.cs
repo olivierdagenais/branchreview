@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using NUnit.Framework;
 using SoftwareNinjas.Core.Test;
 
@@ -18,6 +19,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests
         {
             var actual = AccessibleDataGridView.AdjustWidths(EmptyWidthList, 0);
             EnumerableExtensions.EnumerateSame(EmptyWidthList, actual);
+        }
+
+        [Test]
+        public void AdjustWidths_ColumnsThatFitAreUnchanged()
+        {
+            var columns = new[] {80, 97, 110, 102};
+            var sum = columns.Sum();
+            var actual = AccessibleDataGridView.AdjustWidths(columns, sum);
+            EnumerableExtensions.EnumerateSame(columns, actual);
         }
     }
 }
