@@ -87,12 +87,38 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         internal static IList<int> AdjustWidths(IList<int> widths, int maxWidth)
         {
-            var result = new List<int>(widths.Count);
+            var sum = (double) widths.Sum();
+            if (sum <= maxWidth)
+            {
+                return widths.ToList();
+            }
+            var numberOfWidths = widths.Count;
+            var result = new List<int>(numberOfWidths);
+            var largeWidths = new List<int>(numberOfWidths);
             foreach (var width in widths)
             {
-                var currentWidth = Math.Min(maxWidth, width);
-                result.Add(currentWidth);
-                maxWidth -= currentWidth;
+                var fraction = width / sum;
+                if (fraction < 0.2)
+                {
+                    result.Add(width);
+                    largeWidths.Add(0);
+                }
+                else
+                {
+                    result.Add(0);
+                    largeWidths.Add(width);
+                }
+            }
+
+            var sumLargeWidths = (double) largeWidths.Sum();
+            maxWidth -= result.Sum();
+            for (int i = 0; i < numberOfWidths; i++)
+            {
+                if (result[i] == 0)
+                {
+                    var currentWidth = widths[i] * maxWidth / sumLargeWidths;
+                    result[i] = (int) currentWidth;
+                }
             }
             return result;
         }
