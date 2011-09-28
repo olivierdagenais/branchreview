@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
@@ -234,15 +235,31 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     items.AddActions(specificActions);
                     items.AddSeparator();
                 }
-                var createBranchAction = new MenuAction("createBranch", "Create Branch for task", true, 
-                    () => CreateBranch(taskId));
-                items.AddAction(createBranchAction);
+                items.AddActions(
+                    new MenuAction("createBranch", "Create branch for task {0}".FormatInvariant(taskId), true, 
+                        () => CreateBranch(taskId)),
+                    new MenuAction("goToBranch", "Go to branch for task {0}".FormatInvariant(taskId), true,
+                        () => GoToBranchFor(taskId))
+                );
             }
         }
 
         private void CreateBranch(object taskId)
         {
             _sourceRepository.CreateBranch(taskId);
+        }
+
+        private void GoToBranchFor(object taskId)
+        {
+            if (branchGrid.DataTable == null)
+            {
+                branchGrid.DataTable = _sourceRepository.LoadBranches();
+            }
+            var dataRow = branchGrid.DataTable.FindFirst("TaskID", taskId);
+            SetCurrentBranch(dataRow["ID"], taskId);
+            var listViewItem = branchGrid.Grid.Items.Cast<ListViewItem>().First(lvi => lvi.GetRow() == dataRow);
+            listViewItem.Selected = true;
+            tabs.SelectedTab = branchesTab;
         }
 
         private void taskGrid_ContextMenuStripNeeded(object sender, ContextMenuStripNeededEventArgs e)

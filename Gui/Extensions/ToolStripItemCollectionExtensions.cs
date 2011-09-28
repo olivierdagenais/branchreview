@@ -12,6 +12,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
             items.Add(item);
         }
 
+        public static void AddActions(this ToolStripItemCollection items, params MenuAction[] actions)
+        {
+            AddActions(items, (IEnumerable<MenuAction>)actions);
+        }
+
         public static void AddActions(this ToolStripItemCollection items, IEnumerable<MenuAction> actions)
         {
             foreach (var menuAction in actions)
