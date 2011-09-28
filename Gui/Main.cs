@@ -9,7 +9,7 @@ using SoftwareNinjas.Core;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
-    public partial class Main : Form
+    public partial class Main : Form, ILog
     {
         private readonly ITaskRepository _taskRepository;
         private readonly ISourceRepository _sourceRepository;
@@ -439,6 +439,47 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             _sourceRepository.Commit(_currentBranchId, message);
             pendingChanges.ChangeLog.Text = String.Empty;
             SwitchCurrentTab(true);
+        }
+
+        #endregion
+
+        #region Implementation of ILog
+
+        public void Info(string message)
+        {
+            statusBarText.Image = Resources.dialog_information;
+            statusBarText.Text = message;
+            statusBarProgress.Value = 0;
+        }
+
+        public void Info(string message, int progressValue, int progressMaximum)
+        {
+            statusBarText.Image = Resources.dialog_information;
+            statusBarText.Text = message;
+            if (progressMaximum == 0)
+            {
+                statusBarProgress.Style = ProgressBarStyle.Marquee;
+            }
+            else
+            {
+                statusBarProgress.Style = ProgressBarStyle.Continuous;
+                statusBarProgress.Maximum = progressMaximum;
+                statusBarProgress.Value = progressValue;
+            }
+        }
+
+        public void Warning(string message)
+        {
+            statusBarText.Image = Resources.dialog_warning;
+            statusBarText.Text = message;
+            statusBarProgress.Value = 0;
+        }
+
+        public void Error(string message)
+        {
+            statusBarText.Image = Resources.dialog_error;
+            statusBarText.Text = message;
+            statusBarProgress.Value = 0;
         }
 
         #endregion

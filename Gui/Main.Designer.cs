@@ -108,7 +108,8 @@
             // 
             // statusBarText
             // 
-            this.statusBarText.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.statusBarText.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.ImageAndText;
+            this.statusBarText.Image = global::SoftwareNinjas.BranchAndReviewTools.Gui.Properties.Resources.dialog_information;
             this.statusBarText.Name = "statusBarText";
             this.statusBarText.Size = new System.Drawing.Size(43, 17);
             this.statusBarText.Text = "Ready";

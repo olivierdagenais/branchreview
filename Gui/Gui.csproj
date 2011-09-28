@@ -116,6 +116,9 @@
     <EmbeddedResource Include="Mock\thesis.xml" />
     <EmbeddedResource Include="Mock\todd.xml" />
     <EmbeddedResource Include="Mock\vendor.xml" />
+    <None Include="Resources\dialog-error.png" />
+    <None Include="Resources\dialog-information.png" />
+    <None Include="Resources\dialog-warning.png" />
     <Content Include="SciLexer.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
