@@ -377,10 +377,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         #endregion
 
-
-        #region Activity/Log
-        #endregion
-
         #region Commit
 
         #endregion
