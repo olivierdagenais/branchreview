@@ -60,31 +60,30 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             return _branches;
         }
 
-        public IList<MenuAction> GetActionsForBranch(object branchId)
+        public IList<MenuAction> GetBranchActions()
         {
-            IList<MenuAction> actions;
-            if (null == branchId)
+            IList<MenuAction> actions = new[]
             {
-                actions = new[]
-                {
-                    new MenuAction("create", "Create branch", true, () => Debug.WriteLine("Creating branch")),
-                };
-            }
-            else
+                new MenuAction("seeInRepo", "&See branches in repository", true,
+                    () => Debug.WriteLine("Showing branches")),
+            };
+            return actions;
+        }
+
+        public IList<MenuAction> GetBranchActions(object branchId)
+        {
+            var id = (string) branchId;
+            var escapedId = id.Replace("'", "''");
+            var row = _branches.Select("[ID] = '" + escapedId + "'").FirstOrDefault();
+            IList<MenuAction> actions = new[]
             {
-                var id = (string) branchId;
-                var escapedId = id.Replace("'", "''");
-                var row = _branches.Select("[ID] = '" + escapedId + "'").FirstOrDefault();
-                actions = new[]
-                {
-                    new MenuAction("pull", "Pu&ll", true, () => Debug.WriteLine("Pulling {0}", new[] { id })),
-                    new MenuAction("push", "Pu&sh", (string) row["Status"] == "ready for push",
-                                   () => Debug.WriteLine("Pushing {0}", new[] { id })),
-                    new MenuAction("sep1", MenuAction.Separator, true, null),
-                    new MenuAction("delete", "&Delete", (string) row["Status"] == "synched",
-                                    () => Debug.WriteLine("Deleting branch {0}", new[] { id })),
-                };
-            }
+                new MenuAction("pull", "Pu&ll", true, () => Debug.WriteLine("Pulling {0}", new[] {id})),
+                new MenuAction("push", "Pu&sh", (string) row["Status"] == "ready for push",
+                               () => Debug.WriteLine("Pushing {0}", new[] {id})),
+                new MenuAction("sep1", MenuAction.Separator, true, null),
+                new MenuAction("delete", "&Delete", (string) row["Status"] == "synched",
+                               () => Debug.WriteLine("Deleting branch {0}", new[] {id})),
+            };
             return actions;
         }
 

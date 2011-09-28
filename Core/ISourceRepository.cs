@@ -25,19 +25,28 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         DataTable LoadBranches();
 
         /// <summary>
-        /// Given a <paramref name="branchId"/> representing the selected branch (or <see langword="null" /> if no
-        /// task was selected), obtains the possible <see cref="MenuAction"/> instances that can be performed.
+        /// Obtains the possible <see cref="MenuAction"/> instances that can be performed regardless of branch
+        /// selection.
+        /// </summary>
+        /// 
+        /// <returns>
+        /// An ordered list of <see cref="MenuAction"/> instances from which to build a menu.
+        /// </returns>
+        IList<MenuAction> GetBranchActions();
+
+        /// <summary>
+        /// Given a <paramref name="branchId"/> representing the selected branch, obtains the possible
+        /// <see cref="MenuAction"/> instances that can be performed.
         /// </summary>
         /// 
         /// <param name="branchId">
-        /// The ID of the branch, as obtained from the <c>ID</c> column of the <see cref="DataTable"/>;
-        /// or <see langword="null" /> if no branch was selected.
+        /// The ID of the branch, as obtained from the <c>ID</c> column of the <see cref="DataTable"/>.
         /// </param>
         /// 
         /// <returns>
         /// An ordered list of <see cref="MenuAction"/> instances from which to build a menu.
         /// </returns>
-        IList<MenuAction> GetActionsForBranch(object branchId);
+        IList<MenuAction> GetBranchActions(object branchId);
 
         /// <summary>
         /// Loads a <see cref="DataTable"/> representing the changes that have not yet been committed in the branch

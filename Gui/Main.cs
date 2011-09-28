@@ -314,7 +314,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                             () => SetCurrentBranch(branchId, taskId) ),
                 new MenuAction(null, MenuAction.Separator, false, null),
             };
-            var actions = _sourceRepository.GetActionsForBranch(branchId);
+            var actions = _sourceRepository.GetBranchActions(branchId);
             return BuildActionMenu(builtInActions.Compose(actions));
         }
 
