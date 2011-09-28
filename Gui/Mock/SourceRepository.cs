@@ -213,6 +213,16 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             return _refactorInternetPendingChanges;
         }
 
+        public string GetRevisionMessage(object revisionId)
+        {
+            Debug.WriteLine("Obtaining the message for revision {0}...", revisionId);
+            var table = _revisionTablesByBranchId["root"];
+            var rows = table.Select("ID = '{0}'".FormatInvariant(revisionId));
+            var row = rows[0];
+            var value = row["Message"];
+            return (string) value;
+        }
+
         public string ComputeRevisionDifferences(IEnumerable<object> changeIds)
         {
             var numberOfPendingChanges = changeIds.Count();

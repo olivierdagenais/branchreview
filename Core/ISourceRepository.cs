@@ -145,6 +145,21 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         DataTable GetRevisionChanges(object revisionId);
 
         /// <summary>
+        /// Retrieves the message (i.e. change log) associated with a revision, identified by
+        /// <paramref name="revisionId"/>.
+        /// </summary>
+        /// 
+        /// <param name="revisionId">
+        /// A revision ID obtained from the <c>ID</c> column of the <see cref="DataTable"/> returned by
+        /// <see cref="LoadRevisions"/>.
+        /// </param>
+        /// 
+        /// <returns>
+        /// A string representation of the message for the specified revision.
+        /// </returns>
+        string GetRevisionMessage(object revisionId);
+
+        /// <summary>
         /// Generates a text-based patch; the list of additions, modifications and removals to apply to each file
         /// represented by the <paramref name="changeIds"/>.
         /// </summary>
