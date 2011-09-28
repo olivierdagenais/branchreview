@@ -15,15 +15,16 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             {
                 new DataColumn("ID", typeof(string)) { Caption = "Name" },
                 new DataColumn("TaskID", typeof(int)) { Caption = "Task", ColumnMapping = MappingType.Hidden },
+                new DataColumn("BasePath", typeof(string)) { Caption = "Path" },
                 new DataColumn("LastActivity", typeof(DateTime)) { Caption = "Last Activity" },
                 {"Owner", typeof(string)},
                 {"Status", typeof(string)},
             },
             Rows =
             {
-                {"123_DoFtp", 123, new DateTime(2011, 09, 02, 14, 32, 06), "Joe Dassin", "unmapped"},
-                {"435_DoSftp", 435, new DateTime(2011, 08, 01, 10, 05, 57), "Tom Jones", "ready for push"},
-                {"436_RefactorInternet", 436, new DateTime(2011, 09, 04, 11, 30, 36), "Paul Anka", "pending changes"},
+                {"123_DoFtp", 123, @"c:\src\branches\123_DoFtp", new DateTime(2011, 09, 02, 14, 32, 06), "Joe Dassin", "unmapped"},
+                {"435_DoSftp", 435, @"c:\src\branches\TomJones\435_DoSftp", new DateTime(2011, 08, 01, 10, 05, 57), "Tom Jones", "ready for push"},
+                {"436_RefactorInternet", 436, @"c:\src\branches\PaulAnka\436_RefactorInternet", new DateTime(2011, 09, 04, 11, 30, 36), "Paul Anka", "pending changes"},
             }
         };
 

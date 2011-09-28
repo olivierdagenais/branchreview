@@ -19,6 +19,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         ///     <listheader><term>Column name</term><description>Description</description></listheader>
         ///     <item><term>ID</term><description>A unique identifier for branches</description></item>
         ///     <item><term>TaskID</term><description>The ID of the associated task.</description></item>
+        ///     <item><term>BasePath</term><description>The location of the branch's working copy, if available.</description></item>
         /// </list>
         /// </returns>
         DataTable LoadBranches();
