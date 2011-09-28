@@ -41,5 +41,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
             
         }
-    }
+
+        public static void InvokeFirstMenuItem(this ToolStripItemCollection items)
+        {
+            if (items.Count > 0)
+            {
+                items[0].PerformClick();
+            }
+        }
+}
 }
