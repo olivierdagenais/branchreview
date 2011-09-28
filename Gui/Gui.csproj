@@ -66,6 +66,7 @@
     <Compile Include="SearchableDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ToolStripItemCollectionExtensions.cs" />
     <EmbeddedResource Include="ChangeInspector.resx">
       <DependentUpon>ChangeInspector.cs</DependentUpon>
     </EmbeddedResource>

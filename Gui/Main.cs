@@ -132,40 +132,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             gridView.StandardTab = true;
         }
 
-        // TODO: make this an extension method on ToolStipItemCollection
-        private static void AddSeparator(ToolStripItemCollection items)
-        {
-            var item = new ToolStripSeparator();
-            items.Add(item);
-        }
-
-        private static void BuildActionMenu(IEnumerable<MenuAction> actions, ToolStripItemCollection items)
-        {
-            foreach (var menuAction in actions)
-            {
-                // to avoid "access to modified closure" warning
-                var action = menuAction;
-
-                ToolStripItem item;
-                if (action.IsSeparator)
-                {
-                    AddSeparator(items);
-                }
-                else
-                {
-                    item = new ToolStripMenuItem
-                    {
-                        Name = action.Name,
-                        Text = action.Caption,
-                        Enabled = action.Enabled,
-                        Image = action.Image,
-                    };
-                    item.Click += (clickSender, eventArgs) => action.Execute();
-                    items.Add(item);
-                }
-            }
-        }
-
         private void SetCurrentBranch(object branchId, object taskId)
         {
             _currentBranchId = branchId;
@@ -315,7 +281,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             items.Clear();
 
             var generalActions = _taskRepository.GetTaskActions();
-            BuildActionMenu(generalActions, items);
+            items.AddActions(generalActions);
 
             var needsLeadingSeparator = generalActions.Count > 0;
             AddTaskSpecificActions(items, needsLeadingSeparator);
@@ -331,14 +297,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 {
                     if (needsLeadingSeparator)
                     {
-                        AddSeparator(items);
+                        items.AddSeparator();
                     }
-                    BuildActionMenu(specificActions, items);
-                    AddSeparator(items);
+                    items.AddActions(specificActions);
+                    items.AddSeparator();
                 }
                 var createBranchAction = new MenuAction("createBranch", "Create Branch for task", true, 
                     () => CreateBranch(taskId));
-                BuildActionMenu(new[] { createBranchAction }, items);
+                items.AddAction(createBranchAction);
             }
         }
 
@@ -391,7 +357,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             items.Clear();
 
             var generalActions = _sourceRepository.GetBranchActions();
-            BuildActionMenu(generalActions, items);
+            items.AddActions(generalActions);
 
             var needsLeadingSeparator = generalActions.Count > 0;
             AddBranchSpecificActions(items, needsLeadingSeparator);
@@ -404,7 +370,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             {
                 if (needsLeadingSeparator)
                 {
-                    AddSeparator(items);
+                    items.AddSeparator();
                 }
                 var row = selectedRows[0];
                 var branchId = row.Cells["ID"].Value;
@@ -414,12 +380,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     new MenuAction("defaultOpen", "&Open", row.Cells["BasePath"].Value != DBNull.Value,
                                 () => SetCurrentBranch(branchId, taskId) ),
                 };
-                BuildActionMenu(builtInActions, items);
+                items.AddActions(builtInActions);
                 var specificActions = _sourceRepository.GetBranchActions(branchId);
                 if (specificActions.Count > 0)
                 {
-                    AddSeparator(items);
-                    BuildActionMenu(specificActions, items);
+                    items.AddSeparator();
+                    items.AddActions(specificActions);
                 }
             }
         }
@@ -498,7 +464,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             var selectedIds = FindSelectedIds();
             var actions = _sourceRepository.GetActionsForPendingChanges(selectedIds);
             var menu = new ContextMenuStrip();
-            BuildActionMenu(actions, menu.Items);
+            menu.Items.AddActions(actions);
             return menu;
         }
 
