@@ -112,17 +112,17 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             SwitchCurrentTab(false);
         }
 
-        private void tasksMenuItem_Click(object sender, EventArgs e)
+        private void goToTasksMenuItem_Click(object sender, EventArgs e)
         {
             tabs.SelectedTab = taskTab;
         }
 
-        private void branchesMenuItem_Click(object sender, EventArgs e)
+        private void goToBranchesMenuItem_Click(object sender, EventArgs e)
         {
             tabs.SelectedTab = branchesTab;
         }
 
-        private void commitMenuItem_Click(object sender, EventArgs e)
+        private void goToPendingMenuItem_Click(object sender, EventArgs e)
         {
             tabs.SelectedTab = commitTab;
         }
@@ -387,6 +387,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         #endregion
 
         #region Commit
+
+        private void commitMenuItem_Click(object sender, EventArgs e)
+        {
+            // TODO: confirm if necessary and commit!
+        }
 
         #endregion
     }
