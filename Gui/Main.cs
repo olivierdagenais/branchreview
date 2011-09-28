@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
@@ -67,7 +68,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             gridView.StandardTab = true;
         }
 
-        void Main_Load(object sender, System.EventArgs e)
+        void Main_Load(object sender, EventArgs e)
         {
             var settings = Settings.Default;
             ClientSize = settings.WindowSize;
@@ -76,7 +77,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             searchStrip.Location = settings.SearchLocation;
         }
 
-        void Main_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        void Main_Closing(object sender, CancelEventArgs e)
         {
             var settings = Settings.Default;
             settings.MenuLocation = new Point(menuStrip.Location.X - 3, menuStrip.Location.Y);
@@ -86,12 +87,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             settings.Save();
         }
 
-        private void exitMenuItem_Click(object sender, System.EventArgs e)
+        private void exitMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void searchTextBox_TextChanged(object sender, System.EventArgs e)
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
         {
             var grid = _searchableGrids[tabs.SelectedIndex];
             if (grid != null)
