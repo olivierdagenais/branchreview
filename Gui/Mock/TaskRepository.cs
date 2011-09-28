@@ -38,32 +38,30 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             return _tasks;
         }
 
-        public IList<MenuAction> GetActionsForTask(object taskId)
+        public IList<MenuAction> GetTaskActions()
         {
-            IList<MenuAction> actionsForTask;
-            if (null == taskId)
+            IList<MenuAction> actionsForTask = new[]
             {
-                actionsForTask = new[]
-                {
-                    new MenuAction("create", "Create Bug", true, () => Debug.WriteLine("Creating bug")),
-                    new MenuAction("createFeature", "Create Feature", true, () => Debug.WriteLine("Creating feature")),
-                    new MenuAction("createTask", "Create Task", true, () => Debug.WriteLine("Creating task")),
-                };
-            }
-            else
+                new MenuAction("create", "Create Bug", true, () => Debug.WriteLine("Creating bug")),
+                new MenuAction("createFeature", "Create Feature", true, () => Debug.WriteLine("Creating feature")),
+                new MenuAction("createTask", "Create Task", true, () => Debug.WriteLine("Creating task")),
+            };
+            return actionsForTask;
+        }
+
+        public IList<MenuAction> GetTaskActions(object taskId)
+        {
+            var id = (int) taskId;
+            var row = _tasks.Select("[ID] = " + id).FirstOrDefault();
+            IList<MenuAction> actionsForTask = new[]
             {
-                var id = (int) taskId;
-                var row = _tasks.Select("[ID] = " + id).FirstOrDefault();
-                actionsForTask = new[]
-                {
-                    new MenuAction("open", "&Open && Launch", true, () => Debug.WriteLine("Opening task {0}", id)),
-                    new MenuAction("resolve", "&Resolve", (string) row["Status"] == "Accepted",
-                                   () => Debug.WriteLine("Resolving task {0}", id)),
-                    new MenuAction("sep1", MenuAction.Separator, true, null),
-                    new MenuAction("close", "&Close", (string) row["Status"] == "Fixed",
-                                    () => Debug.WriteLine("Closing task {0}", id)),
-                };
-            }
+                new MenuAction("open", "&Open && Launch", true, () => Debug.WriteLine("Opening task {0}", id)),
+                new MenuAction("resolve", "&Resolve", (string) row["Status"] == "Accepted",
+                                () => Debug.WriteLine("Resolving task {0}", id)),
+                new MenuAction("sep1", MenuAction.Separator, true, null),
+                new MenuAction("close", "&Close", (string) row["Status"] == "Fixed",
+                                () => Debug.WriteLine("Closing task {0}", id)),
+            };
             return actionsForTask;
         }
     }

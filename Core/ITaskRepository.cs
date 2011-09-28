@@ -24,18 +24,26 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         DataTable LoadTasks();
 
         /// <summary>
-        /// Given a <paramref name="taskId"/> representing the selected task (or <see langword="null" /> if no task
-        /// was selected), obtains the possible <see cref="MenuAction"/> instances that can be performed.
+        /// Obtains the possible <see cref="MenuAction"/> instances that can be performed regardless of task selection.
+        /// </summary>
+        /// 
+        /// <returns>
+        /// An ordered list of <see cref="MenuAction"/> instances from which to build a menu.
+        /// </returns>
+        IList<MenuAction> GetTaskActions();
+
+        /// <summary>
+        /// Given a <paramref name="taskId"/> representing the selected task, obtains the possible
+        /// <see cref="MenuAction"/> instances that can be performed.
         /// </summary>
         /// 
         /// <param name="taskId">
-        /// The ID of the task, as obtained from the <c>ID</c> column of the <see cref="DataTable"/>;
-        /// or <see langword="null" /> if no task was selected.
+        /// The ID of the task, as obtained from the <c>ID</c> column of the <see cref="DataTable"/>.
         /// </param>
         /// 
         /// <returns>
         /// An ordered list of <see cref="MenuAction"/> instances from which to build a menu.
         /// </returns>
-        IList<MenuAction> GetActionsForTask(object taskId);
+        IList<MenuAction> GetTaskActions(object taskId);
     }
 }

@@ -268,7 +268,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             var row = taskGrid.SelectedRows[0];
             var taskId = row.Cells["ID"].Value;
-            var actions = _taskRepository.GetActionsForTask(taskId);
+            var actions = _taskRepository.GetTaskActions(taskId);
             return BuildActionMenu(actions);
         }
 
