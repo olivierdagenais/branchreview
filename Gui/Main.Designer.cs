@@ -399,6 +399,7 @@
             this.activityTopBottomPanel.Size = new System.Drawing.Size(778, 492);
             this.activityTopBottomPanel.SplitterDistance = 106;
             this.activityTopBottomPanel.TabIndex = 0;
+            this.activityTopBottomPanel.TabStop = false;
             // 
             // activityRevisions
             // 
