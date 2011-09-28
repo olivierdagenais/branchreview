@@ -167,7 +167,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
-        protected override void OnMouseDown(MouseEventArgs e)
+        protected override void OnMouseUp(MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
