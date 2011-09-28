@@ -60,7 +60,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\CustomInfo.cs" />
-    <Compile Include="CommitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gui\Gui.csproj">

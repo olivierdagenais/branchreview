@@ -127,11 +127,6 @@
     <None Include="SoftwareNinjas.NAnt.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Microsoft.TeamFoundation.Client.dll" />
-    <None Include="Microsoft.TeamFoundation.VersionControl.Client.dll" />
-    <None Include="Microsoft.TeamFoundation.VersionControl.Common.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="nunit\nunit-console-runner.dll" />
     <None Include="nunit\nunit-console-x86.exe" />
     <None Include="nunit\nunit.core.dll" />

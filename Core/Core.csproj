@@ -47,11 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ISourceRepository.cs" />
-    <Compile Include="ISubversionClient.cs" />
     <Compile Include="ITaskRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\CustomInfo.cs" />
-    <Compile Include="SvnInfo.cs" />
     <Compile Include="MenuAction.cs" />
   </ItemGroup>
   <ItemGroup>
