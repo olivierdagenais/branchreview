@@ -244,6 +244,18 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             delayedWorker.Start();
         }
 
+        private static object FindSelectedId(DataGridView dataGridView)
+        {
+            var selectedRows = dataGridView.SelectedRows;
+            object taskId = null;
+            if (selectedRows.Count > 0)
+            {
+                var row = selectedRows[0];
+                taskId = row.Cells["ID"].Value;
+            }
+            return taskId;
+        }
+
         #endregion
 
         #region Tasks
@@ -257,7 +269,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             {
                 BuildActionMenu(generalActions, items);
             }
-            var taskId = FindSelectedTaskId();
+            var taskId = FindSelectedId(taskGrid);
             if (taskId != null)
             {
                 var specificActions = _taskRepository.GetTaskActions(taskId);
@@ -279,18 +291,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private void CreateBranch(object taskId)
         {
             _sourceRepository.CreateBranch(taskId);
-        }
-
-        private object FindSelectedTaskId()
-        {
-            var selectedRows = taskGrid.SelectedRows;
-            object taskId = null;
-            if (selectedRows.Count > 0)
-            {
-                var row = selectedRows[0];
-                taskId = row.Cells["ID"].Value;
-            }
-            return taskId;
         }
 
         private void taskGrid_DoubleClick(object sender, EventArgs e)
@@ -316,7 +316,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private ContextMenuStrip BuildTaskActionMenu()
         {
-            var taskId = FindSelectedTaskId();
+            var taskId = FindSelectedId(taskGrid);
             var menu = new ContextMenuStrip();
             if (taskId != null)
             {
