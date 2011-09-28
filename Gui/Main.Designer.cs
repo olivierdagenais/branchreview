@@ -62,9 +62,6 @@
             this.branchesMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.activityMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.commitMenu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.searchStrip = new System.Windows.Forms.ToolStrip();
-            this.searchLabel = new System.Windows.Forms.ToolStripLabel();
-            this.searchTextBox = new System.Windows.Forms.ToolStripTextBox();
             viewMenuRefreshSeparator = new System.Windows.Forms.ToolStripSeparator();
             tasksDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
             branchesDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
@@ -90,7 +87,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.changedFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patchText)).BeginInit();
             this.menuStrip.SuspendLayout();
-            this.searchStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // viewMenuRefreshSeparator
@@ -150,7 +146,6 @@
             // toolStripContainer.TopToolStripPanel
             // 
             this.toolStripContainer.TopToolStripPanel.Controls.Add(this.menuStrip);
-            this.toolStripContainer.TopToolStripPanel.Controls.Add(this.searchStrip);
             // 
             // tabs
             // 
@@ -475,33 +470,6 @@
             this.commitMenu.Size = new System.Drawing.Size(68, 22);
             this.commitMenu.Text = "&Changes";
             // 
-            // searchStrip
-            // 
-            this.searchStrip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this.searchStrip.GripMargin = new System.Windows.Forms.Padding(0);
-            this.searchStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.searchStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.searchLabel,
-            this.searchTextBox});
-            this.searchStrip.Location = new System.Drawing.Point(400, 0);
-            this.searchStrip.Name = "searchStrip";
-            this.searchStrip.Size = new System.Drawing.Size(290, 25);
-            this.searchStrip.TabIndex = 1;
-            // 
-            // searchLabel
-            // 
-            this.searchLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.searchLabel.Name = "searchLabel";
-            this.searchLabel.Size = new System.Drawing.Size(54, 22);
-            this.searchLabel.Text = "&Search";
-            // 
-            // searchTextBox
-            // 
-            this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(200, 25);
-            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -539,8 +507,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.patchText)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            this.searchStrip.ResumeLayout(false);
-            this.searchStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -560,9 +526,6 @@
         private System.Windows.Forms.TabPage branchesTab;
         private System.Windows.Forms.TabPage activityTab;
         private System.Windows.Forms.TabPage commitTab;
-        private System.Windows.Forms.ToolStrip searchStrip;
-        private System.Windows.Forms.ToolStripLabel searchLabel;
-        private System.Windows.Forms.ToolStripTextBox searchTextBox;
         private SearchableDataGridView taskGrid;
         private SearchableDataGridView branchGrid;
         private System.Windows.Forms.SplitContainer commitHorizontalDivider;
