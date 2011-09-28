@@ -230,24 +230,27 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
             if (controlToFocus != null)
             {
-                var delayedWorker = new Timer();
-                delayedWorker.Tick += (s, ea) => delayedWorker_Tick(delayedWorker, () => controlToFocus.Focus());
-                delayedWorker.Interval = 10;
-                delayedWorker.Start();
+                ExecuteLater(10, () => controlToFocus.Focus());
             }
         }
 
-        void delayedWorker_Tick(Timer sender, Action action)
+        // TODO: turn into extension method on Control
+        internal void ExecuteLater(int milliseconds, Action action)
         {
-            sender.Stop();
-            if (this.InvokeRequired)
+            var delayedWorker = new Timer {Interval = milliseconds};
+            delayedWorker.Tick += (s, ea) =>
             {
-                this.Invoke(new Action(action));
-            }
-            else
-            {
-                action();
-            }
+                delayedWorker.Stop();
+                if (this.InvokeRequired)
+                {
+                    this.Invoke(new Action(action));
+                }
+                else
+                {
+                    action();
+                }
+            };
+            delayedWorker.Start();
         }
 
         private void RefreshChangedFiles()
