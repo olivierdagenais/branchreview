@@ -133,6 +133,7 @@
             this.tabs.SelectedIndex = 0;
             this.tabs.Size = new System.Drawing.Size(792, 501);
             this.tabs.TabIndex = 0;
+            this.tabs.TabStop = false;
             this.tabs.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabs_Selected);
             // 
             // taskTab
