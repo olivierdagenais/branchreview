@@ -128,7 +128,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 var action = menuAction;
 
                 ToolStripItem item;
-                if (action.Caption == MenuAction.Separator)
+                if (action.IsSeparator)
                 {
                     item = new ToolStripSeparator();
                 }
@@ -374,7 +374,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             {
                 new MenuAction("defaultOpen", "&Open", row.Cells["BasePath"].Value != DBNull.Value,
                             () => SetCurrentBranch(branchId, taskId) ),
-                new MenuAction(null, MenuAction.Separator, false, null),
+                MenuAction.Separator,
             };
             var actions = _sourceRepository.GetBranchActions(branchId);
             var menu = new ContextMenuStrip();

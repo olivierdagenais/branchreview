@@ -80,7 +80,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
                 new MenuAction("pull", "Pu&ll", true, () => Debug.WriteLine("Pulling {0}", new[] {id})),
                 new MenuAction("push", "Pu&sh", (string) row["Status"] == "ready for push",
                                () => Debug.WriteLine("Pushing {0}", new[] {id})),
-                new MenuAction("sep1", MenuAction.Separator, true, null),
+                MenuAction.Separator,
                 new MenuAction("delete", "&Delete", (string) row["Status"] == "synched",
                                () => Debug.WriteLine("Deleting branch {0}", new[] {id})),
             };

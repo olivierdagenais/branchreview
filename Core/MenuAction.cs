@@ -9,9 +9,25 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
     public class MenuAction
     {
         /// <summary>
-        /// Special caption to use for a separator menu item.
+        /// Special instance of <see cref="MenuAction"/> to use when a separator is needed.
         /// </summary>
-        public const string Separator = "---";
+        public static readonly MenuAction Separator = new MenuAction(null, null, false, null);
+
+        /// <summary>
+        /// Convenience property to determine if the current instance represents the singleton <see cref="Separator"/>.
+        /// </summary>
+        /// 
+        /// <returns>
+        /// <see langword="true"/> if the instance is the <see cref="Separator"/>;
+        /// <see langword="false"/> otherwise.
+        /// </returns>
+        public bool IsSeparator
+        {
+            get
+            {
+                return this == Separator;
+            }
+        }
 
         private readonly string _name, _caption;
         private readonly bool _enabled;
@@ -27,8 +43,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// </param>
         /// 
         /// <param name="caption">
-        /// The text to show the user in the menu.  Prefix a character with <c>&amp;</c> to underline it.  Specify
-        /// <see cref="Separator"/> to show a separator.
+        /// The text to show the user in the menu.  Prefix a character with <c>&amp;</c> to underline it.
         /// </param>
         /// 
         /// <param name="enabled">
@@ -55,8 +70,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// </param>
         /// 
         /// <param name="caption">
-        /// The text to show the user in the menu.  Prefix a character with <c>&amp;</c> to underline it.  Specify
-        /// <see cref="Separator"/> to show a separator.
+        /// The text to show the user in the menu.  Prefix a character with <c>&amp;</c> to underline it.
         /// </param>
         /// 
         /// <param name="enabled">

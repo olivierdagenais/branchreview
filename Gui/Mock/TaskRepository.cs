@@ -58,7 +58,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
                 new MenuAction("open", "&Open && Launch", true, () => Debug.WriteLine("Opening task {0}", id)),
                 new MenuAction("resolve", "&Resolve", (string) row["Status"] == "Accepted",
                                 () => Debug.WriteLine("Resolving task {0}", id)),
-                new MenuAction("sep1", MenuAction.Separator, true, null),
+                MenuAction.Separator,
                 new MenuAction("close", "&Close", (string) row["Status"] == "Fixed",
                                 () => Debug.WriteLine("Closing task {0}", id)),
             };
