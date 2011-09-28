@@ -87,6 +87,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             return actions;
         }
 
+        public void CreateBranch(object taskId)
+        {
+            Debug.WriteLine("Creating branch {0}...", taskId);
+        }
+
         public DataTable GetPendingChanges(object branchId)
         {
             Debug.WriteLine("Scanning for changes in {0}...", branchId);

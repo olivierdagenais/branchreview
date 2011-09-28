@@ -49,6 +49,16 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         IList<MenuAction> GetBranchActions(object branchId);
 
         /// <summary>
+        /// Creates a branch associated with the specified <paramref name="taskId"/>, prompting the user for more
+        /// information if necessary.
+        /// </summary>
+        /// 
+        /// <param name="taskId">
+        /// The ID of the task with which the new branch is to be associated.
+        /// </param>
+        void CreateBranch(object taskId);
+
+        /// <summary>
         /// Loads a <see cref="DataTable"/> representing the changes that have not yet been committed in the branch
         /// identified by <paramref name="branchId"/>.
         /// </summary>
