@@ -34,7 +34,7 @@
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusBarText = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBarProgress = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolStripContainer = new System.Windows.Forms.ToolStripContainer();
+            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.tabs = new System.Windows.Forms.TabControl();
             this.taskTab = new System.Windows.Forms.TabPage();
             this.branchesTab = new System.Windows.Forms.TabPage();
@@ -66,9 +66,7 @@
             tasksDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
             branchesDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
             this.statusBar.SuspendLayout();
-            this.toolStripContainer.ContentPanel.SuspendLayout();
-            this.toolStripContainer.TopToolStripPanel.SuspendLayout();
-            this.toolStripContainer.SuspendLayout();
+            this.tableLayoutPanel.SuspendLayout();
             this.tabs.SuspendLayout();
             this.taskTab.SuspendLayout();
             this.branchesTab.SuspendLayout();
@@ -127,25 +125,21 @@
             this.statusBarProgress.Name = "statusBarProgress";
             this.statusBarProgress.Size = new System.Drawing.Size(100, 16);
             // 
-            // toolStripContainer
+            // tableLayoutPanel
             // 
-            this.toolStripContainer.BottomToolStripPanelVisible = false;
-            // 
-            // toolStripContainer.ContentPanel
-            // 
-            this.toolStripContainer.ContentPanel.Controls.Add(this.tabs);
-            this.toolStripContainer.ContentPanel.Size = new System.Drawing.Size(792, 526);
-            this.toolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer.LeftToolStripPanelVisible = false;
-            this.toolStripContainer.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer.Name = "toolStripContainer";
-            this.toolStripContainer.RightToolStripPanelVisible = false;
-            this.toolStripContainer.Size = new System.Drawing.Size(792, 551);
-            this.toolStripContainer.TabIndex = 1;
-            // 
-            // toolStripContainer.TopToolStripPanel
-            // 
-            this.toolStripContainer.TopToolStripPanel.Controls.Add(this.menuStrip);
+            this.tableLayoutPanel.ColumnCount = 1;
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel.Controls.Add(this.menuStrip, 0, 0);
+            this.tableLayoutPanel.Controls.Add(this.tabs, 0, 1);
+            this.tableLayoutPanel.Controls.Add(this.statusBar, 0, 2);
+            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel.Name = "tableLayoutPanel";
+            this.tableLayoutPanel.RowCount = 3;
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel.TabIndex = 0;
             // 
             // tabs
             // 
@@ -480,7 +474,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 573);
-            this.Controls.Add(this.toolStripContainer);
+            this.Controls.Add(this.tableLayoutPanel);
             this.Controls.Add(this.statusBar);
             this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::SoftwareNinjas.BranchAndReviewTools.Gui.Properties.Settings.Default, "WindowLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.Location = global::SoftwareNinjas.BranchAndReviewTools.Gui.Properties.Settings.Default.WindowLocation;
@@ -488,11 +482,8 @@
             this.Text = "Branch and Review Tools";
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
-            this.toolStripContainer.ContentPanel.ResumeLayout(false);
-            this.toolStripContainer.TopToolStripPanel.ResumeLayout(false);
-            this.toolStripContainer.TopToolStripPanel.PerformLayout();
-            this.toolStripContainer.ResumeLayout(false);
-            this.toolStripContainer.PerformLayout();
+            this.tableLayoutPanel.ResumeLayout(false);
+            this.tableLayoutPanel.PerformLayout();
             this.tabs.ResumeLayout(false);
             this.taskTab.ResumeLayout(false);
             this.branchesTab.ResumeLayout(false);
@@ -522,7 +513,7 @@
         private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.ToolStripStatusLabel statusBarText;
         private System.Windows.Forms.ToolStripProgressBar statusBarProgress;
-        private System.Windows.Forms.ToolStripContainer toolStripContainer;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         private System.Windows.Forms.ToolStrip menuStrip;
         private System.Windows.Forms.ToolStripDropDownButton fileMenu;
         private System.Windows.Forms.ToolStripMenuItem exitMenuItem;

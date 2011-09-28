@@ -34,7 +34,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             this.searchLabel = new ToolStripLabel();
             this.searchTextBox = new ToolStripTextBox();
             this.searchStrip.SuspendLayout();
-            this.toolStripContainer.TopToolStripPanel.Controls.Add(this.searchStrip);
             // 
             // searchStrip
             // 
