@@ -25,6 +25,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             InitializeComponent();
             ConfigureDataGridView(taskGrid, false);
             ConfigureDataGridView(branchGrid, false);
+            ConfigureDataGridView(activityRevisions, false);
+            ConfigureDataGridView(activityChangeInspector.FileGrid, true);
             ConfigureDataGridView(changedFiles, true);
             changeLog.InitializeDefaults();
             patchText.InitializeDefaults();
