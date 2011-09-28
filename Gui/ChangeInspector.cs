@@ -10,6 +10,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
     public partial class ChangeInspector : UserControl
     {
+        private object _context;
+
         public ChangeInspector()
         {
             InitializeComponent();
@@ -24,7 +26,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             set { PatchViewer.SetReadOnlyText(value); }
         }
 
-        public object Context { get; set; }
+        public object Context {
+            get { return _context; }
+            set
+            { 
+                _context = value;
+                RefreshFileGrid();
+            }
+        }
 
         // given a Context (the current BranchId in the "Pending Changes" case and the current revision in "Log"),
         // produces a table of the changes involved
@@ -48,6 +57,42 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         }
 
         #region FileGrid
+        public void RefreshFileGrid()
+        {
+            var oldSelection = FindSelectedIds().ToDictionary(o => o);
+
+            FileGrid.DataTable = null;
+            var pendingChanges = GetChanges(_context);
+            FileGrid.DataTable = pendingChanges;
+            if (0 == FileGrid.Rows.Count)
+            {
+                PatchText = String.Empty;
+            }
+            else
+            {
+                FileGrid.SelectionChanged -= FileGrid_SelectionChanged;
+                if (0 == oldSelection.Count)
+                {
+                    // if nothing was selected, select the first one
+                    FileGrid.Rows[0].Selected = true;
+                }
+                else
+                {
+                    foreach (DataGridViewRow row in FileGrid.Rows)
+                    {
+                        var id = row.Cells["ID"].Value;
+                        if (oldSelection.ContainsKey(id))
+                        {
+                            row.Selected = true;
+                            oldSelection.Remove(id);
+                        }
+                    }
+                }
+                FileGrid_SelectionChanged(this, null);
+                FileGrid.SelectionChanged += FileGrid_SelectionChanged;
+            }
+        }
+
         private IEnumerable<object> FindSelectedIds()
         {
             var selectedRows = FileGrid.SelectedRows.Cast<DataGridViewRow>();
