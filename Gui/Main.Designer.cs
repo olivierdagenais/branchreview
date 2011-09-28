@@ -299,6 +299,7 @@
             // 
             // taskGrid
             // 
+            this.taskGrid.Caption = "";
             this.taskGrid.DataTable = null;
             this.taskGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.taskGrid.Filter = null;
@@ -335,19 +336,20 @@
             // branchGridAndRestDivider.Panel2
             // 
             this.branchGridAndRestDivider.Panel2.Controls.Add(this.activityTopBottomPanel);
-            this.branchGridAndRestDivider.Size = new System.Drawing.Size(778, 492);
-            this.branchGridAndRestDivider.SplitterDistance = 122;
+            this.branchGridAndRestDivider.Size = new System.Drawing.Size(778, 495);
+            this.branchGridAndRestDivider.SplitterDistance = 89;
             this.branchGridAndRestDivider.TabIndex = 1;
             this.branchGridAndRestDivider.TabStop = false;
             // 
             // branchGrid
             // 
+            this.branchGrid.Caption = "";
             this.branchGrid.DataTable = null;
             this.branchGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.branchGrid.Filter = null;
             this.branchGrid.Location = new System.Drawing.Point(0, 0);
             this.branchGrid.Name = "branchGrid";
-            this.branchGrid.Size = new System.Drawing.Size(776, 120);
+            this.branchGrid.Size = new System.Drawing.Size(776, 87);
             this.branchGrid.TabIndex = 0;
             this.branchGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.branchGrid_RowContextMenuStripNeeded);
             this.branchGrid.RowInvoked += new System.EventHandler(this.branchGrid_RowInvoked);
@@ -367,19 +369,20 @@
             // activityTopBottomPanel.Panel2
             // 
             this.activityTopBottomPanel.Panel2.Controls.Add(this.activityChangeInspector);
-            this.activityTopBottomPanel.Size = new System.Drawing.Size(778, 366);
-            this.activityTopBottomPanel.SplitterDistance = 78;
+            this.activityTopBottomPanel.Size = new System.Drawing.Size(778, 402);
+            this.activityTopBottomPanel.SplitterDistance = 85;
             this.activityTopBottomPanel.TabIndex = 1;
             this.activityTopBottomPanel.TabStop = false;
             // 
             // activityRevisions
             // 
+            this.activityRevisions.Caption = "";
             this.activityRevisions.DataTable = null;
             this.activityRevisions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.activityRevisions.Filter = null;
             this.activityRevisions.Location = new System.Drawing.Point(0, 0);
             this.activityRevisions.Name = "activityRevisions";
-            this.activityRevisions.Size = new System.Drawing.Size(776, 76);
+            this.activityRevisions.Size = new System.Drawing.Size(776, 83);
             this.activityRevisions.TabIndex = 0;
             // 
             // activityChangeInspector
@@ -392,7 +395,7 @@
             this.activityChangeInspector.Location = new System.Drawing.Point(0, 0);
             this.activityChangeInspector.Name = "activityChangeInspector";
             this.activityChangeInspector.PatchText = "";
-            this.activityChangeInspector.Size = new System.Drawing.Size(776, 282);
+            this.activityChangeInspector.Size = new System.Drawing.Size(776, 311);
             this.activityChangeInspector.TabIndex = 0;
             // 
             // commitTab
