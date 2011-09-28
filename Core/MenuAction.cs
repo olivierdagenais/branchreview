@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Drawing;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Core
@@ -8,6 +10,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
     /// </summary>
     public class MenuAction
     {
+        /// <summary>
+        /// An empty, immutable list of <see cref="MenuAction"/> objects, for those times where there are no actions.
+        /// </summary>
+        public static readonly IList<MenuAction> EmptyList = new ReadOnlyCollection<MenuAction>(new MenuAction[] {});
+
         /// <summary>
         /// Special instance of <see cref="MenuAction"/> to use when a separator is needed.
         /// </summary>
