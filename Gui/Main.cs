@@ -47,6 +47,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         void Main_Resize(object sender, EventArgs e)
         {
+            menuStrip.Location = Point.Empty;
             searchStrip.Location = new Point(ClientSize.Width - searchStrip.Size.Width, 0);
         }
 
