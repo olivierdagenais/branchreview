@@ -66,7 +66,9 @@
     </Compile>
     <Compile Include="ContextMenuStripNeededEventArgs.cs" />
     <Compile Include="ContextMenuStripNeededEventHandler.cs" />
+    <Compile Include="Extensions\DataTableExtensions.cs" />
     <Compile Include="Extensions\ListViewItemExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>

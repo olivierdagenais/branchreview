@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
@@ -171,11 +172,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
-        internal static bool ContainsInvariantIgnoreCase(string hayStack, string needle)
-        {
-            return hayStack.IndexOf (needle, StringComparison.InvariantCultureIgnoreCase) != -1;
-        }
-
         internal static bool Matches(DataRow row, IList<Type> columnTypes, IList<FilterChunk> filterChunks)
         {
             foreach (var chunk in filterChunks)
@@ -199,7 +195,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                         if (cellValue != null)
                         {
                             var v = cellValue.ToString();
-                            chunkMatchesColumn = ContainsInvariantIgnoreCase(v, chunk.Text);
+                            chunkMatchesColumn = v.ContainsInvariantIgnoreCase(chunk.Text);
                         }
                     }
 
