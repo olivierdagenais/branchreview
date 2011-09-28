@@ -51,7 +51,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         void Grid_KeyDown(object sender, KeyEventArgs e)
         {
-            OnRowInvoked(e);
+            if (e.KeyCode == Keys.Return)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                OnRowInvoked(e);
+            }
         }
 
         void Grid_DoubleClick(object sender, EventArgs e)
