@@ -13,6 +13,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             this.DataBindingComplete += SearchableDataGridView_DataBindingComplete;
             this.Resize += SearchableDataGridView_Resize;
+            this.RowPrePaint += SearchableDataGridView_RowPrePaint;
+        }
+
+        void SearchableDataGridView_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            // http://stackoverflow.com/questions/285829/
+            e.PaintParts &= ~DataGridViewPaintParts.Focus;
         }
 
         void SearchableDataGridView_Resize(object sender, EventArgs e)
