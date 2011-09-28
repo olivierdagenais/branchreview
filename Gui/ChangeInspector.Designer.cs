@@ -128,6 +128,9 @@
             this.FileGrid.RowTemplate.Height = 23;
             this.FileGrid.Size = new System.Drawing.Size(233, 442);
             this.FileGrid.TabIndex = 0;
+            this.FileGrid.DoubleClick += new System.EventHandler(this.FileGrid_DoubleClick);
+            this.FileGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FileGrid_KeyDown);
+            this.FileGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.FileGrid_RowContextMenuStripNeeded);
             // 
             // ChangeInspector
             // 
