@@ -40,12 +40,16 @@
             this.branchesTab = new System.Windows.Forms.TabPage();
             this.activityTab = new System.Windows.Forms.TabPage();
             this.commitTab = new System.Windows.Forms.TabPage();
+            this.searchStrip = new System.Windows.Forms.ToolStrip();
+            this.searchLabel = new System.Windows.Forms.ToolStripLabel();
+            this.searchTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.statusBar.SuspendLayout();
             this.toolStripContainer.ContentPanel.SuspendLayout();
             this.toolStripContainer.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.tabs.SuspendLayout();
+            this.searchStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusBar
@@ -90,6 +94,7 @@
             // toolStripContainer.TopToolStripPanel
             // 
             this.toolStripContainer.TopToolStripPanel.Controls.Add(this.menuStrip);
+            this.toolStripContainer.TopToolStripPanel.Controls.Add(this.searchStrip);
             // 
             // menuStrip
             // 
@@ -98,7 +103,7 @@
             this.fileMenu});
             this.menuStrip.Location = new System.Drawing.Point(3, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(40, 25);
+            this.menuStrip.Size = new System.Drawing.Size(71, 25);
             this.menuStrip.TabIndex = 0;
             // 
             // fileMenu
@@ -171,6 +176,30 @@
             this.commitTab.Text = "Commit";
             this.commitTab.UseVisualStyleBackColor = true;
             // 
+            // searchStrip
+            // 
+            this.searchStrip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.searchStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchLabel,
+            this.searchTextBox});
+            this.searchStrip.Location = new System.Drawing.Point(533, 0);
+            this.searchStrip.Name = "searchStrip";
+            this.searchStrip.Size = new System.Drawing.Size(259, 25);
+            this.searchStrip.TabIndex = 1;
+            // 
+            // searchLabel
+            // 
+            this.searchLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.searchLabel.Name = "searchLabel";
+            this.searchLabel.Size = new System.Drawing.Size(47, 22);
+            this.searchLabel.Text = "&Search";
+            // 
+            // searchTextBox
+            // 
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(200, 25);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -190,6 +219,8 @@
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.tabs.ResumeLayout(false);
+            this.searchStrip.ResumeLayout(false);
+            this.searchStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,5 +240,8 @@
         private System.Windows.Forms.TabPage branchesTab;
         private System.Windows.Forms.TabPage activityTab;
         private System.Windows.Forms.TabPage commitTab;
+        private System.Windows.Forms.ToolStrip searchStrip;
+        private System.Windows.Forms.ToolStripLabel searchLabel;
+        private System.Windows.Forms.ToolStripTextBox searchTextBox;
     }
 }
