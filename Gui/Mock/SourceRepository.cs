@@ -77,12 +77,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
                 var row = _branches.Select("[ID] = '" + escapedId + "'").FirstOrDefault();
                 actions = new[]
                 {
-                    new MenuAction("pull", "Pu&ll", true, () => Debug.WriteLine("Pulling {0}", id)),
+                    new MenuAction("pull", "Pu&ll", true, () => Debug.WriteLine("Pulling {0}", new[] { id })),
                     new MenuAction("push", "Pu&sh", (string) row["Status"] == "ready for push",
-                                   () => Debug.WriteLine("Pushing {0}", id)),
+                                   () => Debug.WriteLine("Pushing {0}", new[] { id })),
                     new MenuAction("sep1", MenuAction.Separator, true, null),
                     new MenuAction("delete", "&Delete", (string) row["Status"] == "synched",
-                                    () => Debug.WriteLine("Deleting branch {0}", id)),
+                                    () => Debug.WriteLine("Deleting branch {0}", new[] { id })),
                 };
             }
             return actions;
@@ -90,6 +90,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
 
         public DataTable GetPendingChanges(object branchId)
         {
+            Debug.WriteLine("Scanning for changes in {0}...", branchId);
             switch (branchId.ToString())
             {
                 case "435_DoSftp":
@@ -103,6 +104,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
 
         public string ComputeDifferences(IEnumerable<object> pendingChangeIds)
         {
+            var numberOfPendingChanges = pendingChangeIds.Count();
+            var suffix = (numberOfPendingChanges == 1 ? "" : "s");
+            Debug.WriteLine("Computing differences for {0} change{1}...", numberOfPendingChanges, suffix);
             return
                 @"Index: D:/Work/open source/tools/BART/trunk/BranchAndReviewTools.sln
 ===================================================================
@@ -138,9 +142,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             return new[]
             {
                 new MenuAction("diff", "&Diff", true,
-                    () => Debug.WriteLine("Diffing {0} change" + suffix, numberOfChangeIds)),
+                    () => Debug.WriteLine("Diffing {0} change{1}", numberOfChangeIds, suffix)),
                 new MenuAction("revert", "&Revert", true,
-                    () => Debug.WriteLine("Reverting {0} change" + suffix, numberOfChangeIds)),
+                    () => Debug.WriteLine("Reverting {0} change{1}", numberOfChangeIds, suffix)),
             };
         }
     }

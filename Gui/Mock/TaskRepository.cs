@@ -56,7 +56,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
                 var row = _tasks.Select("[ID] = " + id).FirstOrDefault();
                 actionsForTask = new[]
                 {
-                    new MenuAction("open", "Open && Launch", true, () => Debug.WriteLine("Opening task {0}", id)),
+                    new MenuAction("open", "&Open && Launch", true, () => Debug.WriteLine("Opening task {0}", id)),
                     new MenuAction("resolve", "&Resolve", (string) row["Status"] == "Accepted",
                                    () => Debug.WriteLine("Resolving task {0}", id)),
                     new MenuAction("sep1", MenuAction.Separator, true, null),
