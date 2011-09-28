@@ -58,11 +58,7 @@
             this.activityRevisions = new SoftwareNinjas.BranchAndReviewTools.Gui.AwesomeGrid();
             this.activityChangeInspector = new SoftwareNinjas.BranchAndReviewTools.Gui.ChangeInspector();
             this.commitTab = new System.Windows.Forms.TabPage();
-            this.commitHorizontalDivider = new System.Windows.Forms.SplitContainer();
-            this.changeLog = new ScintillaNet.Scintilla();
-            this.commitVerticalDivider = new System.Windows.Forms.SplitContainer();
-            this.changedFiles = new SoftwareNinjas.BranchAndReviewTools.Gui.AwesomeGrid();
-            this.patchText = new ScintillaNet.Scintilla();
+            this.pendingChanges = new SoftwareNinjas.BranchAndReviewTools.Gui.ChangeInspector();
             viewMenuRefreshSeparator = new System.Windows.Forms.ToolStripSeparator();
             tasksDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
             branchesDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
@@ -84,17 +80,6 @@
             this.activityTopBottomPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.activityRevisions)).BeginInit();
             this.commitTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.commitHorizontalDivider)).BeginInit();
-            this.commitHorizontalDivider.Panel1.SuspendLayout();
-            this.commitHorizontalDivider.Panel2.SuspendLayout();
-            this.commitHorizontalDivider.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.changeLog)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.commitVerticalDivider)).BeginInit();
-            this.commitVerticalDivider.Panel1.SuspendLayout();
-            this.commitVerticalDivider.Panel2.SuspendLayout();
-            this.commitVerticalDivider.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.changedFiles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.patchText)).BeginInit();
             this.SuspendLayout();
             // 
             // viewMenuRefreshSeparator
@@ -416,7 +401,7 @@
             // 
             // commitTab
             // 
-            this.commitTab.Controls.Add(this.commitHorizontalDivider);
+            this.commitTab.Controls.Add(this.pendingChanges);
             this.commitTab.Location = new System.Drawing.Point(4, 22);
             this.commitTab.Name = "commitTab";
             this.commitTab.Size = new System.Drawing.Size(784, 501);
@@ -424,91 +409,18 @@
             this.commitTab.Text = "Changes";
             this.commitTab.UseVisualStyleBackColor = true;
             // 
-            // commitHorizontalDivider
+            // pendingChanges
             // 
-            this.commitHorizontalDivider.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.commitHorizontalDivider.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.commitHorizontalDivider.Location = new System.Drawing.Point(0, 0);
-            this.commitHorizontalDivider.Name = "commitHorizontalDivider";
-            this.commitHorizontalDivider.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // commitHorizontalDivider.Panel1
-            // 
-            this.commitHorizontalDivider.Panel1.Controls.Add(this.changeLog);
-            // 
-            // commitHorizontalDivider.Panel2
-            // 
-            this.commitHorizontalDivider.Panel2.Controls.Add(this.commitVerticalDivider);
-            this.commitHorizontalDivider.Size = new System.Drawing.Size(784, 498);
-            this.commitHorizontalDivider.SplitterDistance = 228;
-            this.commitHorizontalDivider.TabIndex = 0;
-            this.commitHorizontalDivider.TabStop = false;
-            // 
-            // changeLog
-            // 
-            this.changeLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.changeLog.Location = new System.Drawing.Point(0, 0);
-            this.changeLog.Name = "changeLog";
-            this.changeLog.Size = new System.Drawing.Size(782, 226);
-            this.changeLog.Styles.BraceBad.FontName = "Verdana";
-            this.changeLog.Styles.BraceLight.FontName = "Verdana";
-            this.changeLog.Styles.ControlChar.FontName = "Verdana";
-            this.changeLog.Styles.Default.FontName = "Verdana";
-            this.changeLog.Styles.IndentGuide.FontName = "Verdana";
-            this.changeLog.Styles.LastPredefined.FontName = "Verdana";
-            this.changeLog.Styles.LineNumber.FontName = "Verdana";
-            this.changeLog.Styles.Max.FontName = "Verdana";
-            this.changeLog.TabIndex = 0;
-            // 
-            // commitVerticalDivider
-            // 
-            this.commitVerticalDivider.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.commitVerticalDivider.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.commitVerticalDivider.Location = new System.Drawing.Point(0, 0);
-            this.commitVerticalDivider.Name = "commitVerticalDivider";
-            // 
-            // commitVerticalDivider.Panel1
-            // 
-            this.commitVerticalDivider.Panel1.Controls.Add(this.changedFiles);
-            // 
-            // commitVerticalDivider.Panel2
-            // 
-            this.commitVerticalDivider.Panel2.Controls.Add(this.patchText);
-            this.commitVerticalDivider.Size = new System.Drawing.Size(784, 266);
-            this.commitVerticalDivider.SplitterDistance = 275;
-            this.commitVerticalDivider.SplitterWidth = 6;
-            this.commitVerticalDivider.TabIndex = 0;
-            this.commitVerticalDivider.TabStop = false;
-            // 
-            // changedFiles
-            // 
-            this.changedFiles.DataTable = null;
-            this.changedFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.changedFiles.Filter = null;
-            this.changedFiles.Location = new System.Drawing.Point(0, 0);
-            this.changedFiles.Name = "changedFiles";
-            this.changedFiles.Size = new System.Drawing.Size(273, 264);
-            this.changedFiles.TabIndex = 0;
-            this.changedFiles.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.changedFiles_RowContextMenuStripNeeded);
-            this.changedFiles.DoubleClick += new System.EventHandler(this.changedFiles_DoubleClick);
-            this.changedFiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.changedFiles_KeyDown);
-            this.changedFiles.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Grid_PreviewKeyDown);
-            // 
-            // patchText
-            // 
-            this.patchText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.patchText.Location = new System.Drawing.Point(0, 0);
-            this.patchText.Name = "patchText";
-            this.patchText.Size = new System.Drawing.Size(501, 264);
-            this.patchText.Styles.BraceBad.FontName = "Verdana";
-            this.patchText.Styles.BraceLight.FontName = "Verdana";
-            this.patchText.Styles.ControlChar.FontName = "Verdana";
-            this.patchText.Styles.Default.FontName = "Verdana";
-            this.patchText.Styles.IndentGuide.FontName = "Verdana";
-            this.patchText.Styles.LastPredefined.FontName = "Verdana";
-            this.patchText.Styles.LineNumber.FontName = "Verdana";
-            this.patchText.Styles.Max.FontName = "Verdana";
-            this.patchText.TabIndex = 0;
+            this.pendingChanges.ActionsForChangesFunction = null;
+            this.pendingChanges.ChangesFunction = null;
+            this.pendingChanges.ComputeDifferencesFunction = null;
+            this.pendingChanges.Context = null;
+            this.pendingChanges.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pendingChanges.Location = new System.Drawing.Point(0, 0);
+            this.pendingChanges.Name = "pendingChanges";
+            this.pendingChanges.PatchText = "";
+            this.pendingChanges.Size = new System.Drawing.Size(784, 501);
+            this.pendingChanges.TabIndex = 0;
             // 
             // Main
             // 
@@ -541,17 +453,6 @@
             this.activityTopBottomPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.activityRevisions)).EndInit();
             this.commitTab.ResumeLayout(false);
-            this.commitHorizontalDivider.Panel1.ResumeLayout(false);
-            this.commitHorizontalDivider.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.commitHorizontalDivider)).EndInit();
-            this.commitHorizontalDivider.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.changeLog)).EndInit();
-            this.commitVerticalDivider.Panel1.ResumeLayout(false);
-            this.commitVerticalDivider.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.commitVerticalDivider)).EndInit();
-            this.commitVerticalDivider.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.changedFiles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.patchText)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -571,11 +472,6 @@
         private System.Windows.Forms.TabPage commitTab;
         private AwesomeGrid taskGrid;
         private AwesomeGrid branchGrid;
-        private System.Windows.Forms.SplitContainer commitHorizontalDivider;
-        private System.Windows.Forms.SplitContainer commitVerticalDivider;
-        private ScintillaNet.Scintilla changeLog;
-        private ScintillaNet.Scintilla patchText;
-        private AwesomeGrid changedFiles;
         private System.Windows.Forms.ToolStripDropDownButton viewMenu;
         private System.Windows.Forms.ToolStripMenuItem refreshMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tasksMenuItem;
@@ -590,5 +486,6 @@
         private System.Windows.Forms.SplitContainer activityTopBottomPanel;
         private AwesomeGrid activityRevisions;
         private ChangeInspector activityChangeInspector;
+        private ChangeInspector pendingChanges;
     }
 }

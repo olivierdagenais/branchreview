@@ -23,14 +23,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             taskGrid.Grid.MultiSelect = false;
             branchGrid.Grid.MultiSelect = false;
             activityRevisions.Grid.MultiSelect = false;
-            changedFiles.Grid.MultiSelect = true;
-            changeLog.InitializeDefaults();
-            patchText.InitializeDefaults();
-            patchText.InitializeDiff();
             Load += Main_Load;
             FormClosing += Main_Closing;
             _taskRepository = new Mock.TaskRepository();
             _sourceRepository = new Mock.SourceRepository();
+
+            pendingChanges.ActionsForChangesFunction = _sourceRepository.GetActionsForPendingChanges;
+            pendingChanges.ChangesFunction = _sourceRepository.GetPendingChanges;
+            pendingChanges.ComputeDifferencesFunction = _sourceRepository.ComputePendingDifferences;
         }
 
         void Main_Load(object sender, EventArgs e)
@@ -133,11 +133,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
             else if (tabs.SelectedTab == commitTab)
             {
-                if (_currentBranchId != null)
-                {
-                    RefreshChangedFiles();
-                }
-                controlToFocus = changeLog;
+                pendingChanges.Context = _currentBranchId;
+                controlToFocus = pendingChanges;
             }
 
             if (controlToFocus != null)
@@ -341,92 +338,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         #endregion
 
         #region Commit
-
-        void changedFiles_DoubleClick(object sender, EventArgs e)
-        {
-            InvokeDefaultChangedFilesAction();
-        }
-
-        void changedFiles_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-                InvokeDefaultChangedFilesAction();
-            }
-        }
-
-        void changedFiles_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
-        {
-            var menu = BuildChangedFilesActionMenu();
-            e.ContextMenuStrip = menu;
-        }
-
-        void changedFiles_SelectionChanged(object sender, EventArgs e)
-        {
-            var selectedIds = FindSelectedIds();
-            var patch = _sourceRepository.ComputePendingDifferences(selectedIds);
-            patchText.SetReadOnlyText(patch);
-        }
-
-        private ContextMenuStrip BuildChangedFilesActionMenu()
-        {
-            var selectedIds = FindSelectedIds();
-            var actions = _sourceRepository.GetActionsForPendingChanges(selectedIds);
-            var menu = new ContextMenuStrip();
-            menu.Items.AddActions(actions);
-            return menu;
-        }
-
-        private IEnumerable<object> FindSelectedIds()
-        {
-            var selectedRows = changedFiles.Grid.SelectedRows.Cast<DataGridViewRow>();
-            return selectedRows.Map(row => row.Cells["ID"].Value);
-        }
-
-        private void InvokeDefaultChangedFilesAction()
-        {
-            var menu = BuildChangedFilesActionMenu();
-            menu.Items.InvokeFirstMenuItem();
-        }
-
-        private void RefreshChangedFiles()
-        {
-            // TODO: also preserve focused item(s)?
-            var oldSelection = FindSelectedIds().ToDictionary(o => o);
-
-            changedFiles.DataTable = null;
-            var pendingChanges = _sourceRepository.GetPendingChanges(_currentBranchId);
-            changedFiles.DataTable = pendingChanges;
-            if (0 == changedFiles.Grid.Rows.Count)
-            {
-                patchText.SetReadOnlyText(String.Empty);
-            }
-            else
-            {
-                changedFiles.Grid.SelectionChanged -= changedFiles_SelectionChanged;
-                if (0 == oldSelection.Count)
-                {
-                    // if nothing was selected, select the first one
-                    changedFiles.Grid.Rows[0].Selected = true;
-                }
-                else
-                {
-                    foreach (DataGridViewRow row in changedFiles.Grid.Rows)
-                    {
-                        var id = row.Cells["ID"].Value;
-                        if (oldSelection.ContainsKey(id))
-                        {
-                            row.Selected = true;
-                            oldSelection.Remove(id);
-                        }
-                    }
-                }
-                changedFiles_SelectionChanged(this, null);
-                changedFiles.Grid.SelectionChanged += changedFiles_SelectionChanged;
-            }
-        }
 
         #endregion
     }
