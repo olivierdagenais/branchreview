@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
@@ -96,13 +97,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             var row = taskGrid.Rows[e.RowIndex];
             var taskId = row.Cells["ID"].Value;
-            var menu = BuildTaskActionMenu(taskId);
+            var actions = _taskRepository.GetActionsForTask(taskId);
+            var menu = BuildActionMenu(actions);
             e.ContextMenuStrip = menu;
         }
 
-        private ContextMenuStrip BuildTaskActionMenu(object taskId)
+        private static ContextMenuStrip BuildActionMenu(IEnumerable<MenuAction> actions)
         {
-            var actions = _taskRepository.GetActionsForTask(taskId);
             var menu = new ContextMenuStrip();
             foreach (var menuAction in actions)
             {
