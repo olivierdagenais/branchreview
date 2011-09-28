@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.XML" />
@@ -62,6 +63,11 @@
     <Compile Include="AccessibleDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="AccessibleListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ContextMenuStripNeededEventArgs.cs" />
+    <Compile Include="ContextMenuStripNeededEventHandler.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
