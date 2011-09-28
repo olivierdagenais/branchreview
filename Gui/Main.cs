@@ -252,13 +252,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private static object FindSelectedId(DataGridView dataGridView)
         {
             var selectedRows = dataGridView.SelectedRows;
-            object taskId = null;
+            object id = null;
             if (selectedRows.Count > 0)
             {
                 var row = selectedRows[0];
-                taskId = row.Cells["ID"].Value;
+                id = row.Cells["ID"].Value;
             }
-            return taskId;
+            return id;
         }
 
         #endregion
