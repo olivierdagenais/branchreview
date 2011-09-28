@@ -8,8 +8,18 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             InitializeComponent();
             ChangeLog.InitializeDefaults();
-            PatchText.InitializeDefaults();
-            PatchText.InitializeDiff();
+            PatchViewer.InitializeDefaults();
+            PatchViewer.InitializeDiff();
         }
+
+        public string PatchText
+        {
+            get { return PatchViewer.Text; }
+            set { PatchViewer.SetReadOnlyText(value); }
+        }
+
+        // TODO: GetPendingChanges
+        // TODO: ComputeDifferences
+        // TODO: GetActionsForPendingChanges
     }
 }

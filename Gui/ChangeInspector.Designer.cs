@@ -31,7 +31,7 @@
             this.horizontalDivider = new System.Windows.Forms.SplitContainer();
             this.ChangeLog = new ScintillaNet.Scintilla();
             this.verticalDivider = new System.Windows.Forms.SplitContainer();
-            this.PatchText = new ScintillaNet.Scintilla();
+            this.PatchViewer = new ScintillaNet.Scintilla();
             this.FileGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.horizontalDivider)).BeginInit();
             this.horizontalDivider.Panel1.SuspendLayout();
@@ -42,7 +42,7 @@
             this.verticalDivider.Panel1.SuspendLayout();
             this.verticalDivider.Panel2.SuspendLayout();
             this.verticalDivider.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PatchText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PatchViewer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FileGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,28 +95,28 @@
             // 
             // verticalDivider.Panel2
             // 
-            this.verticalDivider.Panel2.Controls.Add(this.PatchText);
+            this.verticalDivider.Panel2.Controls.Add(this.PatchViewer);
             this.verticalDivider.Size = new System.Drawing.Size(749, 444);
             this.verticalDivider.SplitterDistance = 235;
             this.verticalDivider.SplitterWidth = 6;
             this.verticalDivider.TabIndex = 0;
             this.verticalDivider.TabStop = false;
             // 
-            // PatchText
+            // PatchViewer
             // 
-            this.PatchText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PatchText.Location = new System.Drawing.Point(0, 0);
-            this.PatchText.Name = "PatchText";
-            this.PatchText.Size = new System.Drawing.Size(506, 442);
-            this.PatchText.Styles.BraceBad.FontName = "Verdana";
-            this.PatchText.Styles.BraceLight.FontName = "Verdana";
-            this.PatchText.Styles.ControlChar.FontName = "Verdana";
-            this.PatchText.Styles.Default.FontName = "Verdana";
-            this.PatchText.Styles.IndentGuide.FontName = "Verdana";
-            this.PatchText.Styles.LastPredefined.FontName = "Verdana";
-            this.PatchText.Styles.LineNumber.FontName = "Verdana";
-            this.PatchText.Styles.Max.FontName = "Verdana";
-            this.PatchText.TabIndex = 0;
+            this.PatchViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PatchViewer.Location = new System.Drawing.Point(0, 0);
+            this.PatchViewer.Name = "PatchViewer";
+            this.PatchViewer.Size = new System.Drawing.Size(506, 442);
+            this.PatchViewer.Styles.BraceBad.FontName = "Verdana";
+            this.PatchViewer.Styles.BraceLight.FontName = "Verdana";
+            this.PatchViewer.Styles.ControlChar.FontName = "Verdana";
+            this.PatchViewer.Styles.Default.FontName = "Verdana";
+            this.PatchViewer.Styles.IndentGuide.FontName = "Verdana";
+            this.PatchViewer.Styles.LastPredefined.FontName = "Verdana";
+            this.PatchViewer.Styles.LineNumber.FontName = "Verdana";
+            this.PatchViewer.Styles.Max.FontName = "Verdana";
+            this.PatchViewer.TabIndex = 0;
             // 
             // FileGrid
             // 
@@ -145,7 +145,7 @@
             this.verticalDivider.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.verticalDivider)).EndInit();
             this.verticalDivider.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PatchText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PatchViewer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FileGrid)).EndInit();
             this.ResumeLayout(false);
 
@@ -155,7 +155,7 @@
 
         private System.Windows.Forms.SplitContainer horizontalDivider;
         private System.Windows.Forms.SplitContainer verticalDivider;
-        public ScintillaNet.Scintilla PatchText;
+        public ScintillaNet.Scintilla PatchViewer;
         public SearchableDataGridView FileGrid;
         public ScintillaNet.Scintilla ChangeLog;
     }
