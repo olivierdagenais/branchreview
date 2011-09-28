@@ -32,7 +32,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             set
             { 
                 _context = value;
-                RefreshFileGrid();
+                if (_context != null)
+                {
+                    RefreshMessage();
+                    RefreshFileGrid();
+                }
             }
         }
 
@@ -56,6 +60,22 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             return ActionsForChangesFunction != null ? ActionsForChangesFunction(selectedIds) : MenuAction.EmptyList;
         }
+
+        public Func<object, string> MessageFunction { get; set; }
+        internal string GetMessage(object contextId)
+        {
+            return MessageFunction != null ? MessageFunction(contextId) : null;
+        }
+
+        public void RefreshMessage()
+        {
+            var message = GetMessage(_context);
+            if (message != null)
+            {
+                this.ChangeLog.Text = message;
+            }
+        }
+
 
         #region FileGrid
         public void RefreshFileGrid()

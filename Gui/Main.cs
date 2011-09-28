@@ -31,10 +31,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             activityChangeInspector.ActionsForChangesFunction = _sourceRepository.GetActionsForRevisionChanges;
             activityChangeInspector.ChangesFunction = _sourceRepository.GetRevisionChanges;
             activityChangeInspector.ComputeDifferencesFunction = _sourceRepository.ComputeRevisionDifferences;
+            activityChangeInspector.MessageFunction = _sourceRepository.GetRevisionMessage;
 
             pendingChanges.ActionsForChangesFunction = _sourceRepository.GetActionsForPendingChanges;
             pendingChanges.ChangesFunction = _sourceRepository.GetPendingChanges;
             pendingChanges.ComputeDifferencesFunction = _sourceRepository.ComputePendingDifferences;
+            pendingChanges.MessageFunction = null;
         }
 
         void Main_Load(object sender, EventArgs e)

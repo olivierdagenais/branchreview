@@ -217,7 +217,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
         {
             Debug.WriteLine("Obtaining the message for revision {0}...", revisionId);
             var table = _revisionTablesByBranchId["root"];
-            var rows = table.Select("ID = '{0}'".FormatInvariant(revisionId));
+            var rows = table.Select("ID = {0}".FormatInvariant(revisionId));
             var row = rows[0];
             var value = row["Message"];
             return (string) value;
