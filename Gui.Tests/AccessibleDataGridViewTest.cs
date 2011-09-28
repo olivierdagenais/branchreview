@@ -101,5 +101,23 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests
             var expected = new[] {400, 600};
             EnumerableExtensions.EnumerateSame(expected, actual);
         }
+
+        [Test]
+        public void AdjustWidths_FiveColumnsWayTooWide()
+        {
+            var columns = new[] {200, 200, 200, 200, 200};
+            var actual = AccessibleDataGridView.AdjustWidths(columns, 999);
+            var expected = new[] {199, 199, 199, 199, 199};
+            EnumerableExtensions.EnumerateSame(expected, actual);
+        }
+
+        [Test]
+        public void AdjustWidths_SixColumnsWayTooWide()
+        {
+            var columns = new[] {200, 200, 200, 200, 200, 200};
+            var actual = AccessibleDataGridView.AdjustWidths(columns, 1000);
+            // all columns are less than 20%; let the multiplier take care of it later
+            EnumerableExtensions.EnumerateSame(columns, actual);
+        }
     }
 }
