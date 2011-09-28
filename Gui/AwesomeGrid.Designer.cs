@@ -38,17 +38,19 @@
             // CaptionLabel
             // 
             this.CaptionLabel.AutoSize = true;
-            this.CaptionLabel.Location = new System.Drawing.Point(3, 4);
+            this.CaptionLabel.Location = new System.Drawing.Point(2, 6);
+            this.CaptionLabel.MinimumSize = new System.Drawing.Size(52, 13);
             this.CaptionLabel.Name = "CaptionLabel";
-            this.CaptionLabel.Size = new System.Drawing.Size(0, 13);
+            this.CaptionLabel.Size = new System.Drawing.Size(52, 13);
             this.CaptionLabel.TabIndex = 0;
             // 
             // SearchTextBox
             // 
             this.SearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchTextBox.Location = new System.Drawing.Point(350, 0);
+            this.SearchTextBox.Location = new System.Drawing.Point(298, 2);
+            this.SearchTextBox.MinimumSize = new System.Drawing.Size(200, 21);
             this.SearchTextBox.Name = "SearchTextBox";
-            this.SearchTextBox.Size = new System.Drawing.Size(182, 21);
+            this.SearchTextBox.Size = new System.Drawing.Size(200, 21);
             this.SearchTextBox.TabIndex = 2;
             this.SearchTextBox.TabStop = false;
             this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
@@ -58,7 +60,8 @@
             // 
             this.SearchLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SearchLabel.AutoSize = true;
-            this.SearchLabel.Location = new System.Drawing.Point(292, 4);
+            this.SearchLabel.Location = new System.Drawing.Point(240, 6);
+            this.SearchLabel.MinimumSize = new System.Drawing.Size(52, 13);
             this.SearchLabel.Name = "SearchLabel";
             this.SearchLabel.Size = new System.Drawing.Size(52, 13);
             this.SearchLabel.TabIndex = 1;
@@ -74,7 +77,7 @@
             this.Grid.Location = new System.Drawing.Point(0, 27);
             this.Grid.Name = "Grid";
             this.Grid.RowTemplate.Height = 23;
-            this.Grid.Size = new System.Drawing.Size(532, 260);
+            this.Grid.Size = new System.Drawing.Size(500, 260);
             this.Grid.TabIndex = 3;
             // 
             // AwesomeGrid
@@ -86,7 +89,7 @@
             this.Controls.Add(this.CaptionLabel);
             this.Controls.Add(this.Grid);
             this.Name = "AwesomeGrid";
-            this.Size = new System.Drawing.Size(532, 287);
+            this.Size = new System.Drawing.Size(500, 287);
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
