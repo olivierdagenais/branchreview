@@ -57,6 +57,10 @@
             this.searchStrip = new System.Windows.Forms.ToolStrip();
             this.searchLabel = new System.Windows.Forms.ToolStripLabel();
             this.searchTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.tasksMenu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.branchesMenu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.activityMenu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.commitMenu = new System.Windows.Forms.ToolStripDropDownButton();
             viewMenuRefreshSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.statusBar.SuspendLayout();
             this.toolStripContainer.ContentPanel.SuspendLayout();
@@ -215,7 +219,7 @@
             this.commitTab.Name = "commitTab";
             this.commitTab.Size = new System.Drawing.Size(784, 475);
             this.commitTab.TabIndex = 4;
-            this.commitTab.Text = "Commit";
+            this.commitTab.Text = "Changes";
             this.commitTab.UseVisualStyleBackColor = true;
             // 
             // commitHorizontalDivider
@@ -307,10 +311,14 @@
             this.menuStrip.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
-            this.viewMenu});
+            this.viewMenu,
+            this.tasksMenu,
+            this.branchesMenu,
+            this.activityMenu,
+            this.commitMenu});
             this.menuStrip.Location = global::SoftwareNinjas.BranchAndReviewTools.Gui.Properties.Settings.Default.MenuLocation;
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(118, 25);
+            this.menuStrip.Size = new System.Drawing.Size(309, 25);
             this.menuStrip.TabIndex = 0;
             // 
             // fileMenu
@@ -376,7 +384,7 @@
             this.commitMenuItem.Name = "commitMenuItem";
             this.commitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D4)));
             this.commitMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.commitMenuItem.Text = "&Commit";
+            this.commitMenuItem.Text = "&Changes";
             this.commitMenuItem.Click += new System.EventHandler(this.commitMenuItem_Click);
             // 
             // refreshMenuItem
@@ -411,6 +419,42 @@
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(200, 25);
             this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
+            // 
+            // tasksMenu
+            // 
+            this.tasksMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tasksMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tasksMenu.Name = "tasksMenu";
+            this.tasksMenu.ShowDropDownArrow = false;
+            this.tasksMenu.Size = new System.Drawing.Size(44, 22);
+            this.tasksMenu.Text = "&Tasks";
+            // 
+            // branchesMenu
+            // 
+            this.branchesMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.branchesMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.branchesMenu.Name = "branchesMenu";
+            this.branchesMenu.ShowDropDownArrow = false;
+            this.branchesMenu.Size = new System.Drawing.Size(64, 22);
+            this.branchesMenu.Text = "&Branches";
+            // 
+            // activityMenu
+            // 
+            this.activityMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.activityMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.activityMenu.Name = "activityMenu";
+            this.activityMenu.ShowDropDownArrow = false;
+            this.activityMenu.Size = new System.Drawing.Size(31, 22);
+            this.activityMenu.Text = "&Log";
+            // 
+            // commitMenu
+            // 
+            this.commitMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.commitMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.commitMenu.Name = "commitMenu";
+            this.commitMenu.ShowDropDownArrow = false;
+            this.commitMenu.Size = new System.Drawing.Size(61, 22);
+            this.commitMenu.Text = "&Changes";
             // 
             // Main
             // 
@@ -486,5 +530,9 @@
         private System.Windows.Forms.ToolStripMenuItem branchesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logMenuItem;
         private System.Windows.Forms.ToolStripMenuItem commitMenuItem;
+        private System.Windows.Forms.ToolStripDropDownButton tasksMenu;
+        private System.Windows.Forms.ToolStripDropDownButton branchesMenu;
+        private System.Windows.Forms.ToolStripDropDownButton activityMenu;
+        private System.Windows.Forms.ToolStripDropDownButton commitMenu;
     }
 }

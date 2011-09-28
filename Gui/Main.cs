@@ -142,7 +142,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             _currentBranchId = branchId;
             _currentTaskId = taskId;
             activityTab.Text = "Log for {0}".FormatInvariant(branchId);
-            commitTab.Text = "Commit to {0}".FormatInvariant(branchId);
+            commitTab.Text = "Changes in {0}".FormatInvariant(branchId);
             tabs.SelectedTab = activityTab;
         }
 
