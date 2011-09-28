@@ -95,15 +95,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
-        // method can not be made static because the Form Designer re-writes the event wire-up with "this."
-        private void Grid_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                e.IsInputKey = true;
-            }
-        }
-
         private void tabs_Selected(object sender, TabControlEventArgs e)
         {
             SwitchCurrentTab(false);

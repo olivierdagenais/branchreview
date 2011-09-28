@@ -23,8 +23,18 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             this.Grid.AlternatingRowsDefaultCellStyle = AlternatingRowStyle;
             this.Grid.DoubleClick += Grid_DoubleClick;
             this.Grid.KeyDown += Grid_KeyDown;
+            this.Grid.PreviewKeyDown += Grid_PreviewKeyDown;
             this.Grid.RowContextMenuStripNeeded += Grid_RowContextMenuStripNeeded;
             this.Grid.SelectionChanged += Grid_SelectionChanged;
+        }
+
+        // method can not be made static because the Form Designer re-writes the event wire-up with "this."
+        void Grid_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                e.IsInputKey = true;
+            }
         }
 
         public string Caption
