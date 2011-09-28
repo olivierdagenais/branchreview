@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusBarText = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBarProgress = new System.Windows.Forms.ToolStripProgressBar();
@@ -228,7 +227,6 @@
             this.changeLog.Name = "changeLog";
             this.changeLog.Size = new System.Drawing.Size(784, 80);
             this.changeLog.TabIndex = 0;
-            this.changeLog.Text = "Initial creation of a Gui project with a skeleton for the Commit window.";
             // 
             // commitVerticalDivider
             // 
@@ -256,7 +254,6 @@
             this.patchText.Name = "patchText";
             this.patchText.Size = new System.Drawing.Size(456, 391);
             this.patchText.TabIndex = 0;
-            this.patchText.Text = resources.GetString("patchText.Text");
             // 
             // menuStrip
             // 
