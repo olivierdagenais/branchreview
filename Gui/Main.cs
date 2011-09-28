@@ -198,19 +198,26 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void tabs_Selected(object sender, TabControlEventArgs e)
         {
+            SwitchCurrentTab(false);
+        }
+
+        private void SwitchCurrentTab(bool refresh)
+        {
             Control controlToFocus = null;
             if (tabs.SelectedTab == taskTab)
             {
-                if (taskGrid.DataTable == null)
+                if (taskGrid.DataTable == null || refresh)
                 {
+                    taskGrid.DataTable = null;
                     taskGrid.DataTable = _taskRepository.LoadTasks();
                 }
                 controlToFocus = taskGrid;
             }
             else if (tabs.SelectedTab == branchesTab)
             {
-                if (branchGrid.DataTable == null)
+                if (branchGrid.DataTable == null || refresh)
                 {
+                    branchGrid.DataTable = null;
                     branchGrid.DataTable = _sourceRepository.LoadBranches();
                 }
                 controlToFocus = branchGrid;
@@ -301,6 +308,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             var selectedRowIds = selectedRows.Map(row => row.Cells["ID"].Value);
             var patch = _sourceRepository.ComputeDifferences(selectedRowIds);
             patchText.SetReadOnlyText(patch);
+        }
+
+        private void refreshMenuItem_Click(object sender, EventArgs e)
+        {
+            SwitchCurrentTab(true);
         }
     }
 }

@@ -50,6 +50,8 @@
             this.searchStrip = new System.Windows.Forms.ToolStrip();
             this.searchLabel = new System.Windows.Forms.ToolStripLabel();
             this.searchTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.viewMenu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.refreshMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar.SuspendLayout();
             this.toolStripContainer.ContentPanel.SuspendLayout();
             this.toolStripContainer.TopToolStripPanel.SuspendLayout();
@@ -285,10 +287,11 @@
             // 
             this.menuStrip.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileMenu});
+            this.fileMenu,
+            this.viewMenu});
             this.menuStrip.Location = global::SoftwareNinjas.BranchAndReviewTools.Gui.Properties.Settings.Default.MenuLocation;
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(40, 25);
+            this.menuStrip.Size = new System.Drawing.Size(118, 25);
             this.menuStrip.TabIndex = 0;
             // 
             // fileMenu
@@ -333,6 +336,25 @@
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(200, 25);
             this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
+            // 
+            // viewMenu
+            // 
+            this.viewMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.viewMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.refreshMenuItem});
+            this.viewMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.viewMenu.Name = "viewMenu";
+            this.viewMenu.ShowDropDownArrow = false;
+            this.viewMenu.Size = new System.Drawing.Size(43, 22);
+            this.viewMenu.Text = "&View";
+            // 
+            // refreshMenuItem
+            // 
+            this.refreshMenuItem.Name = "refreshMenuItem";
+            this.refreshMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.refreshMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.refreshMenuItem.Text = "&Refresh";
+            this.refreshMenuItem.Click += new System.EventHandler(this.refreshMenuItem_Click);
             // 
             // Main
             // 
@@ -402,5 +424,7 @@
         private ScintillaNet.Scintilla changeLog;
         private ScintillaNet.Scintilla patchText;
         private SearchableDataGridView changedFiles;
+        private System.Windows.Forms.ToolStripDropDownButton viewMenu;
+        private System.Windows.Forms.ToolStripMenuItem refreshMenuItem;
     }
 }
