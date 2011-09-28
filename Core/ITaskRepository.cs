@@ -9,6 +9,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
     public interface ITaskRepository
     {
         /// <summary>
+        /// Gets or sets the <see cref="ILog"/> instance used for reporting status and progress.
+        /// </summary>
+        ILog Log { get; set; }
+
+        /// <summary>
         /// Loads a <see cref="DataTable"/> representing the available tasks.  Pre-filtering is assumed to have taken
         /// place.
         /// </summary>

@@ -133,6 +133,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             }
         }
 
+        public ILog Log { get; set; }
+
         public DataTable LoadBranches()
         {
             return _branches;
