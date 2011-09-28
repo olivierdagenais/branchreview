@@ -104,6 +104,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             SetCurrentBranch(branchId, taskId);
             tabs.SelectedTab = commitTab;
+            Text = "{0} - Branch and Review Tools".FormatCurrentCulture(branchId);
         }
 
         private void tabs_Selected(object sender, TabControlEventArgs e)
