@@ -240,16 +240,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void taskGrid_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
         {
-            var row = taskGrid.Rows[e.RowIndex];
-            var taskId = row.Cells["ID"].Value;
-            var actions = _taskRepository.GetActionsForTask(taskId);
-            var menu = BuildActionMenu(actions);
+            var menu = BuildTaskActionMenu();
             e.ContextMenuStrip = menu;
         }
 
-        private ContextMenuStrip BuildTaskActionMenuForRow(int rowIndex)
+        private ContextMenuStrip BuildTaskActionMenu()
         {
-            var row = taskGrid.Rows[rowIndex];
+            var row = taskGrid.SelectedRows[0];
             var taskId = row.Cells["ID"].Value;
             var actions = _taskRepository.GetActionsForTask(taskId);
             return BuildActionMenu(actions);
@@ -257,8 +254,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void InvokeDefaultTaskGridAction()
         {
-            var selectdRow = taskGrid.SelectedRows[0].Index;
-            var menu = BuildTaskActionMenuForRow(selectdRow);
+            var menu = BuildTaskActionMenu();
             menu.Items[0].PerformClick();
         }
 
@@ -283,13 +279,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void branchGrid_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
         {
-            var menu = BuildBranchActionMenuForRow(e.RowIndex);
+            var menu = BuildBranchActionMenu();
             e.ContextMenuStrip = menu;
         }
 
-        private ContextMenuStrip BuildBranchActionMenuForRow(int rowIndex)
+        private ContextMenuStrip BuildBranchActionMenu()
         {
-            var row = branchGrid.Rows[rowIndex];
+            var row = branchGrid.SelectedRows[0];
             var branchId = row.Cells["ID"].Value;
             var taskId = row.Cells["TaskID"].Value;
             var builtInActions = new[]
@@ -304,8 +300,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void InvokeDefaultBranchGridAction()
         {
-            var selectdRow = branchGrid.SelectedRows[0].Index;
-            var menu = BuildBranchActionMenuForRow(selectdRow);
+            var menu = BuildBranchActionMenu();
             menu.Items[0].PerformClick();
         }
 
@@ -333,7 +328,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         void changedFiles_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
         {
-            var menu = BuildChangedFilesActionMenuForRows();
+            var menu = BuildChangedFilesActionMenu();
             e.ContextMenuStrip = menu;
         }
 
@@ -346,7 +341,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             patchText.SetReadOnlyText(patch);
         }
 
-        private ContextMenuStrip BuildChangedFilesActionMenuForRows()
+        private ContextMenuStrip BuildChangedFilesActionMenu()
         {
             var selectedRows = changedFiles.SelectedRows.Cast<DataGridViewRow>();
             var selectedIds = selectedRows.Map(row => row.Cells["ID"].Value);
@@ -357,7 +352,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void InvokeDefaultChangedFilesAction()
         {
-            var menu = BuildChangedFilesActionMenuForRows();
+            var menu = BuildChangedFilesActionMenu();
             menu.Items[0].PerformClick();
         }
 
