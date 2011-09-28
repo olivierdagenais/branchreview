@@ -131,6 +131,7 @@
             this.FileGrid.DoubleClick += new System.EventHandler(this.FileGrid_DoubleClick);
             this.FileGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FileGrid_KeyDown);
             this.FileGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.FileGrid_RowContextMenuStripNeeded);
+            this.FileGrid.SelectionChanged += new System.EventHandler(this.FileGrid_SelectionChanged);
             // 
             // ChangeInspector
             // 

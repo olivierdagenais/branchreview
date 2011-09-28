@@ -61,6 +61,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             e.ContextMenuStrip = menu;
         }
 
+        void FileGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            var selectedIds = FindSelectedIds();
+            var patch = ComputeDifferences(selectedIds);
+            PatchText = patch;
+        }
+
         private ContextMenuStrip BuildChangedFilesActionMenu()
         {
             var selectedIds = FindSelectedIds();
