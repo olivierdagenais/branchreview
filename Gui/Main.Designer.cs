@@ -42,9 +42,7 @@
             this.commitHorizontalDivider = new System.Windows.Forms.SplitContainer();
             this.changeLog = new ScintillaNet.Scintilla();
             this.commitVerticalDivider = new System.Windows.Forms.SplitContainer();
-            this.changedFiles = new System.Windows.Forms.ListView();
-            this.changedFilesPathColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.changedFilesTypeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.changedFiles = new SoftwareNinjas.BranchAndReviewTools.Gui.SearchableDataGridView();
             this.patchText = new ScintillaNet.Scintilla();
             this.menuStrip = new System.Windows.Forms.ToolStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripDropDownButton();
@@ -71,6 +69,7 @@
             this.commitVerticalDivider.Panel1.SuspendLayout();
             this.commitVerticalDivider.Panel2.SuspendLayout();
             this.commitVerticalDivider.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.changedFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patchText)).BeginInit();
             this.menuStrip.SuspendLayout();
             this.searchStrip.SuspendLayout();
@@ -132,6 +131,7 @@
             this.tabs.SelectedIndex = 0;
             this.tabs.Size = new System.Drawing.Size(792, 501);
             this.tabs.TabIndex = 0;
+            this.tabs.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabs_Selected);
             // 
             // taskTab
             // 
@@ -215,16 +215,17 @@
             // commitHorizontalDivider.Panel2
             // 
             this.commitHorizontalDivider.Panel2.Controls.Add(this.commitVerticalDivider);
-            this.commitHorizontalDivider.Size = new System.Drawing.Size(915, 475);
+            this.commitHorizontalDivider.Size = new System.Drawing.Size(784, 475);
             this.commitHorizontalDivider.SplitterDistance = 80;
             this.commitHorizontalDivider.TabIndex = 0;
+            this.commitHorizontalDivider.TabStop = false;
             // 
             // changeLog
             // 
             this.changeLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.changeLog.Location = new System.Drawing.Point(0, 0);
             this.changeLog.Name = "changeLog";
-            this.changeLog.Size = new System.Drawing.Size(915, 80);
+            this.changeLog.Size = new System.Drawing.Size(784, 80);
             this.changeLog.Styles.BraceBad.FontName = "Verdana";
             this.changeLog.Styles.BraceLight.FontName = "Verdana";
             this.changeLog.Styles.ControlChar.FontName = "Verdana";
@@ -248,43 +249,28 @@
             // commitVerticalDivider.Panel2
             // 
             this.commitVerticalDivider.Panel2.Controls.Add(this.patchText);
-            this.commitVerticalDivider.Size = new System.Drawing.Size(915, 391);
-            this.commitVerticalDivider.SplitterDistance = 323;
+            this.commitVerticalDivider.Size = new System.Drawing.Size(784, 391);
+            this.commitVerticalDivider.SplitterDistance = 276;
             this.commitVerticalDivider.SplitterWidth = 6;
             this.commitVerticalDivider.TabIndex = 0;
+            this.commitVerticalDivider.TabStop = false;
             // 
             // changedFiles
             // 
-            this.changedFiles.AllowColumnReorder = true;
-            this.changedFiles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.changedFilesPathColumn,
-            this.changedFilesTypeColumn});
+            this.changedFiles.DataTable = null;
             this.changedFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.changedFiles.FullRowSelect = true;
-            this.changedFiles.HideSelection = false;
+            this.changedFiles.Filter = null;
             this.changedFiles.Location = new System.Drawing.Point(0, 0);
             this.changedFiles.Name = "changedFiles";
-            this.changedFiles.Size = new System.Drawing.Size(376, 391);
-            this.changedFiles.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.changedFiles.Size = new System.Drawing.Size(276, 391);
             this.changedFiles.TabIndex = 0;
-            this.changedFiles.UseCompatibleStateImageBehavior = false;
-            this.changedFiles.View = System.Windows.Forms.View.Details;
-            // 
-            // changedFilesPathColumn
-            // 
-            this.changedFilesPathColumn.Text = "Path";
-            this.changedFilesPathColumn.Width = 250;
-            // 
-            // changedFilesTypeColumn
-            // 
-            this.changedFilesTypeColumn.Text = "Status";
             // 
             // patchText
             // 
             this.patchText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.patchText.Location = new System.Drawing.Point(0, 0);
             this.patchText.Name = "patchText";
-            this.patchText.Size = new System.Drawing.Size(532, 391);
+            this.patchText.Size = new System.Drawing.Size(502, 391);
             this.patchText.Styles.BraceBad.FontName = "Verdana";
             this.patchText.Styles.BraceLight.FontName = "Verdana";
             this.patchText.Styles.ControlChar.FontName = "Verdana";
@@ -381,6 +367,7 @@
             this.commitVerticalDivider.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.commitVerticalDivider)).EndInit();
             this.commitVerticalDivider.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.changedFiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.patchText)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
@@ -414,8 +401,6 @@
         private System.Windows.Forms.SplitContainer commitVerticalDivider;
         private ScintillaNet.Scintilla changeLog;
         private ScintillaNet.Scintilla patchText;
-        private System.Windows.Forms.ListView changedFiles;
-        private System.Windows.Forms.ColumnHeader changedFilesPathColumn;
-        private System.Windows.Forms.ColumnHeader changedFilesTypeColumn;
+        private SearchableDataGridView changedFiles;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Properties;
@@ -23,8 +24,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         public Main()
         {
             InitializeComponent();
-            ConfigureDataGridView(taskGrid);
-            ConfigureDataGridView(branchGrid);
+            ConfigureDataGridView(taskGrid, false);
+            ConfigureDataGridView(branchGrid, false);
+            ConfigureDataGridView(changedFiles, true);
             changeLog.InitializeDefaults();
             patchText.InitializeDefaults();
             patchText.InitializeDiff();
@@ -44,7 +46,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             branchGrid.DataTable = _sourceRepository.LoadBranches();
         }
 
-        private static void ConfigureDataGridView(DataGridView gridView)
+        private static void ConfigureDataGridView(DataGridView gridView, bool multiSelect)
         {
             gridView.AllowUserToAddRows = false;
             gridView.AllowUserToDeleteRows = false;
@@ -56,7 +58,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             gridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
             gridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridView.EditMode = DataGridViewEditMode.EditProgrammatically;
-            gridView.MultiSelect = false;
+            gridView.MultiSelect = multiSelect;
             gridView.ReadOnly = true;
             gridView.RowHeadersVisible = false;
             gridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -193,6 +195,64 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private void branchGrid_DoubleClick(object sender, EventArgs e)
         {
             InvokeDefaultBranchGridAction();
+        }
+
+        private void tabs_Selected(object sender, TabControlEventArgs e)
+        {
+            if (tabs.SelectedTab == commitTab && _currentBranchId != null)
+            {
+                RefreshChangedFiles();
+            }
+        }
+
+        private void RefreshChangedFiles()
+        {
+            // TODO: also preserve focused item(s)?
+            var oldSelection = new HashSet<object>();
+            foreach (DataGridViewRow row in changedFiles.SelectedRows)
+            {
+                oldSelection.Add(row.Cells["ID"].Value);
+            }
+
+            var pendingChanges = _sourceRepository.GetPendingChanges(_currentBranchId);
+            changedFiles.DataTable = pendingChanges;
+            if (0 == changedFiles.Rows.Count)
+            {
+                patchText.SetReadOnlyText(String.Empty);
+            }
+            else
+            {
+                changedFiles.SelectionChanged -= changedFiles_SelectionChanged;
+                if (0 == oldSelection.Count)
+                {
+                    // if nothing was selected, select the first one
+                    changedFiles.Rows[0].Selected = true;
+                }
+                else
+                {
+                    foreach (DataGridViewRow row in changedFiles.Rows)
+                    {
+                        var id = row.Cells["ID"].Value;
+                        if (oldSelection.Contains(id))
+                        {
+                            row.Selected = true;
+                            oldSelection.Remove(id);
+                        }
+                    }
+                }
+                changedFiles_SelectionChanged(this, null);
+                changedFiles.SelectionChanged += changedFiles_SelectionChanged;
+            }
+            changeLog.Focus();
+        }
+
+        void changedFiles_SelectionChanged(object sender, EventArgs e)
+        {
+            var rows = changedFiles.Rows.Cast<DataGridViewRow>();
+            var selectedRows = rows.Filter(row => row.Selected);
+            var selectedRowIds = selectedRows.Map(row => row.Cells["ID"].Value);
+            var patch = _sourceRepository.ComputeDifferences(selectedRowIds);
+            patchText.SetReadOnlyText(patch);
         }
     }
 }
