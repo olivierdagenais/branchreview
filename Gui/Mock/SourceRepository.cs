@@ -192,6 +192,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
         public IList<MenuAction> GetActionsForPendingChanges(IEnumerable<object> pendingChangeIds)
         {
             var numberOfPendingChangeIds = pendingChangeIds.Count();
+            if (numberOfPendingChangeIds == 0)
+            {
+                return MenuAction.EmptyList;
+            }
             var suffix = ((numberOfPendingChangeIds == 1) ? "" : "s");
             return new[]
             {
@@ -233,14 +237,18 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
 
         public IList<MenuAction> GetActionsForRevisionChanges(IEnumerable<object> changeIds)
         {
-            var numberOfPendingChangeIds = changeIds.Count();
-            var suffix = ( ( numberOfPendingChangeIds == 1 ) ? "" : "s" );
+            var numberOfRevisionChangeIds = changeIds.Count();
+            if (numberOfRevisionChangeIds == 0)
+            {
+                return MenuAction.EmptyList;
+            }
+            var suffix = ( ( numberOfRevisionChangeIds == 1 ) ? "" : "s" );
             return new[]
             {
                 new MenuAction("diff", "&Diff", true,
-                    () => Debug.WriteLine("Diffing {0} change{1}", numberOfPendingChangeIds, suffix)),
+                    () => Debug.WriteLine("Diffing {0} change{1}", numberOfRevisionChangeIds, suffix)),
                 new MenuAction("blame", "&Blame", true,
-                    () => Debug.WriteLine("Launching blame for {0} change{1}", numberOfPendingChangeIds, suffix)),
+                    () => Debug.WriteLine("Launching blame for {0} change{1}", numberOfRevisionChangeIds, suffix)),
             };
         }
 
