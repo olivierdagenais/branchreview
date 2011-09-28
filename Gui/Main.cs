@@ -86,8 +86,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             activityChangeInspector.Context = null;
             if (branchId != null)
             {
-                activityRevisions.Caption = "Activity for {0}".FormatInvariant(branchId);
                 activityRevisions.DataTable = _sourceRepository.LoadRevisions(branchId);
+                var activityCount = activityRevisions.DataTable.Rows.Count;
+                activityRevisions.Caption = "Activity for {0}: {1} entr{2}".FormatInvariant(
+                    branchId, activityCount, activityCount == 1 ? "y" : "ies");
             }
             else
             {
@@ -124,6 +126,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 {
                     taskGrid.DataTable = null;
                     taskGrid.DataTable = _taskRepository.LoadTasks();
+                    var taskCount = taskGrid.DataTable.Rows.Count;
+                    taskGrid.Caption = "{0} task{1}".FormatInvariant(taskCount, taskCount == 1 ? "" : "s");
                 }
                 controlToFocus = taskGrid;
             }
@@ -133,6 +137,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 {
                     branchGrid.DataTable = null;
                     branchGrid.DataTable = _sourceRepository.LoadBranches();
+                    var branchCount = branchGrid.DataTable.Rows.Count;
+                    branchGrid.Caption = "{0} branch{1}".FormatInvariant(branchCount, branchCount == 1 ? "" : "es");
                     SetCurrentBranch(null, null);
                 }
                 controlToFocus = branchGrid;

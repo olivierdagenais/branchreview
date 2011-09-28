@@ -65,7 +65,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             FileGrid.DataTable = null;
             var pendingChanges = GetChanges(_context);
             FileGrid.DataTable = pendingChanges;
-            if (0 == FileGrid.Grid.Rows.Count)
+            var itemCount = FileGrid.Grid.Rows.Count;
+            if (0 == itemCount)
             {
                 PatchText = String.Empty;
             }
@@ -92,6 +93,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 FileGrid_SelectionChanged(this, null);
                 FileGrid.SelectionChanged += FileGrid_SelectionChanged;
             }
+            FileGrid.Caption = "{0} changed item{1}".FormatInvariant(itemCount, itemCount == 1 ? "" : "s");
         }
 
         private IEnumerable<object> FindSelectedIds()
