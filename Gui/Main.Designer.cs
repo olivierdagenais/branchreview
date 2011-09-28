@@ -270,6 +270,7 @@
             this.commitMenu.ShowDropDownArrow = false;
             this.commitMenu.Size = new System.Drawing.Size(56, 17);
             this.commitMenu.Text = "&Pending";
+            this.commitMenu.DropDownOpening += new System.EventHandler(this.commitMenu_DropDownOpening);
             // 
             // commitMenuItem
             // 

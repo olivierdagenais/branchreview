@@ -389,6 +389,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         #region Commit
 
+        private void commitMenu_DropDownOpening(object sender, EventArgs e)
+        {
+            // TODO: contribute actions from the ISourceRepository
+
+            var dataSource = pendingChanges.FileGrid.Grid.DataSource;
+            // TODO: We should consider checking _currentBranch, too
+            commitMenuItem.Enabled = dataSource != null;
+        }
+
         private void commitMenuItem_Click(object sender, EventArgs e)
         {
             if (tabs.SelectedTab != commitTab)
