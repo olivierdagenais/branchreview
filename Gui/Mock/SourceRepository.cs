@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Xml;
 using SoftwareNinjas.BranchAndReviewTools.Core;
@@ -206,20 +207,31 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             };
         }
 
+        public void Commit(object branchId, string message)
+        {
+            string firstLine;
+            using (var sr = new StringReader(message))
+            {
+                firstLine = sr.ReadLine();
+            }
+            Debug.WriteLine("Committing to '{0}' branch with summary: {1}", branchId, firstLine);
+        }
+
         public DataTable LoadRevisions(object branchId)
         {
+            Debug.WriteLine("Loading revisions for branch {0}...", new[] {branchId});
             return _revisionTablesByBranchId[(string) branchId];
         }
 
         public DataTable GetRevisionChanges(object revisionId)
         {
-            Debug.WriteLine("Scanning for changes in revision {0}...", revisionId);
+            Debug.WriteLine("Scanning for changes in revision {0}...", new[] {revisionId});
             return _refactorInternetPendingChanges;
         }
 
         public string GetRevisionMessage(object revisionId)
         {
-            Debug.WriteLine("Obtaining the message for revision {0}...", revisionId);
+            Debug.WriteLine("Obtaining the message for revision {0}...", new[] {revisionId});
             var table = _revisionTablesByBranchId["root"];
             var rows = table.Select("ID = {0}".FormatInvariant(revisionId));
             var row = rows[0];

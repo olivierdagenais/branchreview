@@ -107,6 +107,21 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         IList<MenuAction> GetActionsForPendingChanges(IEnumerable<object> pendingChangeIds);
 
         /// <summary>
+        /// Records all the pending changes in the branch specified by <paramref name="branchId"/>, along with the
+        /// specified <paramref name="message"/>.
+        /// </summary>
+        /// 
+        /// <param name="branchId">
+        /// The ID of the branch which identifies the pending changes to submit, as obtained from the <c>ID</c> column
+        /// in the <see cref="DataTable"/> returned from <see cref="LoadBranches"/>.
+        /// </param>
+        /// 
+        /// <param name="message">
+        /// The user-supplied notes that explain the changes, mostly why they were done.
+        /// </param>
+        void Commit(object branchId, string message);
+
+        /// <summary>
         /// Loads a <see cref="DataTable"/> representing the revisions associated with the project, in both the
         /// mainline and its various branches.
         /// </summary>
