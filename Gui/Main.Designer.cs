@@ -224,7 +224,7 @@
             this.commitMenuItem.Name = "commitMenuItem";
             this.commitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D3)));
             this.commitMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.commitMenuItem.Text = "&Changes";
+            this.commitMenuItem.Text = "&Pending";
             this.commitMenuItem.Click += new System.EventHandler(this.commitMenuItem_Click);
             // 
             // refreshMenuItem
@@ -265,8 +265,8 @@
             this.commitMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.commitMenu.Name = "commitMenu";
             this.commitMenu.ShowDropDownArrow = false;
-            this.commitMenu.Size = new System.Drawing.Size(61, 17);
-            this.commitMenu.Text = "&Changes";
+            this.commitMenu.Size = new System.Drawing.Size(56, 17);
+            this.commitMenu.Text = "&Pending";
             // 
             // tabs
             // 
@@ -404,7 +404,7 @@
             this.commitTab.Name = "commitTab";
             this.commitTab.Size = new System.Drawing.Size(784, 501);
             this.commitTab.TabIndex = 4;
-            this.commitTab.Text = "Changes";
+            this.commitTab.Text = "Pending";
             this.commitTab.UseVisualStyleBackColor = true;
             // 
             // pendingChanges
