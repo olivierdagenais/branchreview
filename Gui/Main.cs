@@ -24,7 +24,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             _searchableGrids = new ReadOnlyCollection<SearchableDataGridView>(new[]
             {
                 taskGrid,
-                null, // TODO: branches
+                branchGrid,
                 null, // TODO: activity
                 null,
             });
