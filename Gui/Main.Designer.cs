@@ -160,6 +160,9 @@
             this.branchGrid.Size = new System.Drawing.Size(665, 469);
             this.branchGrid.TabIndex = 0;
             this.branchGrid.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.branchGrid_RowContextMenuStripNeeded);
+            this.branchGrid.DoubleClick += new System.EventHandler(this.branchGrid_DoubleClick);
+            this.branchGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.branchGrid_KeyDown);
+            this.branchGrid.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(Grid_PreviewKeyDown);
             // 
             // activityTab
             // 

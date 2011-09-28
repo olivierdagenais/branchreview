@@ -159,5 +159,35 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             commitTab.Text = "Commit to {0}".FormatInvariant(branchId);
             tabs.SelectedTab = activityTab;
         }
+
+        private static void Grid_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                e.IsInputKey = true;
+            }
+        }
+
+        private void branchGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                InvokeDefaultBranchGridAction();
+            }
+        }
+
+        private void InvokeDefaultBranchGridAction()
+        {
+            var selectdRow = branchGrid.SelectedRows[0].Index;
+            var menu = BuildBranchActionMenuForRow(selectdRow);
+            menu.Items[0].PerformClick();
+        }
+
+        private void branchGrid_DoubleClick(object sender, EventArgs e)
+        {
+            InvokeDefaultBranchGridAction();
+        }
     }
 }
