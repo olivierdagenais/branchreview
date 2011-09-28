@@ -130,5 +130,18 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
  		HideSolutionNode = FALSE
 ";
         }
+
+        public IList<MenuAction> GetActionsForPendingChanges(IEnumerable<object> changeIds)
+        {
+            var numberOfChangeIds = changeIds.Count();
+            var suffix = ((numberOfChangeIds == 1) ? "" : "s");
+            return new[]
+            {
+                new MenuAction("diff", "&Diff", true,
+                    () => Debug.WriteLine("Diffing {0} change" + suffix, numberOfChangeIds)),
+                new MenuAction("revert", "&Revert", true,
+                    () => Debug.WriteLine("Reverting {0} change" + suffix, numberOfChangeIds)),
+            };
+        }
     }
 }
