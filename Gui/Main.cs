@@ -44,6 +44,51 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             _sourceRepository = new Mock.SourceRepository();
         }
 
+        void Main_Load(object sender, EventArgs e)
+        {
+            var settings = Settings.Default;
+            ClientSize = settings.WindowSize;
+            WindowState = settings.WindowState;
+            menuStrip.Location = settings.MenuLocation;
+            searchStrip.Location = settings.SearchLocation;
+            SwitchCurrentTab(true);
+        }
+
+        void Main_Closing(object sender, CancelEventArgs e)
+        {
+            var settings = Settings.Default;
+            settings.MenuLocation = new Point(menuStrip.Location.X - 3, menuStrip.Location.Y);
+            settings.SearchLocation = searchStrip.Location;
+            settings.WindowSize = ClientSize;
+            settings.WindowState = WindowState;
+            settings.Save();
+        }
+
+        #region Menu items
+
+        private void exitMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void refreshMenuItem_Click(object sender, EventArgs e)
+        {
+            SwitchCurrentTab(true);
+        }
+
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            var grid = _searchableGrids[tabs.SelectedIndex];
+            if (grid != null)
+            {
+                grid.Filter = searchTextBox.Text;
+            }
+        }
+
+        #endregion
+
+        #region Common
+
         private static void ConfigureDataGridView(DataGridView gridView, bool multiSelect)
         {
             gridView.AllowUserToAddRows = false;
@@ -66,49 +111,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             gridView.ShowEditingIcon = false;
             gridView.ShowRowErrors = false;
             gridView.StandardTab = true;
-        }
-
-        void Main_Load(object sender, EventArgs e)
-        {
-            var settings = Settings.Default;
-            ClientSize = settings.WindowSize;
-            WindowState = settings.WindowState;
-            menuStrip.Location = settings.MenuLocation;
-            searchStrip.Location = settings.SearchLocation;
-            SwitchCurrentTab(true);
-        }
-
-        void Main_Closing(object sender, CancelEventArgs e)
-        {
-            var settings = Settings.Default;
-            settings.MenuLocation = new Point(menuStrip.Location.X - 3, menuStrip.Location.Y);
-            settings.SearchLocation = searchStrip.Location;
-            settings.WindowSize = ClientSize;
-            settings.WindowState = WindowState;
-            settings.Save();
-        }
-
-        private void exitMenuItem_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void searchTextBox_TextChanged(object sender, EventArgs e)
-        {
-            var grid = _searchableGrids[tabs.SelectedIndex];
-            if (grid != null)
-            {
-                grid.Filter = searchTextBox.Text;
-            }
-        }
-
-        private void taskGrid_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
-        {
-            var row = taskGrid.Rows[e.RowIndex];
-            var taskId = row.Cells["ID"].Value;
-            var actions = _taskRepository.GetActionsForTask(taskId);
-            var menu = BuildActionMenu(actions);
-            e.ContextMenuStrip = menu;
         }
 
         private static ContextMenuStrip BuildActionMenu(IEnumerable<MenuAction> actions)
@@ -135,27 +137,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             return menu;
         }
 
-        private void branchGrid_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
-        {
-            var menu = BuildBranchActionMenuForRow(e.RowIndex);
-            e.ContextMenuStrip = menu;
-        }
-
-        private ContextMenuStrip BuildBranchActionMenuForRow(int rowIndex)
-        {
-            var row = branchGrid.Rows[rowIndex];
-            var branchId = row.Cells["ID"].Value;
-            var taskId = row.Cells["TaskID"].Value;
-            var builtInActions = new[]
-            {
-                new MenuAction("defaultOpen", "Open", row.Cells["BasePath"].Value != DBNull.Value,
-                            () => SetCurrentBranch(branchId, taskId) ),
-                new MenuAction(null, MenuAction.Separator, false, null),
-            };
-            var actions = _sourceRepository.GetActionsForBranch(branchId);
-            return BuildActionMenu(builtInActions.Compose(actions));
-        }
-
         private void SetCurrentBranch(object branchId, object taskId)
         {
             _currentBranchId = branchId;
@@ -172,28 +153,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             {
                 e.IsInputKey = true;
             }
-        }
-
-        private void branchGrid_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-                InvokeDefaultBranchGridAction();
-            }
-        }
-
-        private void InvokeDefaultBranchGridAction()
-        {
-            var selectdRow = branchGrid.SelectedRows[0].Index;
-            var menu = BuildBranchActionMenuForRow(selectdRow);
-            menu.Items[0].PerformClick();
-        }
-
-        private void branchGrid_DoubleClick(object sender, EventArgs e)
-        {
-            InvokeDefaultBranchGridAction();
         }
 
         private void tabs_Selected(object sender, TabControlEventArgs e)
@@ -260,6 +219,112 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             delayedWorker.Start();
         }
 
+        #endregion
+
+        #region Tasks
+
+        private void taskGrid_DoubleClick(object sender, EventArgs e)
+        {
+            InvokeDefaultTaskGridAction();
+        }
+
+        private void taskGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                InvokeDefaultTaskGridAction();
+            }
+        }
+
+        private void taskGrid_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
+        {
+            var row = taskGrid.Rows[e.RowIndex];
+            var taskId = row.Cells["ID"].Value;
+            var actions = _taskRepository.GetActionsForTask(taskId);
+            var menu = BuildActionMenu(actions);
+            e.ContextMenuStrip = menu;
+        }
+
+        private ContextMenuStrip BuildTaskActionMenuForRow(int rowIndex)
+        {
+            var row = taskGrid.Rows[rowIndex];
+            var taskId = row.Cells["ID"].Value;
+            var actions = _taskRepository.GetActionsForTask(taskId);
+            return BuildActionMenu(actions);
+        }
+
+        private void InvokeDefaultTaskGridAction()
+        {
+            var selectdRow = taskGrid.SelectedRows[0].Index;
+            var menu = BuildTaskActionMenuForRow(selectdRow);
+            menu.Items[0].PerformClick();
+        }
+
+        #endregion
+
+        #region Branches
+
+        private void branchGrid_DoubleClick(object sender, EventArgs e)
+        {
+            InvokeDefaultBranchGridAction();
+        }
+
+        private void branchGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                InvokeDefaultBranchGridAction();
+            }
+        }
+
+        private void branchGrid_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
+        {
+            var menu = BuildBranchActionMenuForRow(e.RowIndex);
+            e.ContextMenuStrip = menu;
+        }
+
+        private ContextMenuStrip BuildBranchActionMenuForRow(int rowIndex)
+        {
+            var row = branchGrid.Rows[rowIndex];
+            var branchId = row.Cells["ID"].Value;
+            var taskId = row.Cells["TaskID"].Value;
+            var builtInActions = new[]
+            {
+                new MenuAction("defaultOpen", "Open", row.Cells["BasePath"].Value != DBNull.Value,
+                            () => SetCurrentBranch(branchId, taskId) ),
+                new MenuAction(null, MenuAction.Separator, false, null),
+            };
+            var actions = _sourceRepository.GetActionsForBranch(branchId);
+            return BuildActionMenu(builtInActions.Compose(actions));
+        }
+
+        private void InvokeDefaultBranchGridAction()
+        {
+            var selectdRow = branchGrid.SelectedRows[0].Index;
+            var menu = BuildBranchActionMenuForRow(selectdRow);
+            menu.Items[0].PerformClick();
+        }
+
+        #endregion
+
+        #region Activity/Log
+        #endregion
+
+        #region Commit
+
+        void changedFiles_SelectionChanged(object sender, EventArgs e)
+        {
+            var rows = changedFiles.Rows.Cast<DataGridViewRow>();
+            var selectedRows = rows.Filter(row => row.Selected);
+            var selectedRowIds = selectedRows.Map(row => row.Cells["ID"].Value);
+            var patch = _sourceRepository.ComputeDifferences(selectedRowIds);
+            patchText.SetReadOnlyText(patch);
+        }
+
         private void RefreshChangedFiles()
         {
             // TODO: also preserve focused item(s)?
@@ -301,48 +366,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
-        void changedFiles_SelectionChanged(object sender, EventArgs e)
-        {
-            var rows = changedFiles.Rows.Cast<DataGridViewRow>();
-            var selectedRows = rows.Filter(row => row.Selected);
-            var selectedRowIds = selectedRows.Map(row => row.Cells["ID"].Value);
-            var patch = _sourceRepository.ComputeDifferences(selectedRowIds);
-            patchText.SetReadOnlyText(patch);
-        }
+        #endregion
 
-        private void refreshMenuItem_Click(object sender, EventArgs e)
-        {
-            SwitchCurrentTab(true);
-        }
 
-        private ContextMenuStrip BuildTaskActionMenuForRow(int rowIndex)
-        {
-            var row = taskGrid.Rows[rowIndex];
-            var taskId = row.Cells["ID"].Value;
-            var actions = _taskRepository.GetActionsForTask(taskId);
-            return BuildActionMenu(actions);
-        }
-
-        private void taskGrid_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-                InvokeDefaultTaskGridAction();
-            }
-        }
-
-        private void InvokeDefaultTaskGridAction()
-        {
-            var selectdRow = taskGrid.SelectedRows[0].Index;
-            var menu = BuildTaskActionMenuForRow(selectdRow);
-            menu.Items[0].PerformClick();
-        }
-
-        private void taskGrid_DoubleClick(object sender, EventArgs e)
-        {
-            InvokeDefaultTaskGridAction();
-        }
     }
 }
