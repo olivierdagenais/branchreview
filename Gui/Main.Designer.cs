@@ -63,6 +63,8 @@
             this.branchesMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.activityMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.commitMenu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.editMenu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.searchMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             viewMenuRefreshSeparator = new System.Windows.Forms.ToolStripSeparator();
             tasksDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
             branchesDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
@@ -322,6 +324,7 @@
             this.menuStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
+            this.editMenu,
             this.viewMenu,
             this.tasksMenu,
             this.branchesMenu,
@@ -480,6 +483,25 @@
             branchesDummyMenuItem.Name = "branchesDummyMenuItem";
             branchesDummyMenuItem.Size = new System.Drawing.Size(149, 6);
             // 
+            // editMenu
+            // 
+            this.editMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.editMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchMenuItem});
+            this.editMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.editMenu.Name = "editMenu";
+            this.editMenu.ShowDropDownArrow = false;
+            this.editMenu.Size = new System.Drawing.Size(37, 22);
+            this.editMenu.Text = "&Edit";
+            // 
+            // searchMenuItem
+            // 
+            this.searchMenuItem.Name = "searchMenuItem";
+            this.searchMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.searchMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.searchMenuItem.Text = "&Search";
+            this.searchMenuItem.Click += new System.EventHandler(this.searchMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -558,5 +580,7 @@
         private System.Windows.Forms.ToolStripDropDownButton branchesMenu;
         private System.Windows.Forms.ToolStripDropDownButton activityMenu;
         private System.Windows.Forms.ToolStripDropDownButton commitMenu;
+        private System.Windows.Forms.ToolStripDropDownButton editMenu;
+        private System.Windows.Forms.ToolStripMenuItem searchMenuItem;
     }
 }

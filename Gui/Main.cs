@@ -264,6 +264,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             return id;
         }
 
+        private void searchMenuItem_Click(object sender, EventArgs e)
+        {
+            searchTextBox.Focus();
+        }
+
         #endregion
 
         #region Tasks
