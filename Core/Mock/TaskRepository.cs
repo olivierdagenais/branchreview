@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
-using SoftwareNinjas.BranchAndReviewTools.Core;
 
-namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
+namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
 {
-    internal class TaskRepository : ITaskRepository
+    /// <summary>
+    /// An implementation of <see cref="ITaskRepository"/> with fake data.
+    /// </summary>
+    public class TaskRepository : ITaskRepository
     {
         private readonly DataTable _tasks = new DataTable
         {
@@ -33,14 +35,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             }
         };
 
-        public ILog Log { get; set; }
+        ILog ITaskRepository.Log { get; set; }
 
-        public DataTable LoadTasks()
+        DataTable ITaskRepository.LoadTasks()
         {
             return _tasks;
         }
 
-        public IList<MenuAction> GetTaskActions()
+        IList<MenuAction> ITaskRepository.GetTaskActions()
         {
             IList<MenuAction> actionsForTask = new[]
             {
@@ -51,7 +53,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             return actionsForTask;
         }
 
-        public IList<MenuAction> GetTaskActions(object taskId)
+        IList<MenuAction> ITaskRepository.GetTaskActions(object taskId)
         {
             var id = (int) taskId;
             var row = _tasks.Select("[ID] = " + id).FirstOrDefault();

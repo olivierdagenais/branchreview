@@ -6,12 +6,14 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml;
-using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.Core;
 
-namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
+namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
 {
-    internal class SourceRepository : ISourceRepository
+    /// <summary>
+    /// An implementation of <see cref="ISourceRepository"/> with fake data.
+    /// </summary>
+    public class SourceRepository : ISourceRepository
     {
         private const string HardcodedDifferences = @"Index: D:/Work/open source/tools/BART/trunk/BranchAndReviewTools.sln
 ===================================================================
@@ -90,6 +92,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
 
         private readonly Dictionary<string, DataTable> _revisionTablesByBranchId;
 
+        /// <summary>
+        /// Creates a new instance of the <see cref="SourceRepository"/> class.
+        /// </summary>
         public SourceRepository()
         {
             _revisionTablesByBranchId = new Dictionary<string, DataTable>();
@@ -133,14 +138,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             }
         }
 
-        public ILog Log { get; set; }
+        ILog ISourceRepository.Log { get; set; }
 
-        public DataTable LoadBranches()
+        DataTable ISourceRepository.LoadBranches()
         {
             return _branches;
         }
 
-        public IList<MenuAction> GetBranchActions()
+        IList<MenuAction> ISourceRepository.GetBranchActions()
         {
             IList<MenuAction> actions = new[]
             {
@@ -150,7 +155,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             return actions;
         }
 
-        public IList<MenuAction> GetBranchActions(object branchId)
+        IList<MenuAction> ISourceRepository.GetBranchActions(object branchId)
         {
             var id = (string) branchId;
             var escapedId = id.Replace("'", "''");
@@ -167,12 +172,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             return actions;
         }
 
-        public void CreateBranch(object taskId)
+        void ISourceRepository.CreateBranch(object taskId)
         {
             Debug.WriteLine("Creating branch {0}...", taskId);
         }
 
-        public DataTable GetPendingChanges(object branchId)
+        DataTable ISourceRepository.GetPendingChanges(object branchId)
         {
             Debug.WriteLine("Scanning for changes in {0}...", branchId);
             switch (branchId.ToString())
@@ -184,7 +189,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             }
         }
 
-        public string ComputePendingDifferences(IEnumerable<object> pendingChangeIds)
+        string ISourceRepository.ComputePendingDifferences(IEnumerable<object> pendingChangeIds)
         {
             var numberOfPendingChanges = pendingChangeIds.Count();
             var suffix = (numberOfPendingChanges == 1 ? "" : "s");
@@ -192,7 +197,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             return HardcodedDifferences;
         }
 
-        public IList<MenuAction> GetActionsForPendingChanges(IEnumerable<object> pendingChangeIds)
+        IList<MenuAction> ISourceRepository.GetActionsForPendingChanges(IEnumerable<object> pendingChangeIds)
         {
             var numberOfPendingChangeIds = pendingChangeIds.Count();
             if (numberOfPendingChangeIds == 0)
@@ -209,7 +214,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             };
         }
 
-        public void Commit(object branchId, string message)
+        void ISourceRepository.Commit(object branchId, string message)
         {
             string firstLine;
             using (var sr = new StringReader(message))
@@ -219,19 +224,19 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             Debug.WriteLine("Committing to '{0}' branch with summary: {1}", branchId, firstLine);
         }
 
-        public DataTable LoadRevisions(object branchId)
+        DataTable ISourceRepository.LoadRevisions(object branchId)
         {
             Debug.WriteLine("Loading revisions for branch {0}...", new[] {branchId});
             return _revisionTablesByBranchId[(string) branchId];
         }
 
-        public DataTable GetRevisionChanges(object revisionId)
+        DataTable ISourceRepository.GetRevisionChanges(object revisionId)
         {
             Debug.WriteLine("Scanning for changes in revision {0}...", new[] {revisionId});
             return _refactorInternetPendingChanges;
         }
 
-        public string GetRevisionMessage(object revisionId)
+        string ISourceRepository.GetRevisionMessage(object revisionId)
         {
             Debug.WriteLine("Obtaining the message for revision {0}...", new[] {revisionId});
             var table = _revisionTablesByBranchId["root"];
@@ -241,7 +246,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             return (string) value;
         }
 
-        public string ComputeRevisionDifferences(IEnumerable<object> changeIds)
+        string ISourceRepository.ComputeRevisionDifferences(IEnumerable<object> changeIds)
         {
             var numberOfPendingChanges = changeIds.Count();
             var suffix = ( numberOfPendingChanges == 1 ? "" : "s" );
@@ -249,7 +254,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Mock
             return HardcodedDifferences;
         }
 
-        public IList<MenuAction> GetActionsForRevisionChanges(IEnumerable<object> changeIds)
+        IList<MenuAction> ISourceRepository.GetActionsForRevisionChanges(IEnumerable<object> changeIds)
         {
             var numberOfRevisionChangeIds = changeIds.Count();
             if (numberOfRevisionChangeIds == 0)

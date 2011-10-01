@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using ScintillaNet;
 using SoftwareNinjas.BranchAndReviewTools.Core;
+using SoftwareNinjas.BranchAndReviewTools.Core.Mock;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Properties;
 using SoftwareNinjas.Core;
@@ -29,8 +30,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             activityRevisions.Grid.MultiSelect = false;
             Load += Main_Load;
             FormClosing += Main_Closing;
-            _taskRepository = new Mock.TaskRepository();
-            _sourceRepository = new Mock.SourceRepository();
+            _taskRepository = new TaskRepository();
+            _sourceRepository = new SourceRepository();
             this.pendingChanges.ChangeLog.KeyDown += ChangeLog_KeyDown;
 
             activityChangeInspector.ChangeLog.LongLines.EdgeMode = EdgeMode.None;

@@ -1,8 +1,8 @@
 ﻿using System;
 using NUnit.Framework;
-using SoftwareNinjas.BranchAndReviewTools.Gui.Mock;
+using SoftwareNinjas.BranchAndReviewTools.Core.Mock;
 
-namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Mock
+namespace SoftwareNinjas.BranchAndReviewTools.Core.Tests.Mock
 {
     [TestFixture]
     public class SourceRepositoryTest
