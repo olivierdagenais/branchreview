@@ -103,8 +103,7 @@
             this.statusBarProgress});
             this.statusBar.Location = new System.Drawing.Point(0, 551);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Padding = new System.Windows.Forms.Padding(1, 0, 12, 0);
-            this.statusBar.Size = new System.Drawing.Size(679, 22);
+            this.statusBar.Size = new System.Drawing.Size(792, 22);
             this.statusBar.TabIndex = 0;
             // 
             // statusBarText
@@ -117,7 +116,7 @@
             // statusBarProgress
             // 
             this.statusBarProgress.Name = "statusBarProgress";
-            this.statusBarProgress.Size = new System.Drawing.Size(86, 16);
+            this.statusBarProgress.Size = new System.Drawing.Size(100, 16);
             // 
             // tableLayoutPanel
             // 
@@ -134,7 +133,7 @@
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel.Size = new System.Drawing.Size(679, 573);
+            this.tableLayoutPanel.Size = new System.Drawing.Size(792, 573);
             this.tableLayoutPanel.TabIndex = 0;
             // 
             // menuStrip
@@ -150,8 +149,7 @@
             this.commitMenu});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip.Size = new System.Drawing.Size(679, 24);
+            this.menuStrip.Size = new System.Drawing.Size(792, 24);
             this.menuStrip.TabIndex = 0;
             // 
             // fileMenu
@@ -292,7 +290,7 @@
             this.tabs.Margin = new System.Windows.Forms.Padding(0);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(679, 527);
+            this.tabs.Size = new System.Drawing.Size(792, 527);
             this.tabs.TabIndex = 0;
             this.tabs.TabStop = false;
             this.tabs.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabs_Selected);
@@ -303,7 +301,7 @@
             this.taskTab.Location = new System.Drawing.Point(4, 22);
             this.taskTab.Name = "taskTab";
             this.taskTab.Padding = new System.Windows.Forms.Padding(3);
-            this.taskTab.Size = new System.Drawing.Size(671, 501);
+            this.taskTab.Size = new System.Drawing.Size(784, 501);
             this.taskTab.TabIndex = 1;
             this.taskTab.Text = "Tasks";
             this.taskTab.UseVisualStyleBackColor = true;
@@ -316,7 +314,7 @@
             this.taskGrid.Filter = null;
             this.taskGrid.Location = new System.Drawing.Point(3, 3);
             this.taskGrid.Name = "taskGrid";
-            this.taskGrid.Size = new System.Drawing.Size(665, 495);
+            this.taskGrid.Size = new System.Drawing.Size(778, 495);
             this.taskGrid.TabIndex = 0;
             this.taskGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuStripNeededEventHandler(this.taskGrid_ContextMenuStripNeeded);
             this.taskGrid.RowInvoked += new System.EventHandler(this.taskGrid_RowInvoked);
@@ -327,7 +325,7 @@
             this.branchesTab.Location = new System.Drawing.Point(4, 22);
             this.branchesTab.Name = "branchesTab";
             this.branchesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.branchesTab.Size = new System.Drawing.Size(671, 501);
+            this.branchesTab.Size = new System.Drawing.Size(784, 501);
             this.branchesTab.TabIndex = 2;
             this.branchesTab.Text = "Branches";
             this.branchesTab.UseVisualStyleBackColor = true;
@@ -347,7 +345,7 @@
             // branchGridAndRestDivider.Panel2
             // 
             this.branchGridAndRestDivider.Panel2.Controls.Add(this.activityTopBottomPanel);
-            this.branchGridAndRestDivider.Size = new System.Drawing.Size(665, 495);
+            this.branchGridAndRestDivider.Size = new System.Drawing.Size(778, 495);
             this.branchGridAndRestDivider.SplitterDistance = 89;
             this.branchGridAndRestDivider.TabIndex = 1;
             this.branchGridAndRestDivider.TabStop = false;
@@ -360,7 +358,7 @@
             this.branchGrid.Filter = null;
             this.branchGrid.Location = new System.Drawing.Point(0, 0);
             this.branchGrid.Name = "branchGrid";
-            this.branchGrid.Size = new System.Drawing.Size(663, 87);
+            this.branchGrid.Size = new System.Drawing.Size(776, 87);
             this.branchGrid.TabIndex = 0;
             this.branchGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuStripNeededEventHandler(this.branchGrid_ContextMenuStripNeeded);
             this.branchGrid.RowInvoked += new System.EventHandler(this.branchGrid_RowInvoked);
@@ -380,7 +378,7 @@
             // activityTopBottomPanel.Panel2
             // 
             this.activityTopBottomPanel.Panel2.Controls.Add(this.activityChangeInspector);
-            this.activityTopBottomPanel.Size = new System.Drawing.Size(665, 402);
+            this.activityTopBottomPanel.Size = new System.Drawing.Size(778, 402);
             this.activityTopBottomPanel.SplitterDistance = 85;
             this.activityTopBottomPanel.TabIndex = 1;
             this.activityTopBottomPanel.TabStop = false;
@@ -393,7 +391,7 @@
             this.activityRevisions.Filter = null;
             this.activityRevisions.Location = new System.Drawing.Point(0, 0);
             this.activityRevisions.Name = "activityRevisions";
-            this.activityRevisions.Size = new System.Drawing.Size(663, 83);
+            this.activityRevisions.Size = new System.Drawing.Size(776, 83);
             this.activityRevisions.TabIndex = 0;
             this.activityRevisions.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuStripNeededEventHandler(this.activityRevisions_ContextMenuStripNeeded);
             this.activityRevisions.RowInvoked += new System.EventHandler(this.activityRevisions_RowInvoked);
@@ -409,7 +407,7 @@
             this.activityChangeInspector.MessageFunction = null;
             this.activityChangeInspector.Name = "activityChangeInspector";
             this.activityChangeInspector.PatchText = "";
-            this.activityChangeInspector.Size = new System.Drawing.Size(663, 311);
+            this.activityChangeInspector.Size = new System.Drawing.Size(776, 311);
             this.activityChangeInspector.TabIndex = 0;
             // 
             // commitTab
@@ -417,7 +415,7 @@
             this.commitTab.Controls.Add(this.pendingChanges);
             this.commitTab.Location = new System.Drawing.Point(4, 22);
             this.commitTab.Name = "commitTab";
-            this.commitTab.Size = new System.Drawing.Size(671, 501);
+            this.commitTab.Size = new System.Drawing.Size(784, 501);
             this.commitTab.TabIndex = 4;
             this.commitTab.Text = "Pending";
             this.commitTab.UseVisualStyleBackColor = true;
@@ -433,14 +431,14 @@
             this.pendingChanges.MessageFunction = null;
             this.pendingChanges.Name = "pendingChanges";
             this.pendingChanges.PatchText = "";
-            this.pendingChanges.Size = new System.Drawing.Size(671, 501);
+            this.pendingChanges.Size = new System.Drawing.Size(784, 501);
             this.pendingChanges.TabIndex = 0;
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(679, 573);
+            this.ClientSize = new System.Drawing.Size(792, 573);
             this.Controls.Add(this.tableLayoutPanel);
             this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::SoftwareNinjas.BranchAndReviewTools.Gui.Properties.Settings.Default, "WindowLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.Location = global::SoftwareNinjas.BranchAndReviewTools.Gui.Properties.Settings.Default.WindowLocation;
