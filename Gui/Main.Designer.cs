@@ -329,6 +329,7 @@
             this.branchesTab.TabIndex = 2;
             this.branchesTab.Text = "Branches";
             this.branchesTab.UseVisualStyleBackColor = true;
+            this.branchesTab.Layout += new System.Windows.Forms.LayoutEventHandler(this.branchesTab_Layout);
             // 
             // branchGridAndRestDivider
             // 
@@ -349,6 +350,7 @@
             this.branchGridAndRestDivider.SplitterDistance = 89;
             this.branchGridAndRestDivider.TabIndex = 1;
             this.branchGridAndRestDivider.TabStop = false;
+            this.branchGridAndRestDivider.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.branchGridAndRestDivider_SplitterMoved);
             // 
             // branchGrid
             // 
@@ -382,6 +384,7 @@
             this.activityTopBottomPanel.SplitterDistance = 85;
             this.activityTopBottomPanel.TabIndex = 1;
             this.activityTopBottomPanel.TabStop = false;
+            this.activityTopBottomPanel.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.activityTopBottomPanel_SplitterMoved);
             // 
             // activityRevisions
             // 
@@ -403,12 +406,16 @@
             this.activityChangeInspector.ComputeDifferencesFunction = null;
             this.activityChangeInspector.Context = null;
             this.activityChangeInspector.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.activityChangeInspector.HorizontalDividerSplitterDistance = 25;
             this.activityChangeInspector.Location = new System.Drawing.Point(0, 0);
             this.activityChangeInspector.MessageFunction = null;
             this.activityChangeInspector.Name = "activityChangeInspector";
             this.activityChangeInspector.PatchText = "";
             this.activityChangeInspector.Size = new System.Drawing.Size(776, 311);
             this.activityChangeInspector.TabIndex = 0;
+            this.activityChangeInspector.VerticalDividerSplitterDistance = 243;
+            this.activityChangeInspector.HorizontalDividerSplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.activityChangeInspector_HorizontalDividerSplitterMoved);
+            this.activityChangeInspector.VerticalDividerSplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.activityChangeInspector_VerticalDividerSplitterMoved);
             // 
             // commitTab
             // 
@@ -419,6 +426,7 @@
             this.commitTab.TabIndex = 4;
             this.commitTab.Text = "Pending";
             this.commitTab.UseVisualStyleBackColor = true;
+            this.commitTab.Layout += new System.Windows.Forms.LayoutEventHandler(this.commitTab_Layout);
             // 
             // pendingChanges
             // 
@@ -427,12 +435,16 @@
             this.pendingChanges.ComputeDifferencesFunction = null;
             this.pendingChanges.Context = null;
             this.pendingChanges.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pendingChanges.HorizontalDividerSplitterDistance = 78;
             this.pendingChanges.Location = new System.Drawing.Point(0, 0);
             this.pendingChanges.MessageFunction = null;
             this.pendingChanges.Name = "pendingChanges";
             this.pendingChanges.PatchText = "";
             this.pendingChanges.Size = new System.Drawing.Size(784, 501);
             this.pendingChanges.TabIndex = 0;
+            this.pendingChanges.VerticalDividerSplitterDistance = 245;
+            this.pendingChanges.HorizontalDividerSplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.pendingChanges_HorizontalDividerSplitterMoved);
+            this.pendingChanges.VerticalDividerSplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.pendingChanges_VerticalDividerSplitterMoved);
             // 
             // Main
             // 

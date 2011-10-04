@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -11,6 +12,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
     public partial class ChangeInspector : UserControl
     {
+        public event SplitterEventHandler HorizontalDividerSplitterMoved;
+        public event SplitterEventHandler VerticalDividerSplitterMoved;
+
         private object _context;
 
         public ChangeInspector()
@@ -20,6 +24,20 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             PatchViewer.InitializeDefaults();
             PatchViewer.InitializeDiff();
             FileGrid.Grid.MultiSelect = true;
+        }
+
+        [SettingsBindable(true)]
+        public int VerticalDividerSplitterDistance
+        {
+            get { return verticalDivider.SplitterDistance; }
+            set { verticalDivider.SplitterDistance = value; }
+        }
+
+        [SettingsBindable(true)]
+        public int HorizontalDividerSplitterDistance
+        {
+            get { return horizontalDivider.SplitterDistance; }
+            set { horizontalDivider.SplitterDistance = value; }
         }
 
         public string PatchText
@@ -166,5 +184,21 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
         #endregion
+
+        private void horizontalDivider_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            if (HorizontalDividerSplitterMoved != null)
+            {
+                HorizontalDividerSplitterMoved(this, e);
+            }
+        }
+
+        private void verticalDivider_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            if (VerticalDividerSplitterMoved != null)
+            {
+                VerticalDividerSplitterMoved(this, e);
+            }
+        }
     }
 }

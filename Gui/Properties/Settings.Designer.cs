@@ -58,5 +58,77 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Properties {
                 this["WindowSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("89")]
+        public int branchGridAndRestDividerSplitterDistance {
+            get {
+                return ((int)(this["branchGridAndRestDividerSplitterDistance"]));
+            }
+            set {
+                this["branchGridAndRestDividerSplitterDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("85")]
+        public int activityTopBottomPanelSplitterDistance {
+            get {
+                return ((int)(this["activityTopBottomPanelSplitterDistance"]));
+            }
+            set {
+                this["activityTopBottomPanelSplitterDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("33")]
+        public int activityChangeInspectorHorizontalDividerSplitterDistance {
+            get {
+                return ((int)(this["activityChangeInspectorHorizontalDividerSplitterDistance"]));
+            }
+            set {
+                this["activityChangeInspectorHorizontalDividerSplitterDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("242")]
+        public int activityChangeInspectorVerticalDividerSplitterDistance {
+            get {
+                return ((int)(this["activityChangeInspectorVerticalDividerSplitterDistance"]));
+            }
+            set {
+                this["activityChangeInspectorVerticalDividerSplitterDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("70")]
+        public int pendingChangesHorizontalDividerSplitterDistance {
+            get {
+                return ((int)(this["pendingChangesHorizontalDividerSplitterDistance"]));
+            }
+            set {
+                this["pendingChangesHorizontalDividerSplitterDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("245")]
+        public int pendingChangesVerticalDividerSplitterDistance {
+            get {
+                return ((int)(this["pendingChangesVerticalDividerSplitterDistance"]));
+            }
+            set {
+                this["pendingChangesVerticalDividerSplitterDistance"] = value;
+            }
+        }
     }
 }

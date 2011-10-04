@@ -11,5 +11,23 @@
     <Setting Name="WindowSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">800, 600</Value>
     </Setting>
+    <Setting Name="branchGridAndRestDividerSplitterDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">89</Value>
+    </Setting>
+    <Setting Name="activityTopBottomPanelSplitterDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">85</Value>
+    </Setting>
+    <Setting Name="activityChangeInspectorHorizontalDividerSplitterDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">33</Value>
+    </Setting>
+    <Setting Name="activityChangeInspectorVerticalDividerSplitterDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">242</Value>
+    </Setting>
+    <Setting Name="pendingChangesHorizontalDividerSplitterDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">70</Value>
+    </Setting>
+    <Setting Name="pendingChangesVerticalDividerSplitterDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">245</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

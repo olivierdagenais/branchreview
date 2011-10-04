@@ -293,6 +293,21 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         #region Branches
 
+        private void branchesTab_Layout(object sender, LayoutEventArgs e)
+        {
+            if (e.AffectedProperty == "Visible" && branchesTab.Tag == null)
+            {
+                var settings = Settings.Default;
+                branchGridAndRestDivider.SplitterDistance = settings.branchGridAndRestDividerSplitterDistance;
+                activityTopBottomPanel.SplitterDistance = settings.activityTopBottomPanelSplitterDistance;
+                activityChangeInspector.HorizontalDividerSplitterDistance =
+                    settings.activityChangeInspectorHorizontalDividerSplitterDistance;
+                activityChangeInspector.VerticalDividerSplitterDistance =
+                    settings.activityChangeInspectorVerticalDividerSplitterDistance;
+                branchesTab.Tag = "done";
+            }
+        }
+
         private void branchesMenu_DropDownOpening(object sender, EventArgs e)
         {
             var items = branchesMenu.DropDownItems;
@@ -406,9 +421,56 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             e.ContextMenuStrip = menu;
         }
 
+        private void branchGridAndRestDivider_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            if (branchesTab.Tag != null)
+            {
+                Settings.Default.branchGridAndRestDividerSplitterDistance = branchGridAndRestDivider.SplitterDistance;
+            }
+        }
+
+        private void activityTopBottomPanel_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            if (branchesTab.Tag != null)
+            {
+                Settings.Default.activityTopBottomPanelSplitterDistance = activityTopBottomPanel.SplitterDistance;
+            }
+        }
+
+        private void activityChangeInspector_HorizontalDividerSplitterMoved(object sender, SplitterEventArgs e)
+        {
+            if (branchesTab.Tag != null)
+            {
+                Settings.Default.activityChangeInspectorHorizontalDividerSplitterDistance =
+                    activityChangeInspector.HorizontalDividerSplitterDistance;
+            }
+        }
+
+        private void activityChangeInspector_VerticalDividerSplitterMoved(object sender, SplitterEventArgs e)
+        {
+            if (branchesTab.Tag != null)
+            {
+                Settings.Default.activityChangeInspectorVerticalDividerSplitterDistance =
+                    activityChangeInspector.VerticalDividerSplitterDistance;
+            }
+        }
+
         #endregion
 
         #region Commit
+
+        private void commitTab_Layout(object sender, LayoutEventArgs e)
+        {
+            if (e.AffectedProperty == "Visible" && commitTab.Tag == null)
+            {
+                var settings = Settings.Default;
+                pendingChanges.HorizontalDividerSplitterDistance =
+                    settings.pendingChangesHorizontalDividerSplitterDistance;
+                pendingChanges.VerticalDividerSplitterDistance =
+                    settings.pendingChangesVerticalDividerSplitterDistance;
+                commitTab.Tag = "done";
+            }
+        }
 
         private void commitMenu_DropDownOpening(object sender, EventArgs e)
         {
@@ -460,6 +522,24 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             _sourceRepository.Commit(_currentBranchId, message);
             pendingChanges.ChangeLog.Text = String.Empty;
             SwitchCurrentTab(true);
+        }
+
+        private void pendingChanges_HorizontalDividerSplitterMoved(object sender, SplitterEventArgs e)
+        {
+            if (commitTab.Tag != null)
+            {
+                Settings.Default.pendingChangesHorizontalDividerSplitterDistance =
+                    pendingChanges.HorizontalDividerSplitterDistance;
+            }
+        }
+
+        private void pendingChanges_VerticalDividerSplitterMoved(object sender, SplitterEventArgs e)
+        {
+            if (commitTab.Tag != null)
+            {
+                Settings.Default.pendingChangesVerticalDividerSplitterDistance =
+                    pendingChanges.VerticalDividerSplitterDistance;
+            }
         }
 
         #endregion
