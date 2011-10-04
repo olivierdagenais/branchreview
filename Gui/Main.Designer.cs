@@ -347,7 +347,7 @@
             // branchGridAndRestDivider.Panel2
             // 
             this.branchGridAndRestDivider.Panel2.Controls.Add(this.activityTopBottomPanel);
-            this.branchGridAndRestDivider.Size = new System.Drawing.Size(667, 495);
+            this.branchGridAndRestDivider.Size = new System.Drawing.Size(665, 495);
             this.branchGridAndRestDivider.SplitterDistance = 89;
             this.branchGridAndRestDivider.TabIndex = 1;
             this.branchGridAndRestDivider.TabStop = false;
@@ -360,7 +360,7 @@
             this.branchGrid.Filter = null;
             this.branchGrid.Location = new System.Drawing.Point(0, 0);
             this.branchGrid.Name = "branchGrid";
-            this.branchGrid.Size = new System.Drawing.Size(665, 87);
+            this.branchGrid.Size = new System.Drawing.Size(663, 87);
             this.branchGrid.TabIndex = 0;
             this.branchGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuStripNeededEventHandler(this.branchGrid_ContextMenuStripNeeded);
             this.branchGrid.RowInvoked += new System.EventHandler(this.branchGrid_RowInvoked);
@@ -380,7 +380,7 @@
             // activityTopBottomPanel.Panel2
             // 
             this.activityTopBottomPanel.Panel2.Controls.Add(this.activityChangeInspector);
-            this.activityTopBottomPanel.Size = new System.Drawing.Size(667, 402);
+            this.activityTopBottomPanel.Size = new System.Drawing.Size(665, 402);
             this.activityTopBottomPanel.SplitterDistance = 85;
             this.activityTopBottomPanel.TabIndex = 1;
             this.activityTopBottomPanel.TabStop = false;
@@ -393,7 +393,7 @@
             this.activityRevisions.Filter = null;
             this.activityRevisions.Location = new System.Drawing.Point(0, 0);
             this.activityRevisions.Name = "activityRevisions";
-            this.activityRevisions.Size = new System.Drawing.Size(665, 83);
+            this.activityRevisions.Size = new System.Drawing.Size(663, 83);
             this.activityRevisions.TabIndex = 0;
             this.activityRevisions.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuStripNeededEventHandler(this.activityRevisions_ContextMenuStripNeeded);
             this.activityRevisions.RowInvoked += new System.EventHandler(this.activityRevisions_RowInvoked);
@@ -409,7 +409,7 @@
             this.activityChangeInspector.MessageFunction = null;
             this.activityChangeInspector.Name = "activityChangeInspector";
             this.activityChangeInspector.PatchText = "";
-            this.activityChangeInspector.Size = new System.Drawing.Size(665, 311);
+            this.activityChangeInspector.Size = new System.Drawing.Size(663, 311);
             this.activityChangeInspector.TabIndex = 0;
             // 
             // commitTab
@@ -433,7 +433,7 @@
             this.pendingChanges.MessageFunction = null;
             this.pendingChanges.Name = "pendingChanges";
             this.pendingChanges.PatchText = "";
-            this.pendingChanges.Size = new System.Drawing.Size(672, 501);
+            this.pendingChanges.Size = new System.Drawing.Size(671, 501);
             this.pendingChanges.TabIndex = 0;
             // 
             // Main
