@@ -73,6 +73,8 @@
                 <include name="*/bin/${configuration}/SoftwareNinjas.*.dll"/>
                 <include name="*/bin/${configuration}/SoftwareNinjas.*.exe"/>
                 <include name="*/bin/${configuration}/SoftwareNinjas.*.xml"/>
+                <include name="Gui/SciLexer*.dll"/>
+                <include name="Gui/ScintillaNet.*"/>
                 <exclude name="*.Tests/bin/**"/>
             </fileset>
         </copy>
