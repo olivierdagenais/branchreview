@@ -189,7 +189,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
             }
         }
 
-        string ISourceRepository.ComputePendingDifferences(IEnumerable<object> pendingChangeIds)
+        string ISourceRepository.ComputePendingDifferences(object branchId, IEnumerable<object> pendingChangeIds)
         {
             var numberOfPendingChanges = pendingChangeIds.Count();
             var suffix = (numberOfPendingChanges == 1 ? "" : "s");
@@ -197,7 +197,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
             return HardcodedDifferences;
         }
 
-        IList<MenuAction> ISourceRepository.GetActionsForPendingChanges(IEnumerable<object> pendingChangeIds)
+        IList<MenuAction> ISourceRepository.GetActionsForPendingChanges(object branchId, IEnumerable<object> pendingChangeIds)
         {
             var numberOfPendingChangeIds = pendingChangeIds.Count();
             if (numberOfPendingChangeIds == 0)
@@ -246,7 +246,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
             return (string) value;
         }
 
-        string ISourceRepository.ComputeRevisionDifferences(IEnumerable<object> changeIds)
+        string ISourceRepository.ComputeRevisionDifferences(object revisionId, IEnumerable<object> changeIds)
         {
             var numberOfPendingChanges = changeIds.Count();
             var suffix = ( numberOfPendingChanges == 1 ? "" : "s" );
@@ -254,7 +254,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
             return HardcodedDifferences;
         }
 
-        IList<MenuAction> ISourceRepository.GetActionsForRevisionChanges(IEnumerable<object> changeIds)
+        IList<MenuAction> ISourceRepository.GetActionsForRevisionChanges(object revisionId, IEnumerable<object> changeIds)
         {
             var numberOfRevisionChangeIds = changeIds.Count();
             if (numberOfRevisionChangeIds == 0)
