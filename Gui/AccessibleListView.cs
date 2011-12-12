@@ -9,7 +9,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
     public class AccessibleListView : ListView
     {
-        public event ContextMenuStripNeededEventHandler ContextMenuStripNeeded;
+        public event ContextMenuNeededEventHandler ContextMenuNeeded;
 
         private class ColumnComparer : IComparer<object>
         {
@@ -131,21 +131,21 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             AutoSizeColumns();
         }
 
-        private void InvokeContextMenuStripNeeded(ContextMenuStripNeededEventArgs e)
+        private void InvokeContextMenuStripNeeded(ContextMenuNeededEventArgs e)
         {
-            if (ContextMenuStripNeeded != null)
+            if (ContextMenuNeeded != null)
             {
-                ContextMenuStripNeeded(this, e);
+                ContextMenuNeeded(this, e);
             }
         }
 
         private void InvokeContextMenu(Point screenLocation)
         {
-            var args = new ContextMenuStripNeededEventArgs();
+            var args = new ContextMenuNeededEventArgs();
             InvokeContextMenuStripNeeded(args);
-            if (args.ContextMenuStrip != null)
+            if (args.ContextMenu != null)
             {
-                args.ContextMenuStrip.Show(screenLocation);
+                args.ContextMenu.Show(this, screenLocation);
             }
         }
 
@@ -158,8 +158,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 e.SuppressKeyPress = false;
                 var rect = this.FocusedItem.Bounds;
                 var bottomLeft = new Point(rect.Left, rect.Bottom);
-                var screenCoordinates = PointToScreen(bottomLeft);
-                InvokeContextMenu(screenCoordinates);
+                InvokeContextMenu(bottomLeft);
             }
             else
             {

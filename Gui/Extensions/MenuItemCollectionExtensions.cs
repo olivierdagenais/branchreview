@@ -4,20 +4,20 @@ using SoftwareNinjas.BranchAndReviewTools.Core;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
 {
-    internal static class ToolStripItemCollectionExtensions
+    internal static class MenuItemCollectionExtensions
     {
-        public static void AddSeparator(this ToolStripItemCollection items)
+        public static void AddSeparator(this Menu.MenuItemCollection items)
         {
-            var item = new ToolStripSeparator();
+            var item = new MenuItem("-");
             items.Add(item);
         }
 
-        public static void AddActions(this ToolStripItemCollection items, params MenuAction[] actions)
+        public static void AddActions(this Menu.MenuItemCollection items, params MenuAction[] actions)
         {
             AddActions(items, (IEnumerable<MenuAction>)actions);
         }
 
-        public static void AddActions(this ToolStripItemCollection items, IEnumerable<MenuAction> actions)
+        public static void AddActions(this Menu.MenuItemCollection items, IEnumerable<MenuAction> actions)
         {
             foreach (var menuAction in actions)
             {
@@ -25,21 +25,21 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
             }
         }
 
-        public static void AddAction(this ToolStripItemCollection items, MenuAction action)
+        public static void AddAction(this Menu.MenuItemCollection items, MenuAction action)
         {
-            ToolStripItem item;
+            MenuItem item;
             if (action.IsSeparator)
             {
                 items.AddSeparator();
             }
             else
             {
-                item = new ToolStripMenuItem
+                item = new MenuItem
                 {
                     Name = action.Name,
                     Text = action.Caption,
                     Enabled = action.Enabled,
-                    Image = action.Image,
+                    // TODO: see if MenuItem supports this: Image = action.Image,
                 };
                 item.Click += (clickSender, eventArgs) => action.Execute();
                 items.Add(item);
@@ -47,7 +47,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
             
         }
 
-        public static void InvokeFirstMenuItem(this ToolStripItemCollection items)
+        public static void InvokeFirstMenuItem(this Menu.MenuItemCollection items)
         {
             if (items.Count > 0)
             {

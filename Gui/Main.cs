@@ -214,7 +214,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void tasksMenu_DropDownOpening(object sender, EventArgs e)
         {
-            var items = tasksMenu.DropDownItems;
+            var items = tasksMenu.MenuItems;
             items.Clear();
 
             var generalActions = _taskRepository.GetTaskActions();
@@ -224,7 +224,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             AddTaskSpecificActions(items, needsLeadingSeparator);
         }
 
-        private void AddTaskSpecificActions(ToolStripItemCollection items, bool needsLeadingSeparator)
+        private void AddTaskSpecificActions(Menu.MenuItemCollection items, bool needsLeadingSeparator)
         {
             var taskId = FindSelectedId(taskGrid.Grid);
             if (taskId != null)
@@ -266,10 +266,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             tabs.SelectedTab = branchesTab;
         }
 
-        private void taskGrid_ContextMenuStripNeeded(object sender, ContextMenuStripNeededEventArgs e)
+        private void taskGrid_ContextMenuNeeded(object sender, ContextMenuNeededEventArgs e)
         {
             var menu = BuildTaskActionMenu();
-            e.ContextMenuStrip = menu;
+            e.ContextMenu = menu;
         }
 
         private void taskGrid_RowInvoked(object sender, EventArgs e)
@@ -277,17 +277,17 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             InvokeDefaultTaskGridAction();
         }
 
-        private ContextMenuStrip BuildTaskActionMenu()
+        private ContextMenu BuildTaskActionMenu()
         {
-            var menu = new ContextMenuStrip();
-            AddTaskSpecificActions(menu.Items, false);
+            var menu = new ContextMenu();
+            AddTaskSpecificActions(menu.MenuItems, false);
             return menu;
         }
 
         private void InvokeDefaultTaskGridAction()
         {
             var menu = BuildTaskActionMenu();
-            menu.Items.InvokeFirstMenuItem();
+            menu.MenuItems.InvokeFirstMenuItem();
         }
 
         #endregion
@@ -311,7 +311,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void branchesMenu_DropDownOpening(object sender, EventArgs e)
         {
-            var items = branchesMenu.DropDownItems;
+            var items = branchesMenu.MenuItems;
             items.Clear();
 
             var generalActions = _sourceRepository.GetBranchActions();
@@ -321,7 +321,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             AddBranchSpecificActions(items, needsLeadingSeparator);
         }
 
-        private void AddBranchSpecificActions(ToolStripItemCollection items, bool needsLeadingSeparator)
+        private void AddBranchSpecificActions(Menu.MenuItemCollection items, bool needsLeadingSeparator)
         {
             var selectedItems = branchGrid.Grid.SelectedItems;
             if (selectedItems.Count > 0)
@@ -351,10 +351,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
-        private void branchGrid_ContextMenuStripNeeded(object sender, ContextMenuStripNeededEventArgs e)
+        private void branchGrid_ContextMenuNeeded(object sender, ContextMenuNeededEventArgs e)
         {
             var menu = BuildBranchActionMenu();
-            e.ContextMenuStrip = menu;
+            e.ContextMenu = menu;
         }
 
         private void branchGrid_RowInvoked(object sender, EventArgs e)
@@ -362,27 +362,27 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             InvokeDefaultBranchGridAction();
         }
 
-        private ContextMenuStrip BuildBranchActionMenu()
+        private ContextMenu BuildBranchActionMenu()
         {
-            var menu = new ContextMenuStrip();
-            AddBranchSpecificActions(menu.Items, false);
+            var menu = new ContextMenu();
+            AddBranchSpecificActions(menu.MenuItems, false);
             return menu;
         }
 
         private void InvokeDefaultBranchGridAction()
         {
             var menu = BuildBranchActionMenu();
-            menu.Items.InvokeFirstMenuItem();
+            menu.MenuItems.InvokeFirstMenuItem();
         }
 
-        private ContextMenuStrip BuildRevisionActionMenu()
+        private ContextMenu BuildRevisionActionMenu()
         {
-            var menu = new ContextMenuStrip();
-            AddRevisionSpecificActions(menu.Items, false);
+            var menu = new ContextMenu();
+            AddRevisionSpecificActions(menu.MenuItems, false);
             return menu;
         }
 
-        private void AddRevisionSpecificActions(ToolStripItemCollection items, bool needsLeadingSeparator)
+        private void AddRevisionSpecificActions(Menu.MenuItemCollection items, bool needsLeadingSeparator)
         {
             var selectedItems = activityRevisions.Grid.SelectedItems;
             if (selectedItems.Count > 0)
@@ -413,13 +413,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private void activityRevisions_RowInvoked(object sender, EventArgs e)
         {
             var menu = BuildRevisionActionMenu();
-            menu.Items.InvokeFirstMenuItem();
+            menu.MenuItems.InvokeFirstMenuItem();
         }
 
-        private void activityRevisions_ContextMenuStripNeeded(object sender, ContextMenuStripNeededEventArgs e)
+        private void activityRevisions_ContextMenuNeeded(object sender, ContextMenuNeededEventArgs e)
         {
             var menu = BuildRevisionActionMenu();
-            e.ContextMenuStrip = menu;
+            e.ContextMenu = menu;
         }
 
         private void branchGridAndRestDivider_SplitterMoved(object sender, SplitterEventArgs e)

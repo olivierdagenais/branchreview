@@ -10,7 +10,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
     public partial class AwesomeGrid : UserControl
     {
-        public event ContextMenuStripNeededEventHandler ContextMenuStripNeeded;
+        public event ContextMenuNeededEventHandler ContextMenuStripNeeded;
         public event EventHandler SelectionChanged;
         public event EventHandler RowInvoked;
 
@@ -22,7 +22,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             this.Grid.DoubleClick += Grid_DoubleClick;
             this.Grid.KeyDown += Grid_KeyDown;
             this.Grid.PreviewKeyDown += Grid_PreviewKeyDown;
-            this.Grid.ContextMenuStripNeeded += Grid_ContextMenuStripNeeded;
+            this.Grid.ContextMenuNeeded += Grid_ContextMenuNeeded;
             this.Grid.SelectedIndexChanged += Grid_SelectedIndexChanged;
         }
 
@@ -73,7 +73,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             Grid.BorderStyle = BorderStyle.None;
         }
 
-        void Grid_ContextMenuStripNeeded(object sender, ContextMenuStripNeededEventArgs e)
+        void Grid_ContextMenuNeeded(object sender, ContextMenuNeededEventArgs e)
         {
             if (ContextMenuStripNeeded != null)
             {

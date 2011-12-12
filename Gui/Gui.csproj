@@ -64,8 +64,8 @@
     <Compile Include="AccessibleListView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ContextMenuStripNeededEventArgs.cs" />
-    <Compile Include="ContextMenuStripNeededEventHandler.cs" />
+    <Compile Include="ContextMenuNeededEventArgs.cs" />
+    <Compile Include="ContextMenuNeededEventHandler.cs" />
     <Compile Include="Extensions\DataRowExtensions.cs" />
     <Compile Include="Extensions\DataTableExtensions.cs" />
     <Compile Include="Extensions\ListViewItemExtensions.cs" />
@@ -79,7 +79,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Extensions\ToolStripItemCollectionExtensions.cs" />
+    <Compile Include="Extensions\MenuItemCollectionExtensions.cs" />
     <EmbeddedResource Include="AwesomeGrid.resx">
       <DependentUpon>AwesomeGrid.cs</DependentUpon>
     </EmbeddedResource>

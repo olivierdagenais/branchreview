@@ -28,27 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ToolStripSeparator viewMenuRefreshSeparator;
-            System.Windows.Forms.ToolStripSeparator tasksDummyMenuItem;
-            System.Windows.Forms.ToolStripSeparator branchesDummyMenuItem;
+            System.Windows.Forms.MenuItem viewMenuRefreshSeparator;
+            System.Windows.Forms.MenuItem tasksDummyMenuItem;
+            System.Windows.Forms.MenuItem branchesDummyMenuItem;
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusBarText = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBarProgress = new System.Windows.Forms.ToolStripProgressBar();
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.fileMenu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editMenu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.searchMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewMenu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.goToTasksMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.goToBranchesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.goToPendingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.refreshMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tasksMenu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.branchesMenu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.commitMenu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.commitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip = new System.Windows.Forms.MainMenu();
+            this.fileMenu = new System.Windows.Forms.MenuItem();
+            this.exitMenuItem = new System.Windows.Forms.MenuItem();
+            this.editMenu = new System.Windows.Forms.MenuItem();
+            this.searchMenuItem = new System.Windows.Forms.MenuItem();
+            this.viewMenu = new System.Windows.Forms.MenuItem();
+            this.goToTasksMenuItem = new System.Windows.Forms.MenuItem();
+            this.goToBranchesMenuItem = new System.Windows.Forms.MenuItem();
+            this.goToPendingMenuItem = new System.Windows.Forms.MenuItem();
+            this.refreshMenuItem = new System.Windows.Forms.MenuItem();
+            this.tasksMenu = new System.Windows.Forms.MenuItem();
+            this.branchesMenu = new System.Windows.Forms.MenuItem();
+            this.commitMenu = new System.Windows.Forms.MenuItem();
+            this.commitMenuItem = new System.Windows.Forms.MenuItem();
             this.tabs = new System.Windows.Forms.TabControl();
             this.taskTab = new System.Windows.Forms.TabPage();
             this.taskGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.AwesomeGrid();
@@ -60,12 +59,10 @@
             this.activityChangeInspector = new SoftwareNinjas.BranchAndReviewTools.Gui.ChangeInspector();
             this.commitTab = new System.Windows.Forms.TabPage();
             this.pendingChanges = new SoftwareNinjas.BranchAndReviewTools.Gui.ChangeInspector();
-            viewMenuRefreshSeparator = new System.Windows.Forms.ToolStripSeparator();
-            tasksDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
-            branchesDummyMenuItem = new System.Windows.Forms.ToolStripSeparator();
+            viewMenuRefreshSeparator = new System.Windows.Forms.MenuItem();
+            tasksDummyMenuItem = new System.Windows.Forms.MenuItem();
+            branchesDummyMenuItem = new System.Windows.Forms.MenuItem();
             this.statusBar.SuspendLayout();
-            this.tableLayoutPanel.SuspendLayout();
-            this.menuStrip.SuspendLayout();
             this.tabs.SuspendLayout();
             this.taskTab.SuspendLayout();
             this.branchesTab.SuspendLayout();
@@ -83,17 +80,17 @@
             // viewMenuRefreshSeparator
             // 
             viewMenuRefreshSeparator.Name = "viewMenuRefreshSeparator";
-            viewMenuRefreshSeparator.Size = new System.Drawing.Size(168, 6);
+            viewMenuRefreshSeparator.Text = "-";
             // 
             // tasksDummyMenuItem
             // 
             tasksDummyMenuItem.Name = "tasksDummyMenuItem";
-            tasksDummyMenuItem.Size = new System.Drawing.Size(57, 6);
+            tasksDummyMenuItem.Text = "-";
             // 
             // branchesDummyMenuItem
             // 
             branchesDummyMenuItem.Name = "branchesDummyMenuItem";
-            branchesDummyMenuItem.Size = new System.Drawing.Size(57, 6);
+            branchesDummyMenuItem.Text = "-";
             // 
             // statusBar
             // 
@@ -118,166 +115,111 @@
             this.statusBarProgress.Name = "statusBarProgress";
             this.statusBarProgress.Size = new System.Drawing.Size(100, 16);
             // 
-            // tableLayoutPanel
-            // 
-            this.tableLayoutPanel.ColumnCount = 1;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel.Controls.Add(this.menuStrip, 0, 0);
-            this.tableLayoutPanel.Controls.Add(this.tabs, 0, 1);
-            this.tableLayoutPanel.Controls.Add(this.statusBar, 0, 2);
-            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 3;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel.Size = new System.Drawing.Size(792, 573);
-            this.tableLayoutPanel.TabIndex = 0;
-            // 
             // menuStrip
             // 
-            this.menuStrip.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.menuStrip.GripMargin = new System.Windows.Forms.Padding(0);
-            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.fileMenu,
             this.editMenu,
             this.viewMenu,
             this.tasksMenu,
             this.branchesMenu,
             this.commitMenu});
-            this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(792, 24);
-            this.menuStrip.TabIndex = 0;
             // 
             // fileMenu
             // 
-            this.fileMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {                                
             this.exitMenuItem});
-            this.fileMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.fileMenu.Name = "fileMenu";
-            this.fileMenu.ShowDropDownArrow = false;
-            this.fileMenu.Size = new System.Drawing.Size(30, 17);
             this.fileMenu.Text = "&File";
             // 
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(95, 22);
             this.exitMenuItem.Text = "E&xit";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
             // editMenu
             // 
-            this.editMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.editMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.searchMenuItem});
-            this.editMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.editMenu.Name = "editMenu";
-            this.editMenu.ShowDropDownArrow = false;
-            this.editMenu.Size = new System.Drawing.Size(32, 17);
             this.editMenu.Text = "&Edit";
             // 
             // searchMenuItem
             // 
             this.searchMenuItem.Name = "searchMenuItem";
-            this.searchMenuItem.ShortcutKeyDisplayString = "Ctrl+F";
-            this.searchMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.searchMenuItem.Text = "&Search";
+            this.searchMenuItem.ShowShortcut = true;
+            this.searchMenuItem.Text = "&Search\tCtrl+F";
             this.searchMenuItem.Click += new System.EventHandler(this.searchMenuItem_Click);
             // 
             // viewMenu
             // 
-            this.viewMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.viewMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.goToTasksMenuItem,
             this.goToBranchesMenuItem,
             this.goToPendingMenuItem,
             viewMenuRefreshSeparator,
             this.refreshMenuItem});
-            this.viewMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.viewMenu.Name = "viewMenu";
-            this.viewMenu.ShowDropDownArrow = false;
-            this.viewMenu.Size = new System.Drawing.Size(38, 17);
             this.viewMenu.Text = "&View";
             // 
             // goToTasksMenuItem
             // 
             this.goToTasksMenuItem.Name = "goToTasksMenuItem";
-            this.goToTasksMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D1)));
-            this.goToTasksMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.goToTasksMenuItem.Shortcut = System.Windows.Forms.Shortcut.Ctrl1;
             this.goToTasksMenuItem.Text = "&Tasks";
             this.goToTasksMenuItem.Click += new System.EventHandler(this.goToTasksMenuItem_Click);
             // 
             // goToBranchesMenuItem
             // 
             this.goToBranchesMenuItem.Name = "goToBranchesMenuItem";
-            this.goToBranchesMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D2)));
-            this.goToBranchesMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.goToBranchesMenuItem.Shortcut = System.Windows.Forms.Shortcut.Ctrl2;
             this.goToBranchesMenuItem.Text = "&Branches";
             this.goToBranchesMenuItem.Click += new System.EventHandler(this.goToBranchesMenuItem_Click);
             // 
             // goToPendingMenuItem
             // 
             this.goToPendingMenuItem.Name = "goToPendingMenuItem";
-            this.goToPendingMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D3)));
-            this.goToPendingMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.goToPendingMenuItem.Shortcut = System.Windows.Forms.Shortcut.Ctrl3;
             this.goToPendingMenuItem.Text = "&Pending";
             this.goToPendingMenuItem.Click += new System.EventHandler(this.goToPendingMenuItem_Click);
             // 
             // refreshMenuItem
             // 
             this.refreshMenuItem.Name = "refreshMenuItem";
-            this.refreshMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.refreshMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.refreshMenuItem.Shortcut = System.Windows.Forms.Shortcut.F5;
             this.refreshMenuItem.Text = "&Refresh";
             this.refreshMenuItem.Click += new System.EventHandler(this.refreshMenuItem_Click);
             // 
             // tasksMenu
             // 
-            this.tasksMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tasksMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tasksMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             tasksDummyMenuItem});
-            this.tasksMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tasksMenu.Name = "tasksMenu";
-            this.tasksMenu.ShowDropDownArrow = false;
-            this.tasksMenu.Size = new System.Drawing.Size(44, 17);
             this.tasksMenu.Text = "&Tasks";
-            this.tasksMenu.DropDownOpening += new System.EventHandler(this.tasksMenu_DropDownOpening);
+            this.tasksMenu.Popup += new System.EventHandler(this.tasksMenu_DropDownOpening);
             // 
             // branchesMenu
             // 
-            this.branchesMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.branchesMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.branchesMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             branchesDummyMenuItem});
-            this.branchesMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.branchesMenu.Name = "branchesMenu";
-            this.branchesMenu.ShowDropDownArrow = false;
-            this.branchesMenu.Size = new System.Drawing.Size(64, 17);
             this.branchesMenu.Text = "&Branches";
-            this.branchesMenu.DropDownOpening += new System.EventHandler(this.branchesMenu_DropDownOpening);
+            this.branchesMenu.Popup += new System.EventHandler(this.branchesMenu_DropDownOpening);
             // 
             // commitMenu
             // 
-            this.commitMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.commitMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.commitMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.commitMenuItem});
-            this.commitMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.commitMenu.Name = "commitMenu";
-            this.commitMenu.ShowDropDownArrow = false;
-            this.commitMenu.Size = new System.Drawing.Size(56, 17);
             this.commitMenu.Text = "&Pending";
-            this.commitMenu.DropDownOpening += new System.EventHandler(this.commitMenu_DropDownOpening);
+            this.commitMenu.Popup += new System.EventHandler(this.commitMenu_DropDownOpening);
             // 
             // commitMenuItem
             // 
             this.commitMenuItem.Name = "commitMenuItem";
-            this.commitMenuItem.ShortcutKeyDisplayString = "Ctrl+Enter";
-            this.commitMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.commitMenuItem.Text = "&Commit";
+            this.commitMenuItem.Text = "&Commit\tCtrl+Enter";
             this.commitMenuItem.Click += new System.EventHandler(this.commitMenuItem_Click);
             // 
             // tabs
@@ -316,7 +258,7 @@
             this.taskGrid.Name = "taskGrid";
             this.taskGrid.Size = new System.Drawing.Size(778, 495);
             this.taskGrid.TabIndex = 0;
-            this.taskGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuStripNeededEventHandler(this.taskGrid_ContextMenuStripNeeded);
+            this.taskGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuNeededEventHandler(this.taskGrid_ContextMenuNeeded);
             this.taskGrid.RowInvoked += new System.EventHandler(this.taskGrid_RowInvoked);
             // 
             // branchesTab
@@ -362,7 +304,7 @@
             this.branchGrid.Name = "branchGrid";
             this.branchGrid.Size = new System.Drawing.Size(776, 87);
             this.branchGrid.TabIndex = 0;
-            this.branchGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuStripNeededEventHandler(this.branchGrid_ContextMenuStripNeeded);
+            this.branchGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuNeededEventHandler(this.branchGrid_ContextMenuNeeded);
             this.branchGrid.RowInvoked += new System.EventHandler(this.branchGrid_RowInvoked);
             // 
             // activityTopBottomPanel
@@ -396,7 +338,7 @@
             this.activityRevisions.Name = "activityRevisions";
             this.activityRevisions.Size = new System.Drawing.Size(776, 83);
             this.activityRevisions.TabIndex = 0;
-            this.activityRevisions.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuStripNeededEventHandler(this.activityRevisions_ContextMenuStripNeeded);
+            this.activityRevisions.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuNeededEventHandler(this.activityRevisions_ContextMenuNeeded);
             this.activityRevisions.RowInvoked += new System.EventHandler(this.activityRevisions_RowInvoked);
             // 
             // activityChangeInspector
@@ -451,17 +393,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 573);
-            this.Controls.Add(this.tableLayoutPanel);
+            this.Controls.Add(this.tabs);
+            this.Controls.Add(this.statusBar);
             this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::SoftwareNinjas.BranchAndReviewTools.Gui.Properties.Settings.Default, "WindowLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.Location = global::SoftwareNinjas.BranchAndReviewTools.Gui.Properties.Settings.Default.WindowLocation;
+            this.Menu = this.menuStrip;
             this.Name = "Main";
             this.Text = "Branch and Review Tools";
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
-            this.tableLayoutPanel.ResumeLayout(false);
-            this.tableLayoutPanel.PerformLayout();
-            this.menuStrip.ResumeLayout(false);
-            this.menuStrip.PerformLayout();
             this.tabs.ResumeLayout(false);
             this.taskTab.ResumeLayout(false);
             this.branchesTab.ResumeLayout(false);
@@ -483,31 +423,30 @@
         private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.ToolStripStatusLabel statusBarText;
         private System.Windows.Forms.ToolStripProgressBar statusBarProgress;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
-        private System.Windows.Forms.MenuStrip menuStrip;
-        private System.Windows.Forms.ToolStripDropDownButton fileMenu;
-        private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
+        private System.Windows.Forms.MainMenu menuStrip;
+        private System.Windows.Forms.MenuItem fileMenu;
+        private System.Windows.Forms.MenuItem exitMenuItem;
         private System.Windows.Forms.TabControl tabs;
         private System.Windows.Forms.TabPage taskTab;
         private System.Windows.Forms.TabPage branchesTab;
         private System.Windows.Forms.TabPage commitTab;
         private AwesomeGrid taskGrid;
         private AwesomeGrid branchGrid;
-        private System.Windows.Forms.ToolStripDropDownButton viewMenu;
-        private System.Windows.Forms.ToolStripMenuItem refreshMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem goToTasksMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem goToBranchesMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem goToPendingMenuItem;
-        private System.Windows.Forms.ToolStripDropDownButton tasksMenu;
-        private System.Windows.Forms.ToolStripDropDownButton branchesMenu;
-        private System.Windows.Forms.ToolStripDropDownButton commitMenu;
-        private System.Windows.Forms.ToolStripDropDownButton editMenu;
-        private System.Windows.Forms.ToolStripMenuItem searchMenuItem;
+        private System.Windows.Forms.MenuItem viewMenu;
+        private System.Windows.Forms.MenuItem refreshMenuItem;
+        private System.Windows.Forms.MenuItem goToTasksMenuItem;
+        private System.Windows.Forms.MenuItem goToBranchesMenuItem;
+        private System.Windows.Forms.MenuItem goToPendingMenuItem;
+        private System.Windows.Forms.MenuItem tasksMenu;
+        private System.Windows.Forms.MenuItem branchesMenu;
+        private System.Windows.Forms.MenuItem commitMenu;
+        private System.Windows.Forms.MenuItem editMenu;
+        private System.Windows.Forms.MenuItem searchMenuItem;
         private System.Windows.Forms.SplitContainer branchGridAndRestDivider;
         private System.Windows.Forms.SplitContainer activityTopBottomPanel;
         private AwesomeGrid activityRevisions;
         private ChangeInspector activityChangeInspector;
         private ChangeInspector pendingChanges;
-        private System.Windows.Forms.ToolStripMenuItem commitMenuItem;
+        private System.Windows.Forms.MenuItem commitMenuItem;
     }
 }

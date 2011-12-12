@@ -143,10 +143,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             return selectedItems.Map(item => item.GetRow()["ID"]);
         }
 
-        void FileGrid_ContextMenuStripNeeded(object sender, ContextMenuStripNeededEventArgs e)
+        void FileGrid_ContextMenuStripNeeded(object sender, ContextMenuNeededEventArgs e)
         {
             var menu = BuildChangedFilesActionMenu();
-            e.ContextMenuStrip = menu;
+            e.ContextMenu = menu;
         }
 
         void FileGrid_SelectionChanged(object sender, EventArgs e)
@@ -156,19 +156,19 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             PatchText = patch;
         }
 
-        private ContextMenuStrip BuildChangedFilesActionMenu()
+        private ContextMenu BuildChangedFilesActionMenu()
         {
             var selectedIds = FindSelectedIds();
             var actions = GetActionsForChanges(Context, selectedIds);
-            var menu = new ContextMenuStrip();
-            menu.Items.AddActions(actions);
+            var menu = new ContextMenu();
+            menu.MenuItems.AddActions(actions);
             return menu;
         }
 
         private void InvokeDefaultChangedFilesAction()
         {
             var menu = BuildChangedFilesActionMenu();
-            menu.Items.InvokeFirstMenuItem();
+            menu.MenuItems.InvokeFirstMenuItem();
         }
 
         void FileGrid_DoubleClick(object sender, EventArgs e)
