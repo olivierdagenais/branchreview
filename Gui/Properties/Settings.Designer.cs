@@ -61,7 +61,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("89")]
+        [global::System.Configuration.DefaultSettingValueAttribute("115")]
         public int branchGridAndRestDividerSplitterDistance {
             get {
                 return ((int)(this["branchGridAndRestDividerSplitterDistance"]));
@@ -73,7 +73,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("85")]
+        [global::System.Configuration.DefaultSettingValueAttribute("115")]
         public int activityTopBottomPanelSplitterDistance {
             get {
                 return ((int)(this["activityTopBottomPanelSplitterDistance"]));
@@ -85,7 +85,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("33")]
+        [global::System.Configuration.DefaultSettingValueAttribute("85")]
         public int activityChangeInspectorHorizontalDividerSplitterDistance {
             get {
                 return ((int)(this["activityChangeInspectorHorizontalDividerSplitterDistance"]));
@@ -121,7 +121,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("245")]
+        [global::System.Configuration.DefaultSettingValueAttribute("273")]
         public int pendingChangesVerticalDividerSplitterDistance {
             get {
                 return ((int)(this["pendingChangesVerticalDividerSplitterDistance"]));
