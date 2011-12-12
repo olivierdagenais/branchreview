@@ -57,14 +57,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         void Main_Closing(object sender, CancelEventArgs e)
         {
             var settings = Settings.Default;
-            settings.WindowState = WindowState;
-            if (WindowState != FormWindowState.Normal)
+            if (WindowState == FormWindowState.Minimized)
             {
+                settings.WindowState = FormWindowState.Normal;
                 settings.WindowLocation = RestoreBounds.Location;
                 settings.WindowSize = RestoreBounds.Size;
             }
             else
             {
+                settings.WindowState = WindowState;
                 settings.WindowLocation = Location;
                 settings.WindowSize = Size;
             }
