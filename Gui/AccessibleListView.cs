@@ -156,9 +156,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 // pop context menu on Shift+F10 or context key (i.e. "Apps")
                 e.Handled = true;
                 e.SuppressKeyPress = false;
-                var rect = this.FocusedItem.Bounds;
-                var bottomLeft = new Point(rect.Left, rect.Bottom);
-                InvokeContextMenu(bottomLeft);
+                var focusedItem = this.FocusedItem;
+                if (focusedItem != null)
+                {
+                    var rect = focusedItem.Bounds;
+                    var bottomLeft = new Point(rect.Left, rect.Bottom);
+                    InvokeContextMenu(bottomLeft);
+                }
             }
             else
             {
