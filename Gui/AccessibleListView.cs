@@ -46,6 +46,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private DataTable _dataSource;
         private int _sortingColumn;
         private SortOrder _sortOrder = SortOrder.Ascending;
+        private readonly ToolTip _toolTip = new ToolTip();
 
         public AccessibleListView()
         {
@@ -55,6 +56,18 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
             this.ColumnClick += AccessibleListView_ColumnClick;
             this.Resize += AccessibleListView_Resize;
+            this.ItemMouseHover += AccessibleListView_ItemMouseHover;
+        }
+
+        void AccessibleListView_ItemMouseHover(object sender, ListViewItemMouseHoverEventArgs e)
+        {
+            var position = PointToClient(Cursor.Position);
+            var subItem = e.Item.GetSubItemAt(position.X, position.Y);
+            if (subItem != null)
+            {
+                _toolTip.SetToolTip(this, subItem.Text);
+                _toolTip.Active = true;
+            }
         }
 
         void AccessibleListView_ColumnClick(object sender, ColumnClickEventArgs e)
