@@ -50,6 +50,7 @@
     <Compile Include="ISourceRepository.cs" />
     <Compile Include="ILog.cs" />
     <Compile Include="ITaskRepository.cs" />
+    <Compile Include="Mock\Data.cs" />
     <Compile Include="Mock\SourceRepository.cs" />
     <Compile Include="Mock\TaskRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

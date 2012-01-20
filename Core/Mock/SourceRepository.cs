@@ -17,32 +17,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
     [Export(typeof(ISourceRepository))]
     public class SourceRepository : ISourceRepository
     {
-        private const string HardcodedDifferences = @"Index: D:/Work/open source/tools/BART/trunk/BranchAndReviewTools.sln
-===================================================================
---- D:/Work/open source/tools/BART/trunk/BranchAndReviewTools.sln	(revision 24)
-+++ D:/Work/open source/tools/BART/trunk/BranchAndReviewTools.sln	(revision 25)
-@@ -16,6 +16,8 @@
- EndProject
- Project(""{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"") = ""SvnExe"", ""SvnExe\SvnExe.csproj"", ""{7F251D4B-C45E-49E3-AF9E-360E11D98F8B}""
- EndProject
-+Project(""{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"") = ""Gui"", ""Gui\Gui.csproj"", ""{BA6AA408-8948-47A8-A3D8-4A50136A7602}""
-+EndProject
- Global
- 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
- 		Debug|Any CPU = Debug|Any CPU
-@@ -36,6 +38,10 @@
- 		{7F251D4B-C45E-49E3-AF9E-360E11D98F8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
- 		{7F251D4B-C45E-49E3-AF9E-360E11D98F8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
- 		{7F251D4B-C45E-49E3-AF9E-360E11D98F8B}.Release|Any CPU.Build.0 = Release|Any CPU
-+		{BA6AA408-8948-47A8-A3D8-4A50136A7602}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-+		{BA6AA408-8948-47A8-A3D8-4A50136A7602}.Debug|Any CPU.Build.0 = Debug|Any CPU
-+		{BA6AA408-8948-47A8-A3D8-4A50136A7602}.Release|Any CPU.ActiveCfg = Release|Any CPU
-+		{BA6AA408-8948-47A8-A3D8-4A50136A7602}.Release|Any CPU.Build.0 = Release|Any CPU
- 	EndGlobalSection
- 	GlobalSection(SolutionProperties) = preSolution
- 		HideSolutionNode = FALSE
-";
-
         private readonly DataTable _branches = new DataTable
         {
             Columns =
@@ -62,34 +36,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
                 {"2_DoSftp", 2, @"c:\src\branches\TomJones\2_DoSftp", new DateTime(2011, 08, 01, 10, 05, 57), "Tom Jones", "ready for push"},
                 {"436_RefactorInternet", 436, @"c:\src\branches\PaulAnka\436_RefactorInternet", new DateTime(2011, 09, 04, 11, 30, 36), "Paul Anka", "pending changes"},
             }
-        };
-
-        private readonly DataTable _emptyPendingChanges = new DataTable
-        {
-            Columns =
-            {
-                new DataColumn("ID", typeof(string)) { Caption = "Path" },
-                new DataColumn("Status", typeof(string)),
-            },
-        };
-
-        private readonly DataTable _refactorInternetPendingChanges = new DataTable
-        {
-            Columns =
-            {
-                new DataColumn("ID", typeof(string)) { Caption = "Path" },
-                new DataColumn("Status", typeof(string)),
-            },
-            Rows =
-            {
-                {"Core/ISourceRepository.cs", "Merged"},
-                {"Gui/Mock/SourceRepository.cs", "Copied"},
-                {"Gui/app.config", "Branched"},
-                {"Gui/Main.cs", "Modified"},
-                {"Gui/Main.Designer.cs", "Added"},
-                {"Gui/Main.resx", "Deleted"},
-                {"Gui/Program.cs", "Renamed"},
-            },
         };
 
         private readonly Dictionary<string, DataTable> _revisionTablesByBranchId;
@@ -185,9 +131,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
             switch (branchId.ToString())
             {
                 case "436_RefactorInternet":
-                    return _refactorInternetPendingChanges;
+                    return Data.RefactorInternetPendingChanges;
                 default:
-                    return _emptyPendingChanges;
+                    return Data.EmptyPendingChanges;
             }
         }
 
@@ -196,7 +142,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
             var numberOfPendingChanges = pendingChangeIds.Count();
             var suffix = (numberOfPendingChanges == 1 ? "" : "s");
             Debug.WriteLine("Computing pending differences for {0} change{1}...", numberOfPendingChanges, suffix);
-            return HardcodedDifferences;
+            return Data.HardcodedDifferences;
         }
 
         IList<MenuAction> ISourceRepository.GetActionsForPendingChanges(object branchId, IEnumerable<object> pendingChangeIds)
@@ -235,7 +181,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
         DataTable ISourceRepository.GetRevisionChanges(object revisionId)
         {
             Debug.WriteLine("Scanning for changes in revision {0}...", new[] {revisionId});
-            return _refactorInternetPendingChanges;
+            return Data.RefactorInternetPendingChanges;
         }
 
         string ISourceRepository.GetRevisionMessage(object revisionId)
@@ -253,7 +199,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
             var numberOfPendingChanges = changeIds.Count();
             var suffix = ( numberOfPendingChanges == 1 ? "" : "s" );
             Debug.WriteLine("Computing revision differences for {0} change{1}...", numberOfPendingChanges, suffix);
-            return HardcodedDifferences;
+            return Data.HardcodedDifferences;
         }
 
         IList<MenuAction> ISourceRepository.GetActionsForRevisionChanges(object revisionId, IEnumerable<object> changeIds)
