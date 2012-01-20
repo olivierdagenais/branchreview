@@ -10,6 +10,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
     {
         public event ContextMenuNeededEventHandler ContextMenuNeeded;
 
+        private readonly Throttler _resizeThrottle;
+
         private void InvokeContextMenuStripNeeded(ContextMenuNeededEventArgs e)
         {
             if (ContextMenuNeeded != null)
@@ -20,6 +22,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         public AccessibleDataGridView()
         {
+            _resizeThrottle = new Throttler(50, AutoSizeColumns);
+
             this.KeyDown += Grid_KeyDown;
             this.DataBindingComplete += Grid_DataBindingComplete;
             this.Resize += Grid_Resize;
@@ -74,7 +78,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         void Grid_Resize(object sender, EventArgs e)
         {
-            AutoSizeColumns();
+            _resizeThrottle.Fire();
         }
 
         #region http://social.msdn.microsoft.com/Forums/en/winforms/thread/ef369cf3-58e9-4997-acc3-87a51d83011c
