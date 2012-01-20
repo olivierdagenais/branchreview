@@ -23,7 +23,16 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             ChangeLog.InitializeDefaults();
             PatchViewer.InitializeDefaults();
             PatchViewer.InitializeDiff();
+            PatchViewer.KeyUp += PatchViewer_KeyUp;
             FileGrid.Grid.MultiSelect = true;
+        }
+
+        void PatchViewer_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 107 || e.KeyValue == 109)
+            {
+                PatchViewer.NativeInterface.ToggleFold(PatchViewer.GetCurrentLineNumber());
+            }
         }
 
         [SettingsBindable(true)]

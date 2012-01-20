@@ -50,6 +50,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
             scintilla.SetStyle(5, Color.FromArgb(0x00, 0x7f, 0x7f), BestScintillaFont);
             // Line addition (+...)
             scintilla.SetStyle(6, Color.FromArgb(0x00, 0x00, 0x7f), BestScintillaFont);
+
+            #region Configure folding
+            ni.SetMarginWidthN(2, 20);
+            ni.SetFoldFlags(16);
+            #endregion
         }
 
         internal static void SetStyle(this Scintilla scintilla, int index, Color foreColor, Font font)
@@ -71,5 +76,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
             return red | ( green << 8 ) | ( blue << 16 );
         }
 
+        internal static int GetCurrentLineNumber(this Scintilla scintilla)
+        {
+            return scintilla.NativeInterface.LineFromPosition(scintilla.CurrentPos);
+        }
     }
 }
