@@ -174,8 +174,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             if (e.Button == MouseButtons.Right)
             {
-                var screenCoordinates = PointToScreen(e.Location);
-                InvokeContextMenu(screenCoordinates);
+                InvokeContextMenu(e.Location);
             }
             else
             base.OnMouseUp(e);
