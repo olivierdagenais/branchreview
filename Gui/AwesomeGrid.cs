@@ -142,6 +142,21 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     // dummy column for the auto-sizing
                     this.Grid.Columns.Add(String.Empty);
                     #endregion
+
+                    #region Adjust throttle based on data size
+                    if (_dataTable.Rows.Count > 500)
+                    {
+                        _throttleTimer.Interval = 200;
+                    }
+                    else if (_dataTable.Rows.Count > 100)
+                    {
+                        _throttleTimer.Interval = 100;
+                    }
+                    else
+                    {
+                        _throttleTimer.Interval = 1;
+                    }
+                    #endregion
                 }
                 this.Grid.DataSource = _dataTable;
             }
