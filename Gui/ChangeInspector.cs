@@ -99,8 +99,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         public void RefreshMessage()
         {
-            var message = GetMessage(_context);
-            if (message != null)
+            var message = GetMessage(_context) ?? String.Empty;
+            if (this.ChangeLog.IsReadOnly)
+            {    
+                this.ChangeLog.SetReadOnlyText(message);
+            }
+            else
             {
                 this.ChangeLog.Text = message;
             }

@@ -53,6 +53,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             {
                 this.pendingChanges.ChangeLog.KeyDown += ChangeLog_KeyDown;
 
+                activityChangeInspector.ChangeLog.IsReadOnly = true;
                 activityChangeInspector.ChangeLog.LongLines.EdgeMode = EdgeMode.None;
                 activityChangeInspector.ActionsForChangesFunction = _sourceRepository.GetActionsForRevisionChanges;
                 activityChangeInspector.ChangesFunction = _sourceRepository.GetRevisionChanges;
@@ -91,6 +92,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             if (_shelvesetRepository != null)
             // ReSharper restore ConditionIsAlwaysTrueOrFalse
             {
+                shelvesetChangeInspector.ChangeLog.IsReadOnly = true;
                 shelvesetChangeInspector.ChangeLog.LongLines.EdgeMode = EdgeMode.None;
                 shelvesetChangeInspector.ActionsForChangesFunction = _shelvesetRepository.GetActionsForShelvesetChanges;
                 shelvesetChangeInspector.ChangesFunction = _shelvesetRepository.GetShelvesetChanges;
