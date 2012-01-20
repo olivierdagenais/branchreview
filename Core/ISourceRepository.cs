@@ -202,7 +202,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// </param>
         /// 
         /// <returns>
-        /// A single string representing the selected pending differences to commit.
+        /// A single string representing the selected differences.
         /// </returns>
         string ComputeRevisionDifferences(object revisionId, IEnumerable<object> changeIds);
 
