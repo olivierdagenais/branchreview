@@ -14,6 +14,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         public event EventHandler SelectionChanged;
         public event EventHandler RowInvoked;
 
+        private readonly Timer _throttleTimer = new Timer
+        {
+            Interval = 200,
+        };
+
         public AwesomeGrid()
         {
             InitializeComponent();
@@ -24,6 +29,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             this.Grid.PreviewKeyDown += Grid_PreviewKeyDown;
             this.Grid.ContextMenuNeeded += Grid_ContextMenuNeeded;
             this.Grid.SelectedIndexChanged += Grid_SelectedIndexChanged;
+            _throttleTimer.Tick += _throttleTimer_Tick;
+        }
+
+        void _throttleTimer_Tick(object sender, EventArgs e)
+        {
+            _throttleTimer.Stop();
+            _filter = SearchTextBox.Text;
+            UpdateFilter();
         }
 
         // method can not be made static because the Form Designer re-writes the event wire-up with "this."
@@ -166,8 +179,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void SearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            _filter = SearchTextBox.Text;
-            UpdateFilter();
+            _throttleTimer.Stop();
+            _throttleTimer.Start();
         }
 
         private void SearchTextBox_Enter(object sender, EventArgs e)
