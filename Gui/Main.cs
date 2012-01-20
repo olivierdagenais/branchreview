@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.Composition.Hosting;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
@@ -283,14 +284,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             delayedWorker.Start();
         }
 
-        private static object FindSelectedId(ListView listView)
+        private static object FindSelectedId(DataGridView dataGridView)
         {
-            var selectedItems = listView.SelectedItems;
+            var selectedRows = dataGridView.SelectedRows;
             object id = null;
-            if (selectedItems.Count > 0)
+            if (selectedRows.Count > 0)
             {
-                var item = selectedItems[0];
-                id = item.GetRow()["ID"];
+                var row = selectedRows[0];
+                id = row.Cells["ID"].Value;
             }
             return id;
         }
@@ -361,8 +362,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
             var dataRow = branchGrid.DataTable.FindFirst("TaskID", taskId);
             SetCurrentBranch(dataRow["ID"], taskId);
-            var listViewItem = branchGrid.Grid.Items.Cast<ListViewItem>().First(lvi => lvi.GetRow() == dataRow);
-            listViewItem.Selected = true;
+
+            var dataGridViewRow =
+                branchGrid.Grid.Rows.Cast<DataGridViewRow>().First(dgvr => dgvr.DataBoundItem == dataRow);
+            dataGridViewRow.Selected = true;
             tabs.SelectedTab = branchesTab;
         }
 
@@ -449,22 +452,21 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void AddBranchSpecificActions(Menu.MenuItemCollection items, bool needsLeadingSeparator)
         {
-            var selectedItems = branchGrid.Grid.SelectedItems;
-            if (selectedItems.Count > 0)
+            var selectedRows = branchGrid.Grid.SelectedRows;
+            if (selectedRows.Count > 0)
             {
                 if (needsLeadingSeparator)
                 {
                     items.AddSeparator();
                 }
-                var item = selectedItems[0];
-                var row = item.GetRow();
-                var branchId = row["ID"];
-                var taskId = row["TaskID"];
+                var row = selectedRows[0];
+                var branchId = row.Cells["ID"].Value;
+                var taskId = row.Cells["TaskID"].Value;
                 var builtInActions = new[]
                 {
                     new MenuAction("defaultInspect", "&Inspect", true,
                                 () => SetCurrentBranch(branchId, taskId) ),
-                    new MenuAction("defaultOpen", "&Work on this", row["BasePath"] != DBNull.Value,
+                    new MenuAction("defaultOpen", "&Work on this", row.Cells["BasePath"].Value != DBNull.Value,
                                 () => StartWorkOnBranch(branchId, taskId) ),
                 };
                 items.AddActions(builtInActions);
@@ -479,16 +481,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void AddShelvesetSpecificActions(Menu.MenuItemCollection items, bool needsLeadingSeparator)
         {
-            var selectedItems = shelvesetGrid.Grid.SelectedItems;
+            var selectedItems = shelvesetGrid.Grid.SelectedRows;
             if (selectedItems.Count > 0)
             {
                 if (needsLeadingSeparator)
                 {
                     items.AddSeparator();
                 }
-                var item = selectedItems[0];
-                var row = item.GetRow();
-                var shelvesetId = row["ID"];
+                var row = selectedItems[0];
+                var shelvesetId = row.Cells["ID"].Value;
                 var builtInActions = new[]
                 {
                     new MenuAction("defaultInspect", "&Inspect", true,
@@ -561,16 +562,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void AddRevisionSpecificActions(Menu.MenuItemCollection items, bool needsLeadingSeparator)
         {
-            var selectedItems = activityRevisions.Grid.SelectedItems;
+            var selectedItems = activityRevisions.Grid.SelectedRows;
             if (selectedItems.Count > 0)
             {
                 if (needsLeadingSeparator)
                 {
                     items.AddSeparator();
                 }
-                var item = selectedItems[0];
-                var row = item.GetRow();
-                var revisionId = row["ID"];
+                var row = selectedItems[0];
+                var revisionId = row.Cells["ID"].Value;
                 var builtInActions = new[]
                 {
                     new MenuAction("defaultOpen", "&Open", true,
@@ -691,7 +691,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             if (tabs.SelectedTab != commitTab)
             {
                 tabs.SelectedTab = commitTab;
-                var dataSource = pendingChanges.FileGrid.Grid.DataSource;
+                var dataSource = (DataTable) pendingChanges.FileGrid.Grid.DataSource;
                 var itemCount = dataSource.Rows.Count;
                 var result = MessageBox.Show(
                     "Are you sure you want to commit {0} item{1} to {2}?".FormatInvariant(

@@ -118,7 +118,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             FileGrid.DataTable = null;
             var pendingChanges = GetChanges(_context);
             FileGrid.DataTable = pendingChanges;
-            var itemCount = FileGrid.Grid.Items.Count;
+            var itemCount = FileGrid.Grid.Rows.Count;
             if (0 == itemCount)
             {
                 PatchText = String.Empty;
@@ -129,17 +129,16 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 if (0 == oldSelection.Count)
                 {
                     // if nothing was selected, select the first one
-                    FileGrid.Grid.Items[0].Selected = true;
+                    FileGrid.Grid.Rows[0].Selected = true;
                 }
                 else
                 {
-                    foreach (ListViewItem item in FileGrid.Grid.Items)
+                    foreach (DataGridViewRow row in FileGrid.Grid.Rows)
                     {
-                        var row = item.GetRow();
-                        var id = row["ID"];
+                        var id = row.Cells["ID"].Value;
                         if (oldSelection.ContainsKey(id))
                         {
-                            item.Selected = true;
+                            row.Selected = true;
                             oldSelection.Remove(id);
                         }
                     }
@@ -152,8 +151,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private IEnumerable<object> FindSelectedIds()
         {
-            var selectedItems = FileGrid.Grid.SelectedItems.Cast<ListViewItem>();
-            return selectedItems.Map(item => item.GetRow()["ID"]);
+            var selectedRows = FileGrid.Grid.SelectedRows.Cast<DataGridViewRow>();
+            return selectedRows.Map(row => row.Cells["ID"].Value);
         }
 
         void FileGrid_ContextMenuStripNeeded(object sender, ContextMenuNeededEventArgs e)

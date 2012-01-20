@@ -43,6 +43,7 @@
             this.verticalDivider.Panel2.SuspendLayout();
             this.verticalDivider.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PatchViewer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FileGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // horizontalDivider
@@ -149,6 +150,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.verticalDivider)).EndInit();
             this.verticalDivider.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PatchViewer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FileGrid)).EndInit();
             this.ResumeLayout(false);
 
         }

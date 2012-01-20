@@ -31,7 +31,8 @@
             this.CaptionLabel = new System.Windows.Forms.Label();
             this.SearchTextBox = new System.Windows.Forms.TextBox();
             this.SearchLabel = new System.Windows.Forms.Label();
-            this.Grid = new SoftwareNinjas.BranchAndReviewTools.Gui.AccessibleListView();
+            this.Grid = new SoftwareNinjas.BranchAndReviewTools.Gui.AccessibleDataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             this.SuspendLayout();
             // 
             // CaptionLabel
@@ -87,6 +88,7 @@
             this.Controls.Add(this.Grid);
             this.Name = "AwesomeGrid";
             this.Size = new System.Drawing.Size(500, 287);
+            ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -94,7 +96,7 @@
 
         #endregion
 
-        public AccessibleListView Grid;
+        public AccessibleDataGridView Grid;
         public System.Windows.Forms.Label CaptionLabel;
         public System.Windows.Forms.TextBox SearchTextBox;
         public System.Windows.Forms.Label SearchLabel;
