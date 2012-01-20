@@ -26,6 +26,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
             scintilla.Selection.BackColor = Color.FromArgb (224, 224, 224);
             scintilla.Selection.BackColorUnfocused = Color.FromArgb (240, 240, 240);
             scintilla.Whitespace.ForeColor = Color.Black;
+            ni.SetMarginWidthN(1, 0);
             ni.SetWrapMode ((int) WrapMode.Word);
         }
 
