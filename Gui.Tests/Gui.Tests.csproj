@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessibleDataGridViewTest.cs" />
     <Compile Include="AccessibleListViewTest.cs" />
     <Compile Include="Extensions\DataTableExtensionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

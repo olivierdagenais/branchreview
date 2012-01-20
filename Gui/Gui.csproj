@@ -62,6 +62,9 @@
     <Compile Include="ChangeInspector.Designer.cs">
       <DependentUpon>ChangeInspector.cs</DependentUpon>
     </Compile>
+    <Compile Include="AccessibleDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="AccessibleListView.cs">
       <SubType>Component</SubType>
     </Compile>

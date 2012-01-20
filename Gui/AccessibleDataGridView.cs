@@ -8,11 +8,62 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
     public class AccessibleDataGridView : DataGridView
     {
+        public event ContextMenuNeededEventHandler ContextMenuNeeded;
+
+        private void InvokeContextMenuStripNeeded(ContextMenuNeededEventArgs e)
+        {
+            if (ContextMenuNeeded != null)
+            {
+                ContextMenuNeeded(this, e);
+            }
+        }
+
         public AccessibleDataGridView()
         {
+            this.KeyDown += Grid_KeyDown;
             this.DataBindingComplete += Grid_DataBindingComplete;
             this.Resize += Grid_Resize;
+            this.GotFocus += Grid_GotFocus;
+            this.LostFocus += Grid_LostFocus;
             this.RowPrePaint += Grid_RowPrePaint;
+            Grid_LostFocus(this, null);
+        }
+
+        void Grid_LostFocus(object sender, EventArgs e)
+        {
+            this.DefaultCellStyle.SelectionBackColor = SystemColors.Control;
+            this.DefaultCellStyle.SelectionForeColor = SystemColors.ControlText;
+        }
+
+        void Grid_GotFocus(object sender, EventArgs e)
+        {
+            this.DefaultCellStyle.SelectionBackColor = SystemColors.Highlight;
+            this.DefaultCellStyle.SelectionForeColor = SystemColors.HighlightText;
+        }
+
+        void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 37 || e.KeyValue == 39) // left or right arrow keys
+            {
+                // swallow keystroke to prevent flicker
+                e.SuppressKeyPress = true;
+                return;
+            }
+            if (e.Modifiers == Keys.None)
+            {
+                if (e.KeyValue == 36) // Home
+                {
+                    e.SuppressKeyPress = true;
+                    SendKeys.Send("^{HOME}"); // Control+Home
+                    return;
+                }
+                if (e.KeyValue == 35) // End
+                {
+                    e.SuppressKeyPress = true;
+                    SendKeys.Send("^{END}"); // Control+End
+                    return;
+                }
+            }
         }
 
         void Grid_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
@@ -27,22 +78,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         }
 
         #region http://social.msdn.microsoft.com/Forums/en/winforms/thread/ef369cf3-58e9-4997-acc3-87a51d83011c
-        internal void InvokeContextMenu()
+        internal void InvokeContextMenu(Point menuLocation)
         {
-            var selectedCells = SelectedCells.Cast<DataGridViewCell>();
-            var cell = selectedCells.FirstOrDefault(dataGridViewCell => dataGridViewCell.Displayed);
-            if (cell != null)
+            var args = new ContextMenuNeededEventArgs();
+            InvokeContextMenuStripNeeded(args);
+            if (args.ContextMenu != null)
             {
-                var strip = cell.ContextMenuStrip
-                            ?? cell.OwningRow.ContextMenuStrip
-                            ?? cell.OwningColumn.ContextMenuStrip;
-                if (strip != null)
-                {
-                    var rect = GetCellDisplayRectangle(cell.ColumnIndex, cell.RowIndex, true);
-                    var bottomLeft = new Point(rect.Left, rect.Bottom);
-                    var screenCoordinates = PointToScreen(bottomLeft);
-                    strip.Show(screenCoordinates);
-                }
+                args.ContextMenu.Show(this, menuLocation);
             }
         }
 
@@ -53,7 +95,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 // pop context menu on Shift+F10 or context key (i.e. "Apps")
                 e.Handled = true;
                 e.SuppressKeyPress = false;
-                InvokeContextMenu();
+                var selectedCells = SelectedCells.Cast<DataGridViewCell>();
+                var cell = selectedCells.FirstOrDefault(dataGridViewCell => dataGridViewCell.Displayed);
+                if (cell != null)
+                {
+                    var rect = GetCellDisplayRectangle(cell.ColumnIndex, cell.RowIndex, true);
+                    var bottomLeft = new Point(rect.Left, rect.Bottom);
+                    InvokeContextMenu(bottomLeft);
+                }
             }
             else
             {
@@ -73,7 +122,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     {
                         // Cause right-click to select cell
                         e = new MouseEventArgs(MouseButtons.Left, e.Clicks, e.X, e.Y, e.Delta);
+                        base.OnMouseDown(e);
                     }
+
+                    InvokeContextMenu(PointToClient(Cursor.Position));
+                    return;
                 }
             }
             base.OnMouseDown(e);
