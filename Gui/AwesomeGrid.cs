@@ -19,10 +19,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         public event EventHandler SelectionChanged;
         public event EventHandler RowInvoked;
 
-        private readonly Timer _throttleTimer = new Timer
-        {
-            Interval = 200,
-        };
+        private readonly Throttler _searchThrottle;
 
         public AwesomeGrid()
         {
@@ -34,14 +31,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             this.Grid.PreviewKeyDown += Grid_PreviewKeyDown;
             this.Grid.ContextMenuNeeded += Grid_ContextMenuNeeded;
             this.Grid.SelectionChanged += Grid_SelectionChanged;
-            _throttleTimer.Tick += _throttleTimer_Tick;
-        }
 
-        void _throttleTimer_Tick(object sender, EventArgs e)
-        {
-            _throttleTimer.Stop();
-            _filter = SearchTextBox.Text;
-            UpdateFilter();
+            _searchThrottle = new Throttler(200, () =>
+                {
+                    _filter = SearchTextBox.Text;
+                    UpdateFilter();
+                }
+            );
         }
 
         // method can not be made static because the Form Designer re-writes the event wire-up with "this."
@@ -171,15 +167,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     #region Adjust throttle based on data size
                     if (_dataTable.Rows.Count > 500)
                     {
-                        _throttleTimer.Interval = 200;
+                        _searchThrottle.IntervalMilliseconds = 200;
                     }
                     else if (_dataTable.Rows.Count > 100)
                     {
-                        _throttleTimer.Interval = 100;
+                        _searchThrottle.IntervalMilliseconds = 100;
                     }
                     else
                     {
-                        _throttleTimer.Interval = 1;
+                        _searchThrottle.IntervalMilliseconds = 1;
                     }
                     #endregion
                 }
@@ -233,8 +229,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void SearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            _throttleTimer.Stop();
-            _throttleTimer.Start();
+            _searchThrottle.Fire();
         }
 
         private void SearchTextBox_Enter(object sender, EventArgs e)
