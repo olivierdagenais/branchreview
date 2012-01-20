@@ -18,6 +18,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private readonly ISourceRepository _sourceRepository;
         private readonly IShelvesetRepository _shelvesetRepository;
 
+        private bool _canRestoreLayout;
+
         private object _currentBranchId;
         private object _currentTaskId;
         private object _currentRevision;
@@ -111,6 +113,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             Size = settings.WindowSize;
             WindowState = settings.WindowState;
             SwitchCurrentTab(true);
+            _canRestoreLayout = true;
         }
 
         void Main_Closing(object sender, CancelEventArgs e)
@@ -391,7 +394,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void branchesTab_Layout(object sender, LayoutEventArgs e)
         {
-            if (e.AffectedProperty == "Visible" && branchesTab.Tag == null)
+            if (_canRestoreLayout && e.AffectedProperty == "Visible" && branchesTab.Tag == null)
             {
                 var settings = Settings.Default;
                 branchGridAndRestDivider.SplitterDistance = settings.branchGridAndRestDividerSplitterDistance;
@@ -406,7 +409,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void shelvesetsTab_Layout(object sender, LayoutEventArgs e)
         {
-            if (e.AffectedProperty == "Visible" && shelvesetsTab.Tag == null)
+            if (_canRestoreLayout && e.AffectedProperty == "Visible" && shelvesetsTab.Tag == null)
             {
                 var settings = Settings.Default;
                 shelvesetGridAndRestDivider.SplitterDistance = settings.shelvesetGridAndRestDividerSplitterDistance;
@@ -661,7 +664,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void commitTab_Layout(object sender, LayoutEventArgs e)
         {
-            if (e.AffectedProperty == "Visible" && commitTab.Tag == null)
+            if (_canRestoreLayout && e.AffectedProperty == "Visible" && commitTab.Tag == null)
             {
                 var settings = Settings.Default;
                 pendingChanges.HorizontalDividerSplitterDistance =
