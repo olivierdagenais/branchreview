@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Data;
 using System.Diagnostics;
 using System.Globalization;
@@ -13,6 +14,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
     /// <summary>
     /// An implementation of <see cref="ISourceRepository"/> with fake data.
     /// </summary>
+    [Export(typeof(ISourceRepository))]
     public class SourceRepository : ISourceRepository
     {
         private const string HardcodedDifferences = @"Index: D:/Work/open source/tools/BART/trunk/BranchAndReviewTools.sln

@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 using System.Windows.Forms;
 using ScintillaNet;
 using SoftwareNinjas.BranchAndReviewTools.Core;
-using SoftwareNinjas.BranchAndReviewTools.Core.Mock;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Properties;
 using SoftwareNinjas.Core;
@@ -30,8 +28,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             activityRevisions.Grid.MultiSelect = false;
             Load += Main_Load;
             FormClosing += Main_Closing;
-            _taskRepository = new TaskRepository();
-            _sourceRepository = new SourceRepository();
+            #if DEBUG
+            _taskRepository = new Core.Mock.TaskRepository();
+            _sourceRepository = new Core.Mock.SourceRepository();
+            #else
+            var catalog = new DirectoryCatalog("Repositories");
+            var container = new CompositionContainer(catalog);
+            _taskRepository = container.GetExportedValue<ITaskRepository>();
+            _sourceRepository = container.GetExportedValue<ISourceRepository>();
+            #endif
             this.pendingChanges.ChangeLog.KeyDown += ChangeLog_KeyDown;
 
             activityChangeInspector.ChangeLog.LongLines.EdgeMode = EdgeMode.None;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
     /// <summary>
     /// An implementation of <see cref="ITaskRepository"/> with fake data.
     /// </summary>
+    [Export(typeof(ITaskRepository))]
     public class TaskRepository : ITaskRepository
     {
         private readonly DataTable _tasks = new DataTable
