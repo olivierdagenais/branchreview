@@ -185,14 +185,19 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             {
                 clientWidth -= this.VerticalScrollBar.Size.Width;
             }
-            var widths = dataGridViewColumns.Select(c => c.Width).ToList();
+            var widths = dataGridViewColumns.Where(c => c.Visible).Select(c => c.Width).ToList();
             var adjustedWidths = AdjustWidths(widths, clientWidth);
             AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             double totalWidths = adjustedWidths.Aggregate(0, (a, b) => a + b);
             var multiplier = clientWidth/totalWidths;
-            for (var c = 0; c < adjustedWidths.Count; c++ )
+            for (int c = 0, v = 0; c < adjustedWidths.Count; c++ )
             {
-                dataGridViewColumns[c].Width = (int) (adjustedWidths[c] * multiplier);
+                while (!dataGridViewColumns[v].Visible)
+                {
+                    v++;
+                }
+                dataGridViewColumns[v].Width = (int) (adjustedWidths[c] * multiplier);
+                v++;
             }
         }
     }

@@ -70,9 +70,11 @@
     </Compile>
     <Compile Include="ContextMenuNeededEventArgs.cs" />
     <Compile Include="ContextMenuNeededEventHandler.cs" />
+    <Compile Include="Extensions\DataColumnExtensions.cs" />
     <Compile Include="Extensions\DataRowExtensions.cs" />
     <Compile Include="Extensions\DataTableExtensions.cs" />
     <Compile Include="Extensions\ListViewItemExtensions.cs" />
+    <Compile Include="Extensions\PropertyCollectionExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\FilterChunk.cs" />
     <Compile Include="Main.cs">

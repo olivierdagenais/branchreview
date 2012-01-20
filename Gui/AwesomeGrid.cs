@@ -139,6 +139,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         }
 
         private IList<Type> _columnTypes;
+        private IList<bool> _columnSearchable;
         private DataTable _dataTable;
         public DataTable DataTable
         {
@@ -150,7 +151,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 {
                     var dataColumns = _dataTable.Columns.Cast<DataColumn>();
                     _columnTypes = dataColumns.Select(dc => dc.DataType).ToList();
-                    #region Manage the columns based on the DataTable
+                    _columnSearchable = dataColumns.Select(dc => dc.IsSearchable()).ToList();
+                    #region Manage the columns based on the DataTable)
                     this.Grid.AutoGenerateColumns = false;
                     this.Grid.Columns.Clear ();
                     foreach (var dataColumn in dataColumns)
@@ -160,6 +162,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                             Name = dataColumn.ColumnName,
                             DataPropertyName = dataColumn.ColumnName,
                             HeaderText = dataColumn.Caption,
+                            Visible = dataColumn.IsVisible(),
                         };
                         this.Grid.Columns.Add (gridViewColumn);
                     }
@@ -200,7 +203,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 var filterChunks = filterParts.Select (p => new FilterChunk(p)).ToList();
                 foreach (DataRow dataRow in _dataTable.Rows)
                 {
-                    if (dataRow.Matches(_columnTypes, filterChunks))
+                    if (dataRow.Matches(_columnTypes, _columnSearchable, filterChunks))
                     {
                         cloned.Rows.Add (dataRow.ItemArray);
                     }

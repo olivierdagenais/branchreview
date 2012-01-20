@@ -18,7 +18,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
         {
             Columns =
             {
-                new DataColumn("ID", typeof(string)) { Caption = "ID" },
+                new DataColumn("ID", typeof(string))
+                {
+                    Caption = "ID",
+                    ExtendedProperties =
+                    {
+                        {"Visible", false},
+                        {"Searchable", false},
+                    },
+                },
                 {"Owner", typeof(string)},
                 new DataColumn("Name", typeof(string)) { Caption = "Shelveset Name" },
                 new DataColumn("LastActivity", typeof(DateTime)) { Caption = "Last Activity" },

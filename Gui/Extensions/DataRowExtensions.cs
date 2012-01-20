@@ -6,11 +6,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
 {
     public static class DataRowExtensions
     {
-        public static bool Matches(this DataRow row, IList<Type> columnTypes, IEnumerable<FilterChunk> filterChunks)
+        public static bool Matches(this DataRow row, IList<Type> columnTypes, IList<bool> columnSearchable, IEnumerable<FilterChunk> filterChunks)
         {
             foreach (var chunk in filterChunks)
             {
-                var chunkMatchesAtLeastOneColumn = Matches(row, columnTypes, chunk);
+                var chunkMatchesAtLeastOneColumn = Matches(row, columnTypes, columnSearchable, chunk);
 
                 if (!chunkMatchesAtLeastOneColumn) return false;
             }
@@ -18,11 +18,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
             return true;
         }
 
-        public static bool Matches(this DataRow row, IList<Type> columnTypes, FilterChunk chunk)
+        public static bool Matches(this DataRow row, IList<Type> columnTypes, IList<bool> columnSearchable, FilterChunk chunk)
         {
             var chunkMatchesAtLeastOneColumn = false;
             for (var c = 0; c < columnTypes.Count; c++)
             {
+                if (!columnSearchable[c])
+                {
+                    continue;
+                }
                 var columnType = columnTypes[c];
                 var cellValue = row[c];
 
