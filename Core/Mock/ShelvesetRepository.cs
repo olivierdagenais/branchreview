@@ -26,9 +26,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
             },
             Rows =
             {
-                {"ArgumentValidation with expression trees;odagenais", "odagenais", "ArgumentValidation with expression trees", new DateTime(2012, 01, 04, 13, 47, 38), "Je suis un gros légume." },
-                {"ca marche presque;odagenais", "odagenais", "ca marche presque", new DateTime(2011, 12, 22, 17, 36, 55), "Je ne peux plus tomber en bas de ma chaise parce que je travaille debout."},
-                {"proximity;enadeau", "enadeau", "proximity", new DateTime(2012, 01, 16, 15, 28, 56), "Je veux ravoir ma chaise!"},
+                {"ArgumentValidation with expression trees;odagenais", "Olivier Dagenais", "ArgumentValidation with expression trees", new DateTime(2012, 01, 04, 13, 47, 38), "Je suis un gros légume." },
+                {"ca marche presque;odagenais", "Olivier Dagenais", "ca marche presque", new DateTime(2011, 12, 22, 17, 36, 55), "Je ne peux plus tomber en bas de ma chaise parce que je travaille debout."},
+                {"proximity;enadeau", "Eric Nadeau", "proximity", new DateTime(2012, 01, 16, 15, 28, 56), "Je veux ravoir ma chaise!"},
             }
         };
 

@@ -16,10 +16,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
     {
         private readonly ITaskRepository _taskRepository;
         private readonly ISourceRepository _sourceRepository;
+        private readonly IShelvesetRepository _shelvesetRepository;
 
         private object _currentBranchId;
         private object _currentTaskId;
         private object _currentRevision;
+        private object _currentShelvesetId;
 
         public Main()
         {
@@ -27,16 +29,19 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             taskGrid.Grid.MultiSelect = false;
             branchGrid.Grid.MultiSelect = false;
             activityRevisions.Grid.MultiSelect = false;
+            shelvesetGrid.Grid.MultiSelect = false;
             Load += Main_Load;
             FormClosing += Main_Closing;
             #if DEBUG
             _taskRepository = new Core.Mock.TaskRepository();
             _sourceRepository = new Core.Mock.SourceRepository();
+            _shelvesetRepository = new Core.Mock.ShelvesetRepository();
             #else
             var catalog = new DirectoryCatalog("Repositories");
             var container = new CompositionContainer(catalog);
             _taskRepository = container.GetExportedValueOrDefault<ITaskRepository>();
             _sourceRepository = container.GetExportedValueOrDefault<ISourceRepository>();
+            _shelvesetRepository = container.GetExportedValueOrDefault<IShelvesetRepository>();
             #endif
 
             // ReSharper disable HeuristicUnreachableCode
@@ -79,6 +84,24 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 this.viewMenu.MenuItems.Remove(this.goToTasksMenuItem);
                 this.menuStrip.MenuItems.Remove(tasksMenu);
             }
+
+            // ReSharper disable ConditionIsAlwaysTrueOrFalse
+            if (_shelvesetRepository != null)
+            // ReSharper restore ConditionIsAlwaysTrueOrFalse
+            {
+                shelvesetChangeInspector.ChangeLog.LongLines.EdgeMode = EdgeMode.None;
+                shelvesetChangeInspector.ActionsForChangesFunction = _shelvesetRepository.GetActionsForShelvesetChanges;
+                shelvesetChangeInspector.ChangesFunction = _shelvesetRepository.GetShelvesetChanges;
+                shelvesetChangeInspector.ComputeDifferencesFunction = _shelvesetRepository.ComputeShelvesetDifferences;
+                shelvesetChangeInspector.MessageFunction = _shelvesetRepository.GetShelvesetMessage;
+            }
+            else
+            {
+                this.tabs.Controls.Remove(shelvesetsTab);
+                this.viewMenu.MenuItems.Remove(this.goToShelvesetsMenuItem);
+                this.menuStrip.MenuItems.Remove(shelvesetsMenu);
+            }
+
             // ReSharper restore HeuristicUnreachableCode
         }
 
@@ -140,6 +163,16 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             else
             {
                 activityRevisions.Caption = String.Empty;
+            }
+        }
+
+        private void SetCurrentShelveset(object shelvesetId)
+        {
+            _currentShelvesetId = shelvesetId;
+            shelvesetChangeInspector.Context = null;
+            if (shelvesetId != null)
+            {
+                shelvesetChangeInspector.Context = shelvesetId;
             }
         }
 
@@ -208,7 +241,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
             else if (tabs.SelectedTab == shelvesetsTab)
             {
-                // TODO: do relevant stuff, like loading the grid and setting its caption
+                if (shelvesetGrid.DataTable == null || refresh)
+                {
+                    shelvesetGrid.DataTable = null;
+                    shelvesetGrid.DataTable = _shelvesetRepository.LoadShelvesets();
+                    var shelvesetCount = shelvesetGrid.DataTable.Rows.Count;
+                    shelvesetGrid.Caption = "{0} shelveset{1}".FormatInvariant(shelvesetCount, shelvesetCount == 1 ? "" : "s");
+                    SetCurrentShelveset(null);
+                }
+
                 controlToFocus = shelvesetGrid;
             }
 
@@ -389,6 +430,18 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             AddBranchSpecificActions(items, needsLeadingSeparator);
         }
 
+        private void shelvesetsMenu_DropDownOpening(object sender, EventArgs e)
+        {
+            var items = shelvesetsMenu.MenuItems;
+            items.Clear();
+
+            var generalActions = _shelvesetRepository.GetShelvesetActions();
+            items.AddActions(generalActions);
+
+            var needsLeadingSeparator = generalActions.Count > 0;
+            AddShelvesetSpecificActions(items, needsLeadingSeparator);
+        }
+
         private void AddBranchSpecificActions(Menu.MenuItemCollection items, bool needsLeadingSeparator)
         {
             var selectedItems = branchGrid.Grid.SelectedItems;
@@ -419,6 +472,33 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
+        private void AddShelvesetSpecificActions(Menu.MenuItemCollection items, bool needsLeadingSeparator)
+        {
+            var selectedItems = shelvesetGrid.Grid.SelectedItems;
+            if (selectedItems.Count > 0)
+            {
+                if (needsLeadingSeparator)
+                {
+                    items.AddSeparator();
+                }
+                var item = selectedItems[0];
+                var row = item.GetRow();
+                var shelvesetId = row["ID"];
+                var builtInActions = new[]
+                {
+                    new MenuAction("defaultInspect", "&Inspect", true,
+                                () => SetCurrentShelveset(shelvesetId) ),
+                };
+                items.AddActions(builtInActions);
+                var specificActions = _shelvesetRepository.GetShelvesetActions(shelvesetId);
+                if (specificActions.Count > 0)
+                {
+                    items.AddSeparator();
+                    items.AddActions(specificActions);
+                }
+            }
+        }
+
         private void branchGrid_ContextMenuNeeded(object sender, ContextMenuNeededEventArgs e)
         {
             var menu = BuildBranchActionMenu();
@@ -427,10 +507,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void shelvesetGrid_ContextMenuNeeded(object sender, ContextMenuNeededEventArgs e)
         {
-            /* TODO
             var menu = BuildShelvesetActionMenu();
             e.ContextMenu = menu;
-            */
         }
 
         private void branchGrid_RowInvoked(object sender, EventArgs e)
@@ -440,7 +518,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void shelvesetGrid_RowInvoked(object sender, EventArgs e)
         {
-            // TODO: InvokeDefaultShelvesetGridAction();
+            InvokeDefaultShelvesetGridAction();
         }
 
         private ContextMenu BuildBranchActionMenu()
@@ -450,9 +528,22 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             return menu;
         }
 
+        private ContextMenu BuildShelvesetActionMenu()
+        {
+            var menu = new ContextMenu();
+            AddShelvesetSpecificActions(menu.MenuItems, false);
+            return menu;
+        }
+
         private void InvokeDefaultBranchGridAction()
         {
             var menu = BuildBranchActionMenu();
+            menu.MenuItems.InvokeFirstMenuItem();
+        }
+
+        private void InvokeDefaultShelvesetGridAction()
+        {
+            var menu = BuildShelvesetActionMenu();
             menu.MenuItems.InvokeFirstMenuItem();
         }
 

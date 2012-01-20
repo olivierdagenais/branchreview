@@ -31,6 +31,7 @@
             System.Windows.Forms.MenuItem viewMenuRefreshSeparator;
             System.Windows.Forms.MenuItem tasksDummyMenuItem;
             System.Windows.Forms.MenuItem branchesDummyMenuItem;
+            System.Windows.Forms.MenuItem shelvesetsDummyMenuItem;
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusBarText = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBarProgress = new System.Windows.Forms.ToolStripProgressBar();
@@ -47,6 +48,7 @@
             this.refreshMenuItem = new System.Windows.Forms.MenuItem();
             this.tasksMenu = new System.Windows.Forms.MenuItem();
             this.branchesMenu = new System.Windows.Forms.MenuItem();
+            this.shelvesetsMenu = new System.Windows.Forms.MenuItem();
             this.commitMenu = new System.Windows.Forms.MenuItem();
             this.commitMenuItem = new System.Windows.Forms.MenuItem();
             this.tabs = new System.Windows.Forms.TabControl();
@@ -67,6 +69,7 @@
             viewMenuRefreshSeparator = new System.Windows.Forms.MenuItem();
             tasksDummyMenuItem = new System.Windows.Forms.MenuItem();
             branchesDummyMenuItem = new System.Windows.Forms.MenuItem();
+            shelvesetsDummyMenuItem = new System.Windows.Forms.MenuItem();
             this.statusBar.SuspendLayout();
             this.tabs.SuspendLayout();
             this.taskTab.SuspendLayout();
@@ -102,6 +105,11 @@
             branchesDummyMenuItem.Name = "branchesDummyMenuItem";
             branchesDummyMenuItem.Text = "-";
             // 
+            // shelvesetsDummyMenuItem
+            // 
+            shelvesetsDummyMenuItem.Name = "shelvesetsDummyMenuItem";
+            shelvesetsDummyMenuItem.Text = "-";
+            // 
             // statusBar
             // 
             this.statusBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
@@ -133,7 +141,8 @@
             this.viewMenu,
             this.tasksMenu,
             this.branchesMenu,
-            this.commitMenu});
+            this.commitMenu,
+            this.shelvesetsMenu});
             this.menuStrip.Name = "menuStrip";
             // 
             // fileMenu
@@ -225,6 +234,14 @@
             this.branchesMenu.Name = "branchesMenu";
             this.branchesMenu.Text = "&Branches";
             this.branchesMenu.Popup += new System.EventHandler(this.branchesMenu_DropDownOpening);
+            // 
+            // shelvesetsMenu
+            // 
+            this.shelvesetsMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            shelvesetsDummyMenuItem});
+            this.shelvesetsMenu.Name = "shelvesetsMenu";
+            this.shelvesetsMenu.Text = "She&lvesets";
+            this.shelvesetsMenu.Popup += new System.EventHandler(this.shelvesetsMenu_DropDownOpening);
             // 
             // commitMenu
             // 
@@ -531,6 +548,7 @@
         private System.Windows.Forms.MenuItem tasksMenu;
         private System.Windows.Forms.MenuItem branchesMenu;
         private System.Windows.Forms.MenuItem commitMenu;
+        private System.Windows.Forms.MenuItem shelvesetsMenu;
         private System.Windows.Forms.MenuItem editMenu;
         private System.Windows.Forms.MenuItem searchMenuItem;
         private System.Windows.Forms.SplitContainer branchGridAndRestDivider;
