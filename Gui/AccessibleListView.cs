@@ -111,6 +111,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     }
                 }
             }
+            if (this.Items.Count > 0)
+            {
+                this.SelectedIndices.Add(0);
+            }
         }
 
         public Color AlternatingBackColor { get; set; }
