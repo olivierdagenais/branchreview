@@ -29,5 +29,14 @@
     <Setting Name="pendingChangesVerticalDividerSplitterDistance" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">273</Value>
     </Setting>
+    <Setting Name="shelvesetGridAndRestDividerSplitterDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">115</Value>
+    </Setting>
+    <Setting Name="shelvesetChangeInspectorHorizontalDividerSplitterDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">85</Value>
+    </Setting>
+    <Setting Name="shelvesetChangeInspectorVerticalDividerSplitterDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">273</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

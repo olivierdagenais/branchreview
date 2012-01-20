@@ -170,6 +170,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             tabs.SelectedTab = commitTab;
         }
 
+        private void goToShelvesetsMenuItem_Click(object sender, EventArgs e)
+        {
+            tabs.SelectedTab = shelvesetsTab;
+        }
+
         private void SwitchCurrentTab(bool refresh)
         {
             Control controlToFocus = null;
@@ -200,6 +205,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             {
                 pendingChanges.Context = _currentBranchId;
                 controlToFocus = pendingChanges;
+            }
+            else if (tabs.SelectedTab == shelvesetsTab)
+            {
+                // TODO: do relevant stuff, like loading the grid and setting its caption
+                controlToFocus = shelvesetGrid;
             }
 
             if (controlToFocus != null)
@@ -353,6 +363,20 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
+        private void shelvesetsTab_Layout(object sender, LayoutEventArgs e)
+        {
+            if (e.AffectedProperty == "Visible" && shelvesetsTab.Tag == null)
+            {
+                var settings = Settings.Default;
+                shelvesetGridAndRestDivider.SplitterDistance = settings.shelvesetGridAndRestDividerSplitterDistance;
+                shelvesetChangeInspector.HorizontalDividerSplitterDistance =
+                    settings.shelvesetChangeInspectorHorizontalDividerSplitterDistance;
+                shelvesetChangeInspector.VerticalDividerSplitterDistance =
+                    settings.shelvesetChangeInspectorVerticalDividerSplitterDistance;
+                shelvesetsTab.Tag = "done";
+            }
+        }
+
         private void branchesMenu_DropDownOpening(object sender, EventArgs e)
         {
             var items = branchesMenu.MenuItems;
@@ -401,9 +425,22 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             e.ContextMenu = menu;
         }
 
+        private void shelvesetGrid_ContextMenuNeeded(object sender, ContextMenuNeededEventArgs e)
+        {
+            /* TODO
+            var menu = BuildShelvesetActionMenu();
+            e.ContextMenu = menu;
+            */
+        }
+
         private void branchGrid_RowInvoked(object sender, EventArgs e)
         {
             InvokeDefaultBranchGridAction();
+        }
+
+        private void shelvesetGrid_RowInvoked(object sender, EventArgs e)
+        {
+            // TODO: InvokeDefaultShelvesetGridAction();
         }
 
         private ContextMenu BuildBranchActionMenu()
@@ -474,6 +511,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
+        private void shelvesetGridAndRestDivider_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            if (shelvesetsTab.Tag != null)
+            {
+                Settings.Default.shelvesetGridAndRestDividerSplitterDistance =
+                    shelvesetGridAndRestDivider.SplitterDistance;
+            }
+        }
+
         private void activityTopBottomPanel_SplitterMoved(object sender, SplitterEventArgs e)
         {
             if (branchesTab.Tag != null)
@@ -491,12 +537,30 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
+        private void shelvesetChangeInspector_HorizontalDividerSplitterMoved(object sender, SplitterEventArgs e)
+        {
+            if (shelvesetsTab.Tag != null)
+            {
+                Settings.Default.shelvesetChangeInspectorHorizontalDividerSplitterDistance =
+                    shelvesetChangeInspector.HorizontalDividerSplitterDistance;
+            }
+        }
+
         private void activityChangeInspector_VerticalDividerSplitterMoved(object sender, SplitterEventArgs e)
         {
             if (branchesTab.Tag != null)
             {
                 Settings.Default.activityChangeInspectorVerticalDividerSplitterDistance =
                     activityChangeInspector.VerticalDividerSplitterDistance;
+            }
+        }
+
+        private void shelvesetChangeInspector_VerticalDividerSplitterMoved(object sender, SplitterEventArgs e)
+        {
+            if (shelvesetsTab.Tag != null)
+            {
+                Settings.Default.shelvesetChangeInspectorVerticalDividerSplitterDistance =
+                    shelvesetChangeInspector.VerticalDividerSplitterDistance;
             }
         }
 

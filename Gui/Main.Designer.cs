@@ -43,6 +43,7 @@
             this.goToTasksMenuItem = new System.Windows.Forms.MenuItem();
             this.goToBranchesMenuItem = new System.Windows.Forms.MenuItem();
             this.goToPendingMenuItem = new System.Windows.Forms.MenuItem();
+            this.goToShelvesetsMenuItem = new System.Windows.Forms.MenuItem();
             this.refreshMenuItem = new System.Windows.Forms.MenuItem();
             this.tasksMenu = new System.Windows.Forms.MenuItem();
             this.branchesMenu = new System.Windows.Forms.MenuItem();
@@ -59,6 +60,10 @@
             this.activityChangeInspector = new SoftwareNinjas.BranchAndReviewTools.Gui.ChangeInspector();
             this.commitTab = new System.Windows.Forms.TabPage();
             this.pendingChanges = new SoftwareNinjas.BranchAndReviewTools.Gui.ChangeInspector();
+            this.shelvesetsTab = new System.Windows.Forms.TabPage();
+            this.shelvesetGridAndRestDivider = new System.Windows.Forms.SplitContainer();
+            this.shelvesetGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.AwesomeGrid();
+            this.shelvesetChangeInspector = new SoftwareNinjas.BranchAndReviewTools.Gui.ChangeInspector();
             viewMenuRefreshSeparator = new System.Windows.Forms.MenuItem();
             tasksDummyMenuItem = new System.Windows.Forms.MenuItem();
             branchesDummyMenuItem = new System.Windows.Forms.MenuItem();
@@ -75,6 +80,11 @@
             this.activityTopBottomPanel.Panel2.SuspendLayout();
             this.activityTopBottomPanel.SuspendLayout();
             this.commitTab.SuspendLayout();
+            this.shelvesetsTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.shelvesetGridAndRestDivider)).BeginInit();
+            this.shelvesetGridAndRestDivider.Panel1.SuspendLayout();
+            this.shelvesetGridAndRestDivider.Panel2.SuspendLayout();
+            this.shelvesetGridAndRestDivider.SuspendLayout();
             this.SuspendLayout();
             // 
             // viewMenuRefreshSeparator
@@ -159,6 +169,7 @@
             this.goToTasksMenuItem,
             this.goToBranchesMenuItem,
             this.goToPendingMenuItem,
+            this.goToShelvesetsMenuItem,
             viewMenuRefreshSeparator,
             this.refreshMenuItem});
             this.viewMenu.Name = "viewMenu";
@@ -184,6 +195,13 @@
             this.goToPendingMenuItem.Shortcut = System.Windows.Forms.Shortcut.Ctrl3;
             this.goToPendingMenuItem.Text = "&Pending";
             this.goToPendingMenuItem.Click += new System.EventHandler(this.goToPendingMenuItem_Click);
+            // 
+            // goToShelvesetsMenuItem
+            // 
+            this.goToShelvesetsMenuItem.Name = "goToShelvesetsMenuItem";
+            this.goToShelvesetsMenuItem.Shortcut = System.Windows.Forms.Shortcut.Ctrl4;
+            this.goToShelvesetsMenuItem.Text = "&Shelvesets";
+            this.goToShelvesetsMenuItem.Click += new System.EventHandler(this.goToShelvesetsMenuItem_Click);
             // 
             // refreshMenuItem
             // 
@@ -227,6 +245,7 @@
             this.tabs.Controls.Add(this.taskTab);
             this.tabs.Controls.Add(this.branchesTab);
             this.tabs.Controls.Add(this.commitTab);
+            this.tabs.Controls.Add(this.shelvesetsTab);
             this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabs.Location = new System.Drawing.Point(0, 24);
             this.tabs.Margin = new System.Windows.Forms.Padding(0);
@@ -328,6 +347,18 @@
             this.activityTopBottomPanel.TabStop = false;
             this.activityTopBottomPanel.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.activityTopBottomPanel_SplitterMoved);
             // 
+            // shelvesetsTab
+            // 
+            this.shelvesetsTab.Controls.Add(this.shelvesetGridAndRestDivider);
+            this.shelvesetsTab.Location = new System.Drawing.Point(4, 22);
+            this.shelvesetsTab.Name = "shelvesetsTab";
+            this.shelvesetsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.shelvesetsTab.Size = new System.Drawing.Size(784, 505);
+            this.shelvesetsTab.TabIndex = 4;
+            this.shelvesetsTab.Text = "Shelvesets";
+            this.shelvesetsTab.UseVisualStyleBackColor = true;
+            this.shelvesetsTab.Layout += new System.Windows.Forms.LayoutEventHandler(this.shelvesetsTab_Layout);
+            // 
             // activityRevisions
             // 
             this.activityRevisions.Caption = "";
@@ -388,6 +419,58 @@
             this.pendingChanges.HorizontalDividerSplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.pendingChanges_HorizontalDividerSplitterMoved);
             this.pendingChanges.VerticalDividerSplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.pendingChanges_VerticalDividerSplitterMoved);
             // 
+            // shelvesetGridAndRestDivider
+            // 
+            this.shelvesetGridAndRestDivider.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.shelvesetGridAndRestDivider.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.shelvesetGridAndRestDivider.Location = new System.Drawing.Point(3, 3);
+            this.shelvesetGridAndRestDivider.Name = "shelvesetGridAndRestDivider";
+            this.shelvesetGridAndRestDivider.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // shelvesetGridAndRestDivider.Panel1
+            // 
+            this.shelvesetGridAndRestDivider.Panel1.Controls.Add(this.shelvesetGrid);
+            // 
+            // shelvesetGridAndRestDivider.Panel2
+            // 
+            this.shelvesetGridAndRestDivider.Panel2.Controls.Add(this.shelvesetChangeInspector);
+            this.shelvesetGridAndRestDivider.Size = new System.Drawing.Size(778, 499);
+            this.shelvesetGridAndRestDivider.SplitterDistance = 85;
+            this.shelvesetGridAndRestDivider.TabIndex = 1;
+            this.shelvesetGridAndRestDivider.TabStop = false;
+            this.shelvesetGridAndRestDivider.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.shelvesetGridAndRestDivider_SplitterMoved);
+            // 
+            // shelvesetGrid
+            // 
+            this.shelvesetGrid.Caption = "";
+            this.shelvesetGrid.DataTable = null;
+            this.shelvesetGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.shelvesetGrid.Filter = null;
+            this.shelvesetGrid.Location = new System.Drawing.Point(0, 0);
+            this.shelvesetGrid.Name = "shelvesetGrid";
+            this.shelvesetGrid.Size = new System.Drawing.Size(776, 83);
+            this.shelvesetGrid.TabIndex = 0;
+            this.shelvesetGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuNeededEventHandler(this.shelvesetGrid_ContextMenuNeeded);
+            this.shelvesetGrid.RowInvoked += new System.EventHandler(this.shelvesetGrid_RowInvoked);
+            // 
+            // shelvesetChangeInspector
+            // 
+            this.shelvesetChangeInspector.ActionsForChangesFunction = null;
+            this.shelvesetChangeInspector.ChangesFunction = null;
+            this.shelvesetChangeInspector.ComputeDifferencesFunction = null;
+            this.shelvesetChangeInspector.Context = null;
+            this.shelvesetChangeInspector.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.shelvesetChangeInspector.HorizontalDividerSplitterDistance = 25;
+            this.shelvesetChangeInspector.Location = new System.Drawing.Point(0, 0);
+            this.shelvesetChangeInspector.MessageFunction = null;
+            this.shelvesetChangeInspector.Name = "shelvesetChangeInspector";
+            this.shelvesetChangeInspector.PatchText = "";
+            this.shelvesetChangeInspector.Size = new System.Drawing.Size(776, 408);
+            this.shelvesetChangeInspector.TabIndex = 0;
+            this.shelvesetChangeInspector.VerticalDividerSplitterDistance = 243;
+            this.shelvesetChangeInspector.HorizontalDividerSplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.shelvesetChangeInspector_HorizontalDividerSplitterMoved);
+            this.shelvesetChangeInspector.VerticalDividerSplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.shelvesetChangeInspector_VerticalDividerSplitterMoved);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -414,6 +497,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.activityTopBottomPanel)).EndInit();
             this.activityTopBottomPanel.ResumeLayout(false);
             this.commitTab.ResumeLayout(false);
+            this.shelvesetsTab.ResumeLayout(false);
+            this.shelvesetGridAndRestDivider.Panel1.ResumeLayout(false);
+            this.shelvesetGridAndRestDivider.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.shelvesetGridAndRestDivider)).EndInit();
+            this.shelvesetGridAndRestDivider.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -430,13 +518,16 @@
         private System.Windows.Forms.TabPage taskTab;
         private System.Windows.Forms.TabPage branchesTab;
         private System.Windows.Forms.TabPage commitTab;
+        private System.Windows.Forms.TabPage shelvesetsTab;
         private AwesomeGrid taskGrid;
         private AwesomeGrid branchGrid;
+        private AwesomeGrid shelvesetGrid;
         private System.Windows.Forms.MenuItem viewMenu;
         private System.Windows.Forms.MenuItem refreshMenuItem;
         private System.Windows.Forms.MenuItem goToTasksMenuItem;
         private System.Windows.Forms.MenuItem goToBranchesMenuItem;
         private System.Windows.Forms.MenuItem goToPendingMenuItem;
+        private System.Windows.Forms.MenuItem goToShelvesetsMenuItem;
         private System.Windows.Forms.MenuItem tasksMenu;
         private System.Windows.Forms.MenuItem branchesMenu;
         private System.Windows.Forms.MenuItem commitMenu;
@@ -444,9 +535,11 @@
         private System.Windows.Forms.MenuItem searchMenuItem;
         private System.Windows.Forms.SplitContainer branchGridAndRestDivider;
         private System.Windows.Forms.SplitContainer activityTopBottomPanel;
+        private System.Windows.Forms.SplitContainer shelvesetGridAndRestDivider;
         private AwesomeGrid activityRevisions;
         private ChangeInspector activityChangeInspector;
         private ChangeInspector pendingChanges;
+        private ChangeInspector shelvesetChangeInspector;
         private System.Windows.Forms.MenuItem commitMenuItem;
     }
 }

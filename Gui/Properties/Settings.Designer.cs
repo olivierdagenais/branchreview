@@ -130,5 +130,41 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Properties {
                 this["pendingChangesVerticalDividerSplitterDistance"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("115")]
+        public int shelvesetGridAndRestDividerSplitterDistance {
+            get {
+                return ((int)(this["shelvesetGridAndRestDividerSplitterDistance"]));
+            }
+            set {
+                this["shelvesetGridAndRestDividerSplitterDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("85")]
+        public int shelvesetChangeInspectorHorizontalDividerSplitterDistance {
+            get {
+                return ((int)(this["shelvesetChangeInspectorHorizontalDividerSplitterDistance"]));
+            }
+            set {
+                this["shelvesetChangeInspectorHorizontalDividerSplitterDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("273")]
+        public int shelvesetChangeInspectorVerticalDividerSplitterDistance {
+            get {
+                return ((int)(this["shelvesetChangeInspectorVerticalDividerSplitterDistance"]));
+            }
+            set {
+                this["shelvesetChangeInspectorVerticalDividerSplitterDistance"] = value;
+            }
+        }
     }
 }
