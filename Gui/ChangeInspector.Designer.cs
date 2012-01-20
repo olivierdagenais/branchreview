@@ -128,8 +128,7 @@
             this.FileGrid.Name = "FileGrid";
             this.FileGrid.Size = new System.Drawing.Size(233, 442);
             this.FileGrid.TabIndex = 0;
-            this.FileGrid.DoubleClick += new System.EventHandler(this.FileGrid_DoubleClick);
-            this.FileGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FileGrid_KeyDown);
+            this.FileGrid.RowInvoked += new System.EventHandler(this.FileGrid_RowInvoked);
             this.FileGrid.ContextMenuStripNeeded += new ContextMenuNeededEventHandler(this.FileGrid_ContextMenuStripNeeded);
             this.FileGrid.SelectionChanged += new System.EventHandler(this.FileGrid_SelectionChanged);
             // 

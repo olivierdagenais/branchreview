@@ -171,19 +171,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             menu.MenuItems.InvokeFirstMenuItem();
         }
 
-        void FileGrid_DoubleClick(object sender, EventArgs e)
+        void FileGrid_RowInvoked(object sender, EventArgs e)
         {
             InvokeDefaultChangedFilesAction();
-        }
-
-        void FileGrid_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-                InvokeDefaultChangedFilesAction();
-            }
         }
         #endregion
 
