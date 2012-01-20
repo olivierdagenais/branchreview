@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.Composition.Hosting;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using ScintillaNet;
@@ -34,21 +35,51 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             #else
             var catalog = new DirectoryCatalog("Repositories");
             var container = new CompositionContainer(catalog);
-            _taskRepository = container.GetExportedValue<ITaskRepository>();
-            _sourceRepository = container.GetExportedValue<ISourceRepository>();
+            _taskRepository = container.GetExportedValueOrDefault<ITaskRepository>();
+            _sourceRepository = container.GetExportedValueOrDefault<ISourceRepository>();
             #endif
-            this.pendingChanges.ChangeLog.KeyDown += ChangeLog_KeyDown;
 
-            activityChangeInspector.ChangeLog.LongLines.EdgeMode = EdgeMode.None;
-            activityChangeInspector.ActionsForChangesFunction = _sourceRepository.GetActionsForRevisionChanges;
-            activityChangeInspector.ChangesFunction = _sourceRepository.GetRevisionChanges;
-            activityChangeInspector.ComputeDifferencesFunction = _sourceRepository.ComputeRevisionDifferences;
-            activityChangeInspector.MessageFunction = _sourceRepository.GetRevisionMessage;
+            // ReSharper disable HeuristicUnreachableCode
+            // ReSharper disable ConditionIsAlwaysTrueOrFalse
+            if (_sourceRepository != null)
+            // ReSharper restore ConditionIsAlwaysTrueOrFalse
+            {
+                this.pendingChanges.ChangeLog.KeyDown += ChangeLog_KeyDown;
 
-            pendingChanges.ActionsForChangesFunction = _sourceRepository.GetActionsForPendingChanges;
-            pendingChanges.ChangesFunction = _sourceRepository.GetPendingChanges;
-            pendingChanges.ComputeDifferencesFunction = _sourceRepository.ComputePendingDifferences;
-            pendingChanges.MessageFunction = null;
+                activityChangeInspector.ChangeLog.LongLines.EdgeMode = EdgeMode.None;
+                activityChangeInspector.ActionsForChangesFunction = _sourceRepository.GetActionsForRevisionChanges;
+                activityChangeInspector.ChangesFunction = _sourceRepository.GetRevisionChanges;
+                activityChangeInspector.ComputeDifferencesFunction = _sourceRepository.ComputeRevisionDifferences;
+                activityChangeInspector.MessageFunction = _sourceRepository.GetRevisionMessage;
+
+                pendingChanges.ActionsForChangesFunction = _sourceRepository.GetActionsForPendingChanges;
+                pendingChanges.ChangesFunction = _sourceRepository.GetPendingChanges;
+                pendingChanges.ComputeDifferencesFunction = _sourceRepository.ComputePendingDifferences;
+                pendingChanges.MessageFunction = null;
+            }
+            else
+            {
+                this.tabs.Controls.Remove(branchesTab);
+                this.tabs.Controls.Remove(commitTab);
+                this.viewMenu.MenuItems.Remove(this.goToBranchesMenuItem);
+                this.viewMenu.MenuItems.Remove(this.goToPendingMenuItem);
+                this.menuStrip.MenuItems.Remove(branchesMenu);
+                this.menuStrip.MenuItems.Remove(commitMenu);
+            }
+
+            // ReSharper disable ConditionIsAlwaysTrueOrFalse
+            if (_taskRepository != null)
+            // ReSharper restore ConditionIsAlwaysTrueOrFalse
+            {
+                // TODO: wire up events, etc.
+            }
+            else
+            {
+                this.tabs.Controls.Remove(taskTab);
+                this.viewMenu.MenuItems.Remove(this.goToTasksMenuItem);
+                this.menuStrip.MenuItems.Remove(tasksMenu);
+            }
+            // ReSharper restore HeuristicUnreachableCode
         }
 
         void Main_Load(object sender, EventArgs e)
@@ -242,24 +273,32 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                         items.AddSeparator();
                     }
                     items.AddActions(specificActions);
-                    items.AddSeparator();
                 }
-                items.AddActions(
-                    new MenuAction("createBranch", "Create branch for task {0}".FormatInvariant(taskId), true, 
-                        () => CreateBranch(taskId)),
-                    new MenuAction("goToBranch", "Go to branch for task {0}".FormatInvariant(taskId), true,
-                        () => GoToBranchFor(taskId))
-                );
+                if (_sourceRepository != null)
+                {
+                    if (specificActions.Count > 0)
+                    {
+                        items.AddSeparator();
+                    }
+                    items.AddActions(
+                        new MenuAction("createBranch", "Create branch for task {0}".FormatInvariant(taskId), true, 
+                            () => CreateBranch(taskId)),
+                        new MenuAction("goToBranch", "Go to branch for task {0}".FormatInvariant(taskId), true,
+                            () => GoToBranchFor(taskId))
+                    );
+                }
             }
         }
 
         private void CreateBranch(object taskId)
         {
+            Debug.Assert(_sourceRepository != null);
             _sourceRepository.CreateBranch(taskId);
         }
 
         private void GoToBranchFor(object taskId)
         {
+            Debug.Assert(_sourceRepository != null);
             if (branchGrid.DataTable == null)
             {
                 branchGrid.DataTable = _sourceRepository.LoadBranches();
