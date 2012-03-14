@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -8,7 +9,7 @@ using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
-    public class AccessibleListView : ListView
+    public class AccessibleListView : ListView, ISupportInitialize
     {
         public event ContextMenuNeededEventHandler ContextMenuNeeded;
 
@@ -303,5 +304,19 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 this.Columns[columnHeaders.Count].Width = 0;
             }
         }
+
+        #region ISupportInitialize Members
+
+        void ISupportInitialize.BeginInit()
+        {
+            // do nothing
+        }
+
+        void ISupportInitialize.EndInit()
+        {
+            // do nothing
+        }
+
+        #endregion
     }
 }
