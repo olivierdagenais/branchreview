@@ -11,10 +11,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
     public partial class AwesomeGrid : UserControl, ISupportInitialize
     {
-
-        private static readonly DataGridViewCellStyle AlternatingRowStyle =
-            new DataGridViewCellStyle { BackColor = Color.WhiteSmoke };
-
         public event ContextMenuNeededEventHandler ContextMenuStripNeeded;
         public event EventHandler SelectionChanged;
         public event EventHandler RowInvoked;
@@ -25,7 +21,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             InitializeComponent();
             Configure();
-            this.Grid.AlternatingRowsDefaultCellStyle = AlternatingRowStyle;
             this.Grid.DoubleClick += Grid_DoubleClick;
             this.Grid.KeyDown += Grid_KeyDown;
             this.Grid.PreviewKeyDown += Grid_PreviewKeyDown;
