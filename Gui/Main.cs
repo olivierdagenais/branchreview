@@ -191,7 +191,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void tabs_Selected(object sender, TabControlEventArgs e)
         {
-            SwitchCurrentTab(false);
+            ExecuteLater(10, () => SwitchCurrentTab(false));
         }
 
         private void goToTasksMenuItem_Click(object sender, EventArgs e)

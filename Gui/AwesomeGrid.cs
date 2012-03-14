@@ -16,6 +16,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         public event EventHandler RowInvoked;
 
         private readonly Throttler _searchThrottle;
+        private bool _isBinding;
 
         public AwesomeGrid()
         {
@@ -141,7 +142,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         void Grid_SelectionChanged(object sender, EventArgs e)
         {
-            if (SelectionChanged != null)
+            if (SelectionChanged != null && _dataTable != null && !_isBinding)
             {
                 SelectionChanged(sender, e);
             }
@@ -206,8 +207,16 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     }
                     #endregion
                 }
-                this.Grid.DataSource = _dataTable;
+                UpdateDataSource(_dataTable);
             }
+        }
+
+        private void UpdateDataSource(DataTable dataSource)
+        {
+            _isBinding = true;
+            this.Grid.DataSource = dataSource;
+            this.Grid.ClearSelection();
+            _isBinding = false;
         }
 
         private string _filter;
@@ -231,7 +240,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                         cloned.Rows.Add (dataRow.ItemArray);
                     }
                 }
-                this.Grid.DataSource = cloned;
+                UpdateDataSource(cloned);
             }
         }
 

@@ -126,12 +126,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             else
             {
                 FileGrid.SelectionChanged -= FileGrid_SelectionChanged;
-                if (0 == oldSelection.Count)
-                {
-                    // if nothing was selected, select the first one
-                    FileGrid.Grid.Rows[0].Selected = true;
-                }
-                else
+                if (0 != oldSelection.Count)
                 {
                     foreach (DataGridViewRow row in FileGrid.Grid.Rows)
                     {
