@@ -131,6 +131,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                             Columns.Add(accessibleColumnHeader);
                         }
                     }
+                    var lastColumn = (AccessibleColumnHeader) Columns[Columns.Count - 1];
+                    if (lastColumn.Text != String.Empty)
+                    {
+                        // dummy column for the auto-sizing
+                        var header = new AccessibleColumnHeader {Text = String.Empty};
+                        Columns.Add(header );
+                        visibleColumns.Add(header);
+                    }
                     var dataRows = _dataSource.AsEnumerable();
                     var sourceColumn = MapToSourceColumn(_dataSource.Columns.Cast<DataColumn>(), _sortingColumn);
                     OrderedEnumerableRowCollection<DataRow> sortedRows;
