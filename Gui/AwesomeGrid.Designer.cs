@@ -32,7 +32,7 @@
             this.SearchTextBox = new System.Windows.Forms.TextBox();
             this.SearchLabel = new System.Windows.Forms.Label();
             this.tableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.grid = new SoftwareNinjas.BranchAndReviewTools.Gui.AccessibleDataGridView();
+            this.grid = new SoftwareNinjas.BranchAndReviewTools.Gui.AccessibleListView();
             this.tableLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.SuspendLayout();
@@ -121,7 +121,7 @@
 
         #endregion
 
-        private AccessibleDataGridView grid;
+        private AccessibleListView grid;
         public System.Windows.Forms.Label CaptionLabel;
         public System.Windows.Forms.TextBox SearchTextBox;
         public System.Windows.Forms.Label SearchLabel;
