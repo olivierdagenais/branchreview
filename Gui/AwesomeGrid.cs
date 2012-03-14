@@ -206,17 +206,24 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             if (_dataTable != null && _filter != null)
             {
-                var cloned = _dataTable.Clone ();
-                var filterParts = _filter.Split(' ');
-                var filterChunks = filterParts.Select (p => new FilterChunk(p)).ToList();
-                foreach (DataRow dataRow in _dataTable.Rows)
+                if (String.IsNullOrEmpty(_filter))
                 {
-                    if (dataRow.Matches(_columnTypes, _columnSearchable, filterChunks))
-                    {
-                        cloned.Rows.Add (dataRow.ItemArray);
-                    }
+                    UpdateDataSource(_dataTable);
                 }
-                UpdateDataSource(cloned);
+                else
+                {
+                    var cloned = _dataTable.Clone ();
+                    var filterParts = _filter.Split(' ');
+                    var filterChunks = filterParts.Select (p => new FilterChunk(p)).ToList();
+                    foreach (DataRow dataRow in _dataTable.Rows)
+                    {
+                        if (dataRow.Matches(_columnTypes, _columnSearchable, filterChunks))
+                        {
+                            cloned.Rows.Add (dataRow.ItemArray);
+                        }
+                    }
+                    UpdateDataSource(cloned);
+                }
             }
         }
 
