@@ -153,13 +153,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             set
             {
                 _dataTable = value;
+                this.Grid.Columns.Clear ();
                 if (_dataTable != null)
                 {
                     var dataColumns = _dataTable.Columns.Cast<DataColumn>();
                     _columnTypes = dataColumns.Select(dc => dc.DataType).ToList();
                     _columnSearchable = dataColumns.Select(dc => dc.IsSearchable()).ToList();
                     #region Manage the columns based on the DataTable)
-                    this.Grid.Columns.Clear ();
                     foreach (var dataColumn in dataColumns)
                     {
                         var gridColumn = this.Grid.CreateGridColumn
@@ -183,7 +183,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     }
                     #endregion
                 }
-                UpdateDataSource(_dataTable);
+                UpdateFilter();
             }
         }
 
@@ -195,7 +195,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             _isBinding = false;
         }
 
-        private string _filter;
+        private string _filter = String.Empty;
         public string Filter
         {
             get { return _filter; }
@@ -204,26 +204,23 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void UpdateFilter()
         {
-            if (_dataTable != null && _filter != null)
+            if (_dataTable == null || String.IsNullOrEmpty(_filter))
             {
-                if (String.IsNullOrEmpty(_filter))
+                UpdateDataSource(_dataTable);
+            }
+            else
+            {
+                var cloned = _dataTable.Clone ();
+                var filterParts = _filter.Split(' ');
+                var filterChunks = filterParts.Select (p => new FilterChunk(p)).ToList();
+                foreach (DataRow dataRow in _dataTable.Rows)
                 {
-                    UpdateDataSource(_dataTable);
-                }
-                else
-                {
-                    var cloned = _dataTable.Clone ();
-                    var filterParts = _filter.Split(' ');
-                    var filterChunks = filterParts.Select (p => new FilterChunk(p)).ToList();
-                    foreach (DataRow dataRow in _dataTable.Rows)
+                    if (dataRow.Matches(_columnTypes, _columnSearchable, filterChunks))
                     {
-                        if (dataRow.Matches(_columnTypes, _columnSearchable, filterChunks))
-                        {
-                            cloned.Rows.Add (dataRow.ItemArray);
-                        }
+                        cloned.Rows.Add (dataRow.ItemArray);
                     }
-                    UpdateDataSource(cloned);
                 }
+                UpdateDataSource(cloned);
             }
         }
 
