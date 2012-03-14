@@ -32,9 +32,9 @@
             this.SearchTextBox = new System.Windows.Forms.TextBox();
             this.SearchLabel = new System.Windows.Forms.Label();
             this.tableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.Grid = new SoftwareNinjas.BranchAndReviewTools.Gui.AccessibleDataGridView();
+            this.grid = new SoftwareNinjas.BranchAndReviewTools.Gui.AccessibleDataGridView();
             this.tableLayout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.SuspendLayout();
             // 
             // CaptionLabel
@@ -81,7 +81,7 @@
             this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayout.Controls.Add(this.CaptionLabel, 0, 0);
-            this.tableLayout.Controls.Add(this.Grid, 0, 1);
+            this.tableLayout.Controls.Add(this.grid, 0, 1);
             this.tableLayout.Controls.Add(this.SearchTextBox, 2, 0);
             this.tableLayout.Controls.Add(this.SearchLabel, 1, 0);
             this.tableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -93,17 +93,17 @@
             this.tableLayout.Size = new System.Drawing.Size(500, 287);
             this.tableLayout.TabIndex = 4;
             // 
-            // Grid
+            // grid
             // 
-            this.Grid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.grid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayout.SetColumnSpan(this.Grid, 3);
-            this.Grid.Location = new System.Drawing.Point(0, 27);
-            this.Grid.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.Grid.Name = "Grid";
-            this.Grid.Size = new System.Drawing.Size(500, 260);
-            this.Grid.TabIndex = 3;
+            this.tableLayout.SetColumnSpan(this.grid, 3);
+            this.grid.Location = new System.Drawing.Point(0, 27);
+            this.grid.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.grid.Name = "grid";
+            this.grid.Size = new System.Drawing.Size(500, 260);
+            this.grid.TabIndex = 3;
             // 
             // AwesomeGrid
             // 
@@ -114,14 +114,14 @@
             this.Size = new System.Drawing.Size(500, 287);
             this.tableLayout.ResumeLayout(false);
             this.tableLayout.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        public AccessibleDataGridView Grid;
+        private AccessibleDataGridView grid;
         public System.Windows.Forms.Label CaptionLabel;
         public System.Windows.Forms.TextBox SearchTextBox;
         public System.Windows.Forms.Label SearchLabel;

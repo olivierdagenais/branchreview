@@ -22,23 +22,23 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             InitializeComponent();
             Configure();
-            this.Grid.DoubleClick += Grid_DoubleClick;
-            this.Grid.KeyDown += Grid_KeyDown;
-            this.Grid.PreviewKeyDown += Grid_PreviewKeyDown;
-            this.Grid.ContextMenuNeeded += Grid_ContextMenuNeeded;
-            this.Grid.SelectionChanged += Grid_SelectionChanged;
+            this.grid.DoubleClick += Grid_DoubleClick;
+            this.grid.KeyDown += Grid_KeyDown;
+            this.grid.PreviewKeyDown += Grid_PreviewKeyDown;
+            this.grid.ContextMenuNeeded += Grid_ContextMenuNeeded;
+            this.grid.SelectionChanged += Grid_SelectionChanged;
 
             this.GotFocus += AwesomeGrid_GotFocus;
             this.CaptionLabel.GotFocus += AwesomeGrid_GotFocus;
             this.SearchLabel.GotFocus += AwesomeGrid_GotFocus;
             this.SearchTextBox.GotFocus += AwesomeGrid_GotFocus;
-            this.Grid.GotFocus += AwesomeGrid_GotFocus;
+            this.grid.GotFocus += AwesomeGrid_GotFocus;
             
             this.LostFocus += AwesomeGrid_LostFocus;
             this.CaptionLabel.LostFocus += AwesomeGrid_LostFocus;
             this.SearchLabel.LostFocus += AwesomeGrid_LostFocus;
             this.SearchTextBox.LostFocus += AwesomeGrid_LostFocus;
-            this.Grid.LostFocus += AwesomeGrid_LostFocus;
+            this.grid.LostFocus += AwesomeGrid_LostFocus;
 
             _searchThrottle = new Throttler(200, () =>
                 {
@@ -47,6 +47,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 }
             );
             AwesomeGrid_LostFocus(this, null);
+        }
+
+        public AccessibleDataGridView Grid
+        {
+            get { return this.grid; }
         }
 
         void AwesomeGrid_LostFocus(object sender, EventArgs e)
@@ -112,24 +117,24 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void Configure()
         {
-            Grid.AllowUserToAddRows = false;
-            Grid.AllowUserToDeleteRows = false;
-            Grid.AllowUserToResizeRows = false;
-            Grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            Grid.BackgroundColor = SystemColors.Window;
-            Grid.BorderStyle = BorderStyle.None;
-            Grid.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            Grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            Grid.EditMode = DataGridViewEditMode.EditProgrammatically;
-            Grid.ReadOnly = true;
-            Grid.RowHeadersVisible = false;
-            Grid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            Grid.RowTemplate.Height = /* TODO: auto-detect based on font size */ 17;
-            Grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            Grid.ShowCellErrors = false;
-            Grid.ShowEditingIcon = false;
-            Grid.ShowRowErrors = false;
-            Grid.StandardTab = true;
+            grid.AllowUserToAddRows = false;
+            grid.AllowUserToDeleteRows = false;
+            grid.AllowUserToResizeRows = false;
+            grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            grid.BackgroundColor = SystemColors.Window;
+            grid.BorderStyle = BorderStyle.None;
+            grid.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            grid.EditMode = DataGridViewEditMode.EditProgrammatically;
+            grid.ReadOnly = true;
+            grid.RowHeadersVisible = false;
+            grid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            grid.RowTemplate.Height = /* TODO: auto-detect based on font size */ 17;
+            grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            grid.ShowCellErrors = false;
+            grid.ShowEditingIcon = false;
+            grid.ShowRowErrors = false;
+            grid.StandardTab = true;
         }
 
         void Grid_ContextMenuNeeded(object sender, ContextMenuNeededEventArgs e)
@@ -154,7 +159,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             {
                 if (SearchTextBox.Focused)
                 {
-                    Grid.Focus();
+                    grid.Focus();
                     return true;
                 }
             }
@@ -177,8 +182,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     _columnTypes = dataColumns.Select(dc => dc.DataType).ToList();
                     _columnSearchable = dataColumns.Select(dc => dc.IsSearchable()).ToList();
                     #region Manage the columns based on the DataTable)
-                    this.Grid.AutoGenerateColumns = false;
-                    this.Grid.Columns.Clear ();
+                    this.grid.AutoGenerateColumns = false;
+                    this.grid.Columns.Clear ();
                     foreach (var dataColumn in dataColumns)
                     {
                         var gridViewColumn = new DataGridViewTextBoxColumn
@@ -188,7 +193,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                             HeaderText = dataColumn.Caption,
                             Visible = dataColumn.IsVisible(),
                         };
-                        this.Grid.Columns.Add (gridViewColumn);
+                        this.grid.Columns.Add (gridViewColumn);
                     }
                     #endregion
 
@@ -214,8 +219,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private void UpdateDataSource(DataTable dataSource)
         {
             _isBinding = true;
-            this.Grid.DataSource = dataSource;
-            this.Grid.ClearSelection();
+            this.grid.DataSource = dataSource;
+            this.grid.ClearSelection();
             _isBinding = false;
         }
 
@@ -248,12 +253,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         public void BeginInit()
         {
-            ((ISupportInitialize)this.Grid).BeginInit();
+            ((ISupportInitialize)this.grid).BeginInit();
         }
 
         public void EndInit()
         {
-            ((ISupportInitialize) this.Grid).EndInit();
+            ((ISupportInitialize) this.grid).EndInit();
         }
 
         #endregion
