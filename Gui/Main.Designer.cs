@@ -344,7 +344,7 @@
             this.branchGrid.Size = new System.Drawing.Size(776, 87);
             this.branchGrid.TabIndex = 0;
             this.branchGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuNeededEventHandler(this.branchGrid_ContextMenuNeeded);
-            this.branchGrid.RowInvoked += new System.EventHandler(this.branchGrid_RowInvoked);
+            this.branchGrid.SelectionChanged += new System.EventHandler(this.branchGrid_RowInvoked);
             // 
             // activityTopBottomPanel
             // 
@@ -390,7 +390,7 @@
             this.activityRevisions.Size = new System.Drawing.Size(776, 83);
             this.activityRevisions.TabIndex = 0;
             this.activityRevisions.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuNeededEventHandler(this.activityRevisions_ContextMenuNeeded);
-            this.activityRevisions.RowInvoked += new System.EventHandler(this.activityRevisions_RowInvoked);
+            this.activityRevisions.SelectionChanged += new System.EventHandler(this.activityRevisions_RowInvoked);
             // 
             // activityChangeInspector
             // 
@@ -471,7 +471,7 @@
             this.shelvesetGrid.Size = new System.Drawing.Size(776, 83);
             this.shelvesetGrid.TabIndex = 0;
             this.shelvesetGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuNeededEventHandler(this.shelvesetGrid_ContextMenuNeeded);
-            this.shelvesetGrid.RowInvoked += new System.EventHandler(this.shelvesetGrid_RowInvoked);
+            this.shelvesetGrid.SelectionChanged += new System.EventHandler(this.shelvesetGrid_RowInvoked);
             // 
             // shelvesetChangeInspector
             // 
