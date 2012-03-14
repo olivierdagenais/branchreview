@@ -110,34 +110,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         #region FileGrid
         public void RefreshFileGrid()
         {
-            var oldSelection = FindSelectedIds().ToDictionary(o => o);
-
-            FileGrid.DataTable = null;
             var pendingChanges = GetChanges(_context);
             FileGrid.DataTable = pendingChanges;
             var itemCount = FileGrid.Grid.Rows.Count;
             if (0 == itemCount)
             {
                 PatchText = String.Empty;
-            }
-            else
-            {
-                FileGrid.SelectionChanged -= FileGrid_SelectionChanged;
-                if (0 != oldSelection.Count)
-                {
-                    foreach (var item in FileGrid.Grid.Rows)
-                    {
-                        var row = item.DataRow;
-                        var id = row["ID"];
-                        if (oldSelection.ContainsKey(id))
-                        {
-                            item.Selected = true;
-                            oldSelection.Remove(id);
-                        }
-                    }
-                }
-                FileGrid_SelectionChanged(this, null);
-                FileGrid.SelectionChanged += FileGrid_SelectionChanged;
             }
             FileGrid.Caption = "{0} changed item{1}".FormatInvariant(itemCount, itemCount == 1 ? "" : "s");
         }

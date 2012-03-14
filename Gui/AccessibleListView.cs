@@ -172,10 +172,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     }
                 }
             }
-            if (this.Items.Count > 0)
-            {
-                this.SelectedIndices.Add(0);
-            }
         }
 
         internal static int MapToSourceColumn(IEnumerable<DataColumn> columns, int clickedColumn)
@@ -483,7 +479,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             public bool Selected
             {
                 get { return _nativeItem.Selected; }
-                set { _nativeItem.Selected = value; }
+                set
+                { 
+                    _nativeItem.Selected = value;
+                    _nativeItem.ListView.FocusedItem = _nativeItem;
+                    _nativeItem.EnsureVisible();
+                }
             }
 
             #endregion

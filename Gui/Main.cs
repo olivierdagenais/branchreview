@@ -157,8 +157,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             _currentBranchId = branchId;
             _currentTaskId = taskId;
-            activityRevisions.DataTable = null;
-            activityChangeInspector.Context = null;
             if (branchId != null)
             {
                 activityRevisions.DataTable = _sourceRepository.LoadRevisions(branchId);
@@ -168,6 +166,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
             else
             {
+                activityChangeInspector.Context = null;
+                activityRevisions.DataTable = null;
                 activityRevisions.Caption = String.Empty;
             }
         }
@@ -175,10 +175,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private void SetCurrentShelveset(object shelvesetId)
         {
             _currentShelvesetId = shelvesetId;
-            shelvesetChangeInspector.Context = null;
             if (shelvesetId != null)
             {
                 shelvesetChangeInspector.Context = shelvesetId;
+            }
+            else
+            {
+                shelvesetChangeInspector.Context = null;
             }
         }
 
@@ -221,7 +224,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             {
                 if (taskGrid.DataTable == null || refresh)
                 {
-                    taskGrid.DataTable = null;
                     taskGrid.DataTable = _taskRepository.LoadTasks();
                     var taskCount = taskGrid.DataTable.Rows.Count;
                     taskGrid.Caption = "{0} task{1}".FormatInvariant(taskCount, taskCount == 1 ? "" : "s");
@@ -232,11 +234,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             {
                 if (branchGrid.DataTable == null || refresh)
                 {
-                    branchGrid.DataTable = null;
                     branchGrid.DataTable = _sourceRepository.LoadBranches();
                     var branchCount = branchGrid.DataTable.Rows.Count;
                     branchGrid.Caption = "{0} branch{1}".FormatInvariant(branchCount, branchCount == 1 ? "" : "es");
-                    SetCurrentBranch(null, null);
                 }
                 controlToFocus = branchGrid;
             }
@@ -249,11 +249,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             {
                 if (shelvesetGrid.DataTable == null || refresh)
                 {
-                    shelvesetGrid.DataTable = null;
                     shelvesetGrid.DataTable = _shelvesetRepository.LoadShelvesets();
                     var shelvesetCount = shelvesetGrid.DataTable.Rows.Count;
                     shelvesetGrid.Caption = "{0} shelveset{1}".FormatInvariant(shelvesetCount, shelvesetCount == 1 ? "" : "s");
-                    SetCurrentShelveset(null);
                 }
 
                 controlToFocus = shelvesetGrid;

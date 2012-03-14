@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
+using SoftwareNinjas.Core;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
@@ -189,10 +190,29 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void UpdateDataSource(DataTable dataSource)
         {
+            var oldSelection = this.Grid.SelectedRows.Map(row => row.DataRow).ToList();
             _isBinding = true;
-            this.Grid.DataSource = dataSource;
             this.Grid.SelectedRows.Clear();
+            this.Grid.DataSource = dataSource;
+            foreach (var gridItem in this.Grid.Rows)
+            {
+                for (var i = 0; i < oldSelection.Count; i++)
+                {
+                    if (gridItem.DataRow.PointsToSameData(oldSelection[i]))
+                    {
+                        gridItem.Selected = true;
+                        oldSelection.RemoveAt(i);
+                        break;
+                    }
+                }
+                if (oldSelection.Count == 0)
+                {
+                    break;
+                }
+            }
             _isBinding = false;
+            // TODO: only fire this if the selection actually changed (i.e. items still in oldSelection)
+            Grid_SelectionChanged(this, null);
         }
 
         private string _filter = String.Empty;
