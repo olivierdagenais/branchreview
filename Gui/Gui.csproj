@@ -80,6 +80,9 @@
     <Compile Include="Extensions\PropertyCollectionExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\FilterChunk.cs" />
+    <Compile Include="IAccessibleGrid.cs" />
+    <Compile Include="IGridColumn.cs" />
+    <Compile Include="IGridItem.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>

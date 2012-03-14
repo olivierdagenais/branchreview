@@ -284,14 +284,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             delayedWorker.Start();
         }
 
-        private static object FindSelectedId(DataGridView dataGridView)
+        private static object FindSelectedId(IAccessibleGrid accessibleGrid)
         {
-            var selectedRows = dataGridView.SelectedRows;
+            var selectedRows = accessibleGrid.SelectedRows;
             object id = null;
             if (selectedRows.Count > 0)
             {
                 var row = selectedRows[0];
-                id = row.Cells["ID"].Value;
+                id = row.DataRow["ID"];
             }
             return id;
         }
@@ -363,9 +363,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             var dataRow = branchGrid.DataTable.FindFirst("TaskID", taskId);
             SetCurrentBranch(dataRow["ID"], taskId);
 
-            var dataGridViewRow =
-                branchGrid.Grid.Rows.Cast<DataGridViewRow>().First(dgvr => dgvr.DataBoundItem == dataRow);
-            dataGridViewRow.Selected = true;
+            var gridItem =
+                branchGrid.Grid.Rows.First(item => item.DataRow == dataRow);
+            gridItem.Selected = true;
             tabs.SelectedTab = branchesTab;
         }
 
@@ -459,14 +459,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 {
                     items.AddSeparator();
                 }
-                var row = selectedRows[0];
-                var branchId = row.Cells["ID"].Value;
-                var taskId = row.Cells["TaskID"].Value;
+                var row = selectedRows[0].DataRow;
+                var branchId = row["ID"];
+                var taskId = row["TaskID"];
                 var builtInActions = new[]
                 {
                     new MenuAction("defaultInspect", "&Inspect", true,
                                 () => SetCurrentBranch(branchId, taskId) ),
-                    new MenuAction("defaultOpen", "&Work on this", row.Cells["BasePath"].Value != DBNull.Value,
+                    new MenuAction("defaultOpen", "&Work on this", row["BasePath"] != DBNull.Value,
                                 () => StartWorkOnBranch(branchId, taskId) ),
                 };
                 items.AddActions(builtInActions);
@@ -488,8 +488,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 {
                     items.AddSeparator();
                 }
-                var row = selectedItems[0];
-                var shelvesetId = row.Cells["ID"].Value;
+                var row = selectedItems[0].DataRow;
+                var shelvesetId = row["ID"];
                 var builtInActions = new[]
                 {
                     new MenuAction("defaultInspect", "&Inspect", true,
@@ -569,8 +569,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 {
                     items.AddSeparator();
                 }
-                var row = selectedItems[0];
-                var revisionId = row.Cells["ID"].Value;
+                var row = selectedItems[0].DataRow;
+                var revisionId = row["ID"];
                 var builtInActions = new[]
                 {
                     new MenuAction("defaultOpen", "&Open", true,
@@ -691,7 +691,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             if (tabs.SelectedTab != commitTab)
             {
                 tabs.SelectedTab = commitTab;
-                var dataSource = (DataTable) pendingChanges.FileGrid.Grid.DataSource;
+                var dataSource = pendingChanges.FileGrid.Grid.DataSource;
                 var itemCount = dataSource.Rows.Count;
                 var result = MessageBox.Show(
                     "Are you sure you want to commit {0} item{1} to {2}?".FormatInvariant(

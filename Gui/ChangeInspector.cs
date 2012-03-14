@@ -128,12 +128,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 FileGrid.SelectionChanged -= FileGrid_SelectionChanged;
                 if (0 != oldSelection.Count)
                 {
-                    foreach (DataGridViewRow row in FileGrid.Grid.Rows)
+                    foreach (var item in FileGrid.Grid.Rows)
                     {
-                        var id = row.Cells["ID"].Value;
+                        var row = item.DataRow;
+                        var id = row["ID"];
                         if (oldSelection.ContainsKey(id))
                         {
-                            row.Selected = true;
+                            item.Selected = true;
                             oldSelection.Remove(id);
                         }
                     }
@@ -146,8 +147,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private IEnumerable<object> FindSelectedIds()
         {
-            var selectedRows = FileGrid.Grid.SelectedRows.Cast<DataGridViewRow>();
-            return selectedRows.Map(row => row.Cells["ID"].Value);
+            var selectedRows = FileGrid.Grid.SelectedRows;
+            return selectedRows.Map(row => row.DataRow["ID"]);
         }
 
         void FileGrid_ContextMenuStripNeeded(object sender, ContextMenuNeededEventArgs e)

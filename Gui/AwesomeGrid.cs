@@ -49,7 +49,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             AwesomeGrid_LostFocus(this, null);
         }
 
-        public AccessibleDataGridView Grid
+        public IAccessibleGrid Grid
         {
             get { return this.grid; }
         }
@@ -120,6 +120,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             grid.AllowUserToAddRows = false;
             grid.AllowUserToDeleteRows = false;
             grid.AllowUserToResizeRows = false;
+            grid.AutoGenerateColumns = false;
             grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             grid.BackgroundColor = SystemColors.Window;
             grid.BorderStyle = BorderStyle.None;
@@ -182,18 +183,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     _columnTypes = dataColumns.Select(dc => dc.DataType).ToList();
                     _columnSearchable = dataColumns.Select(dc => dc.IsSearchable()).ToList();
                     #region Manage the columns based on the DataTable)
-                    this.grid.AutoGenerateColumns = false;
-                    this.grid.Columns.Clear ();
+                    this.Grid.Columns.Clear ();
                     foreach (var dataColumn in dataColumns)
                     {
-                        var gridViewColumn = new DataGridViewTextBoxColumn
-                        {
-                            Name = dataColumn.ColumnName,
-                            DataPropertyName = dataColumn.ColumnName,
-                            HeaderText = dataColumn.Caption,
-                            Visible = dataColumn.IsVisible(),
-                        };
-                        this.grid.Columns.Add (gridViewColumn);
+                        var gridColumn = this.Grid.CreateGridColumn
+                            (dataColumn.ColumnName, dataColumn.Caption, dataColumn.IsVisible());
+                        this.Grid.Columns.Add (gridColumn);
                     }
                     #endregion
 
@@ -219,8 +214,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private void UpdateDataSource(DataTable dataSource)
         {
             _isBinding = true;
-            this.grid.DataSource = dataSource;
-            this.grid.ClearSelection();
+            this.Grid.DataSource = dataSource;
+            this.Grid.SelectedRows.Clear();
             _isBinding = false;
         }
 
@@ -253,12 +248,20 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         public void BeginInit()
         {
-            ((ISupportInitialize)this.grid).BeginInit();
+            var supportInitialize = this.Grid as ISupportInitialize;
+            if (supportInitialize != null)
+            {
+                supportInitialize.BeginInit();
+            }
         }
 
         public void EndInit()
         {
-            ((ISupportInitialize) this.grid).EndInit();
+            var supportInitialize = this.Grid as ISupportInitialize;
+            if (supportInitialize != null)
+            {
+                supportInitialize.EndInit();
+            }
         }
 
         #endregion

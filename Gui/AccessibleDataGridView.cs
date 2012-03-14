@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
-    public class AccessibleDataGridView : DataGridView
+    public class AccessibleDataGridView : DataGridView, IAccessibleGrid
     {
         public event ContextMenuNeededEventHandler ContextMenuNeeded;
 
         private readonly Throttler _resizeThrottle;
+        private readonly ColumnCollection _columnCollectionWrapper;
+        private readonly ItemCollection _rowCollectionWrapper;
+        private readonly SelectedItemCollection _selectedRowCollectionWrapper;
 
         private void InvokeContextMenuStripNeeded(ContextMenuNeededEventArgs e)
         {
@@ -23,6 +27,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         public AccessibleDataGridView()
         {
             _resizeThrottle = new Throttler(50, AutoSizeColumns);
+            _columnCollectionWrapper = new ColumnCollection(Columns);
+            _rowCollectionWrapper = new ItemCollection(Rows);
+            _selectedRowCollectionWrapper = new SelectedItemCollection(this);
 
             this.KeyDown += Grid_KeyDown;
             this.DataBindingComplete += Grid_DataBindingComplete;
@@ -204,5 +211,225 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 v++;
             }
         }
+
+        #region IAccessibleGrid-related wrappers
+
+        private class ColumnCollection : UnsupportedList<IGridColumn>
+        {
+            private readonly DataGridViewColumnCollection _base;
+
+            public ColumnCollection(DataGridViewColumnCollection columnCollection)
+            {
+                _base = columnCollection;
+            }
+
+            public override void Insert(int index, IGridColumn item)
+            {
+                _base.Insert(index, GridColumn.ToNativeColumn(item));
+            }
+
+            public override void RemoveAt(int index)
+            {
+                _base.RemoveAt(index);
+            }
+
+            public override IGridColumn this[int index]
+            {
+                get
+                {
+                    return GridColumn.FromNativeColumn(_base[index]);
+                }
+                set
+                {
+                    throw new NotSupportedException();
+                }
+            }
+
+            public override void Add(IGridColumn item)
+            {
+                _base.Add(GridColumn.ToNativeColumn(item));
+            }
+
+            public override void Clear() { _base.Clear(); }
+
+            public override int Count { get { return _base.Count; } }
+
+            public override bool IsReadOnly { get { return _base.IsReadOnly; } }
+
+            public override IEnumerator<IGridColumn> GetEnumerator()
+            {
+                return _base.Cast<DataGridViewColumn>().Select(GridColumn.FromNativeColumn).GetEnumerator();
+            }
+        }
+
+        private class ItemCollection : UnsupportedList<IGridItem>
+        {
+            private readonly DataGridViewRowCollection _base;
+
+            public ItemCollection(DataGridViewRowCollection rowCollection)
+            {
+                _base = rowCollection;
+            }
+
+            public override IGridItem this[int index]
+            {
+                get
+                {
+                    return GridItem.FromNativeItem(_base[index]);
+                }
+                set
+                {
+                    throw new NotSupportedException();
+                }
+            }
+
+            public override int Count { get { return _base.Count; } }
+
+            public override bool IsReadOnly { get { return true; } }
+
+            public override IEnumerator<IGridItem> GetEnumerator()
+            {
+                return _base.Cast<DataGridViewRow>().Select(GridItem.FromNativeItem).GetEnumerator();
+            }
+        }
+
+        private class SelectedItemCollection : UnsupportedList<IGridItem>
+        {
+            private readonly DataGridView _base;
+
+            public SelectedItemCollection(DataGridView dataGridView)
+            {
+                _base = dataGridView;
+            }
+
+            public override IGridItem this[int index]
+            {
+                get
+                {
+                    return GridItem.FromNativeItem(_base.SelectedRows[index]);
+                }
+                set
+                {
+                    throw new NotSupportedException();
+                }
+            }
+
+            public override void Clear()
+            {
+                _base.ClearSelection();
+            }
+
+            public override int Count { get { return _base.SelectedRows.Count; } }
+
+            public override bool IsReadOnly { get { return true; } }
+
+            public override IEnumerator<IGridItem> GetEnumerator()
+            {
+                return _base.SelectedRows.Cast<DataGridViewRow>().Select(GridItem.FromNativeItem).GetEnumerator();
+            }
+        }
+
+        private class GridItem : IGridItem
+        {
+            private readonly DataGridViewRow _nativeItem;
+
+            private GridItem(DataGridViewRow nativeItem)
+            {
+                _nativeItem = nativeItem;
+            }
+
+            #region IGridItem Members
+
+            public DataRow DataRow { get; private set; }
+
+            public bool Selected
+            {
+                get { return _nativeItem.Selected; }
+                set { _nativeItem.Selected = value; }
+            }
+
+            #endregion
+
+            public static IGridItem FromNativeItem(DataGridViewRow nativeItem)
+            {
+                var dataRowView = (DataRowView) nativeItem.DataBoundItem;
+                var gridItem = new GridItem(nativeItem)
+                {
+                    DataRow = dataRowView.Row,
+                };
+                return gridItem;
+            }
+        }
+
+        private class GridColumn : IGridColumn
+        {
+            #region IGridColumn Members
+
+            public string Name { get; set; }
+
+            public string Caption { get; set; }
+
+            public bool Visible { get; set; }
+
+            #endregion
+
+            public static DataGridViewColumn ToNativeColumn(IGridColumn gridColumn)
+            {
+                var ourGridColumn = (GridColumn) gridColumn;
+                var nativeColumn = new DataGridViewTextBoxColumn
+                {
+                    Name = ourGridColumn.Name,
+                    DataPropertyName = ourGridColumn.Name,
+                    HeaderText = ourGridColumn.Caption,
+                    Visible = ourGridColumn.Visible,
+                };
+                return nativeColumn;
+            }
+
+            public static IGridColumn FromNativeColumn(DataGridViewColumn nativeColumn)
+            {
+                var gridColumn = new GridColumn
+                {
+                    Name = nativeColumn.Name,
+                    Caption = nativeColumn.HeaderText,
+                    Visible = nativeColumn.Visible,
+                };
+                return gridColumn;
+            }
+        }
+
+        #endregion
+
+        #region IAccessibleGrid members
+
+        public IGridColumn CreateGridColumn(string name, string caption, bool visible)
+        {
+            var gridColumn = new GridColumn
+            {
+                Name = name,
+                Caption = caption,
+                Visible = visible,
+            };
+            return gridColumn;
+        }
+
+        IList<IGridColumn> IAccessibleGrid.Columns { get { return _columnCollectionWrapper; } }
+
+        IList<IGridItem> IAccessibleGrid.Rows { get { return _rowCollectionWrapper; } }
+
+        IList<IGridItem> IAccessibleGrid.SelectedRows { get { return _selectedRowCollectionWrapper; } }
+
+        DataTable IAccessibleGrid.DataSource
+        {
+            get { return (DataTable) DataSource; }
+            set { DataSource = value; }
+        }
+
+        bool IAccessibleGrid.MultiSelect
+        { 
+            get { return MultiSelect; }
+            set { MultiSelect = value; }
+        }
+        #endregion
     }
 }
