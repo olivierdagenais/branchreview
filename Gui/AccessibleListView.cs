@@ -12,6 +12,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
     public class AccessibleListView : ListView, ISupportInitialize
     {
         public event ContextMenuNeededEventHandler ContextMenuNeeded;
+        public event EventHandler SelectionChanged;
 
         private class ColumnComparer : IComparer<object>
         {
@@ -59,6 +60,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             this.ColumnClick += AccessibleListView_ColumnClick;
             this.Resize += AccessibleListView_Resize;
             this.ItemMouseHover += AccessibleListView_ItemMouseHover;
+            this.SelectedIndexChanged += AccessibleListView_SelectedIndexChanged;
+        }
+
+        void AccessibleListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (SelectionChanged != null)
+            {
+                SelectionChanged(sender, e);
+            }
         }
 
         void AccessibleListView_ItemMouseHover(object sender, ListViewItemMouseHoverEventArgs e)
@@ -173,6 +183,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             return result;
         }
 
+        public void ClearSelection()
+        {
+            this.SelectedIndices.Clear();
+        }
 
         public Color AlternatingBackColor { get; set; }
 
