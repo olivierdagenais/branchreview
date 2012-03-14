@@ -54,5 +54,28 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
             }
             return chunkMatchesAtLeastOneColumn;
         }
+
+        public static bool PointsToSameData(this DataRow a, DataRow b)
+        {
+            return PointsToSameData(a.ItemArray, b.ItemArray);
+        }
+
+        internal static bool PointsToSameData(object[] aItems, object[] bItems)
+        {
+            if (aItems.Length != bItems.Length)
+            {
+                return false;
+            }
+            var result = true;
+            for (var i = 0; i < aItems.Length; i++)
+            {
+                if (!Equals(aItems[i], bItems[i]))
+                {
+                    result = false;
+                    break;
+                }
+            }
+            return result;
+        }
     }
 }
