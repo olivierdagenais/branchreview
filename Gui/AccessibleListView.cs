@@ -9,7 +9,7 @@ using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
-    public class AccessibleListView : ListView, ISupportInitialize
+    public class AccessibleListView : ListView, ISupportInitialize, IAccessibleGrid
     {
         public event ContextMenuNeededEventHandler ContextMenuNeeded;
         public event EventHandler SelectionChanged;
@@ -50,9 +50,16 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private int _sortingColumn;
         private SortOrder _sortOrder = SortOrder.Ascending;
         private readonly ToolTip _toolTip = new ToolTip();
+        private readonly ColumnCollection _columnCollectionWrapper;
+        private readonly ItemCollection _rowCollectionWrapper;
+        private readonly SelectedItemCollection _selectedRowCollectionWrapper;
 
         public AccessibleListView()
         {
+            _columnCollectionWrapper = new ColumnCollection(Columns);
+            _rowCollectionWrapper = new ItemCollection(Items);
+            _selectedRowCollectionWrapper = new SelectedItemCollection(this);
+
             this.FullRowSelect = true;
             this.HideSelection = false;
             this.View = View.Details;
@@ -330,6 +337,225 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             // do nothing
         }
+
+        #endregion
+
+        #region IAccessibleGrid-related wrappers
+
+        private class ColumnCollection : UnsupportedList<IGridColumn>
+        {
+            private readonly ColumnHeaderCollection _base;
+
+            public ColumnCollection(ColumnHeaderCollection columnCollection)
+            {
+                _base = columnCollection;
+            }
+
+            public override void Insert(int index, IGridColumn item)
+            {
+                _base.Insert(index, GridColumn.ToNativeColumn(item));
+            }
+
+            public override void RemoveAt(int index)
+            {
+                _base.RemoveAt(index);
+            }
+
+            public override IGridColumn this[int index]
+            {
+                get
+                {
+                    return GridColumn.FromNativeColumn((AccessibleColumnHeader) _base[index]);
+                }
+                set
+                {
+                    throw new NotSupportedException();
+                }
+            }
+
+            public override void Add(IGridColumn item)
+            {
+                _base.Add(GridColumn.ToNativeColumn(item));
+            }
+
+            public override void Clear() { _base.Clear(); }
+
+            public override int Count { get { return _base.Count; } }
+
+            public override bool IsReadOnly { get { return _base.IsReadOnly; } }
+
+            public override IEnumerator<IGridColumn> GetEnumerator()
+            {
+                return _base.Cast<AccessibleColumnHeader>().Select(GridColumn.FromNativeColumn).GetEnumerator();
+            }
+        }
+
+        private class ItemCollection : UnsupportedList<IGridItem>
+        {
+            private readonly ListViewItemCollection _base;
+
+            public ItemCollection(ListViewItemCollection rowCollection)
+            {
+                _base = rowCollection;
+            }
+
+            public override IGridItem this[int index]
+            {
+                get
+                {
+                    return GridItem.FromNativeItem(_base[index]);
+                }
+                set
+                {
+                    throw new NotSupportedException();
+                }
+            }
+
+            public override int Count { get { return _base.Count; } }
+
+            public override bool IsReadOnly { get { return true; } }
+
+            public override IEnumerator<IGridItem> GetEnumerator()
+            {
+                return _base.Cast<ListViewItem>().Select(GridItem.FromNativeItem).GetEnumerator();
+            }
+        }
+
+        private class SelectedItemCollection : UnsupportedList<IGridItem>
+        {
+            private readonly AccessibleListView _base;
+
+            public SelectedItemCollection(AccessibleListView dataGridView)
+            {
+                _base = dataGridView;
+            }
+
+            public override IGridItem this[int index]
+            {
+                get
+                {
+                    return GridItem.FromNativeItem(_base.SelectedItems[index]);
+                }
+                set
+                {
+                    throw new NotSupportedException();
+                }
+            }
+
+            public override void Clear()
+            {
+                _base.ClearSelection();
+            }
+
+            public override int Count { get { return _base.SelectedItems.Count; } }
+
+            public override bool IsReadOnly { get { return true; } }
+
+            public override IEnumerator<IGridItem> GetEnumerator()
+            {
+                return _base.SelectedItems.Cast<ListViewItem>().Select(GridItem.FromNativeItem).GetEnumerator();
+            }
+        }
+
+        private class GridItem : IGridItem
+        {
+            private readonly ListViewItem _nativeItem;
+
+            private GridItem(ListViewItem nativeItem)
+            {
+                _nativeItem = nativeItem;
+            }
+
+            #region IGridItem Members
+
+            public DataRow DataRow { get; private set; }
+
+            public bool Selected
+            {
+                get { return _nativeItem.Selected; }
+                set { _nativeItem.Selected = value; }
+            }
+
+            #endregion
+
+            public static IGridItem FromNativeItem(ListViewItem nativeItem)
+            {
+                var gridItem = new GridItem(nativeItem)
+                {
+                    DataRow = nativeItem.GetRow(),
+                };
+                return gridItem;
+            }
+        }
+
+        private class GridColumn : IGridColumn
+        {
+            #region IGridColumn Members
+
+            public string Name { get; set; }
+
+            public string Caption { get; set; }
+
+            public bool Visible { get; set; }
+
+            #endregion
+
+            public static AccessibleColumnHeader ToNativeColumn(IGridColumn gridColumn)
+            {
+                var ourGridColumn = (GridColumn) gridColumn;
+                var nativeColumn = new AccessibleColumnHeader
+                {
+                    Name = ourGridColumn.Name,
+                    Text = ourGridColumn.Caption,
+                    Visible = ourGridColumn.Visible,
+                };
+                return nativeColumn;
+            }
+
+            public static IGridColumn FromNativeColumn(AccessibleColumnHeader nativeColumn)
+            {
+                var gridColumn = new GridColumn
+                {
+                    Name = nativeColumn.Name,
+                    Caption = nativeColumn.Text,
+                    Visible = nativeColumn.Visible,
+                };
+                return gridColumn;
+            }
+        }
+
+        #endregion
+
+        #region IAccessibleGrid Members
+
+        IGridColumn IAccessibleGrid.CreateGridColumn(string name, string caption, bool visible)
+        {
+            var gridColumn = new GridColumn
+            {
+                Name = name,
+                Caption = caption,
+                Visible = visible,
+            };
+            return gridColumn;
+        }
+
+        IList<IGridColumn> IAccessibleGrid.Columns { get { return _columnCollectionWrapper; } }
+
+        DataTable IAccessibleGrid.DataSource
+        {
+            get { return this.DataSource; }
+            set { this.DataSource = value; }
+        }
+
+        bool IAccessibleGrid.MultiSelect
+        {
+            get { return this.MultiSelect; }
+            set { this.MultiSelect = value; }
+        }
+
+        IList<IGridItem> IAccessibleGrid.Rows { get { return _rowCollectionWrapper; } }
+
+        IList<IGridItem> IAccessibleGrid.SelectedRows { get { return _selectedRowCollectionWrapper; } }
 
         #endregion
     }
