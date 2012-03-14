@@ -31,6 +31,26 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             _rowCollectionWrapper = new ItemCollection(Rows);
             _selectedRowCollectionWrapper = new SelectedItemCollection(this);
 
+            AllowUserToAddRows = false;
+            AllowUserToDeleteRows = false;
+            AllowUserToResizeRows = false;
+            AutoGenerateColumns = false;
+            AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            BackgroundColor = SystemColors.Window;
+            BorderStyle = BorderStyle.None;
+            CellBorderStyle = DataGridViewCellBorderStyle.None;
+            ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            EditMode = DataGridViewEditMode.EditProgrammatically;
+            ReadOnly = true;
+            RowHeadersVisible = false;
+            RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            RowTemplate.Height = /* TODO: auto-detect based on font size */ 17;
+            SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            ShowCellErrors = false;
+            ShowEditingIcon = false;
+            ShowRowErrors = false;
+            StandardTab = true;
+
             this.KeyDown += Grid_KeyDown;
             this.DataBindingComplete += Grid_DataBindingComplete;
             this.Resize += Grid_Resize;

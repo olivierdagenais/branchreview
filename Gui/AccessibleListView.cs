@@ -60,6 +60,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             _rowCollectionWrapper = new ItemCollection(Items);
             _selectedRowCollectionWrapper = new SelectedItemCollection(this);
 
+            BorderStyle = BorderStyle.None;
+
             this.FullRowSelect = true;
             this.HideSelection = false;
             this.View = View.Details;

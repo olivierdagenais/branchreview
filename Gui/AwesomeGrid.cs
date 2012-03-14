@@ -21,7 +21,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         public AwesomeGrid()
         {
             InitializeComponent();
-            Configure();
             this.grid.DoubleClick += Grid_DoubleClick;
             this.grid.KeyDown += Grid_KeyDown;
             this.grid.PreviewKeyDown += Grid_PreviewKeyDown;
@@ -113,29 +112,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         void Grid_DoubleClick(object sender, EventArgs e)
         {
             OnRowInvoked(e);
-        }
-
-        private void Configure()
-        {
-            grid.AllowUserToAddRows = false;
-            grid.AllowUserToDeleteRows = false;
-            grid.AllowUserToResizeRows = false;
-            grid.AutoGenerateColumns = false;
-            grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            grid.BackgroundColor = SystemColors.Window;
-            grid.BorderStyle = BorderStyle.None;
-            grid.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grid.EditMode = DataGridViewEditMode.EditProgrammatically;
-            grid.ReadOnly = true;
-            grid.RowHeadersVisible = false;
-            grid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            grid.RowTemplate.Height = /* TODO: auto-detect based on font size */ 17;
-            grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            grid.ShowCellErrors = false;
-            grid.ShowEditingIcon = false;
-            grid.ShowRowErrors = false;
-            grid.StandardTab = true;
         }
 
         void Grid_ContextMenuNeeded(object sender, ContextMenuNeededEventArgs e)
