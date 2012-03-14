@@ -49,6 +49,9 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessibleColumnHeader.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="AwesomeGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>

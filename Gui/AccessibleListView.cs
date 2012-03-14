@@ -4,6 +4,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
@@ -99,21 +100,40 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 this.Items.Clear();
                 if (_dataSource != null)
                 {
+                    // TODO: We might be better off never creating the hidden columns' headers in the first place
+                    var columns = _dataSource.Columns.Count;
+                    var visibleColumns = Columns.Cast<AccessibleColumnHeader>().Where(c => c.Visible).ToList();
+                    if (Columns.Count != visibleColumns.Count)
+                    {
+                        Columns.Clear();
+                        foreach (var accessibleColumnHeader in visibleColumns)
+                        {
+                            Columns.Add(accessibleColumnHeader);
+                        }
+                    }
                     var dataRows = _dataSource.AsEnumerable();
+                    var sourceColumn = MapToSourceColumn(_dataSource.Columns.Cast<DataColumn>(), _sortingColumn);
                     OrderedEnumerableRowCollection<DataRow> sortedRows;
                     if (_sortOrder == SortOrder.Ascending)
                     {
-                        sortedRows = dataRows.OrderBy(r => r[_sortingColumn], TheColumnComparer);
+                        sortedRows = dataRows.OrderBy(r => r[sourceColumn], TheColumnComparer);
                     }
                     else
                     {
-                        sortedRows = dataRows.OrderByDescending(r => r[_sortingColumn], TheColumnComparer);
+                        sortedRows = dataRows.OrderByDescending(r => r[sourceColumn], TheColumnComparer);
                     }
                     var row = 0;
                     foreach (var dataRow in sortedRows)
                     {
-                        // TODO: Add support for hidden columns
-                        var strings = dataRow.ItemArray.Select(i => i == null ? String.Empty : i.ToString());
+                        var strings = new List<string>(columns);
+                        for (var c = 0; c < columns; c++)
+                        {
+                            if (_dataSource.Columns[c].IsVisible())
+                            {
+                                var value = dataRow.ItemArray[c];
+                                strings.Add(value == null ? String.Empty : value.ToString());
+                            }
+                        }
                         var listViewItem = new ListViewItem(strings.ToArray())
                         {
                             BackColor = (row % 2 == 0) ? this.BackColor : AlternatingBackColor,
@@ -129,6 +149,29 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 this.SelectedIndices.Add(0);
             }
         }
+
+        internal static int MapToSourceColumn(IEnumerable<DataColumn> columns, int clickedColumn)
+        {
+            var result = 0;
+            var e = columns.GetEnumerator();
+            var i = 0;
+            while (e.MoveNext())
+            {
+                var column = e.Current;
+                if (!column.IsVisible())
+                {
+                    result++;
+                }
+                if (i == clickedColumn)
+                {
+                    break;
+                }
+                result++;
+                i++;
+            }
+            return result;
+        }
+
 
         public Color AlternatingBackColor { get; set; }
 

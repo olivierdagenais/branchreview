@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using NUnit.Framework;
 using SoftwareNinjas.Core.Test;
@@ -118,6 +119,60 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests
             var actual = AccessibleListView.AdjustWidths(columns, 1000);
             // all columns are less than 20%; let the multiplier take care of it later
             EnumerableExtensions.EnumerateSame(columns, actual);
+        }
+
+        [Test]
+        public void MapToSourceColumn_Trivial()
+        {
+            var dataColumns = new []
+            {
+                new DataColumn("one"),
+                new DataColumn("two"),
+                new DataColumn("three"),
+            };
+            for (var i = 0; i < 3; i++)
+            {
+                Assert.AreEqual(i, AccessibleListView.MapToSourceColumn(dataColumns, i));
+            }
+        }
+
+        [Test]
+        public void MapToSourceColumn_FirstColumnIsId()
+        {
+            var dataColumns = new[]
+            {
+                new DataColumn("id") { ExtendedProperties = { {"Visible", false } } },
+                new DataColumn("one"),
+                new DataColumn("two"),
+            };
+            Assert.AreEqual(1, AccessibleListView.MapToSourceColumn(dataColumns, 0));
+            Assert.AreEqual(2, AccessibleListView.MapToSourceColumn(dataColumns, 1));
+        }
+
+        [Test]
+        public void MapToSourceColumn_SecondIsInvisible()
+        {
+            var dataColumns = new[]
+            {
+                new DataColumn("one"),
+                new DataColumn("hidden") { ExtendedProperties = { {"Visible", false } } },
+                new DataColumn("two"),
+            };
+            Assert.AreEqual(0, AccessibleListView.MapToSourceColumn(dataColumns, 0));
+            Assert.AreEqual(2, AccessibleListView.MapToSourceColumn(dataColumns, 1));
+        }
+
+        [Test]
+        public void MapToSourceColumn_LastIsInvisible()
+        {
+            var dataColumns = new[]
+            {
+                new DataColumn("one"),
+                new DataColumn("two"),
+                new DataColumn("hidden") { ExtendedProperties = { {"Visible", false } } },
+            };
+            Assert.AreEqual(0, AccessibleListView.MapToSourceColumn(dataColumns, 0));
+            Assert.AreEqual(1, AccessibleListView.MapToSourceColumn(dataColumns, 1));
         }
     }
 }
