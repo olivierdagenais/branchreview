@@ -27,12 +27,44 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             this.Grid.ContextMenuNeeded += Grid_ContextMenuNeeded;
             this.Grid.SelectionChanged += Grid_SelectionChanged;
 
+            this.GotFocus += AwesomeGrid_GotFocus;
+            this.CaptionLabel.GotFocus += AwesomeGrid_GotFocus;
+            this.SearchLabel.GotFocus += AwesomeGrid_GotFocus;
+            this.SearchTextBox.GotFocus += AwesomeGrid_GotFocus;
+            this.Grid.GotFocus += AwesomeGrid_GotFocus;
+            
+            this.LostFocus += AwesomeGrid_LostFocus;
+            this.CaptionLabel.LostFocus += AwesomeGrid_LostFocus;
+            this.SearchLabel.LostFocus += AwesomeGrid_LostFocus;
+            this.SearchTextBox.LostFocus += AwesomeGrid_LostFocus;
+            this.Grid.LostFocus += AwesomeGrid_LostFocus;
+
             _searchThrottle = new Throttler(200, () =>
                 {
                     _filter = SearchTextBox.Text;
                     UpdateFilter();
                 }
             );
+            AwesomeGrid_LostFocus(this, null);
+        }
+
+        void AwesomeGrid_LostFocus(object sender, EventArgs e)
+        {
+            UpdateColors(SystemColors.InactiveCaptionText, SystemColors.InactiveCaption);
+        }
+
+        void AwesomeGrid_GotFocus(object sender, EventArgs e)
+        {
+            UpdateColors(SystemColors.ActiveCaptionText, SystemColors.ActiveCaption);
+        }
+
+        private void UpdateColors(Color foreground, Color background)
+        {
+            this.BackColor = background;
+            this.CaptionLabel.ForeColor = foreground;
+            this.CaptionLabel.BackColor = background;
+            this.SearchLabel.ForeColor = foreground;
+            this.SearchLabel.BackColor = background;
         }
 
         // method can not be made static because the Form Designer re-writes the event wire-up with "this."

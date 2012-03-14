@@ -100,6 +100,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayout.SetColumnSpan(this.Grid, 3);
             this.Grid.Location = new System.Drawing.Point(0, 27);
+            this.Grid.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.Grid.Name = "Grid";
             this.Grid.Size = new System.Drawing.Size(500, 260);
             this.Grid.TabIndex = 3;
