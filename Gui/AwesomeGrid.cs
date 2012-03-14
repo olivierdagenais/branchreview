@@ -28,6 +28,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             this.grid.ContextMenuNeeded += Grid_ContextMenuNeeded;
             this.grid.SelectionChanged += Grid_SelectionChanged;
 
+            this.Click += AwesomeGrid_Click;
+            this.tableLayout.Click += AwesomeGrid_Click;
+            this.CaptionLabel.Click += AwesomeGrid_Click;
+
             this.GotFocus += AwesomeGrid_GotFocus;
             this.CaptionLabel.GotFocus += AwesomeGrid_GotFocus;
             this.SearchLabel.GotFocus += AwesomeGrid_GotFocus;
@@ -279,6 +283,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private void SearchTextBox_Enter(object sender, EventArgs e)
         {
             SearchTextBox.SelectAll();
+        }
+
+        private void AwesomeGrid_Click(object sender, EventArgs e)
+        {
+            this.Focus();
         }
     }
 }
