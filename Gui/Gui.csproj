@@ -55,6 +55,7 @@
     <Compile Include="Extensions\ControlCollectionExtensions.cs" />
     <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="Extensions\PointExtensions.cs" />
+    <Compile Include="Extensions\SizeExtensions.cs" />
     <Compile Include="Grids\AccessibleColumnHeader.cs">
       <SubType>Component</SubType>
     </Compile>
