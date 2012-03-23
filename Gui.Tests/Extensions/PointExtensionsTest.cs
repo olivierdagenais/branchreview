@@ -40,6 +40,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Extensions
         }
 
         [Test]
+        public void ParseManyDigits()
+        {
+            var actual = PointExtensions.Parse("{X=12345,Y=67890}");
+            Assert.AreEqual(new Point(12345, 67890), actual);
+        }
+
+        [Test]
         public void ParseNegatives()
         {
             var actual = PointExtensions.Parse("{X=-1,Y=-2}");
