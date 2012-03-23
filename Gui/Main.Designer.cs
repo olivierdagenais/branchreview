@@ -297,6 +297,7 @@
             this.taskGrid.Name = "taskGrid";
             this.taskGrid.Size = new System.Drawing.Size(778, 495);
             this.taskGrid.TabIndex = 0;
+            this.taskGrid.Title = "Tasks";
             this.taskGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.ContextMenuNeededEventHandler(this.taskGrid_ContextMenuNeeded);
             this.taskGrid.RowInvoked += new System.EventHandler(this.taskGrid_RowInvoked);
             // 
@@ -343,6 +344,7 @@
             this.branchGrid.Name = "branchGrid";
             this.branchGrid.Size = new System.Drawing.Size(776, 87);
             this.branchGrid.TabIndex = 0;
+            this.branchGrid.Title = "Branches";
             this.branchGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.ContextMenuNeededEventHandler(this.branchGrid_ContextMenuNeeded);
             this.branchGrid.RowInvoked += new System.EventHandler(this.branchGrid_RowInvoked);
             this.branchGrid.SelectionChanged += new System.EventHandler(this.branchGrid_RowInvoked);
@@ -472,6 +474,7 @@
             this.shelvesetGrid.Name = "shelvesetGrid";
             this.shelvesetGrid.Size = new System.Drawing.Size(776, 83);
             this.shelvesetGrid.TabIndex = 0;
+            this.shelvesetGrid.Title = "Shelvesets";
             this.shelvesetGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.ContextMenuNeededEventHandler(this.shelvesetGrid_ContextMenuNeeded);
             this.shelvesetGrid.RowInvoked += new System.EventHandler(this.shelvesetGrid_RowInvoked);
             this.shelvesetGrid.SelectionChanged += new System.EventHandler(this.shelvesetGrid_RowInvoked);

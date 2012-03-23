@@ -7,10 +7,11 @@ using System.Linq;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 using SoftwareNinjas.Core;
+using SoftwareNinjas.BranchAndReviewTools.Gui.History;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui.Grids
 {
-    public partial class AwesomeGrid : UserControl, ISupportInitialize
+    public partial class AwesomeGrid : UserControl, ISupportInitialize, IHistoryItem
     {
         public event ContextMenuNeededEventHandler ContextMenuStripNeeded;
         public event EventHandler SelectionChanged;
@@ -289,5 +290,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Grids
         {
             this.Focus();
         }
+
+        #region IHistoryItem Members
+
+        public new IHistoryContainer Container { get; set; }
+
+        Control IHistoryItem.Control { get { return this; } }
+
+        public string Title { get; set; }
+
+        #endregion
     }
 }
