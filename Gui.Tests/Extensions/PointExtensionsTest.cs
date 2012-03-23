@@ -52,5 +52,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Extensions
             Assert.AreEqual(new Point(1, -2), PointExtensions.Parse("{X=1,Y=-2}"));
             Assert.AreEqual(new Point(-1, 2), PointExtensions.Parse("{X=-1,Y=2}"));
         }
+
+        [Test]
+        public void ParseWithSpaceAfterComma()
+        {
+            var actual = PointExtensions.Parse("{X=1, Y=2}");
+            Assert.AreEqual(new Point(1, 2), actual);
+        }
     }
 }
