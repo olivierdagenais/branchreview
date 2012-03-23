@@ -23,6 +23,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// <list type="table">
         ///     <listheader><term>Column name</term><description>Description</description></listheader>
         ///     <item><term>ID</term><description>A unique identifier for shelvesets.</description></item>
+        ///     <item><term>Name</term><description>The display name of the shelveset.</description></item>
         /// </list>
         /// </returns>
         DataTable LoadShelvesets();

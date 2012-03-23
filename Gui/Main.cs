@@ -222,13 +222,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
-        private void SetCurrentShelveset(object shelvesetId)
+        private void SetCurrentShelveset(object shelvesetId, string shelvesetName)
         {
             _currentShelvesetId = shelvesetId;
             if (shelvesetId != null)
             {
                 shelvesetChangeInspector.Context = shelvesetId;
-                shelvesetChangeInspector.Title = shelvesetId.ToString();
+                shelvesetChangeInspector.Title = shelvesetName;
                 shelvesetHistory.Push(shelvesetChangeInspector);
             }
             else
@@ -535,10 +535,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 }
                 var row = selectedItems[0].DataRow;
                 var shelvesetId = row["ID"];
+                var shelvesetName = (string) row["Name"];
                 var builtInActions = new[]
                 {
                     new MenuAction("defaultInspect", "&Inspect", true,
-                                () => SetCurrentShelveset(shelvesetId) ),
+                                () => SetCurrentShelveset(shelvesetId, shelvesetName) ),
                 };
                 items.AddActions(builtInActions);
                 var specificActions = _shelvesetRepository.GetShelvesetActions(shelvesetId);
