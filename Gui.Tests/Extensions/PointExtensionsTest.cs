@@ -26,7 +26,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Extensions
         }
 
         [Test]
-        public void ParseZero()
+        public void ParseZeroes()
         {
             var actual = PointExtensions.Parse("{X=0,Y=0}");
             Assert.AreEqual(Point.Empty, actual);
