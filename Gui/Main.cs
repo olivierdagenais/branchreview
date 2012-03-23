@@ -71,6 +71,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 activityChangeInspector.ChangesFunction = _sourceRepository.GetRevisionChanges;
                 activityChangeInspector.ComputeDifferencesFunction = _sourceRepository.ComputeRevisionDifferences;
                 activityChangeInspector.MessageFunction = _sourceRepository.GetRevisionMessage;
+                this.branchHistory.Push(this.branchGrid);
 
                 pendingChanges.ActionsForChangesFunction = _sourceRepository.GetActionsForPendingChanges;
                 pendingChanges.ChangesFunction = _sourceRepository.GetPendingChanges;
@@ -173,7 +174,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 }
                 else if (tabs.SelectedTab == branchesTab)
                 {
-                    // TODO: implement
+                    container = branchHistory;
                 }
                 else if (tabs.SelectedTab == commitTab)
                 {
@@ -222,6 +223,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 var activityCount = activityRevisions.DataTable.Rows.Count;
                 activityRevisions.Caption = "Activity for {0}: {1} entr{2}".FormatInvariant(
                     branchId, activityCount, activityCount == 1 ? "y" : "ies");
+                // TODO: fetch a branch name and make sure it's provided to this method?
+                activityRevisions.Title = branchId.ToString();
+                branchHistory.Push(activityRevisions);
             }
             else
             {
@@ -460,10 +464,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             if (_canRestoreLayout && e.AffectedProperty == "Visible" && branchesTab.Tag == null)
             {
-                branchGridAndRestDivider.SplitterDistance =
-                    this.LoadSetting(() => branchGridAndRestDivider.SplitterDistance, 115);
-                activityTopBottomPanel.SplitterDistance =
-                    this.LoadSetting(() => activityTopBottomPanel.SplitterDistance, 115);
                 activityChangeInspector.HorizontalDividerSplitterDistance =
                     this.LoadSetting(() => activityChangeInspector.HorizontalDividerSplitterDistance, 85);
                 activityChangeInspector.VerticalDividerSplitterDistance =
@@ -569,6 +569,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             _currentRevision = revisionId;
             activityChangeInspector.Context = revisionId;
+            // TODO: fetch a revision name and make sure it's provided to this method?
+            activityChangeInspector.Title = revisionId.ToString();
+            branchHistory.Push(activityChangeInspector);
         }
 
         private void activityRevisions_RowInvoked(object sender, EventArgs e)
@@ -581,22 +584,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             var menu = BuildRevisionActionMenu();
             e.ContextMenu = menu;
-        }
-
-        private void branchGridAndRestDivider_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-            if (branchesTab.Tag != null)
-            {
-                branchGridAndRestDivider.SaveSetting(() => branchGridAndRestDivider.SplitterDistance);
-            }
-        }
-
-        private void activityTopBottomPanel_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-            if (branchesTab.Tag != null)
-            {
-                activityTopBottomPanel.SaveSetting(() => activityTopBottomPanel.SplitterDistance);
-            }
         }
 
         #endregion

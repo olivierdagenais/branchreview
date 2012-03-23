@@ -55,9 +55,9 @@
             this.taskTab = new System.Windows.Forms.TabPage();
             this.taskGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.AwesomeGrid();
             this.branchesTab = new System.Windows.Forms.TabPage();
-            this.branchGridAndRestDivider = new System.Windows.Forms.SplitContainer();
+            this.branchHistory = new SoftwareNinjas.BranchAndReviewTools.Gui.History.HistoryContainer();
             this.branchGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.AwesomeGrid();
-            this.activityTopBottomPanel = new System.Windows.Forms.SplitContainer();
+            this.activityHistory = new SoftwareNinjas.BranchAndReviewTools.Gui.History.HistoryContainer();
             this.activityRevisions = new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.AwesomeGrid();
             this.activityChangeInspector = new SoftwareNinjas.BranchAndReviewTools.Gui.ChangeInspector();
             this.commitTab = new System.Windows.Forms.TabPage();
@@ -75,15 +75,7 @@
             this.taskTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).BeginInit();
             this.branchesTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.branchGridAndRestDivider)).BeginInit();
-            this.branchGridAndRestDivider.Panel1.SuspendLayout();
-            this.branchGridAndRestDivider.Panel2.SuspendLayout();
-            this.branchGridAndRestDivider.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.activityTopBottomPanel)).BeginInit();
-            this.activityTopBottomPanel.Panel1.SuspendLayout();
-            this.activityTopBottomPanel.Panel2.SuspendLayout();
-            this.activityTopBottomPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.activityRevisions)).BeginInit();
             this.commitTab.SuspendLayout();
             this.shelvesetsTab.SuspendLayout();
@@ -299,7 +291,7 @@
             // 
             // branchesTab
             // 
-            this.branchesTab.Controls.Add(this.branchGridAndRestDivider);
+            this.branchesTab.Controls.Add(this.branchHistory);
             this.branchesTab.Location = new System.Drawing.Point(4, 22);
             this.branchesTab.Name = "branchesTab";
             this.branchesTab.Padding = new System.Windows.Forms.Padding(3);
@@ -309,26 +301,12 @@
             this.branchesTab.UseVisualStyleBackColor = true;
             this.branchesTab.Layout += new System.Windows.Forms.LayoutEventHandler(this.branchesTab_Layout);
             // 
-            // branchGridAndRestDivider
+            // branchHistory
             // 
-            this.branchGridAndRestDivider.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.branchGridAndRestDivider.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.branchGridAndRestDivider.Location = new System.Drawing.Point(3, 3);
-            this.branchGridAndRestDivider.Name = "branchGridAndRestDivider";
-            this.branchGridAndRestDivider.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // branchGridAndRestDivider.Panel1
-            // 
-            this.branchGridAndRestDivider.Panel1.Controls.Add(this.branchGrid);
-            // 
-            // branchGridAndRestDivider.Panel2
-            // 
-            this.branchGridAndRestDivider.Panel2.Controls.Add(this.activityTopBottomPanel);
-            this.branchGridAndRestDivider.Size = new System.Drawing.Size(778, 495);
-            this.branchGridAndRestDivider.SplitterDistance = 89;
-            this.branchGridAndRestDivider.TabIndex = 1;
-            this.branchGridAndRestDivider.TabStop = false;
-            this.branchGridAndRestDivider.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.branchGridAndRestDivider_SplitterMoved);
+            this.branchHistory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.branchHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.branchHistory.Location = new System.Drawing.Point(3, 3);
+            this.branchHistory.Name = "branchHistory";
             // 
             // branchGrid
             // 
@@ -343,28 +321,13 @@
             this.branchGrid.Title = "Branches";
             this.branchGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.ContextMenuNeededEventHandler(this.branchGrid_ContextMenuNeeded);
             this.branchGrid.RowInvoked += new System.EventHandler(this.branchGrid_RowInvoked);
-            this.branchGrid.SelectionChanged += new System.EventHandler(this.branchGrid_RowInvoked);
             // 
-            // activityTopBottomPanel
+            // activityHistory
             // 
-            this.activityTopBottomPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.activityTopBottomPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.activityTopBottomPanel.Location = new System.Drawing.Point(0, 0);
-            this.activityTopBottomPanel.Name = "activityTopBottomPanel";
-            this.activityTopBottomPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // activityTopBottomPanel.Panel1
-            // 
-            this.activityTopBottomPanel.Panel1.Controls.Add(this.activityRevisions);
-            // 
-            // activityTopBottomPanel.Panel2
-            // 
-            this.activityTopBottomPanel.Panel2.Controls.Add(this.activityChangeInspector);
-            this.activityTopBottomPanel.Size = new System.Drawing.Size(778, 402);
-            this.activityTopBottomPanel.SplitterDistance = 85;
-            this.activityTopBottomPanel.TabIndex = 1;
-            this.activityTopBottomPanel.TabStop = false;
-            this.activityTopBottomPanel.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.activityTopBottomPanel_SplitterMoved);
+            this.activityHistory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.activityHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.activityHistory.Location = new System.Drawing.Point(0, 0);
+            this.activityHistory.Name = "activityHistory";
             // 
             // shelvesetsTab
             // 
@@ -390,7 +353,6 @@
             this.activityRevisions.TabIndex = 0;
             this.activityRevisions.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.ContextMenuNeededEventHandler(this.activityRevisions_ContextMenuNeeded);
             this.activityRevisions.RowInvoked += new System.EventHandler(this.activityRevisions_RowInvoked);
-            this.activityRevisions.SelectionChanged += new System.EventHandler(this.activityRevisions_RowInvoked);
             // 
             // activityChangeInspector
             // 
@@ -490,15 +452,7 @@
             this.taskTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.taskGrid)).EndInit();
             this.branchesTab.ResumeLayout(false);
-            this.branchGridAndRestDivider.Panel1.ResumeLayout(false);
-            this.branchGridAndRestDivider.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.branchGridAndRestDivider)).EndInit();
-            this.branchGridAndRestDivider.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.branchGrid)).EndInit();
-            this.activityTopBottomPanel.Panel1.ResumeLayout(false);
-            this.activityTopBottomPanel.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.activityTopBottomPanel)).EndInit();
-            this.activityTopBottomPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.activityRevisions)).EndInit();
             this.commitTab.ResumeLayout(false);
             this.shelvesetsTab.ResumeLayout(false);
@@ -534,8 +488,8 @@
         private System.Windows.Forms.MenuItem shelvesetsMenu;
         private System.Windows.Forms.MenuItem editMenu;
         private System.Windows.Forms.MenuItem searchMenuItem;
-        private System.Windows.Forms.SplitContainer branchGridAndRestDivider;
-        private System.Windows.Forms.SplitContainer activityTopBottomPanel;
+        private SoftwareNinjas.BranchAndReviewTools.Gui.History.HistoryContainer branchHistory;
+        private SoftwareNinjas.BranchAndReviewTools.Gui.History.HistoryContainer activityHistory;
         private SoftwareNinjas.BranchAndReviewTools.Gui.History.HistoryContainer shelvesetHistory;
         private SoftwareNinjas.BranchAndReviewTools.Gui.Grids.AwesomeGrid activityRevisions;
         private ChangeInspector activityChangeInspector;
