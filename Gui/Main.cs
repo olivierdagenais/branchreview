@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Composition.Hosting;
 using System.Data;
@@ -19,9 +20,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
     public partial class Main : Form, ILog
     {
+        private const int StatusMessageCapacity = 512;
         private readonly ITaskRepository _taskRepository;
         private readonly ISourceRepository _sourceRepository;
         private readonly IShelvesetRepository _shelvesetRepository;
+        private readonly LinkedList<StatusMessage> _statusMessages = new LinkedList<StatusMessage>();
+        private readonly Throttler _statusThrottle;
 
         private bool _canRestoreLayout;
 
@@ -39,6 +43,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             shelvesetGrid.Grid.MultiSelect = false;
             Load += Main_Load;
             FormClosing += Main_Closing;
+            _statusThrottle = new Throttler(100, UpdateStatusBar);
             #if DEBUG
             _taskRepository = new Core.Mock.TaskRepository();
             _sourceRepository = new Core.Mock.SourceRepository();
@@ -56,6 +61,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             if (_sourceRepository != null)
             // ReSharper restore ConditionIsAlwaysTrueOrFalse
             {
+                _sourceRepository.Log = this;
+
                 this.pendingChanges.ChangeLog.KeyDown += ChangeLog_KeyDown;
 
                 activityChangeInspector.ChangeLog.IsReadOnly = true;
@@ -84,7 +91,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             if (_taskRepository != null)
             // ReSharper restore ConditionIsAlwaysTrueOrFalse
             {
-                // TODO: wire up events, etc.
+                _taskRepository.Log = this;
             }
             else
             {
@@ -97,6 +104,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             if (_shelvesetRepository != null)
             // ReSharper restore ConditionIsAlwaysTrueOrFalse
             {
+                _shelvesetRepository.Log = this;
+
                 shelvesetChangeInspector.ChangeLog.IsReadOnly = true;
                 shelvesetChangeInspector.ChangeLog.LongLines.EdgeMode = EdgeMode.None;
                 shelvesetChangeInspector.ActionsForChangesFunction = _shelvesetRepository.GetActionsForShelvesetChanges;
@@ -733,43 +742,88 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         #region Implementation of ILog
 
-        // TODO: light-up on Windows 7 by displaying progress in the task bar and changing the back colour
-        // depending on the log type
         public void Info(string message)
         {
-            statusBarText.Image = Resources.dialog_information;
-            statusBarText.Text = message;
-            statusBarProgress.Value = 0;
+            Enqueue(StatusKind.Info, message);
         }
 
         public void Info(string message, int progressValue, int progressMaximum)
         {
-            statusBarText.Image = Resources.dialog_information;
-            statusBarText.Text = message;
-            if (progressMaximum == 0)
-            {
-                statusBarProgress.Style = ProgressBarStyle.Marquee;
-            }
-            else
-            {
-                statusBarProgress.Style = ProgressBarStyle.Continuous;
-                statusBarProgress.Maximum = progressMaximum;
-                statusBarProgress.Value = progressValue;
-            }
+            Enqueue(StatusKind.Info, message, progressValue, progressMaximum);
         }
 
         public void Warning(string message)
         {
-            statusBarText.Image = Resources.dialog_warning;
-            statusBarText.Text = message;
-            statusBarProgress.Value = 0;
+            Enqueue(StatusKind.Warning, message);
         }
 
         public void Error(string message)
         {
-            statusBarText.Image = Resources.dialog_error;
-            statusBarText.Text = message;
-            statusBarProgress.Value = 0;
+            Enqueue(StatusKind.Error, message);
+        }
+
+        private void Enqueue(StatusKind statusKind, string message)
+        {
+            Enqueue(new StatusMessage(statusKind, message));
+        }
+
+        private void Enqueue(StatusKind statusKind, string message, int progressValue, int progressMaximumValue)
+        {
+            Enqueue(new StatusMessage(statusKind, message, progressValue, progressMaximumValue));
+        }
+
+        private void Enqueue(StatusMessage statusMessage)
+        {
+            lock (_statusMessages)
+            {
+                _statusMessages.AddLast(statusMessage);
+                if (_statusMessages.Count > StatusMessageCapacity)
+                {
+                    _statusMessages.RemoveFirst();
+                }
+            }
+            _statusThrottle.Fire();
+        }
+
+        // TODO: light-up on Windows 7 by displaying progress in the task bar and changing the back colour
+        // depending on the log type
+        private void UpdateStatusBar()
+        {
+            StatusMessage last;
+            lock (_statusMessages)
+            {
+                last = _statusMessages.Last.Value;
+            }
+            statusBarText.Text = last.Message;
+            switch (last.StatusKind)
+            {
+                case StatusKind.Info:
+                    statusBarText.Image = Resources.dialog_information;
+                    if (last.ProgressValue.HasValue && last.ProgressMaximumValue.HasValue)
+                    {
+                        if (0 == last.ProgressMaximumValue.Value)
+                        {
+                            statusBarProgress.Style = ProgressBarStyle.Marquee;
+                        }
+                        else
+                        {
+                            statusBarProgress.Style = ProgressBarStyle.Continuous;
+                            statusBarProgress.Maximum = last.ProgressMaximumValue.Value;
+                            statusBarProgress.Value = last.ProgressValue.Value;
+                        }
+                    }
+                    break;
+                case StatusKind.Warning:
+                    statusBarText.Image = Resources.dialog_warning;
+                    statusBarProgress.Value = 0;
+                    break;
+                case StatusKind.Error:
+                    statusBarText.Image = Resources.dialog_error;
+                    statusBarProgress.Value = 0;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         #endregion
