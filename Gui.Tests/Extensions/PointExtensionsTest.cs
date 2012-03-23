@@ -19,6 +19,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Extensions
         }
 
         [Test]
+        public void ParseObject()
+        {
+            object value = "{X=1,Y=2}";
+            var actual = PointExtensions.Parse(value);
+            Assert.AreEqual(new Point(1, 2), actual);
+        }
+
+        [Test]
         public void ParseEmptyString()
         {
             var actual = PointExtensions.Parse(String.Empty);

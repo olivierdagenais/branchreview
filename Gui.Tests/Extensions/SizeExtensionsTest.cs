@@ -19,6 +19,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Extensions
         }
 
         [Test]
+        public void ParseObject()
+        {
+            object value = "{Width=1,Height=2}";
+            var actual = SizeExtensions.Parse(value);
+            Assert.AreEqual(new Size(1, 2), actual);
+        }
+
+        [Test]
         public void ParseEmptyString()
         {
             var actual = SizeExtensions.Parse(String.Empty);

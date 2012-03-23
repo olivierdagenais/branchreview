@@ -9,19 +9,23 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
         private static readonly Regex SizeTemplate =
             new Regex(@"\{Width=(?<width>-?\d+),\s?Height=(?<height>-?\d+)\}", RegexOptions.Compiled);
 
-        public static Size Parse(string sizeString)
+        public static Size Parse(object size)
         {
             var result = Size.Empty;
-            if (!String.IsNullOrEmpty(sizeString))
+            if (size != null)
             {
-                var match = SizeTemplate.Match(sizeString);
-                if (match.Success)
+                var sizeString = size.ToString();
+                if (!String.IsNullOrEmpty(sizeString))
                 {
-                    var widthString = match.Groups["width"].Value;
-                    var heightString = match.Groups["height"].Value;
-                    var width = Convert.ToInt32(widthString, 10);
-                    var height = Convert.ToInt32(heightString, 10);
-                    result = new Size(width, height);
+                    var match = SizeTemplate.Match(sizeString);
+                    if (match.Success)
+                    {
+                        var widthString = match.Groups["width"].Value;
+                        var heightString = match.Groups["height"].Value;
+                        var width = Convert.ToInt32(widthString, 10);
+                        var height = Convert.ToInt32(heightString, 10);
+                        result = new Size(width, height);
+                    }
                 }
             }
             return result;
