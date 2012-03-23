@@ -93,7 +93,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Extensions\MenuItemCollectionExtensions.cs" />
     <Compile Include="Throttler.cs" />
-    <Compile Include="UnsupportedList.cs" />
+    <Compile Include="Collections\UnsupportedList.cs" />
     <EmbeddedResource Include="AwesomeGrid.resx">
       <DependentUpon>AwesomeGrid.cs</DependentUpon>
     </EmbeddedResource>
