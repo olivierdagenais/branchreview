@@ -1,3 +1,4 @@
+using System.Drawing;
 using NUnit.Framework;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 
@@ -9,5 +10,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Extensions
     [TestFixture]
     public class PointExtensionsTest
     {
+        [Test]
+        public void ParseNull()
+        {
+            var actual = PointExtensions.Parse(null);
+            Assert.AreEqual(Point.Empty, actual);
+        }
     }
 }
