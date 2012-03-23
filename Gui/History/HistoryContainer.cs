@@ -109,6 +109,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.History
         private void SetCurrentControl(Control control)
         {
             mainLayout.Controls.Add(control, 0, 1);
+            control.Focus();
         }
 
         private void RemoveCurrentControl()
