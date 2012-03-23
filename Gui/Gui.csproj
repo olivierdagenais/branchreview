@@ -86,6 +86,14 @@
     <Compile Include="Grids\IAccessibleGrid.cs" />
     <Compile Include="Grids\IGridColumn.cs" />
     <Compile Include="Grids\IGridItem.cs" />
+    <Compile Include="History\HistoryContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="History\HistoryContainer.Designer.cs">
+      <DependentUpon>HistoryContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="History\IHistoryContainer.cs" />
+    <Compile Include="History\IHistoryItem.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChangeInspector.resx">
       <DependentUpon>ChangeInspector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="History\HistoryContainer.resx">
+      <DependentUpon>HistoryContainer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
