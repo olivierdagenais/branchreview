@@ -45,5 +45,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Extensions
             var actual = PointExtensions.Parse("{X=-1,Y=-2}");
             Assert.AreEqual(new Point(-1, -2), actual);
         }
+
+        [Test]
+        public void ParseOneNegativeOnePositive()
+        {
+            Assert.AreEqual(new Point(1, -2), PointExtensions.Parse("{X=1,Y=-2}"));
+            Assert.AreEqual(new Point(-1, 2), PointExtensions.Parse("{X=-1,Y=2}"));
+        }
     }
 }
