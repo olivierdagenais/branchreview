@@ -1,4 +1,4 @@
-﻿namespace SoftwareNinjas.BranchAndReviewTools.Gui
+﻿namespace SoftwareNinjas.BranchAndReviewTools.Gui.Grids
 {
     partial class AwesomeGrid
     {
@@ -32,7 +32,7 @@
             this.SearchTextBox = new System.Windows.Forms.TextBox();
             this.SearchLabel = new System.Windows.Forms.Label();
             this.tableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.grid = new SoftwareNinjas.BranchAndReviewTools.Gui.AccessibleListView();
+            this.grid = new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.AccessibleListView();
             this.tableLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.SuspendLayout();
@@ -121,7 +121,7 @@
 
         #endregion
 
-        private AccessibleListView grid;
+        private SoftwareNinjas.BranchAndReviewTools.Gui.Grids.AccessibleListView grid;
         public System.Windows.Forms.Label CaptionLabel;
         public System.Windows.Forms.TextBox SearchTextBox;
         public System.Windows.Forms.Label SearchLabel;

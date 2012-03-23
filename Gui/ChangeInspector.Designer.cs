@@ -32,7 +32,7 @@
             this.ChangeLog = new ScintillaNet.Scintilla();
             this.verticalDivider = new System.Windows.Forms.SplitContainer();
             this.PatchViewer = new ScintillaNet.Scintilla();
-            this.FileGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.AwesomeGrid();
+            this.FileGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.AwesomeGrid();
             ((System.ComponentModel.ISupportInitialize)(this.horizontalDivider)).BeginInit();
             this.horizontalDivider.Panel1.SuspendLayout();
             this.horizontalDivider.Panel2.SuspendLayout();
@@ -130,7 +130,7 @@
             this.FileGrid.Size = new System.Drawing.Size(233, 442);
             this.FileGrid.TabIndex = 0;
             this.FileGrid.RowInvoked += new System.EventHandler(this.FileGrid_RowInvoked);
-            this.FileGrid.ContextMenuStripNeeded += new ContextMenuNeededEventHandler(this.FileGrid_ContextMenuStripNeeded);
+            this.FileGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.ContextMenuNeededEventHandler(this.FileGrid_ContextMenuStripNeeded);
             this.FileGrid.SelectionChanged += new System.EventHandler(this.FileGrid_SelectionChanged);
             // 
             // ChangeInspector
@@ -160,7 +160,7 @@
         private System.Windows.Forms.SplitContainer horizontalDivider;
         private System.Windows.Forms.SplitContainer verticalDivider;
         public ScintillaNet.Scintilla PatchViewer;
-        public AwesomeGrid FileGrid;
+        public SoftwareNinjas.BranchAndReviewTools.Gui.Grids.AwesomeGrid FileGrid;
         public ScintillaNet.Scintilla ChangeLog;
     }
 }

@@ -53,18 +53,18 @@
             this.commitMenuItem = new System.Windows.Forms.MenuItem();
             this.tabs = new System.Windows.Forms.TabControl();
             this.taskTab = new System.Windows.Forms.TabPage();
-            this.taskGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.AwesomeGrid();
+            this.taskGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.AwesomeGrid();
             this.branchesTab = new System.Windows.Forms.TabPage();
             this.branchGridAndRestDivider = new System.Windows.Forms.SplitContainer();
-            this.branchGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.AwesomeGrid();
+            this.branchGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.AwesomeGrid();
             this.activityTopBottomPanel = new System.Windows.Forms.SplitContainer();
-            this.activityRevisions = new SoftwareNinjas.BranchAndReviewTools.Gui.AwesomeGrid();
+            this.activityRevisions = new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.AwesomeGrid();
             this.activityChangeInspector = new SoftwareNinjas.BranchAndReviewTools.Gui.ChangeInspector();
             this.commitTab = new System.Windows.Forms.TabPage();
             this.pendingChanges = new SoftwareNinjas.BranchAndReviewTools.Gui.ChangeInspector();
             this.shelvesetsTab = new System.Windows.Forms.TabPage();
             this.shelvesetGridAndRestDivider = new System.Windows.Forms.SplitContainer();
-            this.shelvesetGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.AwesomeGrid();
+            this.shelvesetGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.AwesomeGrid();
             this.shelvesetChangeInspector = new SoftwareNinjas.BranchAndReviewTools.Gui.ChangeInspector();
             viewMenuRefreshSeparator = new System.Windows.Forms.MenuItem();
             tasksDummyMenuItem = new System.Windows.Forms.MenuItem();
@@ -297,7 +297,7 @@
             this.taskGrid.Name = "taskGrid";
             this.taskGrid.Size = new System.Drawing.Size(778, 495);
             this.taskGrid.TabIndex = 0;
-            this.taskGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuNeededEventHandler(this.taskGrid_ContextMenuNeeded);
+            this.taskGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.ContextMenuNeededEventHandler(this.taskGrid_ContextMenuNeeded);
             this.taskGrid.RowInvoked += new System.EventHandler(this.taskGrid_RowInvoked);
             // 
             // branchesTab
@@ -343,7 +343,7 @@
             this.branchGrid.Name = "branchGrid";
             this.branchGrid.Size = new System.Drawing.Size(776, 87);
             this.branchGrid.TabIndex = 0;
-            this.branchGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuNeededEventHandler(this.branchGrid_ContextMenuNeeded);
+            this.branchGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.ContextMenuNeededEventHandler(this.branchGrid_ContextMenuNeeded);
             this.branchGrid.RowInvoked += new System.EventHandler(this.branchGrid_RowInvoked);
             this.branchGrid.SelectionChanged += new System.EventHandler(this.branchGrid_RowInvoked);
             // 
@@ -390,7 +390,7 @@
             this.activityRevisions.Name = "activityRevisions";
             this.activityRevisions.Size = new System.Drawing.Size(776, 83);
             this.activityRevisions.TabIndex = 0;
-            this.activityRevisions.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuNeededEventHandler(this.activityRevisions_ContextMenuNeeded);
+            this.activityRevisions.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.ContextMenuNeededEventHandler(this.activityRevisions_ContextMenuNeeded);
             this.activityRevisions.RowInvoked += new System.EventHandler(this.activityRevisions_RowInvoked);
             this.activityRevisions.SelectionChanged += new System.EventHandler(this.activityRevisions_RowInvoked);
             // 
@@ -472,7 +472,7 @@
             this.shelvesetGrid.Name = "shelvesetGrid";
             this.shelvesetGrid.Size = new System.Drawing.Size(776, 83);
             this.shelvesetGrid.TabIndex = 0;
-            this.shelvesetGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.ContextMenuNeededEventHandler(this.shelvesetGrid_ContextMenuNeeded);
+            this.shelvesetGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.ContextMenuNeededEventHandler(this.shelvesetGrid_ContextMenuNeeded);
             this.shelvesetGrid.RowInvoked += new System.EventHandler(this.shelvesetGrid_RowInvoked);
             this.shelvesetGrid.SelectionChanged += new System.EventHandler(this.shelvesetGrid_RowInvoked);
             // 
@@ -545,9 +545,9 @@
         private System.Windows.Forms.TabPage branchesTab;
         private System.Windows.Forms.TabPage commitTab;
         private System.Windows.Forms.TabPage shelvesetsTab;
-        private AwesomeGrid taskGrid;
-        private AwesomeGrid branchGrid;
-        private AwesomeGrid shelvesetGrid;
+        private SoftwareNinjas.BranchAndReviewTools.Gui.Grids.AwesomeGrid taskGrid;
+        private SoftwareNinjas.BranchAndReviewTools.Gui.Grids.AwesomeGrid branchGrid;
+        private SoftwareNinjas.BranchAndReviewTools.Gui.Grids.AwesomeGrid shelvesetGrid;
         private System.Windows.Forms.MenuItem viewMenu;
         private System.Windows.Forms.MenuItem refreshMenuItem;
         private System.Windows.Forms.MenuItem goToTasksMenuItem;
@@ -563,7 +563,7 @@
         private System.Windows.Forms.SplitContainer branchGridAndRestDivider;
         private System.Windows.Forms.SplitContainer activityTopBottomPanel;
         private System.Windows.Forms.SplitContainer shelvesetGridAndRestDivider;
-        private AwesomeGrid activityRevisions;
+        private SoftwareNinjas.BranchAndReviewTools.Gui.Grids.AwesomeGrid activityRevisions;
         private ChangeInspector activityChangeInspector;
         private ChangeInspector pendingChanges;
         private ChangeInspector shelvesetChangeInspector;

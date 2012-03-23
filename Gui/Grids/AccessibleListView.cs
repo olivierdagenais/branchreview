@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Collections;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 
-namespace SoftwareNinjas.BranchAndReviewTools.Gui
+namespace SoftwareNinjas.BranchAndReviewTools.Gui.Grids
 {
     public class AccessibleListView : ListView, ISupportInitialize, IAccessibleGrid
     {

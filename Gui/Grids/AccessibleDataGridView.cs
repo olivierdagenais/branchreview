@@ -6,7 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Collections;
 
-namespace SoftwareNinjas.BranchAndReviewTools.Gui
+namespace SoftwareNinjas.BranchAndReviewTools.Gui.Grids
 {
     public class AccessibleDataGridView : DataGridView, IAccessibleGrid
     {

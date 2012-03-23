@@ -49,13 +49,13 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccessibleColumnHeader.cs">
+    <Compile Include="Grids\AccessibleColumnHeader.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="AwesomeGrid.cs">
+    <Compile Include="Grids\AwesomeGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AwesomeGrid.Designer.cs">
+    <Compile Include="Grids\AwesomeGrid.Designer.cs">
       <DependentUpon>AwesomeGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="BeforeAfter.cs" />
@@ -65,14 +65,14 @@
     <Compile Include="ChangeInspector.Designer.cs">
       <DependentUpon>ChangeInspector.cs</DependentUpon>
     </Compile>
-    <Compile Include="AccessibleDataGridView.cs">
+    <Compile Include="Grids\AccessibleDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="AccessibleListView.cs">
+    <Compile Include="Grids\AccessibleListView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ContextMenuNeededEventArgs.cs" />
-    <Compile Include="ContextMenuNeededEventHandler.cs" />
+    <Compile Include="Grids\ContextMenuNeededEventArgs.cs" />
+    <Compile Include="Grids\ContextMenuNeededEventHandler.cs" />
     <Compile Include="Extensions\DataColumnExtensions.cs" />
     <Compile Include="Extensions\DataRowExtensions.cs" />
     <Compile Include="Extensions\DataTableExtensions.cs" />
@@ -80,9 +80,9 @@
     <Compile Include="Extensions\PropertyCollectionExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\FilterChunk.cs" />
-    <Compile Include="IAccessibleGrid.cs" />
-    <Compile Include="IGridColumn.cs" />
-    <Compile Include="IGridItem.cs" />
+    <Compile Include="Grids\IAccessibleGrid.cs" />
+    <Compile Include="Grids\IGridColumn.cs" />
+    <Compile Include="Grids\IGridItem.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,7 +94,7 @@
     <Compile Include="Extensions\MenuItemCollectionExtensions.cs" />
     <Compile Include="Throttler.cs" />
     <Compile Include="Collections\UnsupportedList.cs" />
-    <EmbeddedResource Include="AwesomeGrid.resx">
+    <EmbeddedResource Include="Grids\AwesomeGrid.resx">
       <DependentUpon>AwesomeGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChangeInspector.resx">

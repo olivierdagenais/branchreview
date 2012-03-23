@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace SoftwareNinjas.BranchAndReviewTools.Gui
+namespace SoftwareNinjas.BranchAndReviewTools.Gui.Grids
 {
     public class AccessibleColumnHeader : ColumnHeader
     {

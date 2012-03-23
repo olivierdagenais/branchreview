@@ -1,4 +1,4 @@
-﻿namespace SoftwareNinjas.BranchAndReviewTools.Gui
+﻿namespace SoftwareNinjas.BranchAndReviewTools.Gui.Grids
 {
     public interface IGridColumn
     {

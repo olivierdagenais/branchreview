@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 
-namespace SoftwareNinjas.BranchAndReviewTools.Gui
+namespace SoftwareNinjas.BranchAndReviewTools.Gui.Grids
 {
     public interface IAccessibleGrid
     {

@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using ScintillaNet;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
+using SoftwareNinjas.BranchAndReviewTools.Gui.Grids;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Properties;
 using SoftwareNinjas.Core;
 

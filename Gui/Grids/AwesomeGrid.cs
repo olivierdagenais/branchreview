@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 using SoftwareNinjas.Core;
 
-namespace SoftwareNinjas.BranchAndReviewTools.Gui
+namespace SoftwareNinjas.BranchAndReviewTools.Gui.Grids
 {
     public partial class AwesomeGrid : UserControl, ISupportInitialize
     {

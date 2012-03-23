@@ -2,9 +2,10 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using NUnit.Framework;
+using SoftwareNinjas.BranchAndReviewTools.Gui.Grids;
 using SoftwareNinjas.Core.Test;
 
-namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests
+namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Grids
 {
     /// <summary>
     /// A class to test <see cref="AccessibleDataGridView"/>.
