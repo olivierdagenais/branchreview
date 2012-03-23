@@ -24,5 +24,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Extensions
             var actual = PointExtensions.Parse(String.Empty);
             Assert.AreEqual(Point.Empty, actual);
         }
+
+        [Test]
+        public void ParseZero()
+        {
+            var actual = PointExtensions.Parse("{X=0,Y=0}");
+            Assert.AreEqual(Point.Empty, actual);
+        }
     }
 }
