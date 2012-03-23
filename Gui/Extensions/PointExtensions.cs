@@ -7,7 +7,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
     public static class PointExtensions
     {
         private static readonly Regex PointTemplate =
-            new Regex(@"\{X=(?<x>\d+),Y=(?<y>\d+)\}", RegexOptions.Compiled);
+            new Regex(@"\{X=(?<x>-?\d+),Y=(?<y>-?\d+)\}", RegexOptions.Compiled);
 
         public static Point Parse(string pointString)
         {
