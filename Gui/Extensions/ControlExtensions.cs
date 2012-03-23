@@ -17,13 +17,27 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
 
         public static T LoadSetting<T>(this Control control, Expression<Func<T>> propertyExpression, T defaultValue)
         {
+            return LoadSetting(control, propertyExpression, defaultValue, null);
+        }
+
+        public static T LoadSetting<T>(this Control control, Expression<Func<T>> propertyExpression, T defaultValue, Func<Object, T> converter)
+        {
             using (var sk = Registry.CurrentUser.CreateSubKey(ApplicationHome))
             {
                 Debug.Assert(sk != null);
 
                 var name = propertyExpression.DetermineName();
                 var settingName = control.Name + name;
-                var value = (T) sk.GetValue(settingName, defaultValue);
+                var rawValue = sk.GetValue(settingName, defaultValue);
+                T value;
+                if (converter != null)
+                {
+                    value = converter(rawValue);
+                }
+                else
+                {
+                    value = (T) rawValue;
+                }
                 return value;
             }
         }

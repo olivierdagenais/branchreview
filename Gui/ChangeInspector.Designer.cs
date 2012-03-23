@@ -65,7 +65,6 @@
             this.horizontalDivider.SplitterDistance = 108;
             this.horizontalDivider.TabIndex = 1;
             this.horizontalDivider.TabStop = false;
-            this.horizontalDivider.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.horizontalDivider_SplitterMoved);
             // 
             // ChangeLog
             // 
@@ -102,7 +101,6 @@
             this.verticalDivider.SplitterWidth = 6;
             this.verticalDivider.TabIndex = 0;
             this.verticalDivider.TabStop = false;
-            this.verticalDivider.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.verticalDivider_SplitterMoved);
             // 
             // PatchViewer
             // 

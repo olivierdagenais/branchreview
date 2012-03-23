@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Grids;
+using SoftwareNinjas.BranchAndReviewTools.Gui.Properties;
 using SoftwareNinjas.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.History;
 
@@ -14,19 +15,32 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
     public partial class ChangeInspector : UserControl, IHistoryItem
     {
-        public event SplitterEventHandler HorizontalDividerSplitterMoved;
-        public event SplitterEventHandler VerticalDividerSplitterMoved;
-
         private object _context;
+        private bool _restoredSplitters = false;
 
         public ChangeInspector()
         {
             InitializeComponent();
+            this.Paint += OnPaint;
             ChangeLog.InitializeDefaults();
             PatchViewer.InitializeDefaults();
             PatchViewer.InitializeDiff();
             PatchViewer.KeyUp += PatchViewer_KeyUp;
             FileGrid.Grid.MultiSelect = true;
+        }
+
+        private void OnPaint(object sender, PaintEventArgs paintEventArgs)
+        {
+            if (!_restoredSplitters)
+            {
+                HorizontalDividerSplitterDistance = this.LoadSetting(() => HorizontalDividerSplitterDistance, 85);
+                VerticalDividerSplitterDistance = this.LoadSetting(() => VerticalDividerSplitterDistance, 273);
+
+                this.horizontalDivider.SplitterMoved += this.horizontalDivider_SplitterMoved;
+                this.verticalDivider.SplitterMoved += this.verticalDivider_SplitterMoved;
+
+                _restoredSplitters = true;
+            }
         }
 
         void PatchViewer_KeyUp(object sender, KeyEventArgs e)
@@ -164,18 +178,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void horizontalDivider_SplitterMoved(object sender, SplitterEventArgs e)
         {
-            if (HorizontalDividerSplitterMoved != null)
-            {
-                HorizontalDividerSplitterMoved(this, e);
-            }
+            this.SaveSetting(() => HorizontalDividerSplitterDistance);
         }
 
         private void verticalDivider_SplitterMoved(object sender, SplitterEventArgs e)
         {
-            if (VerticalDividerSplitterMoved != null)
-            {
-                VerticalDividerSplitterMoved(this, e);
-            }
+            this.SaveSetting(() => VerticalDividerSplitterDistance);
         }
 
         #region IHistoryItem Members

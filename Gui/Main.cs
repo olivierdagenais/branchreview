@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.Composition.Hosting;
 using System.Data;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using ScintillaNet;
@@ -11,6 +12,7 @@ using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Grids;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Properties;
 using SoftwareNinjas.Core;
+using EnumExtensions = SoftwareNinjas.BranchAndReviewTools.Gui.Extensions.EnumExtensions;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
@@ -113,29 +115,25 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         void Main_Load(object sender, EventArgs e)
         {
-            var settings = Settings.Default;
-            Size = settings.WindowSize;
-            WindowState = settings.WindowState;
+            Size = this.LoadSetting(() => Size, new Size(800, 600), SizeExtensions.Parse);
+            Location = this.LoadSetting(() => Location, Point.Empty, PointExtensions.Parse);
+            WindowState = 
+                this.LoadSetting(() => WindowState, FormWindowState.Normal, EnumExtensions.Parse<FormWindowState>);
             SwitchCurrentTab(true);
             _canRestoreLayout = true;
         }
 
         void Main_Closing(object sender, CancelEventArgs e)
         {
-            var settings = Settings.Default;
             if (WindowState == FormWindowState.Minimized)
             {
-                settings.WindowState = FormWindowState.Normal;
-                settings.WindowLocation = RestoreBounds.Location;
-                settings.WindowSize = RestoreBounds.Size;
+                this.WindowState = FormWindowState.Normal;
+                this.Location = RestoreBounds.Location;
+                this.Size = RestoreBounds.Size;
             }
-            else
-            {
-                settings.WindowState = WindowState;
-                settings.WindowLocation = Location;
-                settings.WindowSize = Size;
-            }
-            settings.Save();
+            this.SaveSetting(() => WindowState);
+            this.SaveSetting(() => Location);
+            this.SaveSetting(() => Size);
         }
 
         #region Menu items
@@ -400,13 +398,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             if (_canRestoreLayout && e.AffectedProperty == "Visible" && branchesTab.Tag == null)
             {
-                var settings = Settings.Default;
-                branchGridAndRestDivider.SplitterDistance = settings.branchGridAndRestDividerSplitterDistance;
-                activityTopBottomPanel.SplitterDistance = settings.activityTopBottomPanelSplitterDistance;
+                branchGridAndRestDivider.SplitterDistance =
+                    this.LoadSetting(() => branchGridAndRestDivider.SplitterDistance, 115);
+                activityTopBottomPanel.SplitterDistance =
+                    this.LoadSetting(() => activityTopBottomPanel.SplitterDistance, 115);
                 activityChangeInspector.HorizontalDividerSplitterDistance =
-                    settings.activityChangeInspectorHorizontalDividerSplitterDistance;
+                    this.LoadSetting(() => activityChangeInspector.HorizontalDividerSplitterDistance, 85);
                 activityChangeInspector.VerticalDividerSplitterDistance =
-                    settings.activityChangeInspectorVerticalDividerSplitterDistance;
+                    this.LoadSetting(() => activityChangeInspector.VerticalDividerSplitterDistance, 242);
                 branchesTab.Tag = "done";
             }
         }
@@ -415,12 +414,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             if (_canRestoreLayout && e.AffectedProperty == "Visible" && shelvesetsTab.Tag == null)
             {
-                var settings = Settings.Default;
-                shelvesetGridAndRestDivider.SplitterDistance = settings.shelvesetGridAndRestDividerSplitterDistance;
-                shelvesetChangeInspector.HorizontalDividerSplitterDistance =
-                    settings.shelvesetChangeInspectorHorizontalDividerSplitterDistance;
-                shelvesetChangeInspector.VerticalDividerSplitterDistance =
-                    settings.shelvesetChangeInspectorVerticalDividerSplitterDistance;
+                shelvesetGridAndRestDivider.SplitterDistance =
+                    shelvesetGridAndRestDivider.LoadSetting(() => shelvesetGridAndRestDivider.SplitterDistance, 115);
                 shelvesetsTab.Tag = "done";
             }
         }
@@ -602,7 +597,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             if (branchesTab.Tag != null)
             {
-                Settings.Default.branchGridAndRestDividerSplitterDistance = branchGridAndRestDivider.SplitterDistance;
+                branchGridAndRestDivider.SaveSetting(() => branchGridAndRestDivider.SplitterDistance);
             }
         }
 
@@ -610,8 +605,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             if (shelvesetsTab.Tag != null)
             {
-                Settings.Default.shelvesetGridAndRestDividerSplitterDistance =
-                    shelvesetGridAndRestDivider.SplitterDistance;
+                shelvesetGridAndRestDivider.SaveSetting(() => shelvesetGridAndRestDivider.SplitterDistance);
             }
         }
 
@@ -619,43 +613,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             if (branchesTab.Tag != null)
             {
-                Settings.Default.activityTopBottomPanelSplitterDistance = activityTopBottomPanel.SplitterDistance;
-            }
-        }
-
-        private void activityChangeInspector_HorizontalDividerSplitterMoved(object sender, SplitterEventArgs e)
-        {
-            if (branchesTab.Tag != null)
-            {
-                Settings.Default.activityChangeInspectorHorizontalDividerSplitterDistance =
-                    activityChangeInspector.HorizontalDividerSplitterDistance;
-            }
-        }
-
-        private void shelvesetChangeInspector_HorizontalDividerSplitterMoved(object sender, SplitterEventArgs e)
-        {
-            if (shelvesetsTab.Tag != null)
-            {
-                Settings.Default.shelvesetChangeInspectorHorizontalDividerSplitterDistance =
-                    shelvesetChangeInspector.HorizontalDividerSplitterDistance;
-            }
-        }
-
-        private void activityChangeInspector_VerticalDividerSplitterMoved(object sender, SplitterEventArgs e)
-        {
-            if (branchesTab.Tag != null)
-            {
-                Settings.Default.activityChangeInspectorVerticalDividerSplitterDistance =
-                    activityChangeInspector.VerticalDividerSplitterDistance;
-            }
-        }
-
-        private void shelvesetChangeInspector_VerticalDividerSplitterMoved(object sender, SplitterEventArgs e)
-        {
-            if (shelvesetsTab.Tag != null)
-            {
-                Settings.Default.shelvesetChangeInspectorVerticalDividerSplitterDistance =
-                    shelvesetChangeInspector.VerticalDividerSplitterDistance;
+                activityTopBottomPanel.SaveSetting(() => activityTopBottomPanel.SplitterDistance);
             }
         }
 
@@ -667,11 +625,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             if (_canRestoreLayout && e.AffectedProperty == "Visible" && commitTab.Tag == null)
             {
-                var settings = Settings.Default;
                 pendingChanges.HorizontalDividerSplitterDistance =
-                    settings.pendingChangesHorizontalDividerSplitterDistance;
+                    pendingChanges.LoadSetting(() => pendingChanges.HorizontalDividerSplitterDistance, 70);
                 pendingChanges.VerticalDividerSplitterDistance =
-                    settings.pendingChangesVerticalDividerSplitterDistance;
+                    pendingChanges.LoadSetting(() => pendingChanges.VerticalDividerSplitterDistance, 273);
                 commitTab.Tag = "done";
             }
         }
@@ -726,24 +683,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             _sourceRepository.Commit(_currentBranchId, message);
             pendingChanges.ChangeLog.Text = String.Empty;
             SwitchCurrentTab(true);
-        }
-
-        private void pendingChanges_HorizontalDividerSplitterMoved(object sender, SplitterEventArgs e)
-        {
-            if (commitTab.Tag != null)
-            {
-                Settings.Default.pendingChangesHorizontalDividerSplitterDistance =
-                    pendingChanges.HorizontalDividerSplitterDistance;
-            }
-        }
-
-        private void pendingChanges_VerticalDividerSplitterMoved(object sender, SplitterEventArgs e)
-        {
-            if (commitTab.Tag != null)
-            {
-                Settings.Default.pendingChangesVerticalDividerSplitterDistance =
-                    pendingChanges.VerticalDividerSplitterDistance;
-            }
         }
 
         #endregion

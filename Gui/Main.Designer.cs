@@ -411,8 +411,6 @@
             this.activityChangeInspector.Size = new System.Drawing.Size(776, 311);
             this.activityChangeInspector.TabIndex = 0;
             this.activityChangeInspector.VerticalDividerSplitterDistance = 243;
-            this.activityChangeInspector.HorizontalDividerSplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.activityChangeInspector_HorizontalDividerSplitterMoved);
-            this.activityChangeInspector.VerticalDividerSplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.activityChangeInspector_VerticalDividerSplitterMoved);
             // 
             // commitTab
             // 
@@ -440,8 +438,6 @@
             this.pendingChanges.Size = new System.Drawing.Size(784, 501);
             this.pendingChanges.TabIndex = 0;
             this.pendingChanges.VerticalDividerSplitterDistance = 245;
-            this.pendingChanges.HorizontalDividerSplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.pendingChanges_HorizontalDividerSplitterMoved);
-            this.pendingChanges.VerticalDividerSplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.pendingChanges_VerticalDividerSplitterMoved);
             // 
             // shelvesetGridAndRestDivider
             // 
@@ -494,8 +490,6 @@
             this.shelvesetChangeInspector.Size = new System.Drawing.Size(776, 408);
             this.shelvesetChangeInspector.TabIndex = 0;
             this.shelvesetChangeInspector.VerticalDividerSplitterDistance = 243;
-            this.shelvesetChangeInspector.HorizontalDividerSplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.shelvesetChangeInspector_HorizontalDividerSplitterMoved);
-            this.shelvesetChangeInspector.VerticalDividerSplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.shelvesetChangeInspector_VerticalDividerSplitterMoved);
             // 
             // Main
             // 
@@ -504,8 +498,6 @@
             this.ClientSize = new System.Drawing.Size(792, 573);
             this.Controls.Add(this.tabs);
             this.Controls.Add(this.statusBar);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::SoftwareNinjas.BranchAndReviewTools.Gui.Properties.Settings.Default, "WindowLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.Location = global::SoftwareNinjas.BranchAndReviewTools.Gui.Properties.Settings.Default.WindowLocation;
             this.Menu = this.menuStrip;
             this.Name = "Main";
             this.Text = "Branch and Review Tools";
