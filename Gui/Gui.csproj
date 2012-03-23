@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Collections\AbstractHistory.cs" />
     <Compile Include="Collections\LinkedListHistory.cs" />
+    <Compile Include="Extensions\ControlCollectionExtensions.cs" />
     <Compile Include="Grids\AccessibleColumnHeader.cs">
       <SubType>Component</SubType>
     </Compile>
