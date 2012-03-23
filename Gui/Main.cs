@@ -472,14 +472,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
-        private void shelvesetsTab_Layout(object sender, LayoutEventArgs e)
-        {
-            if (_canRestoreLayout && e.AffectedProperty == "Visible" && shelvesetsTab.Tag == null)
-            {
-                shelvesetsTab.Tag = "done";
-            }
-        }
-
         private void branchesMenu_DropDownOpening(object sender, EventArgs e)
         {
             var items = branchesMenu.MenuItems;
@@ -490,18 +482,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
             var needsLeadingSeparator = generalActions.Count > 0;
             AddBranchSpecificActions(items, needsLeadingSeparator);
-        }
-
-        private void shelvesetsMenu_DropDownOpening(object sender, EventArgs e)
-        {
-            var items = shelvesetsMenu.MenuItems;
-            items.Clear();
-
-            var generalActions = _shelvesetRepository.GetShelvesetActions();
-            items.AddActions(generalActions);
-
-            var needsLeadingSeparator = generalActions.Count > 0;
-            AddShelvesetSpecificActions(items, needsLeadingSeparator);
         }
 
         private void AddBranchSpecificActions(Menu.MenuItemCollection items, bool needsLeadingSeparator)
@@ -533,53 +513,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
-        private void AddShelvesetSpecificActions(Menu.MenuItemCollection items, bool needsLeadingSeparator)
-        {
-            var selectedItems = shelvesetGrid.Grid.SelectedRows;
-            if (selectedItems.Count > 0)
-            {
-                if (needsLeadingSeparator)
-                {
-                    items.AddSeparator();
-                }
-                var row = selectedItems[0].DataRow;
-                var shelvesetId = row["ID"];
-                var shelvesetName = (string) row["Name"];
-                var builtInActions = new[]
-                {
-                    new MenuAction("defaultInspect", "&Inspect", true,
-                                () => SetCurrentShelveset(shelvesetId, shelvesetName) ),
-                };
-                items.AddActions(builtInActions);
-                var specificActions = _shelvesetRepository.GetShelvesetActions(shelvesetId);
-                if (specificActions.Count > 0)
-                {
-                    items.AddSeparator();
-                    items.AddActions(specificActions);
-                }
-            }
-        }
-
         private void branchGrid_ContextMenuNeeded(object sender, ContextMenuNeededEventArgs e)
         {
             var menu = BuildBranchActionMenu();
             e.ContextMenu = menu;
         }
 
-        private void shelvesetGrid_ContextMenuNeeded(object sender, ContextMenuNeededEventArgs e)
-        {
-            var menu = BuildShelvesetActionMenu();
-            e.ContextMenu = menu;
-        }
-
         private void branchGrid_RowInvoked(object sender, EventArgs e)
         {
             InvokeDefaultBranchGridAction();
-        }
-
-        private void shelvesetGrid_RowInvoked(object sender, EventArgs e)
-        {
-            InvokeDefaultShelvesetGridAction();
         }
 
         private ContextMenu BuildBranchActionMenu()
@@ -589,22 +531,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             return menu;
         }
 
-        private ContextMenu BuildShelvesetActionMenu()
-        {
-            var menu = new ContextMenu();
-            AddShelvesetSpecificActions(menu.MenuItems, false);
-            return menu;
-        }
-
         private void InvokeDefaultBranchGridAction()
         {
             var menu = BuildBranchActionMenu();
-            menu.MenuItems.InvokeFirstMenuItem();
-        }
-
-        private void InvokeDefaultShelvesetGridAction()
-        {
-            var menu = BuildShelvesetActionMenu();
             menu.MenuItems.InvokeFirstMenuItem();
         }
 
@@ -736,6 +665,81 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             _sourceRepository.Commit(_currentBranchId, message);
             pendingChanges.ChangeLog.Text = String.Empty;
             SwitchCurrentTab(true);
+        }
+
+        #endregion
+
+        #region Shelvesets
+
+        private void shelvesetsTab_Layout(object sender, LayoutEventArgs e)
+        {
+            if (_canRestoreLayout && e.AffectedProperty == "Visible" && shelvesetsTab.Tag == null)
+            {
+                shelvesetsTab.Tag = "done";
+            }
+        }
+
+        private void shelvesetsMenu_DropDownOpening(object sender, EventArgs e)
+        {
+            var items = shelvesetsMenu.MenuItems;
+            items.Clear();
+
+            var generalActions = _shelvesetRepository.GetShelvesetActions();
+            items.AddActions(generalActions);
+
+            var needsLeadingSeparator = generalActions.Count > 0;
+            AddShelvesetSpecificActions(items, needsLeadingSeparator);
+        }
+
+        private void AddShelvesetSpecificActions(Menu.MenuItemCollection items, bool needsLeadingSeparator)
+        {
+            var selectedItems = shelvesetGrid.Grid.SelectedRows;
+            if (selectedItems.Count > 0)
+            {
+                if (needsLeadingSeparator)
+                {
+                    items.AddSeparator();
+                }
+                var row = selectedItems[0].DataRow;
+                var shelvesetId = row["ID"];
+                var shelvesetName = (string) row["Name"];
+                var builtInActions = new[]
+                {
+                    new MenuAction("defaultInspect", "&Inspect", true,
+                                   () => SetCurrentShelveset(shelvesetId, shelvesetName) ),
+                };
+                items.AddActions(builtInActions);
+                var specificActions = _shelvesetRepository.GetShelvesetActions(shelvesetId);
+                if (specificActions.Count > 0)
+                {
+                    items.AddSeparator();
+                    items.AddActions(specificActions);
+                }
+            }
+        }
+
+        private void shelvesetGrid_ContextMenuNeeded(object sender, ContextMenuNeededEventArgs e)
+        {
+            var menu = BuildShelvesetActionMenu();
+            e.ContextMenu = menu;
+        }
+
+        private void shelvesetGrid_RowInvoked(object sender, EventArgs e)
+        {
+            InvokeDefaultShelvesetGridAction();
+        }
+
+        private ContextMenu BuildShelvesetActionMenu()
+        {
+            var menu = new ContextMenu();
+            AddShelvesetSpecificActions(menu.MenuItems, false);
+            return menu;
+        }
+
+        private void InvokeDefaultShelvesetGridAction()
+        {
+            var menu = BuildShelvesetActionMenu();
+            menu.MenuItems.InvokeFirstMenuItem();
         }
 
         #endregion
