@@ -8,10 +8,11 @@ using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Grids;
 using SoftwareNinjas.Core;
+using SoftwareNinjas.BranchAndReviewTools.Gui.History;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
-    public partial class ChangeInspector : UserControl
+    public partial class ChangeInspector : UserControl, IHistoryItem
     {
         public event SplitterEventHandler HorizontalDividerSplitterMoved;
         public event SplitterEventHandler VerticalDividerSplitterMoved;
@@ -176,5 +177,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 VerticalDividerSplitterMoved(this, e);
             }
         }
+
+        #region IHistoryItem Members
+
+        public new IHistoryContainer Container { get; set; }
+
+        Control IHistoryItem.Control { get { return this; } }
+
+        public string Title { get; set; }
+
+        #endregion
     }
 }
