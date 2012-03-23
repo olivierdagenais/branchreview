@@ -8,8 +8,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Tests of Graphical User Interface for the Branch And Review Tools")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Software Ninjas")]
-[assembly: AssemblyProduct("Branch And Review Tools (BART)")]
-[assembly: AssemblyCopyright("(C) Copyright 2010 Software Ninjas")]
+[assembly: AssemblyProduct("Branch And Review Tools")]
+[assembly: AssemblyCopyright("(C) Copyright 2012 Software Ninjas")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
