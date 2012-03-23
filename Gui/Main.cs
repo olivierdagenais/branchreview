@@ -10,6 +10,7 @@ using ScintillaNet;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Grids;
+using SoftwareNinjas.BranchAndReviewTools.Gui.History;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Properties;
 using SoftwareNinjas.Core;
 using EnumExtensions = SoftwareNinjas.BranchAndReviewTools.Gui.Extensions.EnumExtensions;
@@ -102,6 +103,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 shelvesetChangeInspector.ChangesFunction = _shelvesetRepository.GetShelvesetChanges;
                 shelvesetChangeInspector.ComputeDifferencesFunction = _shelvesetRepository.ComputeShelvesetDifferences;
                 shelvesetChangeInspector.MessageFunction = _shelvesetRepository.GetShelvesetMessage;
+
+                this.shelvesetHistory.Push(this.shelvesetGrid);
             }
             else
             {
@@ -135,6 +138,54 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             this.SaveSetting(() => Location);
             this.SaveSetting(() => Size);
         }
+
+        void Main_KeyUp(object sender, KeyEventArgs keyEventArgs)
+        {
+            Func<IHistoryContainer, bool> canMove = null;
+            Action<IHistoryContainer> move = null;
+            var keyData = keyEventArgs.KeyData;
+            if (keyData == Keys.BrowserBack || keyData == (Keys.Alt | Keys.Left))
+            {
+                canMove = ihc => ihc.CanGoBack;
+                move = ihc => ihc.GoBack();
+            }
+            else if (keyData == Keys.BrowserForward || keyData == (Keys.Alt | Keys.Right))
+            {
+                canMove = ihc => ihc.CanGoForward;
+                move = ihc => ihc.GoForward();
+            }
+
+            if (canMove != null && move != null)
+            {
+                IHistoryContainer container = null;
+                if (tabs.SelectedTab == taskTab)
+                {
+                    // TODO: implement
+                }
+                else if (tabs.SelectedTab == branchesTab)
+                {
+                    // TODO: implement
+                }
+                else if (tabs.SelectedTab == commitTab)
+                {
+                    // TODO: implement
+                }
+                else if (tabs.SelectedTab == shelvesetsTab)
+                {
+                    container = shelvesetHistory;
+                }
+
+                if (container != null)
+                {
+                    if (canMove(container))
+                    {
+                        move(container);
+                    }
+                }
+                keyEventArgs.Handled = true;
+            }
+        }
+
 
         #region Menu items
 
@@ -177,6 +228,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             if (shelvesetId != null)
             {
                 shelvesetChangeInspector.Context = shelvesetId;
+                shelvesetChangeInspector.Title = shelvesetId.ToString();
+                shelvesetHistory.Push(shelvesetChangeInspector);
             }
             else
             {
@@ -414,8 +467,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             if (_canRestoreLayout && e.AffectedProperty == "Visible" && shelvesetsTab.Tag == null)
             {
-                shelvesetGridAndRestDivider.SplitterDistance =
-                    shelvesetGridAndRestDivider.LoadSetting(() => shelvesetGridAndRestDivider.SplitterDistance, 115);
                 shelvesetsTab.Tag = "done";
             }
         }
@@ -598,14 +649,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             if (branchesTab.Tag != null)
             {
                 branchGridAndRestDivider.SaveSetting(() => branchGridAndRestDivider.SplitterDistance);
-            }
-        }
-
-        private void shelvesetGridAndRestDivider_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-            if (shelvesetsTab.Tag != null)
-            {
-                shelvesetGridAndRestDivider.SaveSetting(() => shelvesetGridAndRestDivider.SplitterDistance);
             }
         }
 

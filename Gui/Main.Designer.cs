@@ -63,7 +63,7 @@
             this.commitTab = new System.Windows.Forms.TabPage();
             this.pendingChanges = new SoftwareNinjas.BranchAndReviewTools.Gui.ChangeInspector();
             this.shelvesetsTab = new System.Windows.Forms.TabPage();
-            this.shelvesetGridAndRestDivider = new System.Windows.Forms.SplitContainer();
+            this.shelvesetHistory = new SoftwareNinjas.BranchAndReviewTools.Gui.History.HistoryContainer();
             this.shelvesetGrid = new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.AwesomeGrid();
             this.shelvesetChangeInspector = new SoftwareNinjas.BranchAndReviewTools.Gui.ChangeInspector();
             viewMenuRefreshSeparator = new System.Windows.Forms.MenuItem();
@@ -87,10 +87,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.activityRevisions)).BeginInit();
             this.commitTab.SuspendLayout();
             this.shelvesetsTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.shelvesetGridAndRestDivider)).BeginInit();
-            this.shelvesetGridAndRestDivider.Panel1.SuspendLayout();
-            this.shelvesetGridAndRestDivider.Panel2.SuspendLayout();
-            this.shelvesetGridAndRestDivider.SuspendLayout();
             this.SuspendLayout();
             // 
             // viewMenuRefreshSeparator
@@ -372,7 +368,7 @@
             // 
             // shelvesetsTab
             // 
-            this.shelvesetsTab.Controls.Add(this.shelvesetGridAndRestDivider);
+            this.shelvesetsTab.Controls.Add(this.shelvesetHistory);
             this.shelvesetsTab.Location = new System.Drawing.Point(4, 22);
             this.shelvesetsTab.Name = "shelvesetsTab";
             this.shelvesetsTab.Padding = new System.Windows.Forms.Padding(3);
@@ -439,26 +435,12 @@
             this.pendingChanges.TabIndex = 0;
             this.pendingChanges.VerticalDividerSplitterDistance = 245;
             // 
-            // shelvesetGridAndRestDivider
+            // shelvesetHistory
             // 
-            this.shelvesetGridAndRestDivider.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.shelvesetGridAndRestDivider.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.shelvesetGridAndRestDivider.Location = new System.Drawing.Point(3, 3);
-            this.shelvesetGridAndRestDivider.Name = "shelvesetGridAndRestDivider";
-            this.shelvesetGridAndRestDivider.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // shelvesetGridAndRestDivider.Panel1
-            // 
-            this.shelvesetGridAndRestDivider.Panel1.Controls.Add(this.shelvesetGrid);
-            // 
-            // shelvesetGridAndRestDivider.Panel2
-            // 
-            this.shelvesetGridAndRestDivider.Panel2.Controls.Add(this.shelvesetChangeInspector);
-            this.shelvesetGridAndRestDivider.Size = new System.Drawing.Size(778, 499);
-            this.shelvesetGridAndRestDivider.SplitterDistance = 85;
-            this.shelvesetGridAndRestDivider.TabIndex = 1;
-            this.shelvesetGridAndRestDivider.TabStop = false;
-            this.shelvesetGridAndRestDivider.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.shelvesetGridAndRestDivider_SplitterMoved);
+            this.shelvesetHistory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.shelvesetHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.shelvesetHistory.Location = new System.Drawing.Point(3, 3);
+            this.shelvesetHistory.Name = "shelvesetHistory";
             // 
             // shelvesetGrid
             // 
@@ -473,7 +455,6 @@
             this.shelvesetGrid.Title = "Shelvesets";
             this.shelvesetGrid.ContextMenuStripNeeded += new SoftwareNinjas.BranchAndReviewTools.Gui.Grids.ContextMenuNeededEventHandler(this.shelvesetGrid_ContextMenuNeeded);
             this.shelvesetGrid.RowInvoked += new System.EventHandler(this.shelvesetGrid_RowInvoked);
-            this.shelvesetGrid.SelectionChanged += new System.EventHandler(this.shelvesetGrid_RowInvoked);
             // 
             // shelvesetChangeInspector
             // 
@@ -498,9 +479,11 @@
             this.ClientSize = new System.Drawing.Size(792, 573);
             this.Controls.Add(this.tabs);
             this.Controls.Add(this.statusBar);
+            this.KeyPreview = true;
             this.Menu = this.menuStrip;
             this.Name = "Main";
             this.Text = "Branch and Review Tools";
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Main_KeyUp);
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
             this.tabs.ResumeLayout(false);
@@ -519,10 +502,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.activityRevisions)).EndInit();
             this.commitTab.ResumeLayout(false);
             this.shelvesetsTab.ResumeLayout(false);
-            this.shelvesetGridAndRestDivider.Panel1.ResumeLayout(false);
-            this.shelvesetGridAndRestDivider.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.shelvesetGridAndRestDivider)).EndInit();
-            this.shelvesetGridAndRestDivider.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -557,7 +536,7 @@
         private System.Windows.Forms.MenuItem searchMenuItem;
         private System.Windows.Forms.SplitContainer branchGridAndRestDivider;
         private System.Windows.Forms.SplitContainer activityTopBottomPanel;
-        private System.Windows.Forms.SplitContainer shelvesetGridAndRestDivider;
+        private SoftwareNinjas.BranchAndReviewTools.Gui.History.HistoryContainer shelvesetHistory;
         private SoftwareNinjas.BranchAndReviewTools.Gui.Grids.AwesomeGrid activityRevisions;
         private ChangeInspector activityChangeInspector;
         private ChangeInspector pendingChanges;
