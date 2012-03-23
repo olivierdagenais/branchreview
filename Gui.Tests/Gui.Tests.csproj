@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\AbstractHistoryTest.cs" />
+    <Compile Include="Collections\LinkedListHistoryTest.cs" />
     <Compile Include="Grids\AccessibleDataGridViewTest.cs" />
     <Compile Include="Grids\AccessibleListViewTest.cs" />
     <Compile Include="Extensions\DataRowExtensionsTest.cs" />

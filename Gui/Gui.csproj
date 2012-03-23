@@ -49,6 +49,8 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\AbstractHistory.cs" />
+    <Compile Include="Collections\LinkedListHistory.cs" />
     <Compile Include="Grids\AccessibleColumnHeader.cs">
       <SubType>Component</SubType>
     </Compile>
