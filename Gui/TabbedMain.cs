@@ -32,7 +32,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             InitializeComponent();
             mainPanel.ActiveContentChanged += mainPanel_ActiveContentChanged;
-            mainPanel.ContentRemoved += new EventHandler<DockContentEventArgs>(mainPanel_ContentRemoved);
+            mainPanel.ContentRemoved += mainPanel_ContentRemoved;
             Load += Main_Load;
             FormClosing += Main_Closing;
             _statusThrottle = new Throttler(100, UpdateStatusBar);
