@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Collections;
+using SoftwareNinjas.Core.Test;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Collections
 {
@@ -29,6 +30,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Collections
             var actual = mru.Contains("one");
 
             Assert.AreEqual(true, actual);
+        }
+
+        [Test]
+        public void GetEnumerator()
+        {
+            var mru = new MostRecentlyUsedCollection<String>();
+            mru.Add("one");
+
+            EnumerableExtensions.EnumerateSame(new[] {"one"}, mru);
         }
     }
 }

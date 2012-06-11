@@ -12,7 +12,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Collections
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return _list.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
