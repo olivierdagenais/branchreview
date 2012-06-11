@@ -34,13 +34,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             e.BringToForeground = true;
 
-            var form = (Main) MainForm;
+            var form = (TabbedMain) MainForm;
             form.Start(e.CommandLine);
         }
 
         protected override void OnCreateMainForm()
         {
-            MainForm = new Main();
+            MainForm = new TabbedMain();
         }
     }
 }
