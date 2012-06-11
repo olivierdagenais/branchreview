@@ -112,6 +112,12 @@
     <Compile Include="Extensions\MenuItemCollectionExtensions.cs" />
     <Compile Include="StatusKind.cs" />
     <Compile Include="StatusMessage.cs" />
+    <Compile Include="TabbedMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TabbedMain.Designer.cs">
+      <DependentUpon>TabbedMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Throttler.cs" />
     <Compile Include="Collections\UnsupportedList.cs" />
     <Compile Include="HistoryWindow.cs">
