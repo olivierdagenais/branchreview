@@ -19,5 +19,16 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Collections
 
             Assert.AreEqual(1, mru.Count);
         }
+
+        [Test]
+        public void ContainsOneItem()
+        {
+            var mru = new MostRecentlyUsedCollection<String>();
+            mru.Add("one");
+
+            var actual = mru.Contains("one");
+
+            Assert.AreEqual(true, actual);
+        }
     }
 }

@@ -37,7 +37,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Collections
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            return _list.Contains(item);
         }
 
         public void CopyTo(T[] array, int arrayIndex)
