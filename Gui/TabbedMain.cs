@@ -24,6 +24,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private readonly Throttler _statusThrottle;
         private readonly MostRecentlyUsedCollection<IDockContent> _activationOrder =
             new MostRecentlyUsedCollection<IDockContent>();
+        private IDockContent _toActivate;
+        private bool _controlKeyDown = false;
+        private bool _handledControlTab = false;
 
         public TabbedMain()
         {
@@ -140,6 +143,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         void Main_KeyDown(object sender, KeyEventArgs keyEventArgs)
         {
             IDockContent dockContent = null;
+            _handledControlTab = false;
 
             var keyData = keyEventArgs.KeyData;
             if (keyData == (Keys.Control | Keys.PageUp))
@@ -150,9 +154,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             {
                 dockContent = mainPanel.GetNextDocument() ?? mainPanel.GetFirstDocument();
             }
-            else if (keyData == (Keys.Control | Keys.Tab))
+            else if (keyData == (Keys.ControlKey | Keys.Control))
             {
-                dockContent = _activationOrder.Penultimate;
+                _controlKeyDown = true;
+                keyEventArgs.Handled = true;
+            }
+            else if (_controlKeyDown && keyData == (Keys.Control | Keys.Tab))
+            {
+                SwitchWindow();
+                _handledControlTab = true;
             }
 
             if (dockContent != null)
@@ -178,6 +188,25 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 canMove = ihc => ihc.CanGoForward;
                 move = ihc => ihc.GoForward();
             }
+            else if (_controlKeyDown && keyData == (Keys.Control | Keys.Tab))
+            {
+                if (!_handledControlTab)
+                {
+                    SwitchWindow();
+                }
+                this.ToDo("Pop window list up and highlight the {0} window", _toActivate);
+                keyEventArgs.Handled = true;
+            }
+            else if (keyData == Keys.ControlKey)
+            {
+                if (_toActivate != null)
+                {
+                    _toActivate.DockHandler.Activate();
+                    keyEventArgs.Handled = true;
+                    _toActivate = null;
+                }
+                _controlKeyDown = false;
+            }
 
             if (canMove != null && move != null)
             {
@@ -193,6 +222,40 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     }
                 }
                 keyEventArgs.Handled = true;
+            }
+            _handledControlTab = false;
+        }
+
+        private void SwitchWindow()
+        {
+            if (_toActivate == null)
+            {
+                _toActivate = _activationOrder.Penultimate;
+            }
+            else
+            {
+                var e = _activationOrder.GetEnumerator();
+                var useCurrent = false;
+                var usedCurrent = false;
+                while (e.MoveNext())
+                {
+                    if (useCurrent)
+                    {
+                        _toActivate = e.Current;
+                        usedCurrent = true;
+                        break;
+                    }
+                    if (e.Current == _toActivate)
+                    {
+                        useCurrent = true;
+                    }
+                }
+                if (!usedCurrent /* There was nothing after _toActivate, let's pick the first one */)
+                {
+                    e.Reset();
+                    e.MoveNext();
+                    _toActivate = e.Current;
+                }
             }
         }
 
