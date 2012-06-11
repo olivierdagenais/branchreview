@@ -1,20 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.Composition.Hosting;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
-using ScintillaNet;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Components;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
-using SoftwareNinjas.BranchAndReviewTools.Gui.Grids;
 using SoftwareNinjas.BranchAndReviewTools.Gui.History;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Properties;
-using SoftwareNinjas.Core;
 using EnumExtensions = SoftwareNinjas.BranchAndReviewTools.Gui.Extensions.EnumExtensions;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui
