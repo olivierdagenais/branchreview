@@ -61,5 +61,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Collections
         }
 
         #endregion
+
+        public T Penultimate
+        {
+            get
+            {
+                return default(T);
+            }
+        }
     }
 }

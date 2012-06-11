@@ -119,5 +119,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Collections
 
             Assert.AreEqual(0, mru.Count);
         }
+
+        [Test]
+        public void Penultimate_ZeroItems()
+        {
+            var mru = new MostRecentlyUsedCollection<String>();
+
+            var actual = mru.Penultimate;
+
+            Assert.AreEqual(null, actual);
+        }
     }
 }
