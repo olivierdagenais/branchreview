@@ -12,7 +12,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Collections
     public class MostRecentlyUsedCollectionTest
     {
         [Test]
-        public void Add_First()
+        public void Add_FirstItem()
         {
             var mru = new MostRecentlyUsedCollection<String>();
 
@@ -22,7 +22,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Collections
         }
 
         [Test]
-        public void ContainsOneItem()
+        public void Contains_OneItem()
         {
             var mru = new MostRecentlyUsedCollection<String>();
             mru.Add("one");
@@ -33,7 +33,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Collections
         }
 
         [Test]
-        public void GetEnumerator()
+        public void GetEnumerator_OneItem()
         {
             var mru = new MostRecentlyUsedCollection<String>();
             mru.Add("one");
