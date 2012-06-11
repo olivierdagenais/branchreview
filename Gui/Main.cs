@@ -134,6 +134,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 this.LoadSetting(() => WindowState, FormWindowState.Normal, EnumExtensions.Parse<FormWindowState>);
             SwitchCurrentTab(true);
             _canRestoreLayout = true;
+
+            Start(Environment.GetCommandLineArgs());
         }
 
         void Main_Closing(object sender, CancelEventArgs e)
@@ -196,6 +198,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
+        public void Start(IEnumerable<string> arguments)
+        {
+            // TODO: parse arguments and do something with them.
+        }
 
         #region Menu items
 

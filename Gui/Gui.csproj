@@ -32,6 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="ScintillaNet">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>ScintillaNet.dll</HintPath>
