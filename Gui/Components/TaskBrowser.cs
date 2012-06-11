@@ -86,7 +86,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             Debug.Assert(_sourceRepository != null);
             var branches = _sourceRepository.LoadBranches();
             var dataRow = branches.FindFirst("TaskID", taskId);
-            // TODO: create BranchBrowser, initialize it with dataRow["ID"] and push it to the container
+            this.ToDo("create BranchBrowser, initialize it with {0} and push it to the container", dataRow["ID"]);
         }
 
         private void taskGrid_ContextMenuNeeded(object sender, ContextMenuNeededEventArgs e)
