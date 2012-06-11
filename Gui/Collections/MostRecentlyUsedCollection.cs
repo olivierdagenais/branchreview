@@ -32,7 +32,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Collections
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            _list.Clear();
         }
 
         public bool Contains(T item)

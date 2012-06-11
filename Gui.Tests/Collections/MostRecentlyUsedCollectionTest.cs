@@ -97,5 +97,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Collections
 
             Assert.AreEqual(false, mru.IsReadOnly);
         }
+
+        [Test]
+        public void Clear_Empty()
+        {
+            var mru = new MostRecentlyUsedCollection<String>();
+
+            mru.Clear();
+
+            Assert.AreEqual(0, mru.Count);
+        }
     }
 }
