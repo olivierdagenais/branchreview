@@ -66,7 +66,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Collections
         {
             get
             {
-                return default(T);
+                return _list.Count > 1 ? _list[1] : default(T);
             }
         }
     }

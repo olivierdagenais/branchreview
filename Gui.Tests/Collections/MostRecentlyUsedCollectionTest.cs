@@ -140,5 +140,17 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Collections
 
             Assert.AreEqual(null, actual);
         }
+
+        [Test]
+        public void Penultimate_TwoItems()
+        {
+            var mru = new MostRecentlyUsedCollection<String>();
+            mru.Add("one");
+            mru.Add("two");
+
+            var actual = mru.Penultimate;
+
+            Assert.AreEqual("one", actual);
+        }
     }
 }
