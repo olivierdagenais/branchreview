@@ -2,6 +2,7 @@
 {
     internal enum ProgramAction
     {
+        None,
         InspectTask,
         BrowseBranches,
         BrowseBranchRevisions,

@@ -289,7 +289,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         public void Start(IEnumerable<string> arguments)
         {
-            var action = ProgramAction.Commit;
+            var action = ProgramAction.None;
             var p = new OptionSet
             {
                 {"action=", v => action = EnumExtensions.Parse<ProgramAction>(v)},
