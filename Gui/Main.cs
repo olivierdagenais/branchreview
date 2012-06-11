@@ -265,7 +265,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void tabs_Selected(object sender, TabControlEventArgs e)
         {
-            ExecuteLater(10, () => SwitchCurrentTab(false));
+            this.ExecuteLater(10, () => SwitchCurrentTab(false));
         }
 
         private void goToTasksMenuItem_Click(object sender, EventArgs e)
@@ -330,27 +330,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
             if (controlToFocus != null)
             {
-                ExecuteLater(10, () => controlToFocus.Focus());
+                this.ExecuteLater(10, () => controlToFocus.Focus());
             }
-        }
-
-        // TODO: turn into extension method on Control
-        internal void ExecuteLater(int milliseconds, Action action)
-        {
-            var delayedWorker = new Timer {Interval = milliseconds};
-            delayedWorker.Tick += (s, ea) =>
-            {
-                delayedWorker.Stop();
-                if (this.InvokeRequired)
-                {
-                    this.Invoke(new Action(action));
-                }
-                else
-                {
-                    action();
-                }
-            };
-            delayedWorker.Start();
         }
 
         private static object FindSelectedId(IAccessibleGrid accessibleGrid)

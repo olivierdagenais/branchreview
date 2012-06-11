@@ -56,5 +56,22 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
             }
         }
 
+        public static void ExecuteLater(this Control control, int milliseconds, Action action)
+        {
+            var delayedWorker = new Timer {Interval = milliseconds};
+            delayedWorker.Tick += (s, ea) =>
+            {
+                delayedWorker.Stop();
+                if (control.InvokeRequired)
+                {
+                    control.Invoke(new Action(action));
+                }
+                else
+                {
+                    action();
+                }
+            };
+            delayedWorker.Start();
+        }
     }
 }
