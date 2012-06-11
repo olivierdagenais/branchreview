@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.ApplicationServices;
 
@@ -35,7 +36,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             e.BringToForeground = true;
 
             var form = (TabbedMain) MainForm;
-            form.Start(e.CommandLine);
+            form.Start(e.CommandLine.Skip(1));
         }
 
         protected override void OnCreateMainForm()

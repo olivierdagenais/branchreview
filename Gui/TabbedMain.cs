@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using NDesk.Options;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Collections;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Components;
@@ -275,7 +276,71 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         public void Start(IEnumerable<string> arguments)
         {
-            this.ToDo("Parse arguments and do something with them");
+            var action = ProgramAction.Commit;
+            var p = new OptionSet
+            {
+                {"action=", v => action = EnumExtensions.Parse<ProgramAction>(v)},
+            };
+            var extra = p.Parse(arguments);
+            switch (action)
+            {
+                case ProgramAction.InspectTask:
+                    if (_taskRepository != null)
+                    {
+                        if (extra.Count == 0)
+                        {
+                            AddComponent((tr, sor, shr) => new TaskBrowser(tr, sor, shr));
+                        }
+                        else
+                        {
+                            this.ToDo("Launch a TaskInspector for each of the {0} that are integers", extra.Count);
+                        }
+                    }
+                    else
+                    {
+                        this.ToDo("We may want to advise the user that the operation could not be completed");
+                    }
+                    break;
+                case ProgramAction.BrowseBranches:
+                    if (_sourceRepository != null)
+                    {
+                        AddComponent((tr, sor, shr) => new BranchBrowser(tr, sor, shr));
+                    }
+                    else
+                    {
+                        this.ToDo("We may want to advise the user that the operation could not be completed");
+                    }
+                    break;
+                case ProgramAction.BrowseBranchRevisions:
+                    this.ToDo("Launch a RevisionBrowser on the branches specified by the {0} extra parameters", extra.Count);
+                    break;
+                case ProgramAction.InspectRevision:
+                    this.ToDo("Launch a RevisionInspector on the revisions specified by the {0} extra parameters", extra.Count);
+                    break;
+                case ProgramAction.Commit:
+                    if (_sourceRepository != null)
+                    {
+                        AddComponent((tr, sor, shr) => new ChangeCommitter(tr, sor, shr) { Title = "Commit" });
+                    }
+                    else
+                    {
+                        this.ToDo("We may want to advise the user that the operation could not be completed");
+                    }
+                    break;
+                case ProgramAction.BrowseShelvesets:
+                    if (_shelvesetRepository != null)
+                    {
+                        AddComponent((tr, sor, shr) => new ShelvesetBrowser(tr, sor, shr));
+                    }
+                    else
+                    {
+                        this.ToDo("We may want to advise the user that the operation could not be completed");
+                    }
+                    break;
+                case ProgramAction.InspectShelveset:
+                    this.ToDo("Launch a ShelvesetInspector on the shelveset names specified by the {0} extra parameters", extra.Count);
+                    break;
+            }
         }
 
         #region Menu items
