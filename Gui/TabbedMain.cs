@@ -9,6 +9,7 @@ using System.Linq;
 using System.Windows.Forms;
 using ScintillaNet;
 using SoftwareNinjas.BranchAndReviewTools.Core;
+using SoftwareNinjas.BranchAndReviewTools.Gui.Components;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Grids;
 using SoftwareNinjas.BranchAndReviewTools.Gui.History;
@@ -68,6 +69,33 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
 
             // ReSharper restore HeuristicUnreachableCode
+
+            RegisterComponents();
+        }
+
+        private void RegisterComponents()
+        {
+            newMenuItem.MenuItems.AddAction(
+                new MenuAction("newTaskBrowser", "&Task Browser", true, () =>
+                    {
+                        AddComponent((tr, sor, shr) => new TaskBrowser(tr, sor, shr));
+                    }
+                )
+            );
+            newMenuItem.MenuItems.AddAction(
+                new MenuAction("newBranchBrowser", "&Branch Browser", true, () =>
+                    {
+                        AddComponent((tr, sor, shr) => new BranchBrowser(tr, sor, shr));
+                    }
+                )
+            );
+        }
+
+        private void AddComponent(Func<ITaskRepository, ISourceRepository, IShelvesetRepository, IHistoryItem> factory)
+        {
+            var historyItem = factory(_taskRepository, _sourceRepository, _shelvesetRepository);
+            var historyWindow = new HistoryWindow(historyItem);
+            historyWindow.Show(mainPanel);
         }
 
         void Main_Load(object sender, EventArgs e)

@@ -34,6 +34,7 @@
             this.mainPanel = new SoftwareNinjas.BranchAndReviewTools.Gui.WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.menuStrip = new System.Windows.Forms.MainMenu();
             this.fileMenu = new System.Windows.Forms.MenuItem();
+            this.newMenuItem = new System.Windows.Forms.MenuItem();
             this.exitMenuItem = new System.Windows.Forms.MenuItem();
             this.editMenu = new System.Windows.Forms.MenuItem();
             this.searchMenuItem = new System.Windows.Forms.MenuItem();
@@ -83,10 +84,16 @@
             // 
             // fileMenu
             // 
-            this.fileMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {                                
+            this.fileMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] { 
+            this.newMenuItem,
             this.exitMenuItem});
             this.fileMenu.Name = "fileMenu";
             this.fileMenu.Text = "&File";
+            // 
+            // newMenuItem
+            // 
+            this.newMenuItem.Name = "newMenuItem";
+            this.newMenuItem.Text = "&New";
             // 
             // exitMenuItem
             // 
@@ -149,6 +156,7 @@
         private SoftwareNinjas.BranchAndReviewTools.Gui.WeifenLuo.WinFormsUI.Docking.DockPanel mainPanel;
         private System.Windows.Forms.MainMenu menuStrip;
         private System.Windows.Forms.MenuItem fileMenu;
+        private System.Windows.Forms.MenuItem newMenuItem;
         private System.Windows.Forms.MenuItem exitMenuItem;
         private System.Windows.Forms.MenuItem viewMenu;
         private System.Windows.Forms.MenuItem refreshMenuItem;
