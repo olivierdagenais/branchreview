@@ -95,34 +95,43 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void RegisterComponents()
         {
-            newMenuItem.MenuItems.AddAction(
-                new MenuAction("newTaskBrowser", "&Task Browser", true, () =>
-                    {
-                        AddComponent((tr, sor, shr) => new TaskBrowser(tr, sor, shr));
-                    }
-                )
-            );
-            newMenuItem.MenuItems.AddAction(
-                new MenuAction("newBranchBrowser", "&Branch Browser", true, () =>
-                    {
-                        AddComponent((tr, sor, shr) => new BranchBrowser(tr, sor, shr));
-                    }
-                )
-            );
-            newMenuItem.MenuItems.AddAction(
-                new MenuAction("newChangeCommitter", "&Change Committer", true, () =>
-                    {
-                        AddComponent((tr, sor, shr) => new ChangeCommitter(tr, sor, shr) { Title = "Commit" });
-                    }
-                )
-            );
-            newMenuItem.MenuItems.AddAction(
-                new MenuAction("newShelvesetBrowser", "&Shelveset Browser", true, () =>
-                    {
-                        AddComponent((tr, sor, shr) => new ShelvesetBrowser(tr, sor, shr));
-                    }
-                )
-            );
+            if (_taskRepository != null)
+            {
+                newMenuItem.MenuItems.AddAction(
+                    new MenuAction("newTaskBrowser", "&Task Browser", true, () =>
+                        {
+                            AddComponent((tr, sor, shr) => new TaskBrowser(tr, sor, shr));
+                        }
+                    )
+                );
+            }
+            if (_sourceRepository != null)
+            {
+                newMenuItem.MenuItems.AddAction(
+                    new MenuAction("newBranchBrowser", "&Branch Browser", true, () =>
+                        {
+                            AddComponent((tr, sor, shr) => new BranchBrowser(tr, sor, shr));
+                        }
+                    )
+                );
+                newMenuItem.MenuItems.AddAction(
+                    new MenuAction("newChangeCommitter", "&Change Committer", true, () =>
+                        {
+                            AddComponent((tr, sor, shr) => new ChangeCommitter(tr, sor, shr) { Title = "Commit" });
+                        }
+                    )
+                );
+            }
+            if (_shelvesetRepository != null)
+            {
+                newMenuItem.MenuItems.AddAction(
+                    new MenuAction("newShelvesetBrowser", "&Shelveset Browser", true, () =>
+                        {
+                            AddComponent((tr, sor, shr) => new ShelvesetBrowser(tr, sor, shr));
+                        }
+                    )
+                );
+            }
         }
 
         private void AddComponent(Func<ITaskRepository, ISourceRepository, IShelvesetRepository, IHistoryItem> factory)
