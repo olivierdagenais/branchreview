@@ -26,7 +26,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Collections
 
         public void Add(T item)
         {
-            _list.Remove(item);
+            Remove(item);
             _list.Insert(0, item);
         }
 
