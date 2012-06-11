@@ -129,6 +129,7 @@
             this.ClientSize = new System.Drawing.Size(792, 573);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.statusBar);
+            this.IsMdiContainer = true;
             this.KeyPreview = true;
             this.Menu = this.menuStrip;
             this.Name = "TabbedMain";
