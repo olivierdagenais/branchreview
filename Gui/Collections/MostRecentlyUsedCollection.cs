@@ -6,6 +6,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Collections
 {
     public class MostRecentlyUsedCollection<T> : ICollection<T>
     {
+        private readonly IList<T> _list = new List<T>();
+
         #region Implementation of IEnumerable
 
         public IEnumerator<T> GetEnumerator()
@@ -24,7 +26,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Collections
 
         public void Add(T item)
         {
-            throw new NotImplementedException();
+            _list.Remove(item);
+            _list.Insert(0, item);
         }
 
         public void Clear()
@@ -49,7 +52,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Collections
 
         public int Count
         {
-            get { throw new NotImplementedException(); }
+            get { return _list.Count; }
         }
 
         public bool IsReadOnly
