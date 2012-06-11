@@ -105,6 +105,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Grids
             return id;
         }
 
+        public IEnumerable<object> FindSelectedIds()
+        {
+            var selectedRows = Grid.SelectedRows;
+            return selectedRows.Map(row => row.DataRow["ID"]);
+        }
+
         protected void OnRowInvoked(EventArgs e)
         {
             if (RowInvoked != null)

@@ -136,12 +136,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             FileGrid.Caption = "{0} changed item{1}".FormatInvariant(itemCount, itemCount == 1 ? "" : "s");
         }
 
-        private IEnumerable<object> FindSelectedIds()
-        {
-            var selectedRows = FileGrid.Grid.SelectedRows;
-            return selectedRows.Map(row => row.DataRow["ID"]);
-        }
-
         void FileGrid_ContextMenuStripNeeded(object sender, ContextMenuNeededEventArgs e)
         {
             var menu = BuildChangedFilesActionMenu();
@@ -150,14 +144,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         void FileGrid_SelectionChanged(object sender, EventArgs e)
         {
-            var selectedIds = FindSelectedIds();
+            var selectedIds = FileGrid.FindSelectedIds();
             var patch = ComputeDifferences(Context, selectedIds);
             PatchText = patch;
         }
 
         private ContextMenu BuildChangedFilesActionMenu()
         {
-            var selectedIds = FindSelectedIds();
+            var selectedIds = FileGrid.FindSelectedIds();
             var actions = GetActionsForChanges(Context, selectedIds);
             var menu = new ContextMenu();
             menu.MenuItems.AddActions(actions);
