@@ -13,7 +13,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
         private readonly ITaskRepository _taskRepository;
         private readonly ISourceRepository _sourceRepository;
         private readonly IShelvesetRepository _shelvesetRepository;
-        private readonly ChangeInspector _pendingChanges;
+        private readonly ChangeCommitter _changeCommitter;
         private readonly RevisionBrowser _revisionBrowser;
 
         public BranchBrowser
@@ -22,37 +22,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             _taskRepository = taskRepository;
             _sourceRepository = sourceRepository;
             _shelvesetRepository = shelvesetRepository;
-            _pendingChanges = new ChangeInspector
-            {
-                ActionsForChangesFunction = _sourceRepository.GetActionsForPendingChanges,
-                ChangesFunction = _sourceRepository.GetPendingChanges,
-                ComputeDifferencesFunction = _sourceRepository.ComputePendingDifferences,
-                MessageFunction = null,
-            };
-            _pendingChanges.ChangeLog.KeyDown += ChangeLog_KeyDown;
 
             _revisionBrowser = new RevisionBrowser(_taskRepository, _sourceRepository, _shelvesetRepository);
+            _changeCommitter = new ChangeCommitter(_taskRepository, _sourceRepository, _shelvesetRepository);
 
             InitializeComponent();
             branchGrid.Grid.MultiSelect = false;
             this.ExecuteLater(10, () => SwitchCurrentTab(true));
-        }
-
-        void ChangeLog_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (Keys.Enter == e.KeyCode && e.Control)
-            {
-                DoCommit();
-                e.SuppressKeyPress = true;
-            }
-        }
-
-        private void DoCommit()
-        {
-            var message = _pendingChanges.ChangeLog.Text;
-            _sourceRepository.Commit(_pendingChanges.Context, message);
-            _pendingChanges.ChangeLog.Text = String.Empty;
-            _pendingChanges.Reload();
         }
 
         #region Common
@@ -69,10 +45,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
 
         private void StartWorkOnBranch(object branchId, object taskId)
         {
-            _pendingChanges.Context = branchId;
-            _pendingChanges.Title = branchId.ToString();
+            _changeCommitter.BranchId = branchId;
+            _changeCommitter.Title = branchId.ToString();
             var historyItem = (IHistoryItem) this;
-            historyItem.Container.Push(_pendingChanges);
+            historyItem.Container.Push(_changeCommitter);
         }
 
         private void SwitchCurrentTab(bool refresh)

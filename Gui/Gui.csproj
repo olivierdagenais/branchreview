@@ -59,6 +59,12 @@
     <Compile Include="Components\BranchBrowser.Designer.cs">
       <DependentUpon>BranchBrowser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\ChangeCommitter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\ChangeCommitter.Designer.cs">
+      <DependentUpon>ChangeCommitter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\RevisionBrowser.cs">
       <SubType>Component</SubType>
     </Compile>
