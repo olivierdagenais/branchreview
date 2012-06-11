@@ -77,5 +77,17 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Collections
 
             Assert.AreEqual(true, actual);
         }
+
+        [Test]
+        public void Remove_DoesNotExist()
+        {
+            var mru = new MostRecentlyUsedCollection<String>();
+            mru.Add("one");
+            mru.Add("two");
+
+            var actual = mru.Remove("three");
+
+            Assert.AreEqual(false, actual);
+        }
     }
 }
