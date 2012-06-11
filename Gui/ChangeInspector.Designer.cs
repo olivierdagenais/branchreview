@@ -136,6 +136,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.horizontalDivider);
+            this.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Name = "ChangeInspector";
             this.Size = new System.Drawing.Size(749, 556);
             this.horizontalDivider.Panel1.ResumeLayout(false);

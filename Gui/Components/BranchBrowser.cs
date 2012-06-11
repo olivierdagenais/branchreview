@@ -13,6 +13,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
         private readonly ITaskRepository _taskRepository;
         private readonly ISourceRepository _sourceRepository;
         private readonly IShelvesetRepository _shelvesetRepository;
+        private readonly ChangeInspector _pendingChanges;
 
         public BranchBrowser
         (ITaskRepository taskRepository, ISourceRepository sourceRepository, IShelvesetRepository shelvesetRepository)
@@ -20,16 +21,42 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             _taskRepository = taskRepository;
             _sourceRepository = sourceRepository;
             _shelvesetRepository = shelvesetRepository;
+            _pendingChanges = new ChangeInspector
+            {
+                ActionsForChangesFunction = _sourceRepository.GetActionsForPendingChanges,
+                ChangesFunction = _sourceRepository.GetPendingChanges,
+                ComputeDifferencesFunction = _sourceRepository.ComputePendingDifferences,
+                MessageFunction = null,
+            };
+            _pendingChanges.ChangeLog.KeyDown += ChangeLog_KeyDown;
 
             InitializeComponent();
             branchGrid.Grid.MultiSelect = false;
             this.ExecuteLater(10, () => SwitchCurrentTab(true));
         }
 
+        void ChangeLog_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keys.Enter == e.KeyCode && e.Control)
+            {
+                DoCommit();
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void DoCommit()
+        {
+            var message = _pendingChanges.ChangeLog.Text;
+            _sourceRepository.Commit(_pendingChanges.Context, message);
+            _pendingChanges.ChangeLog.Text = String.Empty;
+            _pendingChanges.Reload();
+        }
+
         #region Common
 
         private void SetCurrentBranch(object branchId, object taskId)
         {
+            this.ToDo("Create a single instance of RevisionBrowser and re-use it with different context");
             var branchTitle = branchId.ToString();
             this.ToDo("Determine a better title than {0}", branchTitle);
             var revisionBrowser = 
@@ -43,7 +70,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
 
         private void StartWorkOnBranch(object branchId, object taskId)
         {
-            this.ToDo("Create a ChangeInspector, initialize it for branch {0} in commit mode and push it", branchId);
+            _pendingChanges.Context = branchId;
+            _pendingChanges.Title = branchId.ToString();
+            var historyItem = (IHistoryItem) this;
+            historyItem.Container.Push(_pendingChanges);
         }
 
         private void SwitchCurrentTab(bool refresh)
