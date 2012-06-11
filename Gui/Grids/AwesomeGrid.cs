@@ -93,6 +93,18 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Grids
             set { CaptionLabel.Text = value; }
         }
 
+        public object FindSelectedId()
+        {
+            var selectedRows = Grid.SelectedRows;
+            object id = null;
+            if (selectedRows.Count > 0)
+            {
+                var row = selectedRows[0];
+                id = row.DataRow["ID"];
+            }
+            return id;
+        }
+
         protected void OnRowInvoked(EventArgs e)
         {
             if (RowInvoked != null)

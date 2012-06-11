@@ -334,18 +334,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
-        private static object FindSelectedId(IAccessibleGrid accessibleGrid)
-        {
-            var selectedRows = accessibleGrid.SelectedRows;
-            object id = null;
-            if (selectedRows.Count > 0)
-            {
-                var row = selectedRows[0];
-                id = row.DataRow["ID"];
-            }
-            return id;
-        }
-
         private void searchMenuItem_Click(object sender, EventArgs e)
         {
             SendKeys.Send(/* Ctrl+F */ "^f");
@@ -369,7 +357,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void AddTaskSpecificActions(Menu.MenuItemCollection items, bool needsLeadingSeparator)
         {
-            var taskId = FindSelectedId(taskGrid.Grid);
+            var taskId = taskGrid.FindSelectedId();
             if (taskId != null)
             {
                 var specificActions = _taskRepository.GetTaskActions(taskId);
