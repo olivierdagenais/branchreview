@@ -57,7 +57,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Collections
 
         public bool IsReadOnly
         {
-            get { throw new NotImplementedException(); }
+            get { return false; }
         }
 
         #endregion

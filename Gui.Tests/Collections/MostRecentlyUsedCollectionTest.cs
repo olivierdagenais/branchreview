@@ -89,5 +89,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Collections
 
             Assert.AreEqual(false, actual);
         }
+
+        [Test]
+        public void IsReadOnly()
+        {
+            var mru = new MostRecentlyUsedCollection<String>();
+
+            Assert.AreEqual(false, mru.IsReadOnly);
+        }
     }
 }
