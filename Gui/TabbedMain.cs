@@ -108,6 +108,20 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     }
                 )
             );
+            newMenuItem.MenuItems.AddAction(
+                new MenuAction("newChangeCommitter", "&Change Committer", true, () =>
+                    {
+                        AddComponent((tr, sor, shr) => new ChangeCommitter(tr, sor, shr) { Title = "Commit" });
+                    }
+                )
+            );
+            newMenuItem.MenuItems.AddAction(
+                new MenuAction("newShelvesetBrowser", "&Shelveset Browser", true, () =>
+                    {
+                        AddComponent((tr, sor, shr) => new ShelvesetBrowser(tr, sor, shr));
+                    }
+                )
+            );
         }
 
         private void AddComponent(Func<ITaskRepository, ISourceRepository, IShelvesetRepository, IHistoryItem> factory)
