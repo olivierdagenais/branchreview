@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Collections\AbstractHistoryTest.cs" />
     <Compile Include="Collections\LinkedListHistoryTest.cs" />
+    <Compile Include="Collections\MostRecentlyUsedCollectionTest.cs" />
     <Compile Include="Extensions\EnumExtensionsTest.cs" />
     <Compile Include="Extensions\SizeExtensionsTest.cs" />
     <Compile Include="Grids\AccessibleDataGridViewTest.cs" />
