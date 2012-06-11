@@ -30,7 +30,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
 
         private void SetCurrentBranch(object branchId, object taskId)
         {
-            this.ToDo("Create an ActivityBrowser, initialize it for branch {0} and push it", branchId);
+            var branchTitle = branchId.ToString();
+            this.ToDo("Determine a better title than {0}", branchTitle);
+            var revisionBrowser = 
+                new RevisionBrowser(_taskRepository, _sourceRepository, _shelvesetRepository, branchId)
+                {
+                    Title = branchTitle,
+                };
+            var historyItem = (IHistoryItem) this;
+            historyItem.Container.Push(revisionBrowser);
         }
 
         private void StartWorkOnBranch(object branchId, object taskId)
