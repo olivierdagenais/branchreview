@@ -114,6 +114,12 @@
     <Compile Include="StatusMessage.cs" />
     <Compile Include="Throttler.cs" />
     <Compile Include="Collections\UnsupportedList.cs" />
+    <Compile Include="HistoryWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryWindow.Designer.cs">
+      <DependentUpon>HistoryWindow.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Grids\AwesomeGrid.resx">
       <DependentUpon>AwesomeGrid.cs</DependentUpon>
     </EmbeddedResource>
