@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Linq;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Grids;
-using SoftwareNinjas.BranchAndReviewTools.Gui.Properties;
 using SoftwareNinjas.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.History;
 
@@ -16,7 +14,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
     public partial class ChangeInspector : UserControl, IHistoryItem
     {
         private object _context;
-        private bool _restoredSplitters = false;
+        private bool _restoredSplitters;
 
         public ChangeInspector()
         {
