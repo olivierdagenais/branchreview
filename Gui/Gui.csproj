@@ -53,6 +53,12 @@
   <ItemGroup>
     <Compile Include="Collections\AbstractHistory.cs" />
     <Compile Include="Collections\LinkedListHistory.cs" />
+    <Compile Include="Components\BranchBrowser.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\BranchBrowser.Designer.cs">
+      <DependentUpon>BranchBrowser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\TaskBrowser.cs">
       <SubType>Component</SubType>
     </Compile>
