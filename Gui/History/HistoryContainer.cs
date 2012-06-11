@@ -54,6 +54,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.History
                 AutoSize = true,
             };
             var control = _breadCrumbs.Last.Control;
+            control.TabStop = false;
             linkLabel.LinkClicked += (sender, args) => PopTo(control);
             crumbLinks.Controls.Add(linkLabel);
             SetCurrentControl(control);
