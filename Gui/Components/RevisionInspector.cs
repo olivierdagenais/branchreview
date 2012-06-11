@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using ScintillaNet;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 using SoftwareNinjas.BranchAndReviewTools.Gui.History;
@@ -22,6 +23,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             InitializeComponent();
 
             changeInspector.ChangeLog.IsReadOnly = true;
+            changeInspector.ChangeLog.LongLines.EdgeMode = EdgeMode.None;
             changeInspector.ActionsForChangesFunction = _sourceRepository.GetActionsForRevisionChanges;
             changeInspector.ChangesFunction = _sourceRepository.GetRevisionChanges;
             changeInspector.ComputeDifferencesFunction = _sourceRepository.ComputeRevisionDifferences;
