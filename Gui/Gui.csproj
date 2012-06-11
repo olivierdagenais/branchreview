@@ -53,6 +53,12 @@
   <ItemGroup>
     <Compile Include="Collections\AbstractHistory.cs" />
     <Compile Include="Collections\LinkedListHistory.cs" />
+    <Compile Include="Components\TaskBrowser.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\TaskBrowser.Designer.cs">
+      <DependentUpon>TaskBrowser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\ExpressionExtensions.cs" />
     <Compile Include="Extensions\ControlCollectionExtensions.cs" />
