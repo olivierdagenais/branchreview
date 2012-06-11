@@ -141,6 +141,7 @@
             this.Menu = this.menuStrip;
             this.Name = "TabbedMain";
             this.Text = "Branch and Review Tools";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Main_KeyUp);
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();

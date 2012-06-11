@@ -7,8 +7,9 @@ using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Components;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 using SoftwareNinjas.BranchAndReviewTools.Gui.History;
-using SoftwareNinjas.BranchAndReviewTools.Gui.Properties;
+using SoftwareNinjas.BranchAndReviewTools.Gui.WeifenLuo.WinFormsUI.Docking;
 using EnumExtensions = SoftwareNinjas.BranchAndReviewTools.Gui.Extensions.EnumExtensions;
+using Resources = SoftwareNinjas.BranchAndReviewTools.Gui.Properties.Resources;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
@@ -64,6 +65,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             // ReSharper restore HeuristicUnreachableCode
 
             RegisterComponents();
+            mainPanel.DocumentStyle = DocumentStyle.DockingWindow;
         }
 
         private void RegisterComponents()
@@ -114,10 +116,36 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             this.SaveSetting(() => Size);
         }
 
+        void Main_KeyDown(object sender, KeyEventArgs keyEventArgs)
+        {
+            IDockContent dockContent = null;
+
+            var keyData = keyEventArgs.KeyData;
+            if (keyData == (Keys.Control | Keys.PageUp))
+            {
+                dockContent = mainPanel.GetPreviousDocument() ?? mainPanel.GetLastDocument();
+            }
+            else if (keyData == (Keys.Control | Keys.PageDown) || keyData == (Keys.Control | Keys.F6))
+            {
+                dockContent = mainPanel.GetNextDocument() ?? mainPanel.GetFirstDocument();
+            }
+            else if (keyData == (Keys.Control | Keys.Tab))
+            {
+                this.ToDo("Switch to previous document, bonus points for a pop-up list");
+            }
+
+            if (dockContent != null)
+            {
+                dockContent.DockHandler.Activate();
+                keyEventArgs.Handled = true;
+            }            
+        }
+
         void Main_KeyUp(object sender, KeyEventArgs keyEventArgs)
         {
             Func<IHistoryContainer, bool> canMove = null;
             Action<IHistoryContainer> move = null;
+
             var keyData = keyEventArgs.KeyData;
             if (keyData == Keys.BrowserBack || keyData == (Keys.Alt | Keys.Left))
             {
