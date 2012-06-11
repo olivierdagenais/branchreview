@@ -52,5 +52,18 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Collections
             Assert.AreEqual(2, mru.Count);
             EnumerableExtensions.EnumerateSame(new [] {"two", "one"}, mru);
         }
+
+        [Test]
+        public void Add_TwoItems_OneMostRecentlyUsed()
+        {
+            var mru = new MostRecentlyUsedCollection<String>();
+            mru.Add("one");
+            mru.Add("two");
+
+            mru.Add("one");
+            
+            Assert.AreEqual(2, mru.Count);
+            EnumerableExtensions.EnumerateSame(new [] {"one", "two"}, mru);
+        }
     }
 }
