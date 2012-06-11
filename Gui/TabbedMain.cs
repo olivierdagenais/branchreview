@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
+using SoftwareNinjas.BranchAndReviewTools.Gui.Collections;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Components;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 using SoftwareNinjas.BranchAndReviewTools.Gui.History;
@@ -21,10 +22,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private readonly IShelvesetRepository _shelvesetRepository;
         private readonly LinkedList<StatusMessage> _statusMessages = new LinkedList<StatusMessage>();
         private readonly Throttler _statusThrottle;
+        private readonly MostRecentlyUsedCollection<IDockContent> _activationOrder =
+            new MostRecentlyUsedCollection<IDockContent>();
 
         public TabbedMain()
         {
             InitializeComponent();
+            mainPanel.ActiveContentChanged += mainPanel_ActiveContentChanged;
+            mainPanel.ContentRemoved += new EventHandler<DockContentEventArgs>(mainPanel_ContentRemoved);
             Load += Main_Load;
             FormClosing += Main_Closing;
             _statusThrottle = new Throttler(100, UpdateStatusBar);
@@ -66,6 +71,22 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
             RegisterComponents();
             mainPanel.DocumentStyle = DocumentStyle.DockingWindow;
+        }
+
+        void mainPanel_ContentRemoved(object sender, DockContentEventArgs e)
+        {
+            if (e.Content != null)
+            {
+                _activationOrder.Remove(e.Content);
+            }
+        }
+
+        void mainPanel_ActiveContentChanged(object sender, EventArgs e)
+        {
+            if (mainPanel.ActiveContent != null)
+            {
+                _activationOrder.Add(mainPanel.ActiveContent);
+            }
         }
 
         private void RegisterComponents()
@@ -131,7 +152,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
             else if (keyData == (Keys.Control | Keys.Tab))
             {
-                this.ToDo("Switch to previous document, bonus points for a pop-up list");
+                dockContent = _activationOrder.Penultimate;
             }
 
             if (dockContent != null)
