@@ -8,10 +8,20 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
     {
         public static DataRow FindFirst(this DataTable dataTable, string columnName, object needle)
         {
+            var needleValue = needle.ToString();
+            var result = FindFirstOrDefault(dataTable, columnName, needleValue);
+            if (result == null)
+            {
+                throw new ArgumentException("Could not find {0}".FormatInvariant(needleValue));
+            }
+            return result;
+        }
+
+        public static DataRow FindFirstOrDefault(this DataTable dataTable, string columnName, string needleValue)
+        {
             DataRow result = null;
             var dc = dataTable.Columns[columnName];
             var columnType = dc.DataType;
-            var needleValue = needle.ToString();
             var chunk = new FilterChunk(needleValue);
             foreach (DataRow dataRow in dataTable.Rows)
             {
@@ -38,10 +48,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
                     result = dataRow;
                     break;
                 }
-            }
-            if (result == null)
-            {
-                throw new ArgumentException("Could not find {0}".FormatInvariant(needleValue));
             }
             return result;
         }

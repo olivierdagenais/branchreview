@@ -351,7 +351,31 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     }
                     break;
                 case ProgramAction.InspectShelveset:
-                    this.ToDo("Launch a ShelvesetInspector on the shelveset names specified by the {0} extra parameters", extra.Count);
+                    if (_shelvesetRepository != null)
+                    {
+                        var shelvesetTable = _shelvesetRepository.LoadShelvesets();
+                        foreach (var potentialShelvesetId in extra)
+                        {
+                            var dataRow = shelvesetTable.FindFirstOrDefault("ID", potentialShelvesetId);
+                            var shelvesetId = potentialShelvesetId;
+                            if (dataRow != null)
+                            {
+                                AddComponent((tr, sor, shr) =>
+                                {
+                                    var result = new ShelvesetInspector(tr, sor, shr)
+                                    {
+                                        ShelvesetId = shelvesetId,
+                                        Title = (string) dataRow["Name"],
+                                    };
+                                    return result;
+                                });
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.ToDo("We may want to advise the user that the operation could not be completed");
+                    }
                     break;
             }
         }
