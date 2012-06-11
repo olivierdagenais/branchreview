@@ -65,5 +65,17 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Collections
             Assert.AreEqual(2, mru.Count);
             EnumerableExtensions.EnumerateSame(new [] {"one", "two"}, mru);
         }
+
+        [Test]
+        public void Remove_Exists()
+        {
+            var mru = new MostRecentlyUsedCollection<String>();
+            mru.Add("one");
+            mru.Add("two");
+
+            var actual = mru.Remove("one");
+
+            Assert.AreEqual(true, actual);
+        }
     }
 }

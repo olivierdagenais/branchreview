@@ -47,7 +47,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Collections
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            return _list.Remove(item);
         }
 
         public int Count
