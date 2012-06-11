@@ -78,6 +78,12 @@
     <Compile Include="Components\ShelvesetBrowser.Designer.cs">
       <DependentUpon>ShelvesetBrowser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\ShelvesetInspector.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\ShelvesetInspector.Designer.cs">
+      <DependentUpon>ShelvesetInspector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\TaskBrowser.cs">
       <SubType>Component</SubType>
     </Compile>

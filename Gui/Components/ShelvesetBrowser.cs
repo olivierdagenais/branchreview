@@ -13,6 +13,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
         private readonly ITaskRepository _taskRepository;
         private readonly ISourceRepository _sourceRepository;
         private readonly IShelvesetRepository _shelvesetRepository;
+        private readonly ShelvesetInspector _shelvesetInspector;
 
         public ShelvesetBrowser
         (ITaskRepository taskRepository, ISourceRepository sourceRepository, IShelvesetRepository shelvesetRepository)
@@ -20,6 +21,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             _taskRepository = taskRepository;
             _sourceRepository = sourceRepository;
             _shelvesetRepository = shelvesetRepository;
+
+            _shelvesetInspector = new ShelvesetInspector(taskRepository, sourceRepository, shelvesetRepository);
 
             InitializeComponent();
             shelvesetGrid.Grid.MultiSelect = false;
@@ -30,7 +33,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
 
         private void SetCurrentShelveset(object shelvesetId, string shelvesetName)
         {
-            this.ToDo("Create a ShelvesetInspector, initialize it for shelveset {0} and push it", shelvesetId);
+            _shelvesetInspector.ShelvesetId = shelvesetId;
+            _shelvesetInspector.Title = shelvesetName;
+            var historyItem = (IHistoryItem) this;
+            historyItem.Container.Push(_shelvesetInspector);
         }
 
         private void SwitchCurrentTab(bool refresh)
