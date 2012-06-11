@@ -72,6 +72,12 @@
     <Compile Include="Components\RevisionBrowser.Designer.cs">
       <DependentUpon>RevisionBrowser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\ShelvesetBrowser.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\ShelvesetBrowser.Designer.cs">
+      <DependentUpon>ShelvesetBrowser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\TaskBrowser.cs">
       <SubType>Component</SubType>
     </Compile>
