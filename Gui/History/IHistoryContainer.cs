@@ -10,5 +10,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.History
         void GoBack();
         bool CanGoForward { get; }
         void GoForward();
+        IHistoryItem Current { get; }
     }
 }

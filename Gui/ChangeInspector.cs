@@ -186,6 +186,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         public string Title { get; set; }
 
+        public void Reload()
+        {
+            RefreshFileGrid();
+        }
+
         #endregion
     }
 }

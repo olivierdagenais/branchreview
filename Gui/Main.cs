@@ -303,29 +303,47 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
             else if (tabs.SelectedTab == branchesTab)
             {
-                if (branchGrid.DataTable == null || refresh)
+                if (branchHistory.Current == branchGrid)
                 {
-                    branchGrid.DataTable = _sourceRepository.LoadBranches();
-                    var branchCount = branchGrid.DataTable.Rows.Count;
-                    branchGrid.Caption = "{0} branch{1}".FormatInvariant(branchCount, branchCount == 1 ? "" : "es");
+                    if (branchGrid.DataTable == null || refresh)
+                    {
+                        branchGrid.DataTable = _sourceRepository.LoadBranches();
+                        var branchCount = branchGrid.DataTable.Rows.Count;
+                        branchGrid.Caption = "{0} branch{1}".FormatInvariant(branchCount, branchCount == 1 ? "" : "es");
+                    }
                 }
-                controlToFocus = branchGrid;
+                else if (branchHistory.Current == activityRevisions)
+                {
+                    // TODO: Something like SetCurrentBranch(), but without the .Push()
+                }
+                else if (branchHistory.Current == activityChangeInspector)
+                {
+                    activityChangeInspector.Reload();
+                }
+                controlToFocus = branchHistory;
             }
             else if (tabs.SelectedTab == commitTab)
             {
                 pendingChanges.Context = _currentBranchId;
+                pendingChanges.Reload();
                 controlToFocus = pendingChanges;
             }
             else if (tabs.SelectedTab == shelvesetsTab)
             {
-                if (shelvesetGrid.DataTable == null || refresh)
+                if (shelvesetHistory.Current == shelvesetGrid)
                 {
-                    shelvesetGrid.DataTable = _shelvesetRepository.LoadShelvesets();
-                    var shelvesetCount = shelvesetGrid.DataTable.Rows.Count;
-                    shelvesetGrid.Caption = "{0} shelveset{1}".FormatInvariant(shelvesetCount, shelvesetCount == 1 ? "" : "s");
+                    if (shelvesetGrid.DataTable == null || refresh)
+                    {
+                        shelvesetGrid.DataTable = _shelvesetRepository.LoadShelvesets();
+                        var shelvesetCount = shelvesetGrid.DataTable.Rows.Count;
+                        shelvesetGrid.Caption = "{0} shelveset{1}".FormatInvariant(shelvesetCount, shelvesetCount == 1 ? "" : "s");
+                    }
                 }
-
-                controlToFocus = shelvesetGrid;
+                else if (shelvesetHistory.Current == shelvesetChangeInspector)
+                {
+                    shelvesetChangeInspector.Reload();
+                }
+                controlToFocus = shelvesetHistory;
             }
 
             if (controlToFocus != null)

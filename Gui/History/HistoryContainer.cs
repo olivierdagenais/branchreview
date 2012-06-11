@@ -78,6 +78,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.History
             UpdateAfterForwardOrPush();
         }
 
+        public IHistoryItem Current { get { return _breadCrumbs.Last; } }
         #endregion
 
         private void PopTo(Control control)

@@ -317,6 +317,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Grids
 
         public string Title { get; set; }
 
+        public void Reload()
+        {
+            // do nothing, because AwesomeGrid won't implement IHistoryItem much longer
+        }
         #endregion
     }
 }

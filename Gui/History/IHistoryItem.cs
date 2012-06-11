@@ -7,5 +7,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.History
         IHistoryContainer Container { get; set; }
         Control Control { get; }
         string Title { get; }
+        void Reload();
     }
 }
