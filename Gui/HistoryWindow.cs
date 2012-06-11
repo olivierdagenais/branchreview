@@ -12,6 +12,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             historyContainer.Push(historyItem);
         }
 
+        public IHistoryContainer HistoryContainer { get { return historyContainer; } }
+
         void historyContainer_Navigated(object sender, System.EventArgs e)
         {
             this.Text = historyContainer.Current.Title;

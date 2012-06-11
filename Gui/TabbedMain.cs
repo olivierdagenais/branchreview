@@ -111,8 +111,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
             if (canMove != null && move != null)
             {
-                IHistoryContainer container = null;
-                this.ToDo("Initialize container");
+                var pane = mainPanel.ActivePane;
+                var historyWindow = (HistoryWindow) pane.ActiveContent;
+                var container = historyWindow.HistoryContainer;
 
                 if (container != null)
                 {
