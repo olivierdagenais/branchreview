@@ -14,6 +14,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
         private readonly ISourceRepository _sourceRepository;
         private readonly IShelvesetRepository _shelvesetRepository;
         private readonly ChangeInspector _pendingChanges;
+        private readonly RevisionBrowser _revisionBrowser;
 
         public BranchBrowser
         (ITaskRepository taskRepository, ISourceRepository sourceRepository, IShelvesetRepository shelvesetRepository)
@@ -29,6 +30,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
                 MessageFunction = null,
             };
             _pendingChanges.ChangeLog.KeyDown += ChangeLog_KeyDown;
+
+            _revisionBrowser = new RevisionBrowser(_taskRepository, _sourceRepository, _shelvesetRepository);
 
             InitializeComponent();
             branchGrid.Grid.MultiSelect = false;
@@ -56,16 +59,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
 
         private void SetCurrentBranch(object branchId, object taskId)
         {
-            this.ToDo("Create a single instance of RevisionBrowser and re-use it with different context");
             var branchTitle = branchId.ToString();
             this.ToDo("Determine a better title than {0}", branchTitle);
-            var revisionBrowser = 
-                new RevisionBrowser(_taskRepository, _sourceRepository, _shelvesetRepository, branchId)
-                {
-                    Title = branchTitle,
-                };
+            _revisionBrowser.Title = branchTitle;
+            _revisionBrowser.BranchId = branchId;
             var historyItem = (IHistoryItem) this;
-            historyItem.Container.Push(revisionBrowser);
+            historyItem.Container.Push(_revisionBrowser);
         }
 
         private void StartWorkOnBranch(object branchId, object taskId)

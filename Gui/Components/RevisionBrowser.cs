@@ -13,20 +13,27 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
         private readonly ITaskRepository _taskRepository;
         private readonly ISourceRepository _sourceRepository;
         private readonly IShelvesetRepository _shelvesetRepository;
-        private readonly object _branchId;
+        private object _branchId;
 
         public RevisionBrowser
-        (ITaskRepository taskRepository, ISourceRepository sourceRepository, IShelvesetRepository shelvesetRepository,
-            object branchId)
+        (ITaskRepository taskRepository, ISourceRepository sourceRepository, IShelvesetRepository shelvesetRepository)
         {
             _taskRepository = taskRepository;
             _sourceRepository = sourceRepository;
             _shelvesetRepository = shelvesetRepository;
-            _branchId = branchId;
 
             InitializeComponent();
             activityRevisions.Grid.MultiSelect = false;
-            this.ExecuteLater(10, () => SwitchCurrentTab(true));
+        }
+
+        public object BranchId
+        {
+            get { return _branchId; }
+            set 
+            {
+                _branchId = value;
+                this.ExecuteLater(10, () => SwitchCurrentTab(true));
+            }
         }
 
         #region Common
