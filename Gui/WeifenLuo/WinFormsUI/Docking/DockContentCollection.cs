@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace WeifenLuo.WinFormsUI.Docking
+namespace SoftwareNinjas.BranchAndReviewTools.Gui.WeifenLuo.WinFormsUI.Docking
 {
     public class DockContentCollection : ReadOnlyCollection<IDockContent>
     {

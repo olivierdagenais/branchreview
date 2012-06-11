@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.Windows.Forms.VisualStyles;
 
-namespace WeifenLuo.WinFormsUI.Docking
+namespace SoftwareNinjas.BranchAndReviewTools.Gui.WeifenLuo.WinFormsUI.Docking
 {
 	internal class VS2005DockPaneCaption : DockPaneCaptionBase
 	{

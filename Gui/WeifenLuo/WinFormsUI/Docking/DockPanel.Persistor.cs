@@ -2,13 +2,13 @@ using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing;
-using WeifenLuo.WinFormsUI.Docking;
+using SoftwareNinjas.BranchAndReviewTools.Gui.WeifenLuo.WinFormsUI.Docking;
 using System.IO;
 using System.Text;
 using System.Xml;
 using System.Globalization;
 
-namespace WeifenLuo.WinFormsUI.Docking
+namespace SoftwareNinjas.BranchAndReviewTools.Gui.WeifenLuo.WinFormsUI.Docking
 {
     partial class DockPanel
     {

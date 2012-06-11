@@ -1,5 +1,5 @@
 ﻿using SoftwareNinjas.BranchAndReviewTools.Gui.History;
-using WeifenLuo.WinFormsUI.Docking;
+using SoftwareNinjas.BranchAndReviewTools.Gui.WeifenLuo.WinFormsUI.Docking;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {

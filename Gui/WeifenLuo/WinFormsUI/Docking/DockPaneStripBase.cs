@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Security.Permissions;
 using System.Diagnostics.CodeAnalysis;
 
-namespace WeifenLuo.WinFormsUI.Docking
+namespace SoftwareNinjas.BranchAndReviewTools.Gui.WeifenLuo.WinFormsUI.Docking
 {
 	public abstract class DockPaneStripBase : Control
 	{

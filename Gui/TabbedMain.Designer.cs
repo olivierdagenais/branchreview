@@ -31,7 +31,7 @@
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusBarText = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBarProgress = new System.Windows.Forms.ToolStripProgressBar();
-            this.mainPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.mainPanel = new SoftwareNinjas.BranchAndReviewTools.Gui.WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.menuStrip = new System.Windows.Forms.MainMenu();
             this.fileMenu = new System.Windows.Forms.MenuItem();
             this.exitMenuItem = new System.Windows.Forms.MenuItem();
@@ -145,7 +145,7 @@
         private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.ToolStripStatusLabel statusBarText;
         private System.Windows.Forms.ToolStripProgressBar statusBarProgress;
-        private WeifenLuo.WinFormsUI.Docking.DockPanel mainPanel;
+        private SoftwareNinjas.BranchAndReviewTools.Gui.WeifenLuo.WinFormsUI.Docking.DockPanel mainPanel;
         private System.Windows.Forms.MainMenu menuStrip;
         private System.Windows.Forms.MenuItem fileMenu;
         private System.Windows.Forms.MenuItem exitMenuItem;

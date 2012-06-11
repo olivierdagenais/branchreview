@@ -1,6 +1,6 @@
 using System;
 
-namespace WeifenLuo.WinFormsUI.Docking.Win32
+namespace SoftwareNinjas.BranchAndReviewTools.Gui.WeifenLuo.WinFormsUI.Docking.Win32
 {
 	[Flags]
 	internal enum FlagsSetWindowPos : uint

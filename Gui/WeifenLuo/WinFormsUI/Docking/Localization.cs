@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 
-namespace WeifenLuo.WinFormsUI.Docking
+namespace SoftwareNinjas.BranchAndReviewTools.Gui.WeifenLuo.WinFormsUI.Docking
 {
 	[AttributeUsage(AttributeTargets.All)]
 	internal sealed class LocalizedDescriptionAttribute : DescriptionAttribute

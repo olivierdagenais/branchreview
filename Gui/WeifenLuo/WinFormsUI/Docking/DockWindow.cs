@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
 
-namespace WeifenLuo.WinFormsUI.Docking
+namespace SoftwareNinjas.BranchAndReviewTools.Gui.WeifenLuo.WinFormsUI.Docking
 {
 	[ToolboxItem(false)]
 	public partial class DockWindow : Panel, INestedPanesContainer, ISplitterDragSource

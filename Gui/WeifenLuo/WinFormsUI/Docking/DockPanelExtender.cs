@@ -2,7 +2,7 @@ using System;
 using System.Drawing;
 using System.Diagnostics.CodeAnalysis;
 
-namespace WeifenLuo.WinFormsUI.Docking
+namespace SoftwareNinjas.BranchAndReviewTools.Gui.WeifenLuo.WinFormsUI.Docking
 {
 	public sealed class DockPanelExtender
 	{

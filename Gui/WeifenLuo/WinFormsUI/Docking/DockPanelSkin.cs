@@ -7,7 +7,7 @@ using System.Drawing.Design;
 using System.Windows.Forms.Design;
 using System.ComponentModel;
 
-namespace WeifenLuo.WinFormsUI.Docking
+namespace SoftwareNinjas.BranchAndReviewTools.Gui.WeifenLuo.WinFormsUI.Docking
 {
     #region DockPanelSkin classes
     /// <summary>
