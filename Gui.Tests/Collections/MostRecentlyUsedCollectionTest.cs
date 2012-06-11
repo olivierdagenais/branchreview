@@ -107,5 +107,17 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Tests.Collections
 
             Assert.AreEqual(0, mru.Count);
         }
+
+        [Test]
+        public void Clear_WithItems()
+        {
+            var mru = new MostRecentlyUsedCollection<String>();
+            mru.Add("one");
+            mru.Add("two");
+
+            mru.Clear();
+
+            Assert.AreEqual(0, mru.Count);
+        }
     }
 }
