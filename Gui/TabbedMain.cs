@@ -325,7 +325,31 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     }
                     break;
                 case ProgramAction.BrowseBranchRevisions:
-                    this.ToDo("Launch a RevisionBrowser on the branches specified by the {0} extra parameters", extra.Count);
+                    if (_sourceRepository != null)
+                    {
+                        var branchesTable = _sourceRepository.LoadBranches();
+                        foreach (var potentialBranchId in extra)
+                        {
+                            var dataRow = branchesTable.FindFirstOrDefault("ID", potentialBranchId);
+                            if (dataRow != null)
+                            {
+                                var branchId = potentialBranchId;
+                                AddComponent((tr, sor, shr) =>
+                                {
+                                    var result = new RevisionBrowser(tr, sor, shr)
+                                    {
+                                        BranchId = branchId,
+                                        Title = branchId,
+                                    };
+                                    return result;
+                                });
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.ToDo("We may want to advise the user that the operation could not be completed");
+                    }
                     break;
                 case ProgramAction.InspectRevision:
                     this.ToDo("Launch a RevisionInspector on the revisions specified by the {0} extra parameters", extra.Count);
