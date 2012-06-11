@@ -179,6 +179,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 SwitchWindow();
                 _handledControlTab = true;
             }
+            else if (keyData == (Keys.Control | Keys.F4) || keyData == (Keys.Control | Keys.W))
+            {
+                mainPanel.ActiveDocument.DockHandler.Close();
+            }
 
             if (dockContent != null)
             {
