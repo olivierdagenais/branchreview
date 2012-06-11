@@ -42,7 +42,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Collections
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public bool Remove(T item)
