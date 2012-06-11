@@ -112,6 +112,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             if (canMove != null && move != null)
             {
                 IHistoryContainer container = null;
+                this.ToDo("Initialize container");
 
                 if (container != null)
                 {
@@ -126,7 +127,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         public void Start(IEnumerable<string> arguments)
         {
-            // TODO: parse arguments and do something with them.
+            this.ToDo("Parse arguments and do something with them");
         }
 
         #region Menu items
@@ -138,7 +139,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void refreshMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO: push refresh event to current tab
+            this.ToDo("Push refresh event to current tab");
         }
 
         #endregion
