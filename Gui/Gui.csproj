@@ -45,6 +45,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.XML" />
@@ -152,7 +153,159 @@
     </Content>
     <Content Include="ScintillaNet.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockPanel.SplitterDragHandler.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockPanel.DragHandler.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DragForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockPanel.MdiClientController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\AutoHideStripBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\InertButtonBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockPanelSkin.cs">
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\VS2005AutoHideStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockPanel.AutoHideWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\VisibleNestedPaneCollection.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockAreasEditor.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockContent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockContentCollection.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockContentHandler.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockPanel.DockDragHandler.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\Helpers\DockHelper.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\NestedPaneCollection.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockOutlineBase.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockPaneCaptionBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\VS2005DockPaneCaption.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockPaneCollection.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockPanelExtender.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockPanel.Persistor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockPane.SplitterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockPaneStripBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\VS2005DockPaneStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockWindowCollection.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockWindow.SplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DummyControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\Enums.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockContentEventArgs.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\FloatWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\FloatWindowCollection.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\DockPanel.FocusManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\Interfaces.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\Measures.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\NestedDockingStatus.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\SplitterBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\Helpers\DrawHelper.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\Localization.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\Helpers\ResourceHelper.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\Helpers\Win32Helper.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\Win32\Enums.cs" />
+    <Compile Include="WeifenLuo\WinFormsUI\Docking\Win32\NativeMethods.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="WeifenLuo\WinFormsUI\Docking\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WeifenLuo\WinFormsUI\Docking\Strings.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockIndicator_PaneDiamond.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockIndicator_PaneDiamond_Bottom.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\Dockindicator_PaneDiamond_Fill.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockIndicator_PaneDiamond_Hotspot.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockIndicator_PaneDiamond_HotspotIndex.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockIndicator_PaneDiamond_Left.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockIndicator_PaneDiamond_Right.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockIndicator_PaneDiamond_Top.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockIndicator_PanelBottom.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockIndicator_PanelBottom_Active.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockIndicator_PanelFill.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockIndicator_PanelFill_Active.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockIndicator_PanelLeft.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockIndicator_PanelLeft_Active.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockIndicator_PanelRight.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockIndicator_PanelRight_Active.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockIndicator_PanelTop.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockIndicator_PanelTop_Active.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="WeifenLuo\WinFormsUI\license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockPane_AutoHide.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockPane_Close.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockPane_Dock.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockPane_Option.bmp" />
+    <None Include="WeifenLuo\WinFormsUI\Docking\Resources\DockPane_OptionOverflow.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="WeifenLuo\WinFormsUI\Docking\DockPanel.bmp" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{E16DEA44-4FD9-4B61-82F3-E40273345052}</Project>
