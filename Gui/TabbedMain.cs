@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Composition.Hosting;
 using System.Drawing;
-using System.Globalization;
 using System.Windows.Forms;
 using NDesk.Options;
 using SoftwareNinjas.BranchAndReviewTools.Core;
