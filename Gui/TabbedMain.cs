@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.Composition.Hosting;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using NDesk.Options;
 using SoftwareNinjas.BranchAndReviewTools.Core;
@@ -145,7 +146,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             WindowState = 
                 this.LoadSetting(() => WindowState, FormWindowState.Normal, EnumExtensions.Parse<FormWindowState>);
 
-            Start(Environment.GetCommandLineArgs());
+            Start(Environment.GetCommandLineArgs().Skip(1));
         }
 
         void Main_Closing(object sender, CancelEventArgs e)
