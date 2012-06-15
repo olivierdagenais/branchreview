@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Composition.Hosting;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using NDesk.Options;
 using SoftwareNinjas.BranchAndReviewTools.Core;
@@ -11,6 +12,7 @@ using SoftwareNinjas.BranchAndReviewTools.Gui.Components;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 using SoftwareNinjas.BranchAndReviewTools.Gui.History;
 using SoftwareNinjas.BranchAndReviewTools.Gui.WeifenLuo.WinFormsUI.Docking;
+using SoftwareNinjas.Core;
 using EnumExtensions = SoftwareNinjas.BranchAndReviewTools.Gui.Extensions.EnumExtensions;
 using Resources = SoftwareNinjas.BranchAndReviewTools.Gui.Properties.Resources;
 
@@ -38,41 +40,35 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             Load += Main_Load;
             FormClosing += Main_Closing;
             _statusThrottle = new Throttler(100, UpdateStatusBar);
+            var repositoriesFolder = Environment.CurrentDirectory.CombinePath("Repositories");
+            if (Directory.Exists(repositoriesFolder))
+            {
+                var catalog = new DirectoryCatalog(repositoriesFolder);
+                var container = new CompositionContainer(catalog);
+                _taskRepository = container.GetExportedValueOrDefault<ITaskRepository>();
+                _sourceRepository = container.GetExportedValueOrDefault<ISourceRepository>();
+                _shelvesetRepository = container.GetExportedValueOrDefault<IShelvesetRepository>();
+            }
             #if DEBUG
-            _taskRepository = new Core.Mock.TaskRepository();
-            _sourceRepository = new Core.Mock.SourceRepository();
-            _shelvesetRepository = new Core.Mock.ShelvesetRepository();
-            #else
-            var catalog = new DirectoryCatalog("Repositories");
-            var container = new CompositionContainer(catalog);
-            _taskRepository = container.GetExportedValueOrDefault<ITaskRepository>();
-            _sourceRepository = container.GetExportedValueOrDefault<ISourceRepository>();
-            _shelvesetRepository = container.GetExportedValueOrDefault<IShelvesetRepository>();
+            _taskRepository = _taskRepository ?? new Core.Mock.TaskRepository();
+            _sourceRepository = _sourceRepository ?? new Core.Mock.SourceRepository();
+            _shelvesetRepository = _shelvesetRepository ?? new Core.Mock.ShelvesetRepository();
             #endif
 
-            // ReSharper disable HeuristicUnreachableCode
-            // ReSharper disable ConditionIsAlwaysTrueOrFalse
             if (_sourceRepository != null)
-            // ReSharper restore ConditionIsAlwaysTrueOrFalse
             {
                 _sourceRepository.Log = this;
             }
 
-            // ReSharper disable ConditionIsAlwaysTrueOrFalse
             if (_taskRepository != null)
-            // ReSharper restore ConditionIsAlwaysTrueOrFalse
             {
                 _taskRepository.Log = this;
             }
 
-            // ReSharper disable ConditionIsAlwaysTrueOrFalse
             if (_shelvesetRepository != null)
-            // ReSharper restore ConditionIsAlwaysTrueOrFalse
             {
                 _shelvesetRepository.Log = this;
             }
-
-            // ReSharper restore HeuristicUnreachableCode
 
             RegisterComponents();
             mainPanel.DocumentStyle = DocumentStyle.DockingWindow;
