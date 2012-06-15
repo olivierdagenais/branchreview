@@ -13,6 +13,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
         private readonly ITaskRepository _taskRepository;
         private readonly ISourceRepository _sourceRepository;
         private readonly IShelvesetRepository _shelvesetRepository;
+        private readonly RevisionInspector _revisionInspector;
         private object _branchId;
 
         public RevisionBrowser
@@ -21,6 +22,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             _taskRepository = taskRepository;
             _sourceRepository = sourceRepository;
             _shelvesetRepository = shelvesetRepository;
+
+            _revisionInspector = new RevisionInspector(taskRepository, sourceRepository, shelvesetRepository);
 
             InitializeComponent();
             activityRevisions.Grid.MultiSelect = false;
@@ -84,8 +87,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
 
         private void SetCurrentRevision(object revisionId)
         {
-            this.ToDo("Create a ChangeInspector, initialize it with {0} and associated call-backs, push", revisionId);
-            this.ToDo("Determine the revision name from {0} to initialize ChangeInspector.Title with", revisionId);
+            _revisionInspector.RevisionId = revisionId;
+            _revisionInspector.Title = revisionId.ToString();
+            var historyItem = (IHistoryItem) this;
+            historyItem.Container.Push(_revisionInspector);
         }
 
         private void activityRevisions_RowInvoked(object sender, EventArgs e)
