@@ -397,23 +397,18 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 case ProgramAction.InspectShelveset:
                     if (_shelvesetRepository != null)
                     {
-                        var shelvesetTable = _shelvesetRepository.LoadShelvesets();
                         foreach (var potentialShelvesetId in extra)
                         {
-                            var dataRow = shelvesetTable.FindFirstOrDefault("ID", potentialShelvesetId);
                             var shelvesetId = potentialShelvesetId;
-                            if (dataRow != null)
+                            AddComponent((tr, sor, shr) =>
                             {
-                                AddComponent((tr, sor, shr) =>
+                                var result = new ShelvesetInspector(tr, sor, shr)
                                 {
-                                    var result = new ShelvesetInspector(tr, sor, shr)
-                                    {
-                                        ShelvesetId = shelvesetId,
-                                        Title = (string) dataRow["Name"],
-                                    };
-                                    return result;
-                                });
-                            }
+                                    ShelvesetId = shelvesetId,
+                                    Title = shelvesetId,
+                                };
+                                return result;
+                            });
                         }
                     }
                     else
