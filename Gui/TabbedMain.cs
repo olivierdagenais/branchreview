@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 using NDesk.Options;
 using SoftwareNinjas.BranchAndReviewTools.Core;
@@ -352,7 +353,29 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     }
                     break;
                 case ProgramAction.InspectRevision:
-                    this.ToDo("Launch a RevisionInspector on the revisions specified by the {0} extra parameters", extra.Count);
+                    if (_sourceRepository != null)
+                    {
+                        foreach (var potentialRevisionId in extra)
+                        {
+                            Int32 revisionId;
+                            if (Int32.TryParse(potentialRevisionId, out revisionId))
+                            {
+                                AddComponent((tr, sor, shr) =>
+                                {
+                                    var result = new RevisionInspector(tr, sor, shr)
+                                    {
+                                        RevisionId = revisionId,
+                                        Title = Convert.ToString(revisionId, 10),
+                                    };
+                                    return result;
+                                });
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.ToDo("We may want to advise the user that the operation could not be completed");
+                    }
                     break;
                 case ProgramAction.Commit:
                     if (_sourceRepository != null)
