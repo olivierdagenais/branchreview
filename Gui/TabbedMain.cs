@@ -377,7 +377,19 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 case ProgramAction.Commit:
                     if (_sourceRepository != null)
                     {
-                        AddComponent((tr, sor, shr) => new ChangeCommitter(tr, sor, shr) { Title = "Commit" });
+                        foreach (var potentialBranchId in extra)
+                        {
+                            var branchId = potentialBranchId;
+                            AddComponent((tr, sor, shr) =>
+                            {
+                                var result = new ChangeCommitter(tr, sor, shr)
+                                {
+                                    BranchId = branchId,
+                                    Title = branchId,
+                                };
+                                return result;
+                            });
+                        }
                     }
                     else
                     {
