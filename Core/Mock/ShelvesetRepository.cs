@@ -45,11 +45,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
 
         DataTable IShelvesetRepository.LoadShelvesets()
         {
-            const int items = 1000;
+            const int items = 100;
             for (var i = 0; i < items; i++)
             {
-                Info("Loading shelvesets", i, items);
-                Thread.Sleep(TimeSpan.FromMilliseconds(1));
+                Info("Loading shelvesets", i, items - 1);
+                Thread.Sleep(TimeSpan.FromMilliseconds(10));
             }
             return _shelvesets;
         }
