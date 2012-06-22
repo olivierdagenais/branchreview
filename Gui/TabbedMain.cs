@@ -440,7 +440,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void refreshMenuItem_Click(object sender, EventArgs e)
         {
-            this.ToDo("Push refresh event to current tab");
+            var historyWindow = mainPanel.ActiveDocument as HistoryWindow;
+            if (historyWindow != null)
+            {
+                var historyContainer = historyWindow.HistoryContainer;
+                var currentHistoryItem = historyContainer.Current;
+                currentHistoryItem.Reload();
+            }
         }
 
         #endregion
