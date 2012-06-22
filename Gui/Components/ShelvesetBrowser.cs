@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
@@ -43,12 +45,19 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
         {
             if (shelvesetGrid.DataTable == null || refresh)
             {
-                shelvesetGrid.DataTable = _shelvesetRepository.LoadShelvesets();
+                this.StartTask(() => _shelvesetRepository.LoadShelvesets(), LoadDataTable);
+            }
+        }
+
+        private void LoadDataTable(Task<DataTable> task)
+        {
+            if (!task.IsFaulted)
+            {
+                shelvesetGrid.DataTable = task.Result;
                 var shelvesetCount = shelvesetGrid.DataTable.Rows.Count;
                 shelvesetGrid.Caption = "{0} shelveset{1}".FormatInvariant(shelvesetCount, shelvesetCount == 1 ? "" : "s");
+                this.ExecuteLater(10, () => shelvesetGrid.Focus());
             }
-
-            this.ExecuteLater(10, () => shelvesetGrid.Focus());
         }
 
         #endregion

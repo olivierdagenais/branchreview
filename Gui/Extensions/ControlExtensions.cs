@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using SoftwareNinjas.Core;
@@ -72,6 +73,21 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
                 }
             };
             delayedWorker.Start();
+        }
+
+        public static void StartTask<T>(this Control control, Func<T> backgroundWork, Action<Task<T>> guiContinuation)
+        {
+            Task.Factory.StartNew(backgroundWork).ContinueWith(t =>
+            {
+                if (control.InvokeRequired)
+                {
+                    control.Invoke(new Action(() => guiContinuation(t)));
+                }
+                else
+                {
+                    guiContinuation(t);
+                }
+            });
         }
     }
 }

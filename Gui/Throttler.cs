@@ -27,7 +27,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             if (_control.InvokeRequired)
             {
-                _control.Invoke(new Action<object, EventArgs>(Tick));
+                _control.Invoke(new Action<object, EventArgs>(Tick), sender, e);
             }
             else
             {
@@ -49,7 +49,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     _timer.Start();
                 }
             }
-            Application.DoEvents();
         }
     }
 }
