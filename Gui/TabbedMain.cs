@@ -27,6 +27,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private readonly IShelvesetRepository _shelvesetRepository;
         private readonly LinkedList<StatusMessage> _statusMessages = new LinkedList<StatusMessage>();
         private readonly Throttler _statusThrottle;
+        private readonly Timer _statusCleaner = new Timer { Interval = 2000 };
         private readonly MostRecentlyUsedCollection<IDockContent> _activationOrder =
             new MostRecentlyUsedCollection<IDockContent>();
         private IDockContent _toActivate;
@@ -41,6 +42,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             Load += Main_Load;
             FormClosing += Main_Closing;
             _statusThrottle = new Throttler(this, 100, UpdateStatusBar);
+            _statusCleaner.Tick += statusCleaner_Tick;
             var repositoriesFolder = Environment.CurrentDirectory.CombinePath("Repositories");
             if (Directory.Exists(repositoriesFolder))
             {
@@ -509,6 +511,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         // depending on the log type
         private void UpdateStatusBar()
         {
+            _statusCleaner.Stop();
             StatusMessage last;
             lock (_statusMessages)
             {
@@ -530,6 +533,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                             statusBarProgress.Style = ProgressBarStyle.Continuous;
                             statusBarProgress.Maximum = last.ProgressMaximumValue.Value;
                             statusBarProgress.Value = last.ProgressValue.Value;
+                            if (last.ProgressMaximumValue.Value == last.ProgressValue.Value)
+                            {
+                                // An operation completed entirely, let's schedule a clean-up of the status area...
+                                _statusCleaner.Start();
+                            }
                         }
                     }
                     break;
@@ -546,6 +554,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        void statusCleaner_Tick(object sender, EventArgs e)
+        {
+            _statusCleaner.Stop();
+            statusBarText.Text = "Ready";
+            statusBarProgress.Value = 0;
         }
 
         #endregion
