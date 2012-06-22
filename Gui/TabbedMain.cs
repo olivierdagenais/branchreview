@@ -535,10 +535,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     break;
                 case StatusKind.Warning:
                     statusBarText.Image = Resources.dialog_warning;
+                    statusBarProgress.Style = ProgressBarStyle.Continuous;
                     statusBarProgress.Value = 0;
                     break;
                 case StatusKind.Error:
                     statusBarText.Image = Resources.dialog_error;
+                    statusBarProgress.Style = ProgressBarStyle.Continuous;
                     statusBarProgress.Value = 0;
                     break;
                 default:
