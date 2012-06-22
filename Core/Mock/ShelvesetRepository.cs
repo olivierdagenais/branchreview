@@ -4,6 +4,7 @@ using System.ComponentModel.Composition;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using SoftwareNinjas.Core;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
@@ -40,11 +41,25 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
             }
         };
 
-        ILog IShelvesetRepository.Log { get; set; }
+        public ILog Log { get; set; }
 
         DataTable IShelvesetRepository.LoadShelvesets()
         {
+            const int items = 1000;
+            for (var i = 0; i < items; i++)
+            {
+                Info("Loading shelvesets", i, items);
+                Thread.Sleep(TimeSpan.FromMilliseconds(1));
+            }
             return _shelvesets;
+        }
+
+        private void Info(string message, int progressValue, int progressMaximum)
+        {
+            if (Log != null)
+            {
+                Log.Info(message, progressValue, progressMaximum);
+            }
         }
 
         IList<MenuAction> IShelvesetRepository.GetShelvesetActions()

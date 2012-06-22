@@ -47,8 +47,8 @@
             // 
             this.statusBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusBarText,
-            this.statusBarProgress});
+            this.statusBarProgress,
+            this.statusBarText});
             this.statusBar.Location = new System.Drawing.Point(0, 551);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(792, 22);

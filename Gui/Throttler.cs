@@ -29,8 +29,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         public void Fire()
         {
-            _timer.Stop();
-            _timer.Start();
+            if (!_timer.Enabled)
+            {
+                _timer.Start();
+            }
+            Application.DoEvents();
         }
     }
 }
