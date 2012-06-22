@@ -27,7 +27,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Grids
 
         public AccessibleDataGridView()
         {
-            _resizeThrottle = new Throttler(50, AutoSizeColumns);
+            _resizeThrottle = new Throttler(this, 50, AutoSizeColumns);
             _columnCollectionWrapper = new ColumnCollection(Columns);
             _rowCollectionWrapper = new ItemCollection(Rows);
             _selectedRowCollectionWrapper = new SelectedItemCollection(this);

@@ -45,6 +45,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
 
         DataTable IShelvesetRepository.LoadShelvesets()
         {
+            Info("Downloading...", 0, 0);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
             const int items = 100;
             for (var i = 0; i < items; i++)
             {

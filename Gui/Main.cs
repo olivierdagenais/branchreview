@@ -43,7 +43,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             shelvesetGrid.Grid.MultiSelect = false;
             Load += Main_Load;
             FormClosing += Main_Closing;
-            _statusThrottle = new Throttler(100, UpdateStatusBar);
+            _statusThrottle = new Throttler(this, 100, UpdateStatusBar);
             #if DEBUG
             _taskRepository = new Core.Mock.TaskRepository();
             _sourceRepository = new Core.Mock.SourceRepository();

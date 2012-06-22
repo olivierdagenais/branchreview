@@ -40,7 +40,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             mainPanel.ContentRemoved += mainPanel_ContentRemoved;
             Load += Main_Load;
             FormClosing += Main_Closing;
-            _statusThrottle = new Throttler(100, UpdateStatusBar);
+            _statusThrottle = new Throttler(this, 100, UpdateStatusBar);
             var repositoriesFolder = Environment.CurrentDirectory.CombinePath("Repositories");
             if (Directory.Exists(repositoriesFolder))
             {

@@ -45,7 +45,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Grids
             this.SearchTextBox.LostFocus += AwesomeGrid_LostFocus;
             this.grid.LostFocus += AwesomeGrid_LostFocus;
 
-            _searchThrottle = new Throttler(200, () =>
+            _searchThrottle = new Throttler(this, 200, () =>
                 {
                     _filter = SearchTextBox.Text;
                     UpdateFilter();
