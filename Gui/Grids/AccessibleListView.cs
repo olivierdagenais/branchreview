@@ -48,7 +48,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Grids
         private static readonly ColumnComparer TheColumnComparer = new ColumnComparer();
 
         private DataTable _dataSource;
-        private int _sortingColumn;
+        private int _sortingColumn = -1;
         private SortOrder _sortOrder = SortOrder.Ascending;
         private readonly ToolTip _toolTip = new ToolTip();
         private readonly ColumnCollection _columnCollectionWrapper;
@@ -142,17 +142,20 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Grids
                     }
                     var dataRows = _dataSource.AsEnumerable();
                     var sourceColumn = MapToSourceColumn(_dataSource.Columns.Cast<DataColumn>(), _sortingColumn);
-                    OrderedEnumerableRowCollection<DataRow> sortedRows;
-                    if (_sortOrder == SortOrder.Ascending)
+                    var potentiallySortedRows = dataRows;
+                    if (_sortingColumn != -1)
                     {
-                        sortedRows = dataRows.OrderBy(r => r[sourceColumn], TheColumnComparer);
-                    }
-                    else
-                    {
-                        sortedRows = dataRows.OrderByDescending(r => r[sourceColumn], TheColumnComparer);
+                        if (_sortOrder == SortOrder.Ascending)
+                        {
+                            potentiallySortedRows = dataRows.OrderBy(r => r[sourceColumn], TheColumnComparer);
+                        }
+                        else
+                        {
+                            potentiallySortedRows = dataRows.OrderByDescending(r => r[sourceColumn], TheColumnComparer);
+                        }
                     }
                     var row = 0;
-                    foreach (var dataRow in sortedRows)
+                    foreach (var dataRow in potentiallySortedRows)
                     {
                         var strings = new List<string>(columns);
                         for (var c = 0; c < columns; c++)
