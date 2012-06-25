@@ -136,7 +136,16 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void AddComponent(Func<ITaskRepository, ISourceRepository, IShelvesetRepository, IHistoryItem> factory)
         {
-            var historyItem = factory(_taskRepository, _sourceRepository, _shelvesetRepository);
+            IHistoryItem historyItem;
+            try
+            {
+                historyItem = factory(_taskRepository, _sourceRepository, _shelvesetRepository);
+            }
+            catch (Exception)
+            {
+                this.ToDo("We may want to advise the user that the operation could not be completed");
+                return;
+            }
             var historyWindow = new HistoryWindow(historyItem);
             historyWindow.Show(mainPanel);
         }
@@ -289,147 +298,104 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         public void Start(IEnumerable<string> arguments)
         {
-            var action = ProgramAction.None;
             var p = new OptionSet
             {
-                {"action=", v => action = EnumExtensions.Parse<ProgramAction>(v)},
-            };
-            var extra = p.Parse(arguments);
-            switch (action)
-            {
-                case ProgramAction.InspectTask:
-                    if (_taskRepository != null)
+                {"BrowseTasks", "Opens a task browser", v =>
                     {
-                        if (extra.Count == 0)
-                        {
-                            AddComponent((tr, sor, shr) => new TaskBrowser(tr, sor, shr));
-                        }
-                        else
-                        {
-                            this.ToDo("Launch a TaskInspector for each of the {0} that are integers", extra.Count);
-                        }
+                        AddComponent((tr, sor, shr) => new TaskBrowser(tr, sor, shr));
                     }
-                    else
+                },
+                /*
+                {"InspectTask={}", "Opens a task inspector with the specified task ID", v =>
                     {
-                        this.ToDo("We may want to advise the user that the operation could not be completed");
+                        AddComponent((tr, sor, shr) =>
+                        {
+                            var result = new TaskInspector(tr, sor, shr)
+                            {
+                                TaskId = v,
+                            };
+                            return result;
+                        });
                     }
-                    break;
-                case ProgramAction.BrowseBranches:
-                    if (_sourceRepository != null)
+                },
+                 */
+                {"BrowseBranches", "Opens a branch browser", v =>
                     {
                         AddComponent((tr, sor, shr) => new BranchBrowser(tr, sor, shr));
                     }
-                    else
+                },
+                {"BrowseBranchRevisions=", "Opens a branch revision browser with the specified branch ID", v =>
                     {
-                        this.ToDo("We may want to advise the user that the operation could not be completed");
-                    }
-                    break;
-                case ProgramAction.BrowseBranchRevisions:
-                    if (_sourceRepository != null)
-                    {
-                        var branchesTable = _sourceRepository.LoadBranches();
-                        foreach (var potentialBranchId in extra)
+                        AddComponent((tr, sor, shr) => 
                         {
-                            var dataRow = branchesTable.FindFirstOrDefault("ID", potentialBranchId);
-                            if (dataRow != null)
+                            var result = new RevisionBrowser(tr, sor, shr)
                             {
-                                var branchId = potentialBranchId;
-                                AddComponent((tr, sor, shr) =>
-                                {
-                                    var result = new RevisionBrowser(tr, sor, shr)
-                                    {
-                                        BranchId = branchId,
-                                        Title = branchId,
-                                    };
-                                    return result;
-                                });
-                            }
-                        }
+                                BranchId = v,
+                                Title = v,
+                            };
+                            return result;
+                        });
                     }
-                    else
+                },
+                {"InspectRevision=", "Opens a revision inspector with the specified revision ID", v =>
                     {
-                        this.ToDo("We may want to advise the user that the operation could not be completed");
-                    }
-                    break;
-                case ProgramAction.InspectRevision:
-                    if (_sourceRepository != null)
-                    {
-                        foreach (var potentialRevisionId in extra)
+                        AddComponent((tr, sor, shr) => 
                         {
-                            Int32 revisionId;
-                            if (Int32.TryParse(potentialRevisionId, out revisionId))
+                            var result = new RevisionInspector(tr, sor, shr)
                             {
-                                AddComponent((tr, sor, shr) =>
-                                {
-                                    var result = new RevisionInspector(tr, sor, shr)
-                                    {
-                                        RevisionId = revisionId,
-                                        Title = Convert.ToString(revisionId, 10),
-                                    };
-                                    return result;
-                                });
-                            }
-                        }
+                                RevisionId = v,
+                                Title = v,
+                            };
+                            return result;
+                        });
                     }
-                    else
+                },
+                {"Commit=", "Opens a change committer with the specified branch ID", v =>
                     {
-                        this.ToDo("We may want to advise the user that the operation could not be completed");
-                    }
-                    break;
-                case ProgramAction.Commit:
-                    if (_sourceRepository != null)
-                    {
-                        foreach (var potentialBranchId in extra)
+                        AddComponent((tr, sor, shr) => 
                         {
-                            var branchId = potentialBranchId;
-                            AddComponent((tr, sor, shr) =>
+                            var result = new ChangeCommitter(tr, sor, shr)
                             {
-                                var result = new ChangeCommitter(tr, sor, shr)
-                                {
-                                    BranchId = branchId,
-                                    Title = branchId,
-                                };
-                                return result;
-                            });
-                        }
+                                BranchId = v,
+                                Title = v,
+                            };
+                            return result;
+                        });
                     }
-                    else
-                    {
-                        this.ToDo("We may want to advise the user that the operation could not be completed");
-                    }
-                    break;
-                case ProgramAction.BrowseShelvesets:
-                    if (_shelvesetRepository != null)
+                },
+                {"BrowseShelvesets", "Opens a shelveset browser", v =>
                     {
                         AddComponent((tr, sor, shr) => new ShelvesetBrowser(tr, sor, shr));
                     }
-                    else
+                },
+                {"InspectShelveset=", "Opens a shelveset inspector with the specified shelveset ID", v =>
                     {
-                        this.ToDo("We may want to advise the user that the operation could not be completed");
-                    }
-                    break;
-                case ProgramAction.InspectShelveset:
-                    if (_shelvesetRepository != null)
-                    {
-                        foreach (var potentialShelvesetId in extra)
+                        AddComponent((tr, sor, shr) =>
                         {
-                            var shelvesetId = potentialShelvesetId;
-                            AddComponent((tr, sor, shr) =>
+                            var result = new ShelvesetInspector(tr, sor, shr)
                             {
-                                var result = new ShelvesetInspector(tr, sor, shr)
-                                {
-                                    ShelvesetId = shelvesetId,
-                                    Title = shelvesetId,
-                                };
-                                return result;
-                            });
-                        }
+                                ShelvesetId = v,
+                                Title = v,
+                            };
+                            return result;
+                        });
                     }
-                    else
-                    {
-                        this.ToDo("We may want to advise the user that the operation could not be completed");
-                    }
-                    break;
+                },
+            };
+            var extra = p.Parse(arguments);
+            if (extra.Count > 0)
+            {
+                using (var sw = new StringWriter())
+                {
+                    p.WriteOptionDescriptions(sw);
+                    MessageBox.Show(
+                        this,
+                        sw.ToString(),
+                        "BART command-line parameters",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                }
             }
         }
 
