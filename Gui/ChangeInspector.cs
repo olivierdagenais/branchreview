@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
@@ -161,7 +162,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         void FileGrid_SelectionChanged(object sender, EventArgs e)
         {
-            var selectedIds = FileGrid.FindSelectedIds();
+            var selectedIds = FileGrid.FindSelectedIds().ToList();
             this.StartTask(() => ComputeDifferences(Context, selectedIds), UpdatePatchText);
         }
 
