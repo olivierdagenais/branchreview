@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
@@ -110,28 +111,46 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         public void RefreshMessage()
         {
-            var message = GetMessage(_context) ?? String.Empty;
-            if (this.ChangeLog.IsReadOnly)
-            {    
-                this.ChangeLog.SetReadOnlyText(message);
-            }
-            else
+            this.StartTask(() => GetMessage(Context), UpdateMessage);
+        }
+
+        private void UpdateMessage(Task<string> task)
+        {
+            if (!task.IsFaulted)
             {
-                this.ChangeLog.Text = message;
+                var message = task.Result;
+                if (message != null)
+                {
+                    if (this.ChangeLog.IsReadOnly)
+                    {    
+                        this.ChangeLog.SetReadOnlyText(message);
+                    }
+                    else
+                    {
+                        this.ChangeLog.Text = message;
+                    }
+                }
             }
         }
 
         #region FileGrid
         public void RefreshFileGrid()
         {
-            var pendingChanges = GetChanges(_context);
-            FileGrid.DataTable = pendingChanges;
-            var itemCount = FileGrid.Grid.Rows.Count;
-            if (0 == itemCount)
+            this.StartTask(() => GetChanges(Context), LoadFileGrid);
+        }
+
+        private void LoadFileGrid(Task<DataTable> task)
+        {
+            if (!task.IsFaulted)
             {
-                PatchText = String.Empty;
+                FileGrid.DataTable = task.Result;
+                var itemCount = FileGrid.Grid.Rows.Count;
+                if (0 == itemCount)
+                {
+                    PatchText = String.Empty;
+                }
+                FileGrid.Caption = "{0} changed item{1}".FormatInvariant(itemCount, itemCount == 1 ? "" : "s");
             }
-            FileGrid.Caption = "{0} changed item{1}".FormatInvariant(itemCount, itemCount == 1 ? "" : "s");
         }
 
         void FileGrid_ContextMenuStripNeeded(object sender, ContextMenuNeededEventArgs e)
@@ -143,8 +162,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         void FileGrid_SelectionChanged(object sender, EventArgs e)
         {
             var selectedIds = FileGrid.FindSelectedIds();
-            var patch = ComputeDifferences(Context, selectedIds);
-            PatchText = patch;
+            this.StartTask(() => ComputeDifferences(Context, selectedIds), UpdatePatchText);
+        }
+
+        private void UpdatePatchText(Task<string> task)
+        {
+            if (!task.IsFaulted)
+            {
+                PatchText = task.Result;
+            }
         }
 
         private ContextMenu BuildChangedFilesActionMenu()
