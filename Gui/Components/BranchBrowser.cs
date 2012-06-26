@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
@@ -55,12 +57,19 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
         {
             if (branchGrid.DataTable == null || refresh)
             {
-                branchGrid.DataTable = _sourceRepository.LoadBranches();
+                this.StartTask(() => _sourceRepository.LoadBranches(), LoadDataTable);
+            }
+        }
+
+        private void LoadDataTable(Task<DataTable> task)
+        {
+            if (!task.IsFaulted)
+            {
+                branchGrid.DataTable = task.Result;
                 var branchCount = branchGrid.DataTable.Rows.Count;
                 branchGrid.Caption = "{0} branch{1}".FormatInvariant(branchCount, branchCount == 1 ? "" : "es");
-            }												
-
-            this.ExecuteLater(10, () => branchGrid.Focus());
+                this.ExecuteLater(10, () => branchGrid.Focus());
+            }
         }
 
         #endregion
