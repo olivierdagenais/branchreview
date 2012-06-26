@@ -63,7 +63,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             if (changeInspector.Context == null || refresh)
             {
                 changeInspector.Context = _branchId;
-                changeInspector.Reload();
             }												
 
             this.ExecuteLater(10, () => changeInspector.Focus());

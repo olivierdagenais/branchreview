@@ -47,7 +47,6 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             if (changeInspector.Context == null || refresh)
             {
                 changeInspector.Context = _revisionId;
-                changeInspector.Reload();
             }												
 
             this.ExecuteLater(10, () => changeInspector.Focus());
