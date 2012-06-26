@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
@@ -41,7 +42,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
         private void DoCommit()
         {
             var message = changeInspector.ChangeLog.Text;
-            _sourceRepository.Commit(changeInspector.Context, message);
+            this.StartTask(() => _sourceRepository.Commit(changeInspector.Context, message), PostCommit);
+        }
+
+        private void PostCommit(Task task)
+        {
             changeInspector.ChangeLog.Text = String.Empty;
             changeInspector.Reload();
         }

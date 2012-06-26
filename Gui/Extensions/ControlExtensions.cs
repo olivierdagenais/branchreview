@@ -75,6 +75,21 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
             delayedWorker.Start();
         }
 
+        public static void StartTask(this Control control, Action backgroundWork, Action<Task> guiContinuation)
+        {
+            Task.Factory.StartNew(backgroundWork).ContinueWith(t =>
+            {
+                if (control.InvokeRequired)
+                {
+                    control.Invoke(new Action(() => guiContinuation(t)));
+                }
+                else
+                {
+                    guiContinuation(t);
+                }
+            });
+        }
+
         public static void StartTask<T>(this Control control, Func<T> backgroundWork, Action<Task<T>> guiContinuation)
         {
             Task.Factory.StartNew(backgroundWork).ContinueWith(t =>
