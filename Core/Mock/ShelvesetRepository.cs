@@ -41,6 +41,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
             }
         };
 
+        /// <summary>
+        /// The <see cref="ILog"/> to send messages to.
+        /// </summary>
         public ILog Log { get; set; }
 
         DataTable IShelvesetRepository.LoadShelvesets()

@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HiddenDataColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ISourceRepository.cs" />
     <Compile Include="ILog.cs" />
     <Compile Include="ITaskRepository.cs" />
