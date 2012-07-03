@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
@@ -23,11 +25,53 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
 
             InitializeComponent();
 
-            changeInspector.ActionsForChangesFunction = _sourceRepository.GetActionsForPendingChanges;
+            changeInspector.ActionsForChangesFunction = GetActionsForPendingChanges;
             changeInspector.ChangesFunction = _sourceRepository.GetPendingChanges;
             changeInspector.ComputeDifferencesFunction = _sourceRepository.ComputePendingDifferences;
             changeInspector.MessageFunction = null;
             changeInspector.ChangeLog.KeyDown += ChangeLog_KeyDown;
+        }
+
+        private IList<MenuAction> GetActionsForPendingChanges(object branchId, IEnumerable<object> pendingChangeIds)
+        {
+            var pendingChangeIdList = pendingChangeIds.ToList();
+            var repositoryActions = _sourceRepository.GetActionsForPendingChanges(branchId, pendingChangeIdList);
+            var actions = new List<MenuAction>(repositoryActions)
+            {
+                new MenuAction("history", "&History", pendingChangeIdList.Count > 0, 
+                    () => LaunchHistory(pendingChangeIdList)),
+            };
+            return actions;
+        }
+
+        private void LaunchHistory(IList<object> pendingChangeIds)
+        {
+            if (pendingChangeIds.Count < 1)
+            {
+                return;
+            }
+
+            var historyWindow = (HistoryWindow) this.FindForm();
+            if (historyWindow != null)
+            {
+                var ancestor = (TabbedMain) historyWindow.ParentForm;
+                if (ancestor != null)
+                {
+                    foreach (var pendingChangeId in pendingChangeIds)
+                    {
+                        var id = pendingChangeId;
+                        ancestor.AddComponent((tr, sor, shr) => 
+                        {
+                            var result = new RevisionBrowser(tr, sor, shr)
+                            {
+                                BranchId = id,
+                                Title = id.ToString(),
+                            };
+                            return result;
+                        });
+                    }
+                }
+            }
         }
 
         void ChangeLog_KeyDown(object sender, KeyEventArgs e)

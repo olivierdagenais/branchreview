@@ -134,7 +134,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
-        private void AddComponent(Func<ITaskRepository, ISourceRepository, IShelvesetRepository, IHistoryItem> factory)
+        internal void AddComponent(Func<ITaskRepository, ISourceRepository, IShelvesetRepository, IHistoryItem> factory)
         {
             IHistoryItem historyItem;
             try
