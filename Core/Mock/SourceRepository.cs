@@ -178,6 +178,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
             return _revisionTablesByBranchId[(string) branchId];
         }
 
+        IList<MenuAction> ISourceRepository.GetRevisionActions(object revisionId)
+        {
+            return new[]
+            {
+                new MenuAction("rollback", "&Rollback", true,
+                    () => Debug.WriteLine("Rolling back revision {0}", new [] {revisionId})),
+            };
+        }
+
         DataTable ISourceRepository.GetRevisionChanges(object revisionId)
         {
             Debug.WriteLine("Scanning for changes in revision {0}...", new[] {revisionId});

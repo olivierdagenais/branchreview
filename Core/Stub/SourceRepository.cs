@@ -180,6 +180,24 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Stub
         }
 
         /// <summary>
+        /// Given a <paramref name="revisionId"/> representing the selected revision, obtains the possible
+        /// <see cref="MenuAction"/> instances that can be performed.
+        /// </summary>
+        /// 
+        /// <param name="revisionId">
+        /// A revision ID obtained from the <c>ID</c> column of the <see cref="DataTable"/> returned by
+        /// <see cref="LoadRevisions"/>.
+        /// </param>
+        /// 
+        /// <returns>
+        /// An ordered list of <see cref="MenuAction"/> instances from which to build a menu.
+        /// </returns>
+        public virtual IList<MenuAction> GetRevisionActions(object revisionId)
+        {
+            return MenuAction.EmptyList;
+        }
+
+        /// <summary>
         /// Loads a <see cref="DataTable"/> representing the changes associated with the context identified by
         /// <paramref name="revisionId"/>.
         /// </summary>
