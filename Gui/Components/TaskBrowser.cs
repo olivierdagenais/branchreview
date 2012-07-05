@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
@@ -33,12 +35,19 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
         {
             if (taskGrid.DataTable == null || refresh)
             {
-                taskGrid.DataTable = _taskRepository.LoadTasks();
+                this.StartTask(() => _taskRepository.LoadTasks(), LoadDataTable);
+            }
+        }
+
+        private void LoadDataTable(Task<DataTable> task)
+        {
+            if (!task.IsFaulted)
+            {
+                taskGrid.DataTable = task.Result;
                 var taskCount = taskGrid.DataTable.Rows.Count;
                 taskGrid.Caption = "{0} task{1}".FormatInvariant(taskCount, taskCount == 1 ? "" : "s");
+                this.ExecuteLater(10, () => taskGrid.Focus());
             }
-
-            this.ExecuteLater(10, () => taskGrid.Focus());
         }
 
         #endregion

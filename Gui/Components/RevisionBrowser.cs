@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
@@ -44,13 +46,20 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
         private void SwitchCurrentTab(bool refresh)
         {
             if (activityRevisions.DataTable == null || refresh)
-            {	
-                activityRevisions.DataTable = _sourceRepository.LoadRevisions(_branchId);
+            {
+                this.StartTask(() => _sourceRepository.LoadRevisions(_branchId), LoadDataTable);
+            }
+        }
+
+        private void LoadDataTable(Task<DataTable> task)
+        {
+            if (!task.IsFaulted)
+            {
+                activityRevisions.DataTable = task.Result;
                 var revisionCount = activityRevisions.DataTable.Rows.Count;
                 activityRevisions.Caption = "{0} revision{1}".FormatInvariant(revisionCount, revisionCount == 1 ? "" : "s");
-            }												
-
-            this.ExecuteLater(10, () => activityRevisions.Focus());
+                this.ExecuteLater(10, () => activityRevisions.Focus());
+            }
         }
 
         #endregion
