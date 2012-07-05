@@ -10,21 +10,15 @@ using SoftwareNinjas.Core;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
 {
-    public partial class BranchBrowser : Control, IHistoryItem
+    public partial class BranchBrowser : AbstractHistoryComponent
     {
-        private readonly ITaskRepository _taskRepository;
-        private readonly ISourceRepository _sourceRepository;
-        private readonly IShelvesetRepository _shelvesetRepository;
         private readonly ChangeCommitter _changeCommitter;
         private readonly RevisionBrowser _revisionBrowser;
 
         public BranchBrowser
         (ITaskRepository taskRepository, ISourceRepository sourceRepository, IShelvesetRepository shelvesetRepository)
+            : base(taskRepository, sourceRepository, shelvesetRepository)
         {
-            _taskRepository = taskRepository;
-            _sourceRepository = sourceRepository;
-            _shelvesetRepository = shelvesetRepository;
-
             _revisionBrowser = new RevisionBrowser(_taskRepository, _sourceRepository, _shelvesetRepository);
             _changeCommitter = new ChangeCommitter(_taskRepository, _sourceRepository, _shelvesetRepository);
 
@@ -133,13 +127,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
 
         #region IHistoryItem Members
 
-        IHistoryContainer IHistoryItem.Container { get; set; }
+        public override string Title
+        {
+            get { return "Branches"; }
+            set { throw new NotSupportedException(); }
+        }
 
-        public Control Control { get { return this; } }
-
-        public string Title { get { return "Branches"; } }
-
-        public void Reload()
+        public override void Reload()
         {
             SwitchCurrentTab(true);
         }

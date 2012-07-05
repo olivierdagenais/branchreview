@@ -9,20 +9,14 @@ using SoftwareNinjas.BranchAndReviewTools.Gui.History;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
 {
-    public partial class ChangeCommitter : Control, IHistoryItem
+    public partial class ChangeCommitter : AbstractHistoryComponent
     {
-        private readonly ITaskRepository _taskRepository;
-        private readonly ISourceRepository _sourceRepository;
-        private readonly IShelvesetRepository _shelvesetRepository;
         private object _branchId;
 
         public ChangeCommitter
         (ITaskRepository taskRepository, ISourceRepository sourceRepository, IShelvesetRepository shelvesetRepository)
+            : base(taskRepository, sourceRepository, shelvesetRepository)
         {
-            _taskRepository = taskRepository;
-            _sourceRepository = sourceRepository;
-            _shelvesetRepository = shelvesetRepository;
-
             InitializeComponent();
 
             changeInspector.ActionsForChangesFunction = GetActionsForPendingChanges;
@@ -121,13 +115,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
 
         #region IHistoryItem Members
 
-        IHistoryContainer IHistoryItem.Container { get; set; }
+        public override string Title { get; set; }
 
-        public Control Control { get { return this; } }
-
-        public string Title { get; set; }
-
-        public void Reload()
+        public override void Reload()
         {
             SwitchCurrentTab(true);
         }
