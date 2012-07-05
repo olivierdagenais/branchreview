@@ -27,6 +27,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             this.ExecuteLater(10, () => SwitchCurrentTab(true));
         }
 
+        protected override Control ControlToFocus { get { return branchGrid; } }
+
         #region Common
 
         private void SetCurrentBranch(object branchId, object taskId)

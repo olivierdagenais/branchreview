@@ -1,4 +1,5 @@
-﻿using ScintillaNet;
+﻿using System.Windows.Forms;
+using ScintillaNet;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 
@@ -21,6 +22,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             changeInspector.ComputeDifferencesFunction = _shelvesetRepository.ComputeShelvesetDifferences;
             changeInspector.MessageFunction = _shelvesetRepository.GetShelvesetMessage;
         }
+
+        protected override Control ControlToFocus { get { return changeInspector; } }
 
         public object ShelvesetId
         {

@@ -26,6 +26,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             changeInspector.ChangeLog.KeyDown += ChangeLog_KeyDown;
         }
 
+        protected override Control ControlToFocus { get { return changeInspector; } }
+
         private IList<MenuAction> GetActionsForPendingChanges(object branchId, IEnumerable<object> pendingChangeIds)
         {
             var pendingChangeIdList = pendingChangeIds.ToList();

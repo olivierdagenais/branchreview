@@ -16,7 +16,16 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             _taskRepository = taskRepository;
             _sourceRepository = sourceRepository;
             _shelvesetRepository = shelvesetRepository;
+
+            this.GotFocus += AbstractHistoryComponent_GotFocus;
         }
+
+        void AbstractHistoryComponent_GotFocus(object sender, System.EventArgs e)
+        {
+            ControlToFocus.Focus();
+        }
+
+        protected abstract Control ControlToFocus { get; }
 
         #region IHistoryItem Members
 

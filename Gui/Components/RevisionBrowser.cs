@@ -25,6 +25,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             activityRevisions.Grid.MultiSelect = false;
         }
 
+        protected override Control ControlToFocus { get { return activityRevisions; } }
+
         public object BranchId
         {
             get { return _branchId; }

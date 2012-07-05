@@ -21,6 +21,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             this.ExecuteLater(10, () => SwitchCurrentTab(true));
         }
 
+        protected override Control ControlToFocus { get { return taskGrid; } }
+
         #region Common
 
         private void SwitchCurrentTab(bool refresh)

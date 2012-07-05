@@ -25,6 +25,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             this.ExecuteLater(10, () => SwitchCurrentTab(true));
         }
 
+        protected override Control ControlToFocus { get { return shelvesetGrid; } }
+        
         #region Common
 
         private void SetCurrentShelveset(object shelvesetId, string shelvesetName)
