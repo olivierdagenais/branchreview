@@ -17,7 +17,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
 
             changeInspector.ChangeLog.IsReadOnly = true;
             changeInspector.ChangeLog.LongLines.EdgeMode = EdgeMode.None;
-            changeInspector.ActionsForChangesFunction = _sourceRepository.GetActionsForRevisionChanges;
+            changeInspector.ActionsForChangesFunction = (branchId, changeIds) => 
+                GetActionsForChanges(branchId, changeIds, _sourceRepository.GetActionsForRevisionChanges);
             changeInspector.ChangesFunction = _sourceRepository.GetRevisionChanges;
             changeInspector.ComputeDifferencesFunction = _sourceRepository.ComputeRevisionDifferences;
             changeInspector.MessageFunction = _sourceRepository.GetRevisionMessage;

@@ -17,7 +17,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
 
             changeInspector.ChangeLog.IsReadOnly = true;
             changeInspector.ChangeLog.LongLines.EdgeMode = EdgeMode.None;
-            changeInspector.ActionsForChangesFunction = _shelvesetRepository.GetActionsForShelvesetChanges;
+            changeInspector.ActionsForChangesFunction = (branchId, changeIds) => 
+                GetActionsForChanges(branchId, changeIds, _shelvesetRepository.GetActionsForShelvesetChanges);
             changeInspector.ChangesFunction = _shelvesetRepository.GetShelvesetChanges;
             changeInspector.ComputeDifferencesFunction = _shelvesetRepository.ComputeShelvesetDifferences;
             changeInspector.MessageFunction = _shelvesetRepository.GetShelvesetMessage;

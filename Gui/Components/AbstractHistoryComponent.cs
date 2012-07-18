@@ -1,4 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.BranchAndReviewTools.Gui.History;
 
@@ -38,5 +41,48 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
         public abstract string Title { get; set; }
 
         #endregion
+
+        protected IList<MenuAction> GetActionsForChanges(object branchId, IEnumerable<object> changeIds,
+            Func<object, IEnumerable<object>, IList<MenuAction>> repositoryActionsForChanges)
+        {
+            var changeIdList = changeIds.ToList();
+            var repositoryActions = repositoryActionsForChanges(branchId, changeIdList);
+            var actions = new List<MenuAction>(repositoryActions)
+            {
+                new MenuAction("history", "&History", changeIdList.Count > 0, 
+                    () => LaunchHistory(changeIdList)),
+            };
+            return actions;
+        }
+
+        private void LaunchHistory(IList<object> changeIds)
+        {
+            if (changeIds.Count < 1)
+            {
+                return;
+            }
+
+            var historyWindow = (HistoryWindow) this.FindForm();
+            if (historyWindow != null)
+            {
+                var ancestor = (TabbedMain) historyWindow.ParentForm;
+                if (ancestor != null)
+                {
+                    foreach (var changeId in changeIds)
+                    {
+                        var id = changeId;
+                        ancestor.AddComponent((tr, sor, shr) => 
+                        {
+                            var result = new RevisionBrowser(tr, sor, shr)
+                            {
+                                BranchId = id,
+                                Title = id.ToString(),
+                            };
+                            return result;
+                        });
+                    }
+                }
+            }
+        }
     }
 }
