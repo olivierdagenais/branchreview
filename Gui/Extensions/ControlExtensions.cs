@@ -82,17 +82,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
 
         public static void StartTask(this Control control, Action backgroundWork, Action<Task> guiContinuation)
         {
-            Task.Factory.StartNew(backgroundWork).ContinueWith(t => GuiContinue(control, t, guiContinuation));
+            Task.Factory.StartNew(backgroundWork).ContinueWith(t => control.InvokeIfRequired(() => guiContinuation(t)));
         }
 
         public static void StartTask<T>(this Control control, Func<T> backgroundWork, Action<Task<T>> guiContinuation)
         {
-            Task.Factory.StartNew(backgroundWork).ContinueWith(t => GuiContinue(control, t, guiContinuation));
-        }
-
-        internal static void GuiContinue<T>(Control control, T task, Action<T> guiContinuation)
-        {
-            control.InvokeIfRequired(() => guiContinuation(task));
+            Task.Factory.StartNew(backgroundWork).ContinueWith(t => control.InvokeIfRequired(() => guiContinuation(t)));
         }
     }
 }
