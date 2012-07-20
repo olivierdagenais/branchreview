@@ -41,7 +41,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             this.StartTask(() => _sourceRepository.Commit(changeInspector.Context, message), PostCommit);
         }
 
-        private void PostCommit(Task task)
+        private void PostCommit()
         {
             changeInspector.ChangeLog.Text = String.Empty;
             changeInspector.Reload();

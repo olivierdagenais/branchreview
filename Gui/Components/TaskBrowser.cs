@@ -33,15 +33,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             }
         }
 
-        private void LoadDataTable(Task<DataTable> task)
+        private void LoadDataTable(DataTable dataTable)
         {
-            if (!task.IsFaulted)
-            {
-                taskGrid.DataTable = task.Result;
-                var taskCount = taskGrid.DataTable.Rows.Count;
-                taskGrid.Caption = "{0} task{1}".FormatInvariant(taskCount, taskCount == 1 ? "" : "s");
-                this.ExecuteLater(10, () => taskGrid.Focus());
-            }
+            taskGrid.DataTable = dataTable;
+            var taskCount = taskGrid.DataTable.Rows.Count;
+            taskGrid.Caption = "{0} task{1}".FormatInvariant(taskCount, taskCount == 1 ? "" : "s");
+            this.ExecuteLater(10, () => taskGrid.Focus());
         }
 
         #endregion

@@ -115,21 +115,17 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             this.StartTask(() => GetMessage(Context), UpdateMessage);
         }
 
-        private void UpdateMessage(Task<string> task)
+        private void UpdateMessage(string message)
         {
-            if (!task.IsFaulted)
+            if (message != null)
             {
-                var message = task.Result;
-                if (message != null)
+                if (this.ChangeLog.IsReadOnly)
+                {    
+                    this.ChangeLog.SetReadOnlyText(message);
+                }
+                else
                 {
-                    if (this.ChangeLog.IsReadOnly)
-                    {    
-                        this.ChangeLog.SetReadOnlyText(message);
-                    }
-                    else
-                    {
-                        this.ChangeLog.Text = message;
-                    }
+                    this.ChangeLog.Text = message;
                 }
             }
         }
@@ -140,18 +136,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             this.StartTask(() => GetChanges(Context), LoadFileGrid);
         }
 
-        private void LoadFileGrid(Task<DataTable> task)
+        private void LoadFileGrid(DataTable dataTable)
         {
-            if (!task.IsFaulted)
+            FileGrid.DataTable = dataTable;
+            var itemCount = FileGrid.Grid.Rows.Count;
+            if (0 == itemCount)
             {
-                FileGrid.DataTable = task.Result;
-                var itemCount = FileGrid.Grid.Rows.Count;
-                if (0 == itemCount)
-                {
-                    PatchText = String.Empty;
-                }
-                FileGrid.Caption = "{0} changed item{1}".FormatInvariant(itemCount, itemCount == 1 ? "" : "s");
+                PatchText = String.Empty;
             }
+            FileGrid.Caption = "{0} changed item{1}".FormatInvariant(itemCount, itemCount == 1 ? "" : "s");
         }
 
         void FileGrid_ContextMenuStripNeeded(object sender, ContextMenuNeededEventArgs e)
@@ -166,12 +159,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             this.StartTask(() => ComputeDifferences(Context, selectedIds), UpdatePatchText);
         }
 
-        private void UpdatePatchText(Task<string> task)
+        private void UpdatePatchText(string patchText)
         {
-            if (!task.IsFaulted)
-            {
-                PatchText = task.Result;
-            }
+            PatchText = patchText;
         }
 
         private ContextMenu BuildChangedFilesActionMenu()

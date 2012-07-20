@@ -47,15 +47,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             }
         }
 
-        private void LoadDataTable(Task<DataTable> task)
+        private void LoadDataTable(DataTable dataTable)
         {
-            if (!task.IsFaulted)
-            {
-                activityRevisions.DataTable = task.Result;
-                var revisionCount = activityRevisions.DataTable.Rows.Count;
-                activityRevisions.Caption = "{0} revision{1}".FormatInvariant(revisionCount, revisionCount == 1 ? "" : "s");
-                this.ExecuteLater(10, () => activityRevisions.Focus());
-            }
+            activityRevisions.DataTable = dataTable;
+            var revisionCount = activityRevisions.DataTable.Rows.Count;
+            activityRevisions.Caption = "{0} revision{1}".FormatInvariant(revisionCount, revisionCount == 1 ? "" : "s");
+            this.ExecuteLater(10, () => activityRevisions.Focus());
         }
 
         #endregion

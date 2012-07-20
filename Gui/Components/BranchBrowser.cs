@@ -57,15 +57,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             }
         }
 
-        private void LoadDataTable(Task<DataTable> task)
+        private void LoadDataTable(DataTable dataTable)
         {
-            if (!task.IsFaulted)
-            {
-                branchGrid.DataTable = task.Result;
-                var branchCount = branchGrid.DataTable.Rows.Count;
-                branchGrid.Caption = "{0} branch{1}".FormatInvariant(branchCount, branchCount == 1 ? "" : "es");
-                this.ExecuteLater(10, () => branchGrid.Focus());
-            }
+            branchGrid.DataTable = dataTable;
+            var branchCount = branchGrid.DataTable.Rows.Count;
+            branchGrid.Caption = "{0} branch{1}".FormatInvariant(branchCount, branchCount == 1 ? "" : "es");
+            this.ExecuteLater(10, () => branchGrid.Focus());
         }
 
         #endregion

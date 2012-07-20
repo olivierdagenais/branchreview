@@ -45,15 +45,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
             }
         }
 
-        private void LoadDataTable(Task<DataTable> task)
+        private void LoadDataTable(DataTable dataTable)
         {
-            if (!task.IsFaulted)
-            {
-                shelvesetGrid.DataTable = task.Result;
-                var shelvesetCount = shelvesetGrid.DataTable.Rows.Count;
-                shelvesetGrid.Caption = "{0} shelveset{1}".FormatInvariant(shelvesetCount, shelvesetCount == 1 ? "" : "s");
-                this.ExecuteLater(10, () => shelvesetGrid.Focus());
-            }
+            shelvesetGrid.DataTable = dataTable;
+            var shelvesetCount = shelvesetGrid.DataTable.Rows.Count;
+            shelvesetGrid.Caption = "{0} shelveset{1}".FormatInvariant(shelvesetCount, shelvesetCount == 1 ? "" : "s");
+            this.ExecuteLater(10, () => shelvesetGrid.Focus());
         }
 
         #endregion
