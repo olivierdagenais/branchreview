@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Win32;
+using SoftwareNinjas.BranchAndReviewTools.Core;
 using SoftwareNinjas.Core;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
@@ -115,9 +116,16 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
             if (task.IsFaulted)
             {
                 var e = task.Exception;
-                if (e != null && guiFault != null)
+                if (e != null)
                 {
-                    control.InvokeIfRequired(() => guiFault(e));
+                    if (guiFault != null)
+                    {
+                        control.InvokeIfRequired(() => guiFault(e));
+                    }
+                    else
+                    {
+                        control.ToDo("Log this hidden fault somewhere useful: {0}", e.Message);
+                    }
                 }
             }
             else
