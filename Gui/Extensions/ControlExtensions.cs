@@ -89,5 +89,41 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
         {
             Task.Factory.StartNew(backgroundWork).ContinueWith(t => control.InvokeIfRequired(() => guiContinuation(t)));
         }
+
+        public static void StartTask(this Control control, Action backgroundWork, Action guiContinuation, Action<AggregateException> guiFault)
+        {
+            Task.Factory.StartNew(backgroundWork).ContinueWith(t => GuiContinueWithFault(control, t, guiContinuation, guiFault));
+        }
+
+        public static void StartTask(this Control control, Action backgroundWork, Action guiContinuation)
+        {
+            Task.Factory.StartNew(backgroundWork).ContinueWith(t => GuiContinueWithFault(control, t, guiContinuation, null));
+        }
+
+        public static void StartTask<T>(this Control control, Func<T> backgroundWork, Action<T> guiContinuation, Action<AggregateException> guiFault)
+        {
+            Task.Factory.StartNew(backgroundWork).ContinueWith(t => GuiContinueWithFault(control, t, () => guiContinuation(t.Result), guiFault));
+        }
+
+        public static void StartTask<T>(this Control control, Func<T> backgroundWork, Action<T> guiContinuation)
+        {
+            Task.Factory.StartNew(backgroundWork).ContinueWith(t => GuiContinueWithFault(control, t, () => guiContinuation(t.Result), null));
+        }
+
+        internal static void GuiContinueWithFault<T>(Control control, T task, Action guiContinuation, Action<AggregateException> guiFault) where T : Task
+        {
+            if (task.IsFaulted)
+            {
+                var e = task.Exception;
+                if (e != null && guiFault != null)
+                {
+                    control.InvokeIfRequired(() => guiFault(e));
+                }
+            }
+            else
+            {
+                control.InvokeIfRequired(guiContinuation);
+            }
+        }
     }
 }
