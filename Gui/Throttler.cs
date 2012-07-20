@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using SoftwareNinjas.BranchAndReviewTools.Gui.Extensions;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
@@ -25,30 +26,22 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         void Tick(object sender, EventArgs e)
         {
-            if (_control.InvokeRequired)
-            {
-                _control.Invoke(new Action<object, EventArgs>(Tick), sender, e);
-            }
-            else
+            _control.InvokeIfRequired(() =>
             {
                 _timer.Stop();
                 _action();
-            }
+            });
         }
 
         public void Fire()
         {
-            if (_control.InvokeRequired)
-            {
-                _control.Invoke(new Action(Fire));
-            }
-            else
+            _control.InvokeIfRequired(() =>
             {
                 if (!_timer.Enabled)
                 {
                     _timer.Start();
                 }
-            }
+            });
         }
     }
 }

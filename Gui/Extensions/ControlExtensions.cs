@@ -57,20 +57,25 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
             }
         }
 
+        public static void InvokeIfRequired(this Control control, Action action)
+        {
+            if (control.InvokeRequired)
+            {
+                control.Invoke(action);
+            }
+            else
+            {
+                action();
+            }
+        }
+
         public static void ExecuteLater(this Control control, int milliseconds, Action action)
         {
             var delayedWorker = new Timer {Interval = milliseconds};
             delayedWorker.Tick += (s, ea) =>
             {
                 delayedWorker.Stop();
-                if (control.InvokeRequired)
-                {
-                    control.Invoke(new Action(action));
-                }
-                else
-                {
-                    action();
-                }
+                control.InvokeIfRequired(action);
             };
             delayedWorker.Start();
         }
@@ -87,14 +92,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
 
         internal static void GuiContinue<T>(Control control, T task, Action<T> guiContinuation)
         {
-            if (control.InvokeRequired)
-            {
-                control.Invoke(new Action(() => guiContinuation(task)));
-            }
-            else
-            {
-                guiContinuation(task);
-            }
+            control.InvokeIfRequired(() => guiContinuation(task));
         }
     }
 }
