@@ -58,39 +58,75 @@
     <target name="deploy" depends="documentation">
         <xmlpeek file="Version.xml" xpath="/version/@major" property="major" />
         <xmlpeek file="Version.xml" xpath="/version/@minor" property="minor" />
+        <delete dir="Deploy" failonerror="false"/>
+        <mkdir dir="Deploy/"/>
         <if test="${environment::variable-exists('BUILD_NUMBER')}">
             <property name="buildNumber" value="${environment::get-variable('BUILD_NUMBER')}"/>
+            <msbuild project="Gui/Gui.csproj">
+                <arg value="/target:Clean;Publish" />
+                <arg value="/property:Configuration=${configuration}" />
+                <arg value="/property:Platform=AnyCPU" />
+                
+                <!-- Override the Bootstrapper folder to use the local one -->
+                <arg value="/property:GenerateBootstrapperSdkPath=${project::get-base-directory()}/Tools/Bootstrapper" />
+
+                <arg value="/property:ApplicationVersion=${major}.${minor}.${buildNumber}.0" />
+                <arg value="/property:BootstrapperEnabled=true" />
+                <arg value="/property:CreateDesktopShortcut=true" />
+                <arg value="/property:CreateWebPageOnPublish=true" />
+                <arg value="/property:ExcludeDeploymentUrl=true" />
+                <arg value="/property:GenerateManifests=true" />
+                <arg value="/property:Install=true" />
+                <arg value="/property:InstallFrom=Disk" />
+                <arg value="/property:IsWebBootstrapper=false" />
+                <arg value="/property:ManifestKeyFile=Gui_TemporaryKey.pfx" />
+                <arg value="/property:ManifestCertificateThumbprint=763AB0420AD427C3E2CE0C5A264FE8A688277A18" />
+                <arg value="/property:MapFileExtensions=true" />
+                <arg value="/property:OpenBrowserOnPublish=false" />
+                <arg value="/property:ProductName=Branch And Review Tools" />
+                <arg value="/property:PublishDir=${project::get-base-directory()}/Deploy/" />
+                <arg value="/property:PublisherName=Software Ninjas" />
+                <arg value="/property:SignManifests=true" />
+                <arg value="/property:UseApplicationTrust=true" />
+                <arg value="/property:UpdateEnabled=true" />
+                <arg value="/property:UpdateInterval=7" />
+                <arg value="/property:UpdateIntervalUnits=Days" />
+                <arg value="/property:UpdateMode=Background" />
+                <arg value="/property:UpdatePeriodically=false" />
+                <arg value="/property:UpdateRequired=false" />
+                <arg value="/property:WebPage=Default.htm" />
+                <!-- TODO:
+                "Publisher" is "Unknown Publisher"
+                -->
+                <arg value="/verbosity:minimal" />
+            </msbuild>
         </if>
         <if test="${not environment::variable-exists('BUILD_NUMBER')}">
             <property name="buildNumber" value="private"/>
+            <property name="versionFolder" value="SoftwareNinjas.BranchAndReviewTools-${major}.${minor}.${buildNumber}"/>
+            <mkdir dir="Deploy/${versionFolder}"/>
+            <copy todir="Deploy/${versionFolder}" flatten="true">
+                <fileset>
+                    <include name="*/bin/${configuration}/SoftwareNinjas.*.dll"/>
+                    <include name="*/bin/${configuration}/SoftwareNinjas.*.exe"/>
+                    <include name="*/bin/${configuration}/SoftwareNinjas.*.xml"/>
+                    <include name="Gui/SciLexer*.dll"/>
+                    <include name="Gui/ScintillaNet.*"/>
+                    <exclude name="*.Tests/bin/**"/>
+                </fileset>
+            </copy>
+            <copy todir="Deploy/${versionFolder}/doc">
+                <fileset basedir="Documentation">
+                    <include name="**"/>
+                </fileset>
+            </copy>
+
+            <zip zipfile="Deploy/${versionFolder}.zip">
+                <fileset basedir="Deploy">
+                    <include name="${versionFolder}/**"/>
+                </fileset>
+            </zip>
         </if>
-        <property name="versionFolder" value="SoftwareNinjas.BranchAndReviewTools-${major}.${minor}.${buildNumber}"/>
-
-        <delete dir="Deploy" failonerror="false"/>
-        <mkdir dir="Deploy/${versionFolder}"/>
-        <copy todir="Deploy/${versionFolder}" flatten="true">
-            <fileset>
-                <include name="*/bin/${configuration}/SoftwareNinjas.*.dll"/>
-                <include name="*/bin/${configuration}/SoftwareNinjas.*.exe"/>
-                <include name="*/bin/${configuration}/SoftwareNinjas.*.xml"/>
-                <include name="Gui/SciLexer*.dll"/>
-                <include name="Gui/ScintillaNet.*"/>
-                <exclude name="*.Tests/bin/**"/>
-            </fileset>
-        </copy>
-        <copy todir="Deploy/${versionFolder}/doc">
-            <fileset basedir="Documentation">
-                <include name="**"/>
-            </fileset>
-        </copy>
-
-        <zip zipfile="Deploy/${versionFolder}.zip">
-            <fileset basedir="Deploy">
-                <include name="${versionFolder}/**"/>
-            </fileset>
-        </zip>
-
-        <!-- TODO: create installer -->
     </target>
 
     <target name="release">
