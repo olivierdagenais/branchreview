@@ -12,8 +12,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
     public partial class TaskBrowser : AbstractHistoryComponent
     {
         public TaskBrowser
-        (ITaskRepository taskRepository, ISourceRepository sourceRepository, IShelvesetRepository shelvesetRepository)
-            : base(taskRepository, sourceRepository, shelvesetRepository)
+        (ITaskRepository taskRepository, ISourceRepository sourceRepository, IShelvesetRepository shelvesetRepository, IBuildRepository buildRepository)
+            : base(taskRepository, sourceRepository, shelvesetRepository, buildRepository)
         {
             InitializeComponent();
             taskGrid.Grid.MultiSelect = false;

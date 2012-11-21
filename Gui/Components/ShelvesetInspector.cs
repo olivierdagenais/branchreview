@@ -10,8 +10,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
         private object _shelvesetId;
 
         public ShelvesetInspector
-        (ITaskRepository taskRepository, ISourceRepository sourceRepository, IShelvesetRepository shelvesetRepository)
-            : base(taskRepository, sourceRepository, shelvesetRepository)
+        (ITaskRepository taskRepository, ISourceRepository sourceRepository, IShelvesetRepository shelvesetRepository, IBuildRepository buildRepository)
+            : base(taskRepository, sourceRepository, shelvesetRepository, buildRepository)
         {
             InitializeComponent();
 

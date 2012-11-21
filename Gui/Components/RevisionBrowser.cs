@@ -15,10 +15,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
         private object _branchId;
 
         public RevisionBrowser
-        (ITaskRepository taskRepository, ISourceRepository sourceRepository, IShelvesetRepository shelvesetRepository)
-            : base(taskRepository, sourceRepository, shelvesetRepository)
+        (ITaskRepository taskRepository, ISourceRepository sourceRepository, IShelvesetRepository shelvesetRepository, IBuildRepository buildRepository)
+            : base(taskRepository, sourceRepository, shelvesetRepository, buildRepository)
         {
-            _revisionInspector = new RevisionInspector(taskRepository, sourceRepository, shelvesetRepository);
+            _revisionInspector = new RevisionInspector(taskRepository, sourceRepository, shelvesetRepository, buildRepository);
 
             InitializeComponent();
             activityRevisions.Grid.MultiSelect = false;

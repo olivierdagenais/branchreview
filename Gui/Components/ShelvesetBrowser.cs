@@ -14,10 +14,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
         private readonly ShelvesetInspector _shelvesetInspector;
 
         public ShelvesetBrowser
-        (ITaskRepository taskRepository, ISourceRepository sourceRepository, IShelvesetRepository shelvesetRepository)
-            : base(taskRepository, sourceRepository, shelvesetRepository)
+        (ITaskRepository taskRepository, ISourceRepository sourceRepository, IShelvesetRepository shelvesetRepository, IBuildRepository buildRepository)
+            : base(taskRepository, sourceRepository, shelvesetRepository, buildRepository)
         {
-            _shelvesetInspector = new ShelvesetInspector(taskRepository, sourceRepository, shelvesetRepository);
+            _shelvesetInspector = new ShelvesetInspector(taskRepository, sourceRepository, shelvesetRepository, buildRepository);
 
             InitializeComponent();
             shelvesetGrid.Grid.MultiSelect = false;

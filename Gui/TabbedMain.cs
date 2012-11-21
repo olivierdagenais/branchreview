@@ -25,6 +25,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         private readonly ITaskRepository _taskRepository;
         private readonly ISourceRepository _sourceRepository;
         private readonly IShelvesetRepository _shelvesetRepository;
+        private readonly IBuildRepository _buildRepository;
         private readonly LinkedList<StatusMessage> _statusMessages = new LinkedList<StatusMessage>();
         private readonly Throttler _statusThrottle;
         private readonly Timer _statusCleaner = new Timer { Interval = 2000 };
@@ -51,11 +52,13 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 _taskRepository = container.GetExportedValueOrDefault<ITaskRepository>();
                 _sourceRepository = container.GetExportedValueOrDefault<ISourceRepository>();
                 _shelvesetRepository = container.GetExportedValueOrDefault<IShelvesetRepository>();
+                _buildRepository = container.GetExportedValueOrDefault<IBuildRepository>();
             }
             #if DEBUG
             _taskRepository = _taskRepository ?? new Core.Mock.TaskRepository();
             _sourceRepository = _sourceRepository ?? new Core.Mock.SourceRepository();
             _shelvesetRepository = _shelvesetRepository ?? new Core.Mock.ShelvesetRepository();
+            _buildRepository = _buildRepository ?? new Core.Mock.BuildRepository();
             #endif
 
             if (_sourceRepository != null)
@@ -71,6 +74,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             if (_shelvesetRepository != null)
             {
                 _shelvesetRepository.Log = this;
+            }
+
+            if (_buildRepository != null)
+            {
+                _buildRepository.Log = this;
             }
 
             RegisterComponents();
@@ -100,7 +108,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 newMenuItem.MenuItems.AddAction(
                     new MenuAction("newTaskBrowser", "&Task Browser", true, () =>
                         {
-                            AddComponent((tr, sor, shr) => new TaskBrowser(tr, sor, shr));
+                            AddComponent((tr, sor, shr, br) => new TaskBrowser(tr, sor, shr, br));
                         }
                     )
                 );
@@ -110,14 +118,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 newMenuItem.MenuItems.AddAction(
                     new MenuAction("newBranchBrowser", "&Branch Browser", true, () =>
                         {
-                            AddComponent((tr, sor, shr) => new BranchBrowser(tr, sor, shr));
+                            AddComponent((tr, sor, shr, br) => new BranchBrowser(tr, sor, shr, br));
                         }
                     )
                 );
                 newMenuItem.MenuItems.AddAction(
                     new MenuAction("newChangeCommitter", "&Change Committer", true, () =>
                         {
-                            AddComponent((tr, sor, shr) => new ChangeCommitter(tr, sor, shr) { Title = "Commit" });
+                            AddComponent((tr, sor, shr, br) => new ChangeCommitter(tr, sor, shr, br) { Title = "Commit" });
                         }
                     )
                 );
@@ -127,19 +135,19 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 newMenuItem.MenuItems.AddAction(
                     new MenuAction("newShelvesetBrowser", "&Shelveset Browser", true, () =>
                         {
-                            AddComponent((tr, sor, shr) => new ShelvesetBrowser(tr, sor, shr));
+                            AddComponent((tr, sor, shr, br) => new ShelvesetBrowser(tr, sor, shr, br));
                         }
                     )
                 );
             }
         }
 
-        internal void AddComponent(Func<ITaskRepository, ISourceRepository, IShelvesetRepository, IHistoryItem> factory)
+        internal void AddComponent(Func<ITaskRepository, ISourceRepository, IShelvesetRepository, IBuildRepository, IHistoryItem> factory)
         {
             IHistoryItem historyItem;
             try
             {
-                historyItem = factory(_taskRepository, _sourceRepository, _shelvesetRepository);
+                historyItem = factory(_taskRepository, _sourceRepository, _shelvesetRepository, _buildRepository);
             }
             catch (Exception)
             {
@@ -302,15 +310,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             {
                 {"BrowseTasks", "Opens a task browser", v =>
                     {
-                        AddComponent((tr, sor, shr) => new TaskBrowser(tr, sor, shr));
+                        AddComponent((tr, sor, shr, br) => new TaskBrowser(tr, sor, shr, br));
                     }
                 },
                 /*
                 {"InspectTask={}", "Opens a task inspector with the specified task ID", v =>
                     {
-                        AddComponent((tr, sor, shr) =>
+                        AddComponent((tr, sor, shr, br) =>
                         {
-                            var result = new TaskInspector(tr, sor, shr)
+                            var result = new TaskInspector(tr, sor, shr, br)
                             {
                                 TaskId = v,
                             };
@@ -321,14 +329,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                  */
                 {"BrowseBranches", "Opens a branch browser", v =>
                     {
-                        AddComponent((tr, sor, shr) => new BranchBrowser(tr, sor, shr));
+                        AddComponent((tr, sor, shr, br) => new BranchBrowser(tr, sor, shr, br));
                     }
                 },
                 {"BrowseBranchRevisions=", "Opens a branch revision browser with the specified branch ID", v =>
                     {
-                        AddComponent((tr, sor, shr) => 
+                        AddComponent((tr, sor, shr, br) => 
                         {
-                            var result = new RevisionBrowser(tr, sor, shr)
+                            var result = new RevisionBrowser(tr, sor, shr, br)
                             {
                                 BranchId = v,
                                 Title = v,
@@ -339,9 +347,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 },
                 {"InspectRevision=", "Opens a revision inspector with the specified revision ID", v =>
                     {
-                        AddComponent((tr, sor, shr) => 
+                        AddComponent((tr, sor, shr, br) => 
                         {
-                            var result = new RevisionInspector(tr, sor, shr)
+                            var result = new RevisionInspector(tr, sor, shr, br)
                             {
                                 RevisionId = v,
                                 Title = v,
@@ -352,9 +360,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 },
                 {"Commit=", "Opens a change committer with the specified branch ID", v =>
                     {
-                        AddComponent((tr, sor, shr) => 
+                        AddComponent((tr, sor, shr, br) => 
                         {
-                            var result = new ChangeCommitter(tr, sor, shr)
+                            var result = new ChangeCommitter(tr, sor, shr, br)
                             {
                                 BranchId = v,
                                 Title = v,
@@ -365,14 +373,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                 },
                 {"BrowseShelvesets", "Opens a shelveset browser", v =>
                     {
-                        AddComponent((tr, sor, shr) => new ShelvesetBrowser(tr, sor, shr));
+                        AddComponent((tr, sor, shr, br) => new ShelvesetBrowser(tr, sor, shr, br));
                     }
                 },
                 {"InspectShelveset=", "Opens a shelveset inspector with the specified shelveset ID", v =>
                     {
-                        AddComponent((tr, sor, shr) =>
+                        AddComponent((tr, sor, shr, br) =>
                         {
-                            var result = new ShelvesetInspector(tr, sor, shr)
+                            var result = new ShelvesetInspector(tr, sor, shr, br)
                             {
                                 ShelvesetId = v,
                                 Title = v,

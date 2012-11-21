@@ -12,13 +12,15 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
         protected readonly ITaskRepository _taskRepository;
         protected readonly ISourceRepository _sourceRepository;
         protected readonly IShelvesetRepository _shelvesetRepository;
+        protected readonly IBuildRepository _buildRepository;
 
         protected AbstractHistoryComponent
-        (ITaskRepository taskRepository, ISourceRepository sourceRepository, IShelvesetRepository shelvesetRepository)
+        (ITaskRepository taskRepository, ISourceRepository sourceRepository, IShelvesetRepository shelvesetRepository, IBuildRepository buildRepository)
         {
             _taskRepository = taskRepository;
             _sourceRepository = sourceRepository;
             _shelvesetRepository = shelvesetRepository;
+            _buildRepository = buildRepository;
 
             this.GotFocus += AbstractHistoryComponent_GotFocus;
         }
@@ -71,9 +73,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
                     foreach (var changeId in changeIds)
                     {
                         var id = changeId;
-                        ancestor.AddComponent((tr, sor, shr) => 
+                        ancestor.AddComponent((tr, sor, shr, br) => 
                         {
-                            var result = new RevisionBrowser(tr, sor, shr)
+                            var result = new RevisionBrowser(tr, sor, shr, br)
                             {
                                 BranchId = id,
                                 Title = id.ToString(),

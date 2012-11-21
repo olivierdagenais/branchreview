@@ -15,11 +15,11 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
         private readonly RevisionBrowser _revisionBrowser;
 
         public BranchBrowser
-        (ITaskRepository taskRepository, ISourceRepository sourceRepository, IShelvesetRepository shelvesetRepository)
-            : base(taskRepository, sourceRepository, shelvesetRepository)
+        (ITaskRepository taskRepository, ISourceRepository sourceRepository, IShelvesetRepository shelvesetRepository, IBuildRepository buildRepository)
+            : base(taskRepository, sourceRepository, shelvesetRepository, buildRepository)
         {
-            _revisionBrowser = new RevisionBrowser(_taskRepository, _sourceRepository, _shelvesetRepository);
-            _changeCommitter = new ChangeCommitter(_taskRepository, _sourceRepository, _shelvesetRepository);
+            _revisionBrowser = new RevisionBrowser(_taskRepository, _sourceRepository, _shelvesetRepository, _buildRepository);
+            _changeCommitter = new ChangeCommitter(_taskRepository, _sourceRepository, _shelvesetRepository, _buildRepository);
 
             InitializeComponent();
             branchGrid.Grid.MultiSelect = false;
