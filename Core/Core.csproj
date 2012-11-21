@@ -50,9 +50,11 @@
     <Compile Include="HiddenDataColumn.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="IBuildRepository.cs" />
     <Compile Include="ISourceRepository.cs" />
     <Compile Include="ILog.cs" />
     <Compile Include="ITaskRepository.cs" />
+    <Compile Include="Mock\BuildRepository.cs" />
     <Compile Include="Mock\Data.cs" />
     <Compile Include="Mock\ShelvesetRepository.cs" />
     <Compile Include="Mock\SourceRepository.cs" />
@@ -62,6 +64,7 @@
     <Compile Include="Properties\CustomInfo.cs" />
     <Compile Include="MenuAction.cs" />
     <Compile Include="IShelvesetRepository.cs" />
+    <Compile Include="Stub\BuildRepository.cs" />
     <Compile Include="Stub\Log.cs" />
     <Compile Include="Stub\ShelvesetRepository.cs" />
     <Compile Include="Stub\SourceRepository.cs" />
