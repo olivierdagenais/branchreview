@@ -140,6 +140,16 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                     )
                 );
             }
+            if (_buildRepository != null)
+            {
+                newMenuItem.MenuItems.AddAction(
+                    new MenuAction("newBuildBrowser", "B&uild Browser", true, () =>
+                        {
+                            AddComponent((tr, sor, shr, br) => new BuildBrowser(tr, sor, shr, br));
+                        }
+                    )
+                );
+            }
         }
 
         internal void AddComponent(Func<ITaskRepository, ISourceRepository, IShelvesetRepository, IBuildRepository, IHistoryItem> factory)
@@ -383,6 +393,24 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
                             var result = new ShelvesetInspector(tr, sor, shr, br)
                             {
                                 ShelvesetId = v,
+                                Title = v,
+                            };
+                            return result;
+                        });
+                    }
+                },
+                {"BrowseBuilds", "Opens a build browser", v =>
+                    {
+                        AddComponent((tr, sor, shr, br) => new BuildBrowser(tr, sor, shr, br));
+                    }
+                },
+                {"InspectBuild=", "Opens a build inspector with the specified build ID", v =>
+                    {
+                        AddComponent((tr, sor, shr, br) =>
+                        {
+                            var result = new BuildInspector(tr, sor, shr, br)
+                            {
+                                BuildId = v,
                                 Title = v,
                             };
                             return result;

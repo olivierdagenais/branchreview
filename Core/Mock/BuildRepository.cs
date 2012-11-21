@@ -16,7 +16,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
         {
             Columns =
             {
-                new HiddenDataColumn("ID", typeof(string)),
+                new HiddenDataColumn("ID", typeof(int)),
                 {"Status", typeof(bool)},
                 {"Name", typeof(string)},
                 new DataColumn("TeamProject", typeof(string)) { Caption = "Team Project" },

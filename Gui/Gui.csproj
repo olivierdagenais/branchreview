@@ -63,6 +63,18 @@
     <Compile Include="Components\BranchBrowser.Designer.cs">
       <DependentUpon>BranchBrowser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\BuildBrowser.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\BuildBrowser.Designer.cs">
+      <DependentUpon>BuildBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\BuildInspector.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\BuildInspector.Designer.cs">
+      <DependentUpon>BuildInspector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\ChangeCommitter.cs">
       <SubType>Component</SubType>
     </Compile>
