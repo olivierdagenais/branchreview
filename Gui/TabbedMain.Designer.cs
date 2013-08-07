@@ -40,6 +40,7 @@
             this.searchMenuItem = new System.Windows.Forms.MenuItem();
             this.viewMenu = new System.Windows.Forms.MenuItem();
             this.refreshMenuItem = new System.Windows.Forms.MenuItem();
+            this.viewStatusMenuItem = new System.Windows.Forms.MenuItem();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,7 +120,8 @@
             // viewMenu
             // 
             this.viewMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.refreshMenuItem});
+            this.refreshMenuItem,
+            this.viewStatusMenuItem});
             this.viewMenu.Name = "viewMenu";
             this.viewMenu.Text = "&View";
             // 
@@ -129,6 +131,12 @@
             this.refreshMenuItem.Shortcut = System.Windows.Forms.Shortcut.F5;
             this.refreshMenuItem.Text = "&Refresh";
             this.refreshMenuItem.Click += new System.EventHandler(this.refreshMenuItem_Click);
+            // 
+            // viewStatusMenuItem
+            // 
+            this.viewStatusMenuItem.Name = "viewStatusMenuItem";
+            this.viewStatusMenuItem.Text = "&Status Messages";
+            this.viewStatusMenuItem.Click += new System.EventHandler(this.viewStatusMenuItem_Click);
             // 
             // TabbedMain
             // 
@@ -162,6 +170,7 @@
         private System.Windows.Forms.MenuItem exitMenuItem;
         private System.Windows.Forms.MenuItem viewMenu;
         private System.Windows.Forms.MenuItem refreshMenuItem;
+        private System.Windows.Forms.MenuItem viewStatusMenuItem;
         private System.Windows.Forms.MenuItem editMenu;
         private System.Windows.Forms.MenuItem searchMenuItem;
     }

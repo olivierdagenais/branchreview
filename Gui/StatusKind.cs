@@ -1,6 +1,6 @@
 ﻿namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
-    internal enum StatusKind
+    public enum StatusKind
     {
         Info,
         Warning,

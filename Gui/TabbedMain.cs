@@ -25,12 +25,12 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
     public partial class TabbedMain : Form, ILog
     {
-        private const int StatusMessageCapacity = 512;
         private readonly ITaskRepository _taskRepository;
         private readonly ISourceRepository _sourceRepository;
         private readonly IShelvesetRepository _shelvesetRepository;
         private readonly IBuildRepository _buildRepository;
-        private readonly LinkedList<StatusMessage> _statusMessages = new LinkedList<StatusMessage>();
+        private readonly IBuildRepository _logRepository;
+        private readonly IList<StatusMessage> _statusMessages = new List<StatusMessage>();
         private readonly Throttler _statusThrottle;
         private readonly Timer _statusCleaner = new Timer { Interval = 2000 };
         private readonly MostRecentlyUsedCollection<IDockContent> _activationOrder =
@@ -42,6 +42,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         public TabbedMain()
         {
             InitializeComponent();
+            _logRepository = new LogRepository(_statusMessages);
             mainPanel.ActiveContentChanged += mainPanel_ActiveContentChanged;
             mainPanel.ContentRemoved += mainPanel_ContentRemoved;
             Load += Main_Load;
@@ -492,6 +493,16 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             }
         }
 
+        private void viewStatusMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ExecuteLater(10, () => AddComponent((tr, sor, shr, br) =>
+            {
+                // TODO: once the capability is there, configure the browser/inspector to not call things "builds"
+                var result = new BuildBrowser(null, null, null, _logRepository);
+                return result;
+            }));
+        }
+
         #endregion
 
         #region Common
@@ -539,11 +550,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         {
             lock (_statusMessages)
             {
-                _statusMessages.AddLast(statusMessage);
-                if (_statusMessages.Count > StatusMessageCapacity)
-                {
-                    _statusMessages.RemoveFirst();
-                }
+                _statusMessages.Add(statusMessage);
             }
             _statusThrottle.Fire();
         }
@@ -556,7 +563,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             StatusMessage last;
             lock (_statusMessages)
             {
-                last = _statusMessages.Last.Value;
+                last = _statusMessages.Last();
             }
             // TODO: trim the message if it's too long
             statusBarText.Text = last.Message;

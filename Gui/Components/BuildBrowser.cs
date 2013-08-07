@@ -9,6 +9,7 @@ using SoftwareNinjas.Core;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui.Components
 {
+    // TODO: this component can be used for more generic log-based event lists, like the status messages in BART itself
     public partial class BuildBrowser : AbstractHistoryComponent
     {
         private readonly BuildInspector _buildInspector;

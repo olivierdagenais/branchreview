@@ -160,6 +160,7 @@
     </Compile>
     <Compile Include="History\IHistoryContainer.cs" />
     <Compile Include="History\IHistoryItem.cs" />
+    <Compile Include="LogRepository.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
