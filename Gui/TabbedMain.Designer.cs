@@ -60,6 +60,7 @@
             this.statusBarText.Name = "statusBarText";
             this.statusBarText.Size = new System.Drawing.Size(59, 17);
             this.statusBarText.Text = "Ready";
+            this.statusBarText.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // statusBarProgress
             // 

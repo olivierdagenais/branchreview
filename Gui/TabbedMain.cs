@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Composition.Hosting;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 using NDesk.Options;
 using SoftwareNinjas.BranchAndReviewTools.Core;
@@ -49,10 +52,10 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             {
                 var catalog = new DirectoryCatalog(repositoriesFolder);
                 var container = new CompositionContainer(catalog);
-                _taskRepository = container.GetExportedValueOrDefault<ITaskRepository>();
-                _sourceRepository = container.GetExportedValueOrDefault<ISourceRepository>();
-                _shelvesetRepository = container.GetExportedValueOrDefault<IShelvesetRepository>();
-                _buildRepository = container.GetExportedValueOrDefault<IBuildRepository>();
+                _taskRepository = TryGetExportedValueOrDefault<ITaskRepository>(container, this);
+                _sourceRepository = TryGetExportedValueOrDefault<ISourceRepository>(container, this);
+                _shelvesetRepository = TryGetExportedValueOrDefault<IShelvesetRepository>(container, this);
+                _buildRepository = TryGetExportedValueOrDefault<IBuildRepository>(container, this);
             }
             #if DEBUG
             _taskRepository = _taskRepository ?? new Core.Mock.TaskRepository();
@@ -83,6 +86,28 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
             RegisterComponents();
             mainPanel.DocumentStyle = DocumentStyle.DockingWindow;
+        }
+
+        internal static T TryGetExportedValueOrDefault<T>(ExportProvider provider, ILog log) where T : class
+        {
+            T result = null;
+            try
+            {
+                result = provider.GetExportedValueOrDefault<T>();
+            }
+            catch (ReflectionTypeLoadException rtle)
+            {
+                var sb = new StringBuilder();
+                var type = typeof (T);
+                sb.AppendFormat(CultureInfo.InvariantCulture, "Unable to load plugin of type '{0}':", type);
+                sb.AppendLine();
+                foreach (var loaderException in rtle.LoaderExceptions)
+                {
+                    sb.AppendLine(loaderException.ToString());
+                }
+                log.Error(sb.ToString());
+            }
+            return result;
         }
 
         void mainPanel_ContentRemoved(object sender, DockContentEventArgs e)
