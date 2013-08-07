@@ -41,6 +41,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
                     Enabled = action.Enabled,
                     // TODO: see if MenuItem supports this: Image = action.Image,
                 };
+                // TODO: execute safely (i.e. catch exceptions to report errors) and maybe asynchronously
                 item.Click += (clickSender, eventArgs) => action.Execute();
                 items.Add(item);
             }
