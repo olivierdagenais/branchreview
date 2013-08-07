@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Composition.Hosting;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -47,7 +48,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             FormClosing += Main_Closing;
             _statusThrottle = new Throttler(this, 100, UpdateStatusBar);
             _statusCleaner.Tick += statusCleaner_Tick;
-            var repositoriesFolder = Environment.CurrentDirectory.CombinePath("Repositories");
+            var programDirectoryInfo = GetExecutableDirectory();
+            var programFolder = programDirectoryInfo.FullName;
+            var repositoriesFolder = programFolder.CombinePath("Repositories");
             if (Directory.Exists(repositoriesFolder))
             {
                 var catalog = new DirectoryCatalog(repositoriesFolder);
@@ -86,6 +89,17 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
             RegisterComponents();
             mainPanel.DocumentStyle = DocumentStyle.DockingWindow;
+        }
+
+        internal static DirectoryInfo GetExecutableDirectory()
+        {
+            var currentProcess = Process.GetCurrentProcess();
+            var module = currentProcess.MainModule;
+            var executable = module.FileName;
+            var folder = Path.GetDirectoryName(executable);
+            Debug.Assert(folder != null);
+            var result = new DirectoryInfo(folder);
+            return result;
         }
 
         internal static T TryGetExportedValueOrDefault<T>(ExportProvider provider, ILog log) where T : class
