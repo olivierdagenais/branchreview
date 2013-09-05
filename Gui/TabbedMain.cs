@@ -565,8 +565,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
             {
                 last = _statusMessages.Last();
             }
-            // TODO: trim the message if it's too long
-            statusBarText.Text = last.Message;
+
+            statusBarText.Text = last.Message.Lines().First();
             switch (last.StatusKind)
             {
                 case StatusKind.Info:
