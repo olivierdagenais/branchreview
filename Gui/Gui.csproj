@@ -161,12 +161,6 @@
     <Compile Include="History\IHistoryContainer.cs" />
     <Compile Include="History\IHistoryItem.cs" />
     <Compile Include="LogRepository.cs" />
-    <Compile Include="Main.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
-    </Compile>
     <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramAction.cs" />
@@ -196,9 +190,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="History\HistoryContainer.resx">
       <DependentUpon>HistoryContainer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
