@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Forms;
 using SoftwareNinjas.BranchAndReviewTools.Core;
+using SoftwareNinjas.BranchAndReviewTools.Gui.History;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
 {
@@ -47,7 +49,20 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
                     var result = action.Execute();
                     if (result)
                     {
-                        TabbedMain.RefreshCurrentTab();
+                        var menuItem = (MenuItem) clickSender;
+                        var parentMenu = menuItem.GetContextMenu();
+                        Debug.Assert(parentMenu != null);
+                        var parentControl = parentMenu.SourceControl;
+                        while (parentControl != null && !(parentControl is IHistoryContainer))
+                        {
+                            parentControl = parentControl.Parent;
+                        }
+                        if (parentControl != null)
+                        {
+                            var historyContainer = (IHistoryContainer) parentControl;
+                            var currentHistoryItem = historyContainer.Current;
+                            currentHistoryItem.Reload();
+                        }
                     }
                 };
                 items.Add(item);
