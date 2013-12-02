@@ -41,6 +41,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
             }
         };
 
+        string IRepository.Name { get { return "Mock shelveset repository"; } }
+
         /// <summary>
         /// The <see cref="ILog"/> to send messages to.
         /// </summary>

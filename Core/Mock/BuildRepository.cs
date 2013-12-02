@@ -42,6 +42,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
 
         #region IBuildRepository Members
 
+        string IRepository.Name { get { return "Mock build repository"; } }
+
         /// <summary>
         /// The <see cref="ILog"/> to send messages to.
         /// </summary>

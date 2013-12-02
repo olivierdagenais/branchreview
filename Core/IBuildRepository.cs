@@ -6,13 +6,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
     /// <summary>
     /// Represents a system that keeps track of continuous integration builds.
     /// </summary>
-    public interface IBuildRepository
+    public interface IBuildRepository : IRepository
     {
-        /// <summary>
-        /// Gets or sets the <see cref="ILog"/> instance used for reporting status and progress.
-        /// </summary>
-        ILog Log { get; set; }
-
         /// <summary>
         /// Loads a <see cref="DataTable"/> representing the builds.  Pre-filtering is assumed to have
         /// taken place.

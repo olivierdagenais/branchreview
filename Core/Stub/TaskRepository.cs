@@ -6,13 +6,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Stub
     /// <summary>
     /// An implementation of <see cref="ITaskRepository"/> that does nothing useful.
     /// </summary>
-    public class TaskRepository : ITaskRepository
+    public class TaskRepository : StubRepository, ITaskRepository
     {
-        /// <summary>
-        /// Gets or sets the <see cref="ILog"/> instance used for reporting status and progress.
-        /// </summary>
-        public virtual ILog Log { get; set; }
-
         /// <summary>
         /// Loads a <see cref="DataTable"/> representing the available tasks.  Pre-filtering is assumed to have taken
         /// place.

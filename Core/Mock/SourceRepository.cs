@@ -86,7 +86,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
             }
         }
 
-        ILog ISourceRepository.Log { get; set; }
+        string IRepository.Name { get { return "Mock source repository"; } }
+
+        ILog IRepository.Log { get; set; }
 
         DataTable ISourceRepository.LoadBranches()
         {

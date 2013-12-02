@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using SoftwareNinjas.BranchAndReviewTools.Core;
-using SoftwareNinjas.Core;
 
 namespace SoftwareNinjas.BranchAndReviewTools.Gui
 {
@@ -30,6 +29,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
         }
 
         #region IBuildRepository Members
+
+        string IRepository.Name { get { return "Log repository"; } }
 
         public ILog Log
         {

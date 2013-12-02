@@ -7,13 +7,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Stub
     /// <summary>
     /// An implementation of <see cref="IBuildRepository"/> that does nothing useful.
     /// </summary>
-    public class BuildRepository : IBuildRepository
+    public class BuildRepository : StubRepository, IBuildRepository
     {
-        /// <summary>
-        /// Gets or sets the <see cref="ILog"/> instance used for reporting status and progress.
-        /// </summary>
-        public virtual ILog Log { get; set; }
-
         /// <summary>
         /// Loads a <see cref="DataTable"/> representing the builds.  Pre-filtering is assumed to have
         /// taken place.

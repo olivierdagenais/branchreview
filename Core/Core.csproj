@@ -51,6 +51,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="IBuildRepository.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="ISourceRepository.cs" />
     <Compile Include="ILog.cs" />
     <Compile Include="ITaskRepository.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Stub\Log.cs" />
     <Compile Include="Stub\ShelvesetRepository.cs" />
     <Compile Include="Stub\SourceRepository.cs" />
+    <Compile Include="Stub\StubRepository.cs" />
     <Compile Include="Stub\TaskRepository.cs" />
   </ItemGroup>
   <ItemGroup>

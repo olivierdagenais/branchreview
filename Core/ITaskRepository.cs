@@ -6,13 +6,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
     /// <summary>
     /// Represents a system that keeps track of work items, cases, bugs, features, tasks, user stories, etc.
     /// </summary>
-    public interface ITaskRepository
+    public interface ITaskRepository : IRepository
     {
-        /// <summary>
-        /// Gets or sets the <see cref="ILog"/> instance used for reporting status and progress.
-        /// </summary>
-        ILog Log { get; set; }
-
         /// <summary>
         /// Loads a <see cref="DataTable"/> representing the available tasks.  Pre-filtering is assumed to have taken
         /// place.

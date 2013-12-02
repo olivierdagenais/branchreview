@@ -37,7 +37,9 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
             }
         };
 
-        ILog ITaskRepository.Log { get; set; }
+        string IRepository.Name { get { return "Mock task repository"; } }
+
+        ILog IRepository.Log { get; set; }
 
         DataTable ITaskRepository.LoadTasks()
         {

@@ -6,13 +6,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
     /// <summary>
     /// Represents a system that keeps track of files, folders and their versions.
     /// </summary>
-    public interface ISourceRepository
+    public interface ISourceRepository : IRepository
     {
-        /// <summary>
-        /// Gets or sets the <see cref="ILog"/> instance used for reporting status and progress.
-        /// </summary>
-        ILog Log { get; set; }
-
         /// <summary>
         /// Loads a <see cref="DataTable"/> representing the available branches.  Pre-filtering is assumed to have
         /// taken place.
