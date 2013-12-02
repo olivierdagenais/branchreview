@@ -42,7 +42,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
                     // TODO: see if MenuItem supports this: Image = action.Image,
                 };
                 // TODO: execute safely (i.e. catch exceptions to report errors) and maybe asynchronously
-                item.Click += (clickSender, eventArgs) => action.Execute();
+                item.Click += (clickSender, eventArgs) =>
+                {
+                    var result = action.Execute();
+                    if (result)
+                    {
+                        TabbedMain.RefreshCurrentTab();
+                    }
+                };
                 items.Add(item);
             }
             
@@ -55,5 +62,5 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui.Extensions
                 items[0].PerformClick();
             }
         }
-}
+    }
 }
