@@ -114,8 +114,8 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core.Mock
                 new MenuAction("push", "Pu&sh", (string) row["Status"] == "ready for push",
                                () => Debug.WriteLine("Pushing {0}", new[] {id})),
                 MenuAction.Separator,
-                new MenuAction("delete", "&Delete", (string) row["Status"] == "synched",
-                               () => Debug.WriteLine("Deleting branch {0}", new[] {id})),
+                new MenuAction("delete", "&Delete", true,
+                               () => { Debug.WriteLine("Deleting branch {0}", new[] {id}); return true; }),
             };
             return actions;
         }

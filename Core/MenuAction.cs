@@ -18,7 +18,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// <summary>
         /// Special instance of <see cref="MenuAction"/> to use when a separator is needed.
         /// </summary>
-        public static readonly MenuAction Separator = new MenuAction(null, null, false, null);
+        public static readonly MenuAction Separator = new MenuAction(null, null, false, (Action) null, null);
 
         /// <summary>
         /// Convenience property to determine if the current instance represents the singleton <see cref="Separator"/>.
@@ -38,7 +38,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
 
         private readonly string _name, _caption;
         private readonly bool _enabled;
-        private readonly Action _action;
+        private readonly Func<bool> _action;
         private readonly Image _image;
 
         /// <summary>
@@ -59,13 +59,65 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// 
         /// <param name="action">
         /// The action to perform if the menu item is invoked.
+        /// The action is assumed to not request a refresh after it executes.
         /// </param>
         public MenuAction(string name, string caption, bool enabled, Action action)
+            : this(name, caption, enabled, () => { action(); return false; }, null)
         {
-            _name = name;
-            _caption = caption;
-            _enabled = enabled;
-            _action = action;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MenuAction"/> class.
+        /// </summary>
+        /// 
+        /// <param name="name">
+        /// The system name of the action.  Should be simple, such as <c>open</c>.
+        /// </param>
+        /// 
+        /// <param name="caption">
+        /// The text to show the user in the menu.  Prefix a character with <c>&amp;</c> to underline it.
+        /// </param>
+        /// 
+        /// <param name="enabled">
+        /// <see langword="true"/> if the menu item should be invokable; <see langword="false" /> otherwise.
+        /// </param>
+        /// 
+        /// <param name="action">
+        /// The action to perform if the menu item is invoked.
+        /// The action's return value indicates whether a refresh is requested after execution.
+        /// </param>
+        public MenuAction(string name, string caption, bool enabled, Func<bool> action)
+            : this(name, caption, enabled, action, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MenuAction"/> class.
+        /// </summary>
+        /// 
+        /// <param name="name">
+        /// The system name of the action.  Should be simple, such as <c>open</c>.
+        /// </param>
+        /// 
+        /// <param name="caption">
+        /// The text to show the user in the menu.  Prefix a character with <c>&amp;</c> to underline it.
+        /// </param>
+        /// 
+        /// <param name="enabled">
+        /// <see langword="true"/> if the menu item should be invokable; <see langword="false" /> otherwise.
+        /// </param>
+        /// 
+        /// <param name="action">
+        /// The action to perform if the menu item is invoked.
+        /// The action is assumed to not request a refresh after it executes.
+        /// </param>
+        /// 
+        /// <param name="image">
+        /// The icon to display in the menu.
+        /// </param>
+        public MenuAction(string name, string caption, bool enabled, Action action, Image image)
+            : this(name, caption, enabled, () => { action(); return false; }, image)
+        {
         }
 
         /// <summary>
@@ -91,7 +143,7 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// <param name="image">
         /// The icon to display in the menu.
         /// </param>
-        public MenuAction(string name, string caption, bool enabled, Action action, Image image)
+        public MenuAction(string name, string caption, bool enabled, Func<bool> action, Image image)
         {
             _name = name;
             _caption = caption;
@@ -135,9 +187,14 @@ namespace SoftwareNinjas.BranchAndReviewTools.Core
         /// <summary>
         /// Performs the action.
         /// </summary>
-        public void Execute()
+        /// 
+        /// <returns>
+        /// <see langword="true"/> if a refresh is requested after execution;
+        /// <see langword="false"/> otherwise.
+        /// </returns>
+        public bool Execute()
         {
-            _action();
+            return _action();
         }
     }
 }
