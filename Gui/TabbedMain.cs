@@ -484,12 +484,23 @@ namespace SoftwareNinjas.BranchAndReviewTools.Gui
 
         private void refreshMenuItem_Click(object sender, EventArgs e)
         {
-            var historyWindow = mainPanel.ActiveDocument as HistoryWindow;
-            if (historyWindow != null)
+            RefreshCurrentTab();
+        }
+
+        public static void RefreshCurrentTab()
+        {
+            var form = Application.OpenForms.Cast<Form>().FirstOrDefault(of => of is TabbedMain);
+            if (form != null)
             {
-                var historyContainer = historyWindow.HistoryContainer;
-                var currentHistoryItem = historyContainer.Current;
-                currentHistoryItem.Reload();
+                var mainForm = (TabbedMain) form;
+                var mainPanel = mainForm.mainPanel;
+                var historyWindow = mainPanel.ActiveDocument as HistoryWindow;
+                if (historyWindow != null)
+                {
+                    var historyContainer = historyWindow.HistoryContainer;
+                    var currentHistoryItem = historyContainer.Current;
+                    currentHistoryItem.Reload();
+                }
             }
         }
 
